@@ -1,0 +1,15 @@
+User-agent: *
+Allow: /
+
+# Principais buscadores
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: facebookexternalhit
+Allow: /
+
+# Sitemap
+Sitemap: https://meiocomunica.com.br/sitemap.xml
