@@ -1,0 +1,1013 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meio Comunicação e Consultoria | Marketing Digital & Consultoria Estratégica para PMEs</title>
+  <meta name="description" content="Transformamos a comunicação da sua empresa em resultados reais. Marketing Digital e Consultoria Estratégica para PMEs que querem crescer de verdade.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:       #0D1B2A;
+      --navy-mid:   #1a2d42;
+      --yellow:     #F5C318;
+      --yellow-dk:  #d4a811;
+      --white:      #ffffff;
+      --off:        #F7F8FA;
+      --gray-100:   #EEF0F3;
+      --gray-400:   #9CA3AF;
+      --gray-600:   #6B7280;
+      --gray-800:   #374151;
+      --font:       'Inter', sans-serif;
+      --r:          14px;
+      --shadow:     0 2px 20px rgba(13,27,42,.07);
+      --shadow-lg:  0 12px 40px rgba(13,27,42,.14);
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--font); color: var(--gray-800); background: var(--white); overflow-x: hidden; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+
+    /* ─── NAVIGATION ─────────────────────────────────── */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(13,27,42,.97); backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(245,195,24,.12);
+      height: 72px; padding: 0 clamp(1.5rem,4vw,3rem);
+      display: flex; align-items: center; justify-content: space-between;
+      transition: box-shadow .3s;
+    }
+    .nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,.25); }
+
+    .nav-logo { display: flex; align-items: center; gap: 12px; }
+    .nav-logo-text .l1 { font-size: 13px; font-weight: 800; color: #fff; letter-spacing: .08em; text-transform: uppercase; }
+    .nav-logo-text .l2 { font-size: 10px; font-weight: 600; color: var(--yellow); letter-spacing: .14em; text-transform: uppercase; }
+
+    .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+    .nav-links a { font-size: 13px; font-weight: 500; color: rgba(255,255,255,.7); letter-spacing: .05em; text-transform: uppercase; transition: color .2s; }
+    .nav-links a:hover { color: var(--yellow); }
+
+    .btn-nav {
+      background: var(--yellow); color: var(--navy) !important;
+      font-weight: 800 !important; padding: 10px 22px; border-radius: 8px;
+      transition: all .2s !important; font-size: 13px !important;
+    }
+    .btn-nav:hover { background: var(--yellow-dk) !important; transform: translateY(-1px); }
+
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+    .hamburger span { width: 24px; height: 2px; background: #fff; border-radius: 2px; transition: all .3s; }
+
+    /* ─── HERO ────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      padding: 120px clamp(1.5rem,4vw,3rem) 80px;
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-glow1 {
+      position: absolute; top: -200px; right: -200px;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,195,24,.07) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-glow2 {
+      position: absolute; bottom: -200px; left: -100px;
+      width: 500px; height: 500px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(245,195,24,.04) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+      position: relative; z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(245,195,24,.1); border: 1px solid rgba(245,195,24,.25);
+      color: var(--yellow); font-size: 11px; font-weight: 700;
+      letter-spacing: .12em; text-transform: uppercase;
+      padding: 7px 16px; border-radius: 100px; margin-bottom: 1.5rem;
+    }
+    .hero-badge-dot {
+      width: 6px; height: 6px; background: var(--yellow); border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.5;transform:scale(1.4)} }
+
+    .hero h1 {
+      font-size: clamp(2.4rem, 5vw, 4rem); font-weight: 900; line-height: 1.1;
+      color: #fff; letter-spacing: -.025em; margin-bottom: 1.5rem;
+    }
+    .hero h1 em { font-style: normal; color: var(--yellow); }
+
+    .hero-sub {
+      font-size: 1.1rem; color: rgba(255,255,255,.62); line-height: 1.75;
+      max-width: 460px; margin-bottom: 2.5rem;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: var(--font); font-weight: 700; border: none; cursor: pointer;
+      border-radius: var(--r); transition: all .25s; letter-spacing: .02em;
+    }
+    .btn-primary { background: var(--yellow); color: var(--navy); font-size: 15px; padding: 15px 30px; }
+    .btn-primary:hover { background: var(--yellow-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(245,195,24,.3); }
+    .btn-ghost { background: transparent; color: #fff; font-size: 15px; padding: 15px 30px; border: 2px solid rgba(255,255,255,.25); }
+    .btn-ghost:hover { border-color: var(--yellow); color: var(--yellow); transform: translateY(-2px); }
+    .btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem;
+      margin-top: 3rem; padding-top: 2.5rem;
+      border-top: 1px solid rgba(255,255,255,.08);
+    }
+    .hero-stat-val { font-size: 2rem; font-weight: 900; color: var(--yellow); line-height: 1; }
+    .hero-stat-lbl { font-size: 13px; color: rgba(255,255,255,.45); margin-top: 4px; }
+
+    .hero-visual { display: flex; justify-content: center; align-items: center; }
+    .hero-symbol-wrap {
+      width: 360px; height: 360px;
+      display: flex; align-items: center; justify-content: center;
+      animation: float 7s ease-in-out infinite;
+    }
+    @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-18px)} }
+
+    /* ─── SHARED SECTIONS ────────────────────────────── */
+    section { padding: clamp(60px,10vw,100px) clamp(1.5rem,4vw,3rem); }
+    .container { max-width: 1200px; margin: 0 auto; width: 100%; }
+
+    .tag {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: 12px; font-weight: 700; letter-spacing: .13em;
+      text-transform: uppercase; color: var(--yellow-dk);
+      margin-bottom: .9rem;
+    }
+    .tag::before { content:''; display:inline-block; width:22px; height:2px; background:var(--yellow-dk); }
+
+    .h2 {
+      font-size: clamp(1.9rem,3.5vw,3rem); font-weight: 900;
+      line-height: 1.15; letter-spacing: -.02em; color: var(--navy);
+      margin-bottom: 1.1rem;
+    }
+    .lead { font-size: 1.05rem; color: var(--gray-600); line-height: 1.75; max-width: 580px; }
+    .s-head { margin-bottom: 3.5rem; }
+
+    /* ─── RIBBON (numbers band) ───────────────────────── */
+    .ribbon { background: var(--navy); padding: 60px clamp(1.5rem,4vw,3rem); }
+    .ribbon-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 1rem; max-width: 1200px; margin: 0 auto; }
+    .ribbon-item { text-align: center; padding: 1.5rem; }
+    .ribbon-num { font-size: 3rem; font-weight: 900; color: var(--yellow); line-height: 1; letter-spacing: -.03em; }
+    .ribbon-lbl { font-size: 14px; color: rgba(255,255,255,.55); margin-top: 8px; line-height: 1.4; }
+
+    /* ─── SERVICES ────────────────────────────────────── */
+    .services { background: var(--off); }
+    .svc-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(290px,1fr)); gap: 1.5rem; }
+
+    .svc-card {
+      background: var(--white); border-radius: 18px;
+      padding: 2.5rem; border: 1px solid var(--gray-100);
+      box-shadow: var(--shadow); transition: all .3s; position: relative; overflow: hidden;
+    }
+    .svc-card::after {
+      content:''; position:absolute; top:0;left:0;right:0; height:3px;
+      background:var(--yellow); transform:scaleX(0); transition:transform .3s;
+    }
+    .svc-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); }
+    .svc-card:hover::after { transform:scaleX(1); }
+
+    .svc-card.dark { background: var(--navy); border-color: var(--navy); }
+    .svc-card.dark::after { background: var(--yellow); }
+
+    .svc-icon {
+      width: 56px; height: 56px; border-radius: 14px;
+      background: var(--off); display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .svc-icon svg { width: 26px; height: 26px; color: var(--navy); }
+    .svc-card.dark .svc-icon { background: rgba(245,195,24,.12); }
+    .svc-card.dark .svc-icon svg { color: var(--yellow); }
+
+    .svc-card h3 { font-size: 1.25rem; font-weight: 800; color: var(--navy); margin-bottom: .6rem; }
+    .svc-card.dark h3 { color: #fff; }
+    .svc-card p { font-size: 14.5px; color: var(--gray-600); line-height: 1.7; margin-bottom: 1.4rem; }
+    .svc-card.dark p { color: rgba(255,255,255,.6); }
+
+    .svc-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .svc-list li { font-size: 14px; color: var(--gray-800); display: flex; align-items: center; gap: 8px; }
+    .svc-list li::before { content:'→'; color: var(--yellow-dk); font-weight: 700; font-size: 13px; flex-shrink: 0; }
+    .svc-card.dark .svc-list li { color: rgba(255,255,255,.75); }
+
+    /* ─── PROCESS ─────────────────────────────────────── */
+    .process { background: var(--white); }
+    .process-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 1.5rem; }
+
+    .step-card {
+      background: var(--off); border-radius: 18px; padding: 2.5rem 1.75rem;
+      text-align: center; border: 1px solid var(--gray-100); transition: all .3s;
+    }
+    .step-card:hover { background: var(--white); box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+
+    .step-num {
+      width: 58px; height: 58px; border-radius: 50%;
+      background: var(--navy); color: var(--yellow);
+      font-size: 1.2rem; font-weight: 900;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.25rem;
+    }
+    .step-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--navy); margin-bottom: .5rem; }
+    .step-card p { font-size: 14px; color: var(--gray-600); line-height: 1.65; }
+
+    /* ─── CASES ───────────────────────────────────────── */
+    .cases { background: var(--off); }
+    .cases-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(320px,1fr)); gap: 2rem; }
+
+    .case-card {
+      background: var(--white); border-radius: 18px;
+      overflow: hidden; box-shadow: var(--shadow); transition: all .3s;
+    }
+    .case-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+
+    .case-thumb {
+      height: 180px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3.5rem; position: relative; overflow: hidden;
+    }
+    .case-chip {
+      position: absolute; bottom: 14px; left: 16px;
+      background: var(--yellow); color: var(--navy);
+      font-size: 10px; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 4px 12px; border-radius: 100px;
+    }
+    .case-body { padding: 1.75rem; }
+    .case-body h3 { font-size: 1.05rem; font-weight: 800; color: var(--navy); margin-bottom: .4rem; }
+    .case-body p { font-size: 14px; color: var(--gray-600); line-height: 1.6; margin-bottom: 1.25rem; }
+
+    .case-metrics { display: flex; gap: 1.5rem; }
+    .case-met-val { font-size: 1.5rem; font-weight: 900; color: var(--navy); }
+    .case-met-lbl { font-size: 11px; color: var(--gray-400); text-transform: uppercase; letter-spacing: .06em; }
+
+    /* ─── TESTIMONIALS ───────────────────────────────── */
+    .testimonials { background: var(--navy); }
+    .testi-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 1.5rem; }
+
+    .testi-card {
+      background: rgba(255,255,255,.055); border: 1px solid rgba(255,255,255,.09);
+      border-radius: 18px; padding: 2rem; transition: all .3s;
+    }
+    .testi-card:hover { background: rgba(255,255,255,.1); border-color: rgba(245,195,24,.3); }
+
+    .stars { color: var(--yellow); font-size: 17px; letter-spacing: 2px; margin-bottom: 1rem; }
+    .testi-text { font-size: 15px; color: rgba(255,255,255,.78); line-height: 1.72; font-style: italic; margin-bottom: 1.5rem; }
+    .testi-author { display: flex; align-items: center; gap: 12px; }
+    .avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--yellow); color: var(--navy);
+      font-weight: 800; font-size: 16px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .testi-name { font-weight: 700; font-size: 14px; color: #fff; }
+    .testi-role { font-size: 12px; color: rgba(255,255,255,.45); margin-top: 2px; }
+
+    /* ─── ABOUT ───────────────────────────────────────── */
+    .about { background: var(--white); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; }
+
+    .about-visual { position: relative; }
+    .about-box {
+      background: var(--navy); border-radius: 24px;
+      padding: 3rem; display: flex; align-items: center; justify-content: center;
+      aspect-ratio: 1; max-width: 400px;
+    }
+    .about-badge-box {
+      position: absolute; bottom: -18px; right: -18px;
+      background: var(--yellow); border-radius: 16px;
+      padding: 1rem 1.5rem; box-shadow: var(--shadow-lg);
+      color: var(--navy);
+    }
+    .about-badge-num { font-size: 2rem; font-weight: 900; line-height: 1; }
+    .about-badge-txt { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; font-weight: 600; }
+
+    .about-content .h2 { color: var(--navy); }
+    .about-content p { font-size: 15.5px; color: var(--gray-600); line-height: 1.8; margin-bottom: 1.1rem; }
+
+    .values { display: flex; flex-direction: column; gap: 10px; margin-top: 1.5rem; }
+    .val-row {
+      display: flex; align-items: flex-start; gap: 12px;
+      padding: 14px 16px; background: var(--off);
+      border-radius: 10px; border-left: 3px solid var(--yellow);
+    }
+    .val-emoji { font-size: 20px; flex-shrink: 0; }
+    .val-title { font-weight: 700; font-size: 14px; color: var(--navy); }
+    .val-desc { font-size: 13px; color: var(--gray-600); margin-top: 2px; }
+
+    /* ─── CTA SECTION ────────────────────────────────── */
+    .cta-sec {
+      background: var(--navy); text-align: center;
+      padding: 100px clamp(1.5rem,4vw,3rem); position: relative; overflow: hidden;
+    }
+    .cta-glow {
+      position: absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+      width:800px; height:800px; border-radius:50%;
+      background: radial-gradient(circle, rgba(245,195,24,.06) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .cta-sec h2 {
+      font-size: clamp(2rem,4vw,3.5rem); font-weight: 900; color: #fff;
+      line-height: 1.15; letter-spacing: -.025em; margin-bottom: 1.25rem;
+      position: relative;
+    }
+    .cta-sec h2 em { font-style: normal; color: var(--yellow); }
+    .cta-sec p {
+      font-size: 1.05rem; color: rgba(255,255,255,.6); max-width: 460px;
+      margin: 0 auto 2.75rem; line-height: 1.75; position: relative;
+    }
+    .cta-btns { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; position: relative; }
+
+    /* ─── FOOTER ─────────────────────────────────────── */
+    footer { background: #070E18; padding: 60px clamp(1.5rem,4vw,3rem) 28px; }
+    .ft-grid {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1.6fr; gap: 3rem;
+      padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,.06);
+    }
+    .ft-brand p { font-size: 14px; color: rgba(255,255,255,.45); line-height: 1.7; margin-top: 1rem; max-width: 270px; }
+    .ft-col h4 { font-size: 12px; font-weight: 700; color: #fff; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 1.1rem; }
+    .ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 9px; }
+    .ft-col ul a { font-size: 14px; color: rgba(255,255,255,.45); transition: color .2s; }
+    .ft-col ul a:hover { color: var(--yellow); }
+    .ft-contact-row { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: rgba(255,255,255,.5); margin-bottom: 12px; }
+    .ft-contact-row svg { width:15px; height:15px; flex-shrink:0; margin-top:2px; color:var(--yellow); }
+    .ft-bottom {
+      max-width: 1200px; margin: 0 auto; padding-top: 1.5rem;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 13px; color: rgba(255,255,255,.3);
+    }
+    .ft-bottom a { color: var(--yellow); }
+
+    /* ─── WHATSAPP FLOAT ─────────────────────────────── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 999;
+      width: 60px; height: 60px; border-radius: 50%;
+      background: #25D366; color: #fff;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,.45);
+      transition: all .3s;
+      animation: wabounce 4s ease-in-out 3s infinite;
+    }
+    .wa-float:hover { transform: scale(1.12); box-shadow: 0 10px 32px rgba(37,211,102,.5); }
+    .wa-float svg { width: 30px; height: 30px; }
+    .wa-tip {
+      position: absolute; right: 68px;
+      background: var(--navy); color: #fff;
+      font-size: 13px; font-weight: 600; font-family: var(--font);
+      padding: 8px 14px; border-radius: 8px; white-space: nowrap;
+      opacity: 0; pointer-events: none; transition: opacity .2s;
+      box-shadow: var(--shadow-lg);
+    }
+    .wa-tip::after {
+      content:''; position: absolute; left: 100%; top:50%; transform:translateY(-50%);
+      border: 6px solid transparent; border-left-color: var(--navy);
+    }
+    .wa-float:hover .wa-tip { opacity: 1; }
+    @keyframes wabounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+
+    /* ─── FADE-IN ─────────────────────────────────────── */
+    .fi { opacity: 0; transform: translateY(26px); transition: opacity .65s ease, transform .65s ease; }
+    .fi.on { opacity: 1; transform: translateY(0); }
+    .fi.d1 { transition-delay: .1s; }
+    .fi.d2 { transition-delay: .2s; }
+    .fi.d3 { transition-delay: .3s; }
+    .fi.d4 { transition-delay: .4s; }
+
+    /* ─── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; gap: 3rem; }
+      .hero-visual { order: -1; }
+      .hero-symbol-wrap { width: 220px; height: 220px; }
+      .hero-sub { margin: 0 auto 2.5rem; }
+      .hero-actions { justify-content: center; }
+      .hero-stats { justify-content: center; }
+      .ribbon-grid { grid-template-columns: repeat(2,1fr); }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { display: none; }
+      .ft-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    }
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .ribbon-grid { grid-template-columns: repeat(2,1fr); }
+      .ft-grid { grid-template-columns: 1fr; }
+      .ft-bottom { flex-direction: column; gap: .5rem; text-align: center; }
+    }
+
+    /* mobile menu open */
+    .nav-links.open {
+      display: flex; flex-direction: column; gap: 1rem;
+      position: absolute; top: 72px; left: 0; right: 0;
+      background: rgba(13,27,42,.98); padding: 1.5rem 2rem 2rem;
+      border-bottom: 1px solid rgba(245,195,24,.15);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── NAVIGATION ──────────────────────────────────────────── -->
+<nav class="nav" id="nav">
+  <a href="#inicio" class="nav-logo">
+    <!-- Dot-circle icon (inline SVG matching the brand symbol) -->
+    <svg width="40" height="40" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="50" cy="12" r="5.5" fill="white"/>
+      <circle cx="70" cy="18" r="4.5" fill="white" opacity=".85"/>
+      <circle cx="84" cy="33" r="7"   fill="white"/>
+      <circle cx="90" cy="51" r="8"   fill="white"/>
+      <circle cx="83" cy="70" r="5.5" fill="white" opacity=".9"/>
+      <circle cx="69" cy="84" r="9"   fill="white"/>
+      <circle cx="50" cy="90" r="6.5" fill="white"/>
+      <circle cx="31" cy="84" r="4.5" fill="white" opacity=".85"/>
+      <circle cx="17" cy="70" r="7.5" fill="white"/>
+      <circle cx="11" cy="51" r="5.5" fill="white" opacity=".9"/>
+      <circle cx="17" cy="33" r="6.5" fill="white"/>
+      <circle cx="31" cy="18" r="9"   fill="white"/>
+      <circle cx="61" cy="14" r="3"   fill="white" opacity=".55"/>
+      <circle cx="87" cy="42" r="3"   fill="white" opacity=".55"/>
+      <circle cx="86" cy="62" r="3.5" fill="white" opacity=".65"/>
+      <circle cx="61" cy="87" r="3"   fill="white" opacity=".55"/>
+      <circle cx="39" cy="87" r="3.5" fill="white" opacity=".65"/>
+      <circle cx="14" cy="62" r="3"   fill="white" opacity=".55"/>
+      <circle cx="14" cy="42" r="3.5" fill="white" opacity=".65"/>
+      <circle cx="39" cy="14" r="3"   fill="white" opacity=".55"/>
+    </svg>
+    <div class="nav-logo-text">
+      <div class="l1">Meio Comunicação</div>
+      <div class="l2">e Consultoria</div>
+    </div>
+  </a>
+
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#servicos">Serviços</a></li>
+    <li><a href="#processo">Como trabalhamos</a></li>
+    <li><a href="#cases">Cases</a></li>
+    <li><a href="#sobre">Sobre</a></li>
+    <li>
+      <a href="https://wa.me/5500000000000?text=Olá!+Quero+saber+mais+sobre+a+Meio+Comunicação." target="_blank" rel="noopener" class="btn-nav">
+        Fale conosco
+      </a>
+    </li>
+  </ul>
+
+  <div class="hamburger" onclick="toggleNav()" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- ── HERO ────────────────────────────────────────────────── -->
+<section class="hero" id="inicio">
+  <div class="hero-glow1"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        Agência de Comunicação &amp; Consultoria
+      </div>
+      <h1>
+        Comunicação que<br>
+        gera <em>resultados<br>reais</em>
+      </h1>
+      <p class="hero-sub">
+        Transformamos a comunicação da sua empresa em uma máquina de negócios. Marketing Digital e Consultoria Estratégica pensados para PMEs que querem crescer de verdade.
+      </p>
+      <div class="hero-actions">
+        <a href="https://wa.me/5500000000000?text=Olá!+Quero+um+diagnóstico+gratuito+para+minha+empresa." target="_blank" rel="noopener" class="btn btn-primary">
+          <!-- WhatsApp icon -->
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Diagnóstico gratuito
+        </a>
+        <a href="#servicos" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+          Ver serviços
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="hero-stat-val">50<small style="font-size:1.3rem">+</small></div>
+          <div class="hero-stat-lbl">Clientes atendidos</div>
+        </div>
+        <div>
+          <div class="hero-stat-val">5<small style="font-size:1.3rem">+</small></div>
+          <div class="hero-stat-lbl">Anos de mercado</div>
+        </div>
+        <div>
+          <div class="hero-stat-val">98<small style="font-size:1.3rem">%</small></div>
+          <div class="hero-stat-lbl">Satisfação</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="hero-symbol-wrap">
+        <svg viewBox="0 0 320 320" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%">
+          <circle cx="160" cy="24"  r="13"  fill="white"/>
+          <circle cx="216" cy="42"  r="11"  fill="white" opacity=".9"/>
+          <circle cx="260" cy="82"  r="15"  fill="white"/>
+          <circle cx="282" cy="144" r="18"  fill="white"/>
+          <circle cx="270" cy="204" r="13"  fill="white" opacity=".9"/>
+          <circle cx="234" cy="256" r="20"  fill="white"/>
+          <circle cx="178" cy="280" r="15"  fill="white"/>
+          <circle cx="118" cy="274" r="11"  fill="white" opacity=".9"/>
+          <circle cx="66"  cy="248" r="18"  fill="white"/>
+          <circle cx="32"  cy="200" r="13"  fill="white"/>
+          <circle cx="20"  cy="142" r="15"  fill="white" opacity=".9"/>
+          <circle cx="38"  cy="82"  r="20"  fill="white"/>
+          <circle cx="82"  cy="42"  r="22"  fill="white"/>
+          <circle cx="136" cy="28"  r="9"   fill="white" opacity=".65"/>
+          <circle cx="190" cy="32"  r="8"   fill="white" opacity=".55"/>
+          <circle cx="274" cy="112" r="9"   fill="white" opacity=".65"/>
+          <circle cx="285" cy="174" r="8"   fill="white" opacity=".55"/>
+          <circle cx="255" cy="232" r="9"   fill="white" opacity=".65"/>
+          <circle cx="206" cy="275" r="8"   fill="white" opacity=".55"/>
+          <circle cx="146" cy="290" r="9"   fill="white" opacity=".65"/>
+          <circle cx="86"  cy="278" r="7"   fill="white" opacity=".5"/>
+          <circle cx="36"  cy="248" r="8"   fill="white" opacity=".55"/>
+          <circle cx="16"  cy="172" r="8"   fill="white" opacity=".55"/>
+          <circle cx="22"  cy="112" r="9"   fill="white" opacity=".65"/>
+          <circle cx="54"  cy="58"  r="11"  fill="white" opacity=".65"/>
+          <circle cx="110" cy="32"  r="10"  fill="white" opacity=".6"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── NUMBERS RIBBON ──────────────────────────────────────── -->
+<div class="ribbon">
+  <div class="ribbon-grid">
+    <div class="ribbon-item fi d1">
+      <div class="ribbon-num">50<span style="font-size:2rem">+</span></div>
+      <div class="ribbon-lbl">Clientes atendidos</div>
+    </div>
+    <div class="ribbon-item fi d2">
+      <div class="ribbon-num">3<span style="font-size:2rem">×</span></div>
+      <div class="ribbon-lbl">Crescimento médio em alcance</div>
+    </div>
+    <div class="ribbon-item fi d3">
+      <div class="ribbon-num">5<span style="font-size:2rem">+</span></div>
+      <div class="ribbon-lbl">Anos de experiência</div>
+    </div>
+    <div class="ribbon-item fi d4">
+      <div class="ribbon-num">98<span style="font-size:2rem">%</span></div>
+      <div class="ribbon-lbl">Índice de satisfação</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SERVICES ──────────────────────────────────────────────── -->
+<section class="services" id="servicos">
+  <div class="container">
+    <div class="s-head fi">
+      <div class="tag">Nossos serviços</div>
+      <h2 class="h2">O que fazemos pela<br>sua empresa</h2>
+      <p class="lead">Combinamos estratégia e execução para transformar a comunicação da sua PME em vantagem competitiva real.</p>
+    </div>
+
+    <div class="svc-grid">
+      <!-- Marketing Digital -->
+      <div class="svc-card fi d1">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M22 12h-4l-3 9L9 3l-3 9H2"/>
+          </svg>
+        </div>
+        <h3>Marketing Digital</h3>
+        <p>Estratégias focadas em gerar leads qualificados e crescimento mensurável para o seu negócio.</p>
+        <ul class="svc-list">
+          <li>Gestão de Redes Sociais</li>
+          <li>Tráfego Pago (Google &amp; Meta Ads)</li>
+          <li>Produção de Conteúdo Estratégico</li>
+          <li>E-mail Marketing e Automações</li>
+          <li>SEO e Presença Digital</li>
+        </ul>
+      </div>
+
+      <!-- Consultoria Estratégica -->
+      <div class="svc-card fi d2">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/>
+          </svg>
+        </div>
+        <h3>Consultoria Estratégica</h3>
+        <p>Diagnóstico e plano de comunicação personalizado para posicionar sua empresa à frente da concorrência.</p>
+        <ul class="svc-list">
+          <li>Diagnóstico de Comunicação</li>
+          <li>Posicionamento e Branding</li>
+          <li>Planejamento Estratégico</li>
+          <li>Treinamento de Equipe</li>
+          <li>Gestão de Crises</li>
+        </ul>
+      </div>
+
+      <!-- Diferencial card -->
+      <div class="svc-card dark fi d3">
+        <div class="svc-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+          </svg>
+        </div>
+        <h3>Por que a Meio?</h3>
+        <p>Não somos mais uma agência genérica. Somos parceiros estratégicos obcecados por resultado.</p>
+        <ul class="svc-list">
+          <li>Foco total em PMEs brasileiras</li>
+          <li>Estratégias 100% personalizadas</li>
+          <li>Relatórios mensais de resultados</li>
+          <li>Atendimento direto e ágil</li>
+          <li>Preço justo, sem enrolação</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROCESS ─────────────────────────────────────────────── -->
+<section class="process" id="processo">
+  <div class="container">
+    <div class="s-head fi" style="text-align:center;">
+      <div class="tag" style="justify-content:center;">Como trabalhamos</div>
+      <h2 class="h2" style="text-align:center;">Do diagnóstico ao resultado</h2>
+      <p class="lead" style="margin:0 auto;">Um processo claro e objetivo, desenhado para gerar impacto real em 90 dias.</p>
+    </div>
+
+    <div class="process-grid">
+      <div class="step-card fi d1">
+        <div class="step-num">01</div>
+        <h3>Diagnóstico</h3>
+        <p>Analisamos sua empresa, mercado e comunicação atual para identificar oportunidades reais de crescimento.</p>
+      </div>
+      <div class="step-card fi d2">
+        <div class="step-num">02</div>
+        <h3>Estratégia</h3>
+        <p>Desenvolvemos um plano personalizado com metas claras, prazos definidos e KPIs mensuráveis.</p>
+      </div>
+      <div class="step-card fi d3">
+        <div class="step-num">03</div>
+        <h3>Execução</h3>
+        <p>Implementamos cada ação com qualidade e agilidade, mantendo você no loop em cada etapa.</p>
+      </div>
+      <div class="step-card fi d4">
+        <div class="step-num">04</div>
+        <h3>Resultados</h3>
+        <p>Medimos, reportamos e otimizamos continuamente para garantir crescimento consistente e sustentável.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CASES ──────────────────────────────────────────────────── -->
+<section class="cases" id="cases">
+  <div class="container">
+    <div class="s-head fi">
+      <div class="tag">Cases de sucesso</div>
+      <h2 class="h2">Resultados que falam<br>por si mesmos</h2>
+      <p class="lead">Empresas reais que transformaram a comunicação e colheram crescimento concreto.</p>
+    </div>
+
+    <div class="cases-grid">
+      <div class="case-card fi d1">
+        <div class="case-thumb" style="background:linear-gradient(135deg,#0D1B2A,#1a3350);">
+          🏪
+          <span class="case-chip">Marketing Digital</span>
+        </div>
+        <div class="case-body">
+          <h3>Empresa do Varejo Local</h3>
+          <p>Gestão de redes sociais + tráfego pago para loja física que queria ampliar presença digital e aumentar vendas.</p>
+          <div class="case-metrics">
+            <div>
+              <div class="case-met-val">+280%</div>
+              <div class="case-met-lbl">Alcance</div>
+            </div>
+            <div>
+              <div class="case-met-val">+145%</div>
+              <div class="case-met-lbl">Vendas</div>
+            </div>
+            <div>
+              <div class="case-met-val">6 meses</div>
+              <div class="case-met-lbl">Prazo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card fi d2">
+        <div class="case-thumb" style="background:linear-gradient(135deg,#1a2d42,#253d55);">
+          🎯
+          <span class="case-chip">Consultoria Estratégica</span>
+        </div>
+        <div class="case-body">
+          <h3>Prestadora de Serviços B2B</h3>
+          <p>Reposicionamento de marca e planejamento estratégico completo para empresa de serviços em expansão.</p>
+          <div class="case-metrics">
+            <div>
+              <div class="case-met-val">3×</div>
+              <div class="case-met-lbl">Leads</div>
+            </div>
+            <div>
+              <div class="case-met-val">+190%</div>
+              <div class="case-met-lbl">Conversão</div>
+            </div>
+            <div>
+              <div class="case-met-val">4 meses</div>
+              <div class="case-met-lbl">Prazo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="case-card fi d3">
+        <div class="case-thumb" style="background:linear-gradient(135deg,#0d2233,#163348);">
+          🏥
+          <span class="case-chip">Gestão de Redes</span>
+        </div>
+        <div class="case-body">
+          <h3>Clínica de Saúde</h3>
+          <p>Produção de conteúdo especializado e gestão de comunidade para clínica médica em expansão regional.</p>
+          <div class="case-metrics">
+            <div>
+              <div class="case-met-val">+5k</div>
+              <div class="case-met-lbl">Seguidores</div>
+            </div>
+            <div>
+              <div class="case-met-val">+220%</div>
+              <div class="case-met-lbl">Agendamentos</div>
+            </div>
+            <div>
+              <div class="case-met-val">3 meses</div>
+              <div class="case-met-lbl">Prazo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── TESTIMONIALS ───────────────────────────────────────────── -->
+<section class="testimonials">
+  <div class="container">
+    <div class="s-head fi" style="text-align:center;">
+      <div class="tag" style="justify-content:center;color:var(--yellow);">Depoimentos</div>
+      <h2 class="h2" style="color:#fff;text-align:center;">O que nossos clientes<br>dizem sobre nós</h2>
+    </div>
+
+    <div class="testi-grid">
+      <div class="testi-card fi d1">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"A Meio Comunicação transformou nossa presença digital. Em poucos meses triplicamos os leads qualificados. Recomendo sem hesitar!"</p>
+        <div class="testi-author">
+          <div class="avatar">C</div>
+          <div>
+            <div class="testi-name">Carlos M.</div>
+            <div class="testi-role">CEO, Empresa de Tecnologia</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card fi d2">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"O diagnóstico estratégico abriu nossos olhos para oportunidades que não víamos. Profissionalismo e resultados reais acima de tudo."</p>
+        <div class="testi-author">
+          <div class="avatar">A</div>
+          <div>
+            <div class="testi-name">Ana P.</div>
+            <div class="testi-role">Diretora, Clínica de Saúde</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testi-card fi d3">
+        <div class="stars">★★★★★</div>
+        <p class="testi-text">"Finalmente uma agência que entende PMEs de verdade. Trabalham como extensão do nosso time, com transparência total em cada etapa."</p>
+        <div class="testi-author">
+          <div class="avatar">R</div>
+          <div>
+            <div class="testi-name">Roberto S.</div>
+            <div class="testi-role">Proprietário, Varejo Local</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ABOUT ──────────────────────────────────────────────────── -->
+<section class="about" id="sobre">
+  <div class="container">
+    <div class="about-grid">
+
+      <div class="about-visual fi">
+        <div class="about-box">
+          <svg viewBox="0 0 280 280" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:280px;">
+            <circle cx="140" cy="24"  r="11"  fill="white"/>
+            <circle cx="192" cy="40"  r="9"   fill="white" opacity=".9"/>
+            <circle cx="228" cy="78"  r="14"  fill="white"/>
+            <circle cx="246" cy="134" r="16"  fill="white"/>
+            <circle cx="238" cy="190" r="11"  fill="white" opacity=".9"/>
+            <circle cx="205" cy="238" r="18"  fill="white"/>
+            <circle cx="155" cy="258" r="13"  fill="white"/>
+            <circle cx="100" cy="253" r="9"   fill="white" opacity=".9"/>
+            <circle cx="56"  cy="228" r="16"  fill="white"/>
+            <circle cx="28"  cy="182" r="11"  fill="white"/>
+            <circle cx="18"  cy="128" r="13"  fill="white" opacity=".9"/>
+            <circle cx="36"  cy="76"  r="17"  fill="white"/>
+            <circle cx="76"  cy="38"  r="19"  fill="white"/>
+            <circle cx="120" cy="26"  r="8"   fill="white" opacity=".6"/>
+            <circle cx="170" cy="30"  r="7"   fill="white" opacity=".5"/>
+          </svg>
+        </div>
+        <div class="about-badge-box">
+          <div class="about-badge-num">5+</div>
+          <div class="about-badge-txt">Anos de mercado</div>
+        </div>
+      </div>
+
+      <div class="about-content fi d2">
+        <div class="tag">Quem somos</div>
+        <h2 class="h2">Resultado acima<br>de tudo</h2>
+        <p>A Meio Comunicação e Consultoria nasceu com um propósito claro: democratizar o acesso a comunicação estratégica de qualidade para pequenas e médias empresas brasileiras.</p>
+        <p>Acreditamos que toda PME merece ter uma comunicação tão poderosa quanto as grandes marcas — e trabalhamos todos os dias para tornar isso realidade para nossos clientes.</p>
+
+        <div class="values">
+          <div class="val-row">
+            <div class="val-emoji">🎯</div>
+            <div>
+              <div class="val-title">Foco em resultado</div>
+              <div class="val-desc">Cada ação é pensada para gerar impacto mensurável no seu negócio</div>
+            </div>
+          </div>
+          <div class="val-row">
+            <div class="val-emoji">🤝</div>
+            <div>
+              <div class="val-title">Parceria de verdade</div>
+              <div class="val-desc">Trabalhamos como extensão do seu time, não como mais um fornecedor</div>
+            </div>
+          </div>
+          <div class="val-row">
+            <div class="val-emoji">📊</div>
+            <div>
+              <div class="val-title">Transparência total</div>
+              <div class="val-desc">Relatórios claros, métricas reais, zero enrolação</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ── CTA FINAL ───────────────────────────────────────────────── -->
+<section class="cta-sec">
+  <div class="cta-glow"></div>
+  <div class="container fi">
+    <h2>Pronto para sua empresa<br>crescer de <em>verdade?</em></h2>
+    <p>Agende uma conversa gratuita e descubra como a Meio Comunicação pode transformar sua empresa nos próximos 90 dias.</p>
+    <div class="cta-btns">
+      <a href="https://wa.me/5500000000000?text=Olá!+Quero+agendar+um+diagnóstico+gratuito+para+minha+empresa." target="_blank" rel="noopener"
+         class="btn btn-primary" style="font-size:16px;padding:17px 34px;">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Falar no WhatsApp agora
+      </a>
+      <a href="mailto:henrique@meiocomunica.com.br"
+         class="btn btn-ghost" style="font-size:16px;padding:17px 34px;">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
+        </svg>
+        Enviar e-mail
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
+<footer>
+  <div class="ft-grid">
+
+    <div class="ft-brand">
+      <!-- Logo in footer -->
+      <div style="display:flex;align-items:center;gap:10px;">
+        <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
+          <circle cx="50" cy="12" r="5.5" fill="white"/>
+          <circle cx="70" cy="18" r="4.5" fill="white" opacity=".8"/>
+          <circle cx="84" cy="33" r="7"   fill="white"/>
+          <circle cx="90" cy="51" r="8"   fill="white"/>
+          <circle cx="83" cy="70" r="5.5" fill="white" opacity=".9"/>
+          <circle cx="69" cy="84" r="9"   fill="white"/>
+          <circle cx="50" cy="90" r="6.5" fill="white"/>
+          <circle cx="31" cy="84" r="4.5" fill="white" opacity=".85"/>
+          <circle cx="17" cy="70" r="7.5" fill="white"/>
+          <circle cx="11" cy="51" r="5.5" fill="white" opacity=".9"/>
+          <circle cx="17" cy="33" r="6.5" fill="white"/>
+          <circle cx="31" cy="18" r="9"   fill="white"/>
+        </svg>
+        <div>
+          <div style="font-size:13px;font-weight:800;color:#fff;letter-spacing:.08em;text-transform:uppercase;">Meio Comunicação</div>
+          <div style="font-size:10px;font-weight:600;color:#F5C318;letter-spacing:.14em;text-transform:uppercase;">e Consultoria</div>
+        </div>
+      </div>
+      <p>Transformamos a comunicação da sua empresa em resultados reais. Especialistas em Marketing Digital e Consultoria Estratégica para PMEs brasileiras.</p>
+    </div>
+
+    <div class="ft-col">
+      <h4>Serviços</h4>
+      <ul>
+        <li><a href="#servicos">Marketing Digital</a></li>
+        <li><a href="#servicos">Consultoria Estratégica</a></li>
+        <li><a href="#servicos">Gestão de Redes Sociais</a></li>
+        <li><a href="#servicos">Tráfego Pago</a></li>
+        <li><a href="#servicos">SEO</a></li>
+      </ul>
+    </div>
+
+    <div class="ft-col">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="#sobre">Quem somos</a></li>
+        <li><a href="#cases">Cases</a></li>
+        <li><a href="#processo">Como trabalhamos</a></li>
+        <li><a href="#">Blog</a></li>
+      </ul>
+    </div>
+
+    <div class="ft-col">
+      <h4>Contato</h4>
+      <div class="ft-contact-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <span>henrique@meiocomunica.com.br</span>
+      </div>
+      <div class="ft-contact-row">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span>WhatsApp disponível</span>
+      </div>
+      <div class="ft-contact-row">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span>Brasil</span>
+      </div>
+    </div>
+
+  </div>
+  <div class="ft-bottom">
+    <span>© 2025 Meio Comunicação e Consultoria. Todos os direitos reservados.</span>
+    <span>Feito para <a href="#inicio">PMEs brasileiras</a> 🇧🇷</span>
+  </div>
+</footer>
+
+<!-- ── WHATSAPP FLOAT ─────────────────────────────────────────── -->
+<a href="https://wa.me/5500000000000?text=Olá!+Vim+pelo+site+e+quero+saber+mais+sobre+a+Meio+Comunicação." target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+  <div class="wa-tip">Fale conosco agora</div>
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ── JAVASCRIPT ──────────────────────────────────────────────── -->
+<script>
+  // Scroll-based nav shadow
+  window.addEventListener('scroll', () => {
+    document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // Mobile nav toggle
+  function toggleNav() {
+    const links = document.getElementById('navLinks');
+    links.classList.toggle('open');
+  }
+
+  // Close mobile menu on link click
+  document.querySelectorAll('#navLinks a').forEach(a => {
+    a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open'));
+  });
+
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const target = document.querySelector(a.getAttribute('href'));
+      if (target) { e.preventDefault(); target.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  // Fade-in on scroll
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fi').forEach(el => io.observe(el));
+</script>
+
+</body>
+</html>
