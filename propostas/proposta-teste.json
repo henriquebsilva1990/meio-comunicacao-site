@@ -1,0 +1,55 @@
+{
+  "cliente": "proposta teste",
+  "contato": "Modelo propsta",
+  "data": "2026-04-28",
+  "validade_dias": 7,
+  "servicos": [
+    {
+      "nome": "Gestão de Tráfego Pago",
+      "descricao": "Campanhas no Meta Ads e Google Ads gerenciadas com foco em custo por lead e retorno real. Cada real monitorado.",
+      "itens": [
+        "Meta Ads & Google Ads",
+        "Criativos e copy inclusos",
+        "Otimização semanal",
+        "Relatório mensal detalhado"
+      ],
+      "valor": 2400,
+      "tipo": "mensal"
+    },
+    {
+      "nome": "Social Media Profissional",
+      "descricao": "Gestão completa das redes com calendário editorial, produção de conteúdo e design que posiciona e gera autoridade.",
+      "itens": [
+        "Calendário editorial mensal",
+        "Design e legendas inclusos",
+        "Instagram, Facebook & LinkedIn",
+        "Análise de desempenho"
+      ],
+      "valor": 1800,
+      "tipo": "mensal"
+    },
+    {
+      "nome": "Estratégia & Consultoria",
+      "descricao": "Diagnóstico completo do posicionamento digital e plano de ação personalizado para direção estratégica.",
+      "itens": [
+        "Diagnóstico digital completo",
+        "Plano de marketing sob medida",
+        "Consultoria de posicionamento",
+        "Acompanhamento estratégico"
+      ],
+      "valor": 3000,
+      "tipo": "mensal"
+    },
+    {
+      "nome": "Posso escrever o que eu quiser",
+      "descricao": "TESTE\nTESTE",
+      "itens": [
+        "TESTE",
+        "TESTE",
+        "TESTE"
+      ],
+      "valor": 1000,
+      "tipo": "unico"
+    }
+  ]
+}
