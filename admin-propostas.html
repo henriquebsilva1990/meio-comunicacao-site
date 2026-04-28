@@ -55,10 +55,33 @@
     .tpl-btn:hover { border-color: var(--yellow); }
     .tpl-btn h4 { font-size: 13px; color: var(--navy); margin-bottom: 4px; }
     .tpl-btn p { font-size: 11px; color: var(--gray-600); }
+    /* ─── LOGIN ───────────────────────────────────── */
+    .login-overlay { position:fixed;inset:0;background:var(--navy);z-index:9999;display:flex;align-items:center;justify-content:center; }
+    .login-box { background:#fff;border-radius:var(--radius);padding:2.5rem;max-width:380px;width:100%;text-align:center; }
+    .login-box img { height:70px;border-radius:10px;margin-bottom:1.5rem; }
+    .login-box h2 { font-size:1.1rem;color:var(--navy);margin-bottom:.3rem; }
+    .login-box p { font-size:13px;color:var(--gray-600);margin-bottom:1.5rem; }
+    .login-box input { width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center;margin-bottom:1rem; }
+    .login-box button { width:100%;padding:12px;background:var(--yellow);color:var(--navy);border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer; }
+    .login-box button:hover { opacity:.9; }
+    .login-error { color:#ff4444;font-size:12px;margin-top:.5rem;display:none; }
   </style>
 </head>
 <body>
 
+<!-- LOGIN -->
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <img src="customcolor_logo_customcolor_background.png" alt="Meio Comunicacao">
+    <h2>Area restrita</h2>
+    <p>Criador de Propostas Comerciais</p>
+    <input type="password" id="loginSenha" placeholder="Digite a senha" onkeydown="if(event.key==='Enter')tentarLogin()">
+    <button onclick="tentarLogin()">Entrar</button>
+    <div class="login-error" id="loginErro">Senha incorreta.</div>
+  </div>
+</div>
+
+<div id="appContent" style="display:none;">
 <div class="header">
   <img src="customcolor_logo_customcolor_background.png" alt="Meio Comunicacao">
   <div>
@@ -141,27 +164,51 @@
     <p style="font-size:11px;color:#6c757d;margin-top:.5rem;">O deploy leva 1-2 minutos para ficar no ar.</p>
   </div>
 </div>
+</div><!-- /appContent -->
 
 <script>
+const ADMIN_PASS = 'Hbs*4078';
+const AUTH_KEY = 'meio_admin_auth';
+
+function tentarLogin() {
+  const senha = document.getElementById('loginSenha').value;
+  if (senha === ADMIN_PASS) {
+    localStorage.setItem(AUTH_KEY, '1');
+    document.getElementById('loginOverlay').style.display = 'none';
+    document.getElementById('appContent').style.display = 'block';
+  } else {
+    document.getElementById('loginErro').style.display = 'block';
+    document.getElementById('loginSenha').value = '';
+  }
+}
+
+// Auto-login if already authenticated this session
+if (localStorage.getItem(AUTH_KEY) === '1') {
+  document.getElementById('loginOverlay').style.display = 'none';
+  document.getElementById('appContent').style.display = 'block';
+} else {
+  document.getElementById('loginSenha').focus();
+}
+
 const TEMPLATES = {
   trafego: {
-    nome: 'Gestao de Trafego Pago',
+    nome: 'Gestão de Tráfego Pago',
     descricao: 'Campanhas no Meta Ads e Google Ads gerenciadas com foco em custo por lead e retorno real. Cada real monitorado.',
-    itens: ['Meta Ads & Google Ads', 'Criativos e copy inclusos', 'Otimizacao semanal', 'Relatorio mensal detalhado'],
+    itens: ['Meta Ads & Google Ads', 'Criativos e copy inclusos', 'Otimização semanal', 'Relatório mensal detalhado'],
     valor: 2400,
     tipo: 'mensal'
   },
   social: {
     nome: 'Social Media Profissional',
-    descricao: 'Gestao completa das redes com calendario editorial, producao de conteudo e design que posiciona e gera autoridade.',
-    itens: ['Calendario editorial mensal', 'Design e legendas inclusos', 'Instagram, Facebook & LinkedIn', 'Analise de desempenho'],
+    descricao: 'Gestão completa das redes com calendário editorial, produção de conteúdo e design que posiciona e gera autoridade.',
+    itens: ['Calendário editorial mensal', 'Design e legendas inclusos', 'Instagram, Facebook & LinkedIn', 'Análise de desempenho'],
     valor: 1800,
     tipo: 'mensal'
   },
   consultoria: {
-    nome: 'Estrategia & Consultoria',
-    descricao: 'Diagnostico completo do posicionamento digital e plano de acao personalizado para direcao estrategica.',
-    itens: ['Diagnostico digital completo', 'Plano de marketing sob medida', 'Consultoria de posicionamento', 'Acompanhamento estrategico'],
+    nome: 'Estratégia & Consultoria',
+    descricao: 'Diagnóstico completo do posicionamento digital e plano de ação personalizado para direção estratégica.',
+    itens: ['Diagnóstico digital completo', 'Plano de marketing sob medida', 'Consultoria de posicionamento', 'Acompanhamento estratégico'],
     valor: 3000,
     tipo: 'mensal'
   },

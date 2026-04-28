@@ -268,8 +268,8 @@ function render(data) {
     /* QUEM SOMOS */
     '<section>' +
       '<div class="section-tag">Quem Somos</div>' +
-      '<h2 class="section-title">Estrategia, criatividade e execucao.</h2>' +
-      '<p class="about-text">A Meio Comunicacao e uma agencia de marketing digital focada em resultados reais para PMEs. Desenvolvemos estrategias personalizadas e entregamos a execucao completa — da campanha ao criativo, do copy ao relatorio — tudo feito internamente com total controle de qualidade.</p>' +
+      '<h2 class="section-title">Estratégia, criatividade e execução.</h2>' +
+      '<p class="about-text">A Meio Comunicação é uma agência de marketing digital focada em resultados reais para PMEs. Desenvolvemos estratégias personalizadas e entregamos a execução completa — da campanha ao criativo, do copy ao relatório — tudo feito internamente com total controle de qualidade.</p>' +
       '<div class="stats-row">' +
         '<div class="stat"><div class="stat-num">+30</div><div class="stat-label">Clientes atendidos</div></div>' +
         '<div class="stat"><div class="stat-num">360&deg;</div><div class="stat-label">Execucao integrada</div></div>' +
@@ -281,26 +281,26 @@ function render(data) {
     /* DIFERENCIAIS */
     '<section>' +
       '<div class="section-tag">Diferenciais</div>' +
-      '<h2 class="section-title">Por que a Meio e diferente.</h2>' +
+      '<h2 class="section-title">Por que a Meio é diferente.</h2>' +
       '<div class="section-sub"></div>' +
       '<div class="diff-grid">' +
-        '<div class="diff-card"><div class="diff-num">01</div><h3>Execucao 360&deg; Interna</h3><p>Trafego, copy, design e social media feitos pela nossa equipe — sem terceirizar.</p></div>' +
-        '<div class="diff-card"><div class="diff-num">02</div><h3>Estrategia Personalizada</h3><p>Cada cliente recebe uma estrategia construida a partir do seu mercado e objetivo.</p></div>' +
-        '<div class="diff-card"><div class="diff-num">03</div><h3>Resultado Mensuravel</h3><p>Relatorio mensal com metricas reais. Voce sabe exatamente o retorno do investimento.</p></div>' +
-        '<div class="diff-card"><div class="diff-num">04</div><h3>Atendimento Proximo</h3><p>Sem call center. Voce fala diretamente com quem executa. Decisoes rapidas.</p></div>' +
+        '<div class="diff-card"><div class="diff-num">01</div><h3>Execução 360° Interna</h3><p>Tráfego, copy, design e social media feitos pela nossa equipe — sem terceirizar.</p></div>' +
+        '<div class="diff-card"><div class="diff-num">02</div><h3>Estratégia Personalizada</h3><p>Cada cliente recebe uma estratégia construída a partir do seu mercado e objetivo.</p></div>' +
+        '<div class="diff-card"><div class="diff-num">03</div><h3>Resultado Mensurável</h3><p>Relatório mensal com métricas reais. Você sabe exatamente o retorno do investimento.</p></div>' +
+        '<div class="diff-card"><div class="diff-num">04</div><h3>Atendimento Próximo</h3><p>Sem call center. Você fala diretamente com quem executa. Decisões rápidas.</p></div>' +
       '</div>' +
     '</section>' +
     '<hr class="divider">' +
 
     /* METODO */
     '<section>' +
-      '<div class="section-tag">Nosso Metodo</div>' +
-      '<h2 class="section-title">Do diagnostico ao resultado.</h2>' +
+      '<div class="section-tag">Nosso Método</div>' +
+      '<h2 class="section-title">Do diagnóstico ao resultado.</h2>' +
       '<div class="section-sub"></div>' +
       '<div class="timeline">' +
-        '<div class="timeline-step"><div class="step-badge">Semana 1</div><h3>Diagnostico</h3><p>Entendemos o seu negocio, publico-alvo, concorrencia e oportunidades.</p></div>' +
-        '<div class="timeline-step"><div class="step-badge">Semana 2-3</div><h3>Estrategia & Lancamento</h3><p>Criamos e ativamos campanhas e conteudo. Do criativo ao pixel, tudo junto.</p></div>' +
-        '<div class="timeline-step"><div class="step-badge">Mes a mes</div><h3>Otimizacao Continua</h3><p>Monitoramos, ajustamos e evoluimos. Relatorio mensal com proximos passos.</p></div>' +
+        '<div class="timeline-step"><div class="step-badge">Semana 1</div><h3>Diagnóstico</h3><p>Entendemos o seu negócio, público-alvo, concorrência e oportunidades.</p></div>' +
+        '<div class="timeline-step"><div class="step-badge">Semana 2-3</div><h3>Estratégia & Lançamento</h3><p>Criamos e ativamos campanhas e conteúdo. Do criativo ao pixel, tudo junto.</p></div>' +
+        '<div class="timeline-step"><div class="step-badge">Mês a mês</div><h3>Otimização Contínua</h3><p>Monitoramos, ajustamos e evoluímos. Relatório mensal com próximos passos.</p></div>' +
       '</div>' +
     '</section>' +
     '<hr class="divider">' +
@@ -308,17 +308,18 @@ function render(data) {
     /* SERVICOS & INVESTIMENTO */
     '<section>' +
       '<div class="section-tag">Investimento</div>' +
-      '<h2 class="section-title">Servicos e valores.</h2>' +
+      '<h2 class="section-title">Serviços e valores.</h2>' +
       '<p class="section-sub">Escopo personalizado para ' + data.cliente + '.</p>' +
       servicosHTML +
       (totalMensal > 0 ?
         '<div class="total-bar">' +
           '<div><div class="total-label">Investimento mensal</div><div class="total-nota">Recorrente. Sem taxa de setup. Sem surpresas.</div></div>' +
+
           '<div class="total-valor">' + formatCurrency(totalMensal) + '/mes</div>' +
         '</div>' : '') +
       (totalUnico > 0 ?
         '<div class="total-bar" style="margin-top:.8rem;background:var(--navy-light);">' +
-          '<div><div class="total-label">Investimento unico</div><div class="total-nota">Pagamento unico na contratacao.</div></div>' +
+          '<div><div class="total-label">Investimento único</div><div class="total-nota">Pagamento único na contratação.</div></div>' +
           '<div class="total-valor">' + formatCurrency(totalUnico) + '</div>' +
         '</div>' : '') +
     '</section>' +
@@ -326,13 +327,13 @@ function render(data) {
 
     /* PROXIMOS PASSOS */
     '<section>' +
-      '<div class="section-tag">Proximos Passos</div>' +
+      '<div class="section-tag">Próximos Passos</div>' +
       '<h2 class="section-title">Simples e sem burocracia.</h2>' +
       '<div class="section-sub"></div>' +
       '<div class="passos-grid">' +
-        '<div class="passo"><div class="passo-quando">Hoje</div><h3>Reuniao de Diagnostico</h3><p>30 minutos para entender seu negocio, desafios e objetivos. Sem compromisso.</p></div>' +
-        '<div class="passo"><div class="passo-quando">Em 48h</div><h3>Proposta Personalizada</h3><p>Estrategia, servicos e investimento. Nada generico — feita para voce.</p></div>' +
-        '<div class="passo"><div class="passo-quando">Em 7 dias</div><h3>Inicio dos Trabalhos</h3><p>Onboarding, acesso as ferramentas e primeiros criativos.</p></div>' +
+        '<div class="passo"><div class="passo-quando">Hoje</div><h3>Reunião de Diagnóstico</h3><p>30 minutos para entender seu negócio, desafios e objetivos. Sem compromisso.</p></div>' +
+        '<div class="passo"><div class="passo-quando">Em 48h</div><h3>Proposta Personalizada</h3><p>Estratégia, serviços e investimento. Nada genérico — feita para você.</p></div>' +
+        '<div class="passo"><div class="passo-quando">Em 7 dias</div><h3>Início dos Trabalhos</h3><p>Onboarding, acesso às ferramentas e primeiros criativos.</p></div>' +
       '</div>' +
     '</section>' +
 
@@ -340,13 +341,13 @@ function render(data) {
 
     /* CTA */
     '<div class="cta-section">' +
-      '<h2>Vamos <span>comecar</span>?</h2>' +
-      '<p>Fale conosco para agendar sua reuniao de diagnostico.</p>' +
+      '<h2>Vamos <span>começar</span>?</h2>' +
+      '<p>Fale conosco para agendar sua reunião de diagnóstico.</p>' +
       '<a href="https://wa.me/5516981334647?text=Ola!+Vi+a+proposta+da+Meio+e+gostaria+de+conversar." target="_blank" class="cta-btn">' +
         '<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.03L.789 23.769l4.89-1.483A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.78c-2.19 0-4.22-.66-5.91-1.79l-.42-.27-2.9.88.82-2.83-.29-.44A9.76 9.76 0 012.22 12c0-5.39 4.39-9.78 9.78-9.78 5.39 0 9.78 4.39 9.78 9.78 0 5.39-4.39 9.78-9.78 9.78z"/></svg>' +
         'Chamar no WhatsApp' +
       '</a>' +
-      '<div class="validade-badge">Proposta valida ate ' + validade + '</div>' +
+      '<div class="validade-badge">Proposta válida até ' + validade + '</div>' +
       '<div class="cta-footer">' +
         '<div class="cta-info" style="text-align:left;margin-top:0;">' +
           '<p>henrique@meiocomunica.com.br | (16) 98133-4647</p>' +
@@ -373,7 +374,7 @@ if (params.get('preview') === '1') {
     .catch(() => {
     document.getElementById('app').innerHTML =
       '<div style="text-align:center;padding:4rem 2rem;color:#999;">' +
-        '<h2 style="color:#0D1B2A;margin-bottom:1rem;">Proposta nao encontrada</h2>' +
+        '<h2 style="color:#0D1B2A;margin-bottom:1rem;">Proposta não encontrada</h2>' +
         '<p>Verifique o link recebido ou entre em contato conosco.</p>' +
         '<a href="https://wa.me/5516981334647" style="display:inline-block;margin-top:1.5rem;background:#25D366;color:#fff;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:700;">Falar no WhatsApp</a>' +
       '</div>';
