@@ -127,17 +127,18 @@
   <!-- ACOES -->
   <div class="actions">
     <button class="btn btn-yellow" onclick="previsualizar()">Previsualizar</button>
-    <button class="btn btn-green" onclick="baixarJSON()">Baixar JSON (para publicar)</button>
+    <button class="btn btn-green" onclick="publicar()" id="btnPublicar">Publicar proposta</button>
+    <button class="btn btn-navy" onclick="baixarJSON()" style="font-size:12px;padding:10px 16px;">Baixar JSON</button>
   </div>
 
-  <div class="card" id="instrucoes" style="display:none;">
-    <h2>Como publicar</h2>
-    <ol style="font-size:13px;color:var(--gray-600);line-height:2;padding-left:1.2rem;">
-      <li>Clique em "Baixar JSON" — o arquivo sera salvo no seu computador</li>
-      <li>Mova o arquivo para a pasta <code>propostas/</code> dentro do site</li>
-      <li>Faca commit e push para o GitHub</li>
-      <li>Envie o link para o cliente: <strong id="linkFinal"></strong></li>
-    </ol>
+  <div class="card msg-ok" id="linkBox" style="display:none;">
+    <h2 style="color:#155724;">Proposta publicada!</h2>
+    <p style="font-size:13px;color:#155724;margin-top:.5rem;">Link para enviar ao cliente:</p>
+    <div style="margin-top:.8rem;display:flex;gap:8px;align-items:center;">
+      <input type="text" id="linkFinal" readonly style="flex:1;font-size:14px;font-weight:600;">
+      <button class="btn btn-navy" onclick="copiarLink()" style="padding:10px 16px;font-size:12px;">Copiar</button>
+    </div>
+    <p style="font-size:11px;color:#6c757d;margin-top:.5rem;">O deploy leva 1-2 minutos para ficar no ar.</p>
   </div>
 </div>
 
@@ -287,6 +288,85 @@ function baixarJSON() {
   document.getElementById('instrucoes').style.display = 'block';
   document.getElementById('linkFinal').textContent = 'meiocomunica.com.br/proposta.html?c=' + slug;
   showMsg('Arquivo ' + slug + '.json baixado!');
+}
+
+const GH_REPO = 'henriquebsilva1990/meio-comunicacao-site';
+const GH_TOKEN_KEY = 'meio_gh_token';
+
+function getToken() {
+  let token = localStorage.getItem(GH_TOKEN_KEY);
+  if (!token) {
+    token = prompt('Primeira vez: cole seu GitHub Token (sera salvo no navegador):');
+    if (token) localStorage.setItem(GH_TOKEN_KEY, token.trim());
+  }
+  return token;
+}
+
+async function publicar() {
+  const data = getData();
+  if (!data.cliente) { alert('Preencha o nome do cliente.'); return; }
+  if (data.servicos.length === 0) { alert('Adicione pelo menos um servico.'); return; }
+
+  const token = getToken();
+  if (!token) return;
+
+  const slug = getSlugValue();
+  const path = 'propostas/' + slug + '.json';
+  const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2) + '\n')));
+  const btn = document.getElementById('btnPublicar');
+  btn.textContent = 'Publicando...';
+  btn.disabled = true;
+
+  try {
+    // Check if file already exists (to get sha for update)
+    let sha = null;
+    const checkResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + path, {
+      headers: { 'Authorization': 'token ' + token }
+    });
+    if (checkResp.ok) {
+      const existing = await checkResp.json();
+      sha = existing.sha;
+    }
+
+    // Create or update file
+    const body = {
+      message: 'proposta: ' + data.cliente,
+      content: content
+    };
+    if (sha) body.sha = sha;
+
+    const resp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + path, {
+      method: 'PUT',
+      headers: {
+        'Authorization': 'token ' + token,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(body)
+    });
+
+    if (!resp.ok) {
+      const err = await resp.json();
+      throw new Error(err.message || 'Erro ao publicar');
+    }
+
+    const link = 'https://meiocomunica.com.br/proposta.html?c=' + slug;
+    document.getElementById('linkFinal').value = link;
+    document.getElementById('linkBox').style.display = 'block';
+    showMsg('Proposta publicada com sucesso!');
+  } catch (e) {
+    alert('Erro ao publicar: ' + e.message);
+    localStorage.removeItem(GH_TOKEN_KEY);
+  } finally {
+    btn.textContent = 'Publicar proposta';
+    btn.disabled = false;
+  }
+}
+
+function copiarLink() {
+  const input = document.getElementById('linkFinal');
+  input.select();
+  navigator.clipboard.writeText(input.value);
+  showMsg('Link copiado!');
 }
 
 function showMsg(text) {
