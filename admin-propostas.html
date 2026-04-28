@@ -411,35 +411,32 @@ async function publicar() {
   btn.disabled = true;
 
   try {
+    const apiBase = 'https://api.github.com/repos/' + GH_REPO + '/contents/' + path;
+    const headers = { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' };
+
     // Check if file already exists (to get sha for update)
     let sha = null;
-    const checkResp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + path, {
-      headers: { 'Authorization': 'token ' + token }
-    });
-    if (checkResp.ok) {
-      const existing = await checkResp.json();
-      sha = existing.sha;
-    }
+    try {
+      const checkResp = await fetch(apiBase + '?ref=main', { headers: headers });
+      if (checkResp.ok) {
+        const existing = await checkResp.json();
+        sha = existing.sha;
+      }
+    } catch(e) { /* file doesn't exist yet, that's fine */ }
 
     // Create or update file
-    const body = {
-      message: 'proposta: ' + data.cliente,
-      content: content
-    };
+    const body = { message: 'proposta: ' + data.cliente, content: content };
     if (sha) body.sha = sha;
 
-    const resp = await fetch('https://api.github.com/repos/' + GH_REPO + '/contents/' + path, {
+    const resp = await fetch(apiBase, {
       method: 'PUT',
-      headers: {
-        'Authorization': 'token ' + token,
-        'Content-Type': 'application/json'
-      },
+      headers: { ...headers, 'Content-Type': 'application/json' },
       body: JSON.stringify(body)
     });
 
+    const result = await resp.json();
     if (!resp.ok) {
-      const err = await resp.json();
-      throw new Error(err.message || 'Erro ao publicar');
+      throw new Error(result.message || 'Erro ' + resp.status);
     }
 
     const link = 'https://meiocomunica.com.br/proposta.html?c=' + slug;
@@ -447,7 +444,7 @@ async function publicar() {
     document.getElementById('linkBox').style.display = 'block';
     showMsg('Proposta publicada com sucesso!');
   } catch (e) {
-    alert('Erro ao publicar: ' + e.message);
+    alert('Erro ao publicar: ' + e.message + '\n\nSe o token estiver errado, limpe e tente novamente.');
     localStorage.removeItem(GH_TOKEN_KEY);
   } finally {
     btn.textContent = 'Publicar proposta';
