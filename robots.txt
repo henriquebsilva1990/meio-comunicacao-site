@@ -1,5 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /admin.html
 
 # Principais buscadores
 User-agent: Googlebot

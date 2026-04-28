@@ -479,6 +479,7 @@
     }
     .testi-name { font-weight: 700; font-size: 14px; color: #fff; }
     .testi-role { font-size: 12px; color: rgba(255,255,255,.45); margin-top: 2px; }
+    .avatar img { width:100%; height:100%; object-fit:cover; border-radius:50%; }
 
     /* ─── ABOUT ───────────────────────────────────────── */
     .about { background: var(--white); }
@@ -715,33 +716,7 @@
 <!-- ── NAVIGATION ──────────────────────────────────────────── -->
 <nav class="nav" id="nav">
   <a href="#inicio" class="nav-logo">
-    <!-- Logo: círculo de pontos amarelos -->
-    <svg width="44" height="44" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="50" cy="12" r="5.5" fill="#F5C318"/>
-      <circle cx="70" cy="18" r="4.5" fill="#F5C318" opacity=".85"/>
-      <circle cx="84" cy="33" r="7"   fill="#F5C318"/>
-      <circle cx="90" cy="51" r="8"   fill="#F5C318"/>
-      <circle cx="83" cy="70" r="5.5" fill="#F5C318" opacity=".9"/>
-      <circle cx="69" cy="84" r="9"   fill="#F5C318"/>
-      <circle cx="50" cy="90" r="6.5" fill="#F5C318"/>
-      <circle cx="31" cy="84" r="4.5" fill="#F5C318" opacity=".85"/>
-      <circle cx="17" cy="70" r="7.5" fill="#F5C318"/>
-      <circle cx="11" cy="51" r="5.5" fill="#F5C318" opacity=".9"/>
-      <circle cx="17" cy="33" r="6.5" fill="#F5C318"/>
-      <circle cx="31" cy="18" r="9"   fill="#F5C318"/>
-      <circle cx="61" cy="14" r="3"   fill="#F5C318" opacity=".55"/>
-      <circle cx="87" cy="42" r="3"   fill="#F5C318" opacity=".55"/>
-      <circle cx="86" cy="62" r="3.5" fill="#F5C318" opacity=".65"/>
-      <circle cx="61" cy="87" r="3"   fill="#F5C318" opacity=".55"/>
-      <circle cx="39" cy="87" r="3.5" fill="#F5C318" opacity=".65"/>
-      <circle cx="14" cy="62" r="3"   fill="#F5C318" opacity=".55"/>
-      <circle cx="14" cy="42" r="3.5" fill="#F5C318" opacity=".65"/>
-      <circle cx="39" cy="14" r="3"   fill="#F5C318" opacity=".55"/>
-    </svg>
-    <div class="nav-logo-text">
-      <div class="l1">MEIO COMUNICAÇÃO</div>
-      <div class="l2">E CONSULTORIA</div>
-    </div>
+    <img src="customcolor_logo_customcolor_background.png" alt="Meio Comunicação e Consultoria" style="height:44px;width:auto;border-radius:8px;">
   </a>
 
   <ul class="nav-links" id="navLinks">
@@ -1108,43 +1083,7 @@
       <h2 class="h2" style="color:#fff;text-align:center;">O que nossos clientes<br>dizem sobre nós</h2>
     </div>
 
-    <div class="testi-grid">
-      <div class="testi-card fi d1">
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">"A Meio Comunicação transformou nossa presença digital. Em poucos meses triplicamos os leads qualificados. Recomendo sem hesitar!"</p>
-        <div class="testi-author">
-          <div class="avatar">C</div>
-          <div>
-            <div class="testi-name">Carlos M.</div>
-            <div class="testi-role">CEO, Empresa de Tecnologia</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testi-card fi d2">
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">"O diagnóstico estratégico abriu nossos olhos para oportunidades que não víamos. Profissionalismo e resultados reais acima de tudo."</p>
-        <div class="testi-author">
-          <div class="avatar">A</div>
-          <div>
-            <div class="testi-name">Ana P.</div>
-            <div class="testi-role">Diretora, Clínica de Saúde</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testi-card fi d3">
-        <div class="stars">★★★★★</div>
-        <p class="testi-text">"Finalmente uma agência que entende PMEs de verdade. Trabalham como extensão do nosso time, com transparência total em cada etapa."</p>
-        <div class="testi-author">
-          <div class="avatar">R</div>
-          <div>
-            <div class="testi-name">Roberto S.</div>
-            <div class="testi-role">Proprietário, Varejo Local</div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <div class="testi-grid" id="testiGrid"></div>
   </div>
 </section>
 
@@ -1252,24 +1191,7 @@
     <div class="ft-brand">
       <!-- Logo in footer -->
       <div style="display:flex;align-items:center;gap:10px;">
-        <svg width="36" height="36" viewBox="0 0 100 100" fill="none">
-          <circle cx="50" cy="12" r="5.5" fill="white"/>
-          <circle cx="70" cy="18" r="4.5" fill="white" opacity=".8"/>
-          <circle cx="84" cy="33" r="7"   fill="white"/>
-          <circle cx="90" cy="51" r="8"   fill="white"/>
-          <circle cx="83" cy="70" r="5.5" fill="white" opacity=".9"/>
-          <circle cx="69" cy="84" r="9"   fill="white"/>
-          <circle cx="50" cy="90" r="6.5" fill="white"/>
-          <circle cx="31" cy="84" r="4.5" fill="white" opacity=".85"/>
-          <circle cx="17" cy="70" r="7.5" fill="white"/>
-          <circle cx="11" cy="51" r="5.5" fill="white" opacity=".9"/>
-          <circle cx="17" cy="33" r="6.5" fill="white"/>
-          <circle cx="31" cy="18" r="9"   fill="white"/>
-        </svg>
-        <div>
-          <div style="font-size:13px;font-weight:800;color:#fff;letter-spacing:.08em;text-transform:uppercase;">Meio Comunicação</div>
-          <div style="font-size:10px;font-weight:600;color:#F5C318;letter-spacing:.14em;text-transform:uppercase;">e Consultoria</div>
-        </div>
+        <img src="customcolor_logo_customcolor_background.png" alt="Meio Comunicação e Consultoria" style="height:36px;width:auto;border-radius:6px;">
       </div>
       <p>Transformamos a comunicação da sua empresa em resultados reais. Especialistas em Marketing Digital e Consultoria Estratégica para PMEs brasileiras.</p>
     </div>
@@ -1350,7 +1272,37 @@
     });
   });
 
-  // Fade-in on scroll
+  // ─── DEPOIMENTOS DINÂMICOS ──────────────────────────
+  function renderDepoimentos(lista) {
+    const grid = document.getElementById('testiGrid');
+    if (!grid) return;
+    grid.innerHTML = '';
+    lista.forEach((d, i) => {
+      const estrelas = '★'.repeat(d.estrelas || 5) + '☆'.repeat(5 - (d.estrelas || 5));
+      const avatarHTML = d.foto
+        ? '<img src="' + d.foto + '" alt="' + d.nome + '">'
+        : d.nome.charAt(0).toUpperCase();
+      const card = document.createElement('div');
+      card.className = 'testi-card fi d' + (i + 1);
+      card.innerHTML =
+        '<div class="stars">' + estrelas + '</div>' +
+        '<p class="testi-text">"' + d.texto + '"</p>' +
+        '<div class="testi-author">' +
+          '<div class="avatar">' + avatarHTML + '</div>' +
+          '<div><div class="testi-name">' + d.nome + '</div>' +
+          '<div class="testi-role">' + d.cargo + '</div></div>' +
+        '</div>';
+      grid.appendChild(card);
+    });
+    document.querySelectorAll('.testi-card.fi').forEach(el => io.observe(el));
+  }
+
+  fetch('depoimentos.json?v=' + Date.now())
+    .then(r => r.json())
+    .then(data => renderDepoimentos(data))
+    .catch(() => {});
+
+  // ─── FADE-IN ON SCROLL ────────────────────────────
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
   }, { threshold: 0.1 });

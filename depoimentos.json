@@ -1,0 +1,23 @@
+[
+  {
+    "nome": "Carlos M.",
+    "cargo": "CEO, Empresa de Tecnologia",
+    "texto": "A Meio Comunicação transformou nossa presença digital. Em poucos meses triplicamos os leads qualificados. Recomendo sem hesitar!",
+    "estrelas": 5,
+    "foto": ""
+  },
+  {
+    "nome": "Ana P.",
+    "cargo": "Diretora, Clínica de Saúde",
+    "texto": "O diagnóstico estratégico abriu nossos olhos para oportunidades que não víamos. Profissionalismo e resultados reais acima de tudo.",
+    "estrelas": 5,
+    "foto": ""
+  },
+  {
+    "nome": "Roberto S.",
+    "cargo": "Proprietário, Varejo Local",
+    "texto": "Finalmente uma agência que entende PMEs de verdade. Trabalham como extensão do nosso time, com transparência total em cada etapa.",
+    "estrelas": 5,
+    "foto": ""
+  }
+]
