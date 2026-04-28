@@ -45,6 +45,15 @@
       ],
       "valor": 2400,
       "tipo": "mensal"
+    },
+    {
+      "nome": "Captação com Filmmaker",
+      "descricao": "Captação e edição de vídeos mediante a aprovação prévia do roteiro.\nNão incluso deslocamento e alimentação.",
+      "itens": [
+        "Diária de Captação + Edição de até 5 vídeos"
+      ],
+      "valor": 1800,
+      "tipo": "unico"
     }
   ]
 }
