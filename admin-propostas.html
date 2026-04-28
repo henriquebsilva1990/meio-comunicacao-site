@@ -93,6 +93,17 @@
 <div class="container">
   <div class="msg msg-ok" id="msg"></div>
 
+  <!-- CARREGAR EXISTENTE -->
+  <div class="card" style="background:var(--navy);border:none;">
+    <div style="display:flex;gap:10px;align-items:flex-end;">
+      <div class="field" style="flex:1;margin:0;">
+        <label style="color:var(--yellow);">Editar proposta existente</label>
+        <input type="text" id="loadSlug" placeholder="Digite o slug (ex: dra-ludmila-barbosa)">
+      </div>
+      <button class="btn btn-yellow" onclick="carregarProposta()" style="height:42px;white-space:nowrap;">Carregar</button>
+    </div>
+  </div>
+
   <!-- DADOS DO CLIENTE -->
   <div class="card">
     <h2>Dados do Cliente</h2>
@@ -189,6 +200,41 @@ if (localStorage.getItem(AUTH_KEY) === '1') {
 } else {
   document.getElementById('loginSenha').focus();
 }
+
+async function carregarProposta() {
+  const slug = document.getElementById('loadSlug').value.trim();
+  if (!slug) { alert('Digite o slug da proposta.'); return; }
+  try {
+    const resp = await fetch('propostas/' + slug + '.json?v=' + Date.now());
+    if (!resp.ok) {
+      // Try from GitHub if local fails (when on deployed site)
+      const ghResp = await fetch('https://raw.githubusercontent.com/henriquebsilva1990/meio-comunicacao-site/main/propostas/' + slug + '.json?v=' + Date.now());
+      if (!ghResp.ok) throw new Error('Proposta não encontrada');
+      var data = await ghResp.json();
+    } else {
+      var data = await resp.json();
+    }
+    document.getElementById('cliente').value = data.cliente || '';
+    document.getElementById('contato').value = data.contato || '';
+    document.getElementById('data').value = data.data || '';
+    document.getElementById('validade').value = data.validade_dias || 7;
+    document.getElementById('slug').value = slug;
+    servicos = data.servicos || [];
+    renderServicos();
+    showMsg('Proposta "' + slug + '" carregada! Edite e publique novamente.');
+  } catch (e) {
+    alert('Proposta "' + slug + '" não encontrada. Verifique o slug.');
+  }
+}
+
+// Auto-load if URL has ?edit=slug
+(function() {
+  const p = new URLSearchParams(window.location.search);
+  if (p.get('edit')) {
+    document.getElementById('loadSlug').value = p.get('edit');
+    setTimeout(carregarProposta, 300);
+  }
+})();
 
 const TEMPLATES = {
   trafego: {
