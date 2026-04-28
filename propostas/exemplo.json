@@ -1,0 +1,30 @@
+{
+  "cliente": "Clinica Exemplo",
+  "contato": "Dr. Joao Silva",
+  "data": "2026-04-28",
+  "validade_dias": 7,
+  "servicos": [
+    {
+      "nome": "Gestao de Trafego Pago",
+      "descricao": "Campanhas no Meta Ads e Google Ads gerenciadas com foco em custo por lead e retorno real.",
+      "itens": [
+        "Meta Ads & Google Ads",
+        "Criativos e copy inclusos",
+        "Otimizacao semanal",
+        "Relatorio mensal detalhado"
+      ],
+      "valor": 2400
+    },
+    {
+      "nome": "Social Media Profissional",
+      "descricao": "Gestao completa das redes com calendario editorial, producao de conteudo e design.",
+      "itens": [
+        "Calendario editorial mensal",
+        "Design e legendas inclusos",
+        "Instagram, Facebook & LinkedIn",
+        "Analise de desempenho"
+      ],
+      "valor": 1800
+    }
+  ]
+}

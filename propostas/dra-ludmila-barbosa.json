@@ -1,0 +1,50 @@
+{
+  "cliente": "Dra Ludmila Barbosa",
+  "contato": "Ludmila Barbosa",
+  "data": "2026-04-29",
+  "validade_dias": 7,
+  "servicos": [
+    {
+      "nome": "Estrategia & Consultoria",
+      "descricao": "Diagnostico completo do posicionamento digital e plano de acao personalizado para direcao estrategica.",
+      "itens": [
+        "Diagnostico digital completo",
+        "Plano de marketing sob medida",
+        "Consultoria de posicionamento",
+        "Desenvolvimento da voz e tom de comunicação",
+        "Definição de personas e jornada do cliente",
+        "Plano de comunicação integrado (online e offline)",
+        "Definição ou refinamento do posicionamento de marca"
+      ],
+      "valor": 4990,
+      "tipo": "unico"
+    },
+    {
+      "nome": "Social Media Profissional",
+      "descricao": "Gestao completa das redes com calendario editorial, producao de conteudo e design que posiciona e gera autoridade.",
+      "itens": [
+        "Calendario editorial mensal",
+        "Design e legendas inclusos",
+        "Instagram, Facebook & LinkedIn",
+        "Analise de desempenho",
+        "Acompanhamento e reunião quinzenal de alinhamento",
+        "Roteiro para captação",
+        "1 diária pra captação e edição de videos pra Reels"
+      ],
+      "valor": 2500,
+      "tipo": "mensal"
+    },
+    {
+      "nome": "Gestao de Trafego Pago",
+      "descricao": "Campanhas no Meta Ads e Google Ads gerenciadas com foco em custo por lead e retorno real. Cada real monitorado.",
+      "itens": [
+        "Meta Ads & Google Ads",
+        "Criativos e copy inclusos",
+        "Otimizacao semanal",
+        "Relatorio mensal detalhado"
+      ],
+      "valor": 2400,
+      "tipo": "mensal"
+    }
+  ]
+}

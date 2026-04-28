@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Criar Proposta | Meio Comunicacao</title>
+  <meta name="robots" content="noindex, nofollow">
+  <style>
+    :root { --navy: #0D1B2A; --yellow: #F5C318; --gray-100: #e9ecef; --gray-600: #495057; --radius: 14px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #f4f5f7; min-height: 100vh; }
+
+    .header { background: var(--navy); color: #fff; padding: 1.5rem 2rem; display: flex; align-items: center; gap: 1rem; }
+    .header img { height: 40px; border-radius: 8px; }
+    .header h1 { font-size: 1.2rem; font-weight: 700; }
+    .header span { color: var(--yellow); font-size: .85rem; }
+
+    .container { max-width: 750px; margin: 2rem auto; padding: 0 1.5rem; }
+
+    .card { background: #fff; border: 1px solid var(--gray-100); border-radius: var(--radius); padding: 1.5rem; margin-bottom: 1.2rem; }
+    .card h2 { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: 1rem; }
+    .field { margin-bottom: 1rem; }
+    .field label { display: block; font-size: 12px; font-weight: 600; color: var(--gray-600); margin-bottom: 4px; }
+    .field input, .field textarea, .field select { width: 100%; padding: 10px 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 14px; font-family: inherit; }
+    .field textarea { resize: vertical; min-height: 60px; }
+    .row { display: flex; gap: 1rem; }
+    .row .field { flex: 1; }
+
+    .servico-card { background: #f8f9fa; border: 1px solid var(--gray-100); border-radius: 10px; padding: 1.2rem; margin-bottom: 1rem; position: relative; }
+    .servico-card .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: .8rem; }
+    .servico-card .card-num { font-weight: 700; color: var(--navy); font-size: 14px; }
+
+    .item-row { display: flex; gap: 8px; margin-bottom: 6px; align-items: center; }
+    .item-row input { flex: 1; }
+    .btn-remove-item { background: none; border: none; color: #ff4444; cursor: pointer; font-size: 18px; padding: 0 4px; }
+    .btn-add-item { background: none; border: 1px dashed #ccc; color: var(--gray-600); padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 12px; margin-top: 4px; }
+
+    .btn { border: none; border-radius: 10px; padding: 12px 24px; cursor: pointer; font-size: 14px; font-weight: 700; transition: opacity .2s; }
+    .btn:hover { opacity: .85; }
+    .btn-navy { background: var(--navy); color: #fff; }
+    .btn-yellow { background: var(--yellow); color: var(--navy); }
+    .btn-green { background: #27ae60; color: #fff; }
+    .btn-red { background: #ff4444; color: #fff; font-size: 12px; padding: 6px 14px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin: 1.5rem 0; }
+
+    .msg { padding: 12px 16px; border-radius: 8px; margin-bottom: 1rem; display: none; font-size: 14px; }
+    .msg-ok { background: #d4edda; color: #155724; }
+    .msg-info { background: #d1ecf1; color: #0c5460; }
+
+    .preview-link { display: inline-block; margin-top: .5rem; color: var(--navy); font-weight: 600; text-decoration: underline; font-size: 13px; }
+
+    /* Templates */
+    .tpl-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; margin-bottom: 1rem; }
+    .tpl-btn { background: #fff; border: 2px solid var(--gray-100); border-radius: 10px; padding: 1rem; cursor: pointer; text-align: left; transition: border-color .2s; }
+    .tpl-btn:hover { border-color: var(--yellow); }
+    .tpl-btn h4 { font-size: 13px; color: var(--navy); margin-bottom: 4px; }
+    .tpl-btn p { font-size: 11px; color: var(--gray-600); }
+  </style>
+</head>
+<body>
+
+<div class="header">
+  <img src="customcolor_logo_customcolor_background.png" alt="Meio Comunicacao">
+  <div>
+    <h1>Criador de Propostas</h1>
+    <span>Preencha os dados e gere o link para o cliente</span>
+  </div>
+</div>
+
+<div class="container">
+  <div class="msg msg-ok" id="msg"></div>
+
+  <!-- DADOS DO CLIENTE -->
+  <div class="card">
+    <h2>Dados do Cliente</h2>
+    <div class="row">
+      <div class="field">
+        <label>Nome da empresa</label>
+        <input type="text" id="cliente" placeholder="Ex: Clinica Sorriso">
+      </div>
+      <div class="field">
+        <label>Contato (nome da pessoa)</label>
+        <input type="text" id="contato" placeholder="Ex: Dr. Joao Silva">
+      </div>
+    </div>
+    <div class="row">
+      <div class="field">
+        <label>Data da proposta</label>
+        <input type="date" id="data">
+      </div>
+      <div class="field">
+        <label>Validade (dias)</label>
+        <input type="number" id="validade" value="7" min="1">
+      </div>
+    </div>
+    <div class="field">
+      <label>Slug (nome do arquivo, sem espacos)</label>
+      <input type="text" id="slug" placeholder="Preenchido automaticamente">
+    </div>
+  </div>
+
+  <!-- MODELOS DE SERVICO -->
+  <div class="card">
+    <h2>Adicionar Servicos</h2>
+    <p style="font-size:13px;color:var(--gray-600);margin-bottom:1rem;">Clique em um modelo para adicionar ou crie um do zero.</p>
+    <div class="tpl-grid">
+      <button class="tpl-btn" onclick="addTemplate('trafego')">
+        <h4>Gestao de Trafego Pago</h4>
+        <p>Meta Ads & Google Ads, criativos, otimizacao semanal</p>
+      </button>
+      <button class="tpl-btn" onclick="addTemplate('social')">
+        <h4>Social Media Profissional</h4>
+        <p>Calendario editorial, design, legendas, analise</p>
+      </button>
+      <button class="tpl-btn" onclick="addTemplate('consultoria')">
+        <h4>Estrategia & Consultoria</h4>
+        <p>Diagnostico, plano de marketing, acompanhamento</p>
+      </button>
+      <button class="tpl-btn" onclick="addTemplate('vazio')">
+        <h4>+ Servico personalizado</h4>
+        <p>Criar do zero</p>
+      </button>
+    </div>
+    <div id="servicosLista"></div>
+  </div>
+
+  <!-- ACOES -->
+  <div class="actions">
+    <button class="btn btn-yellow" onclick="previsualizar()">Previsualizar</button>
+    <button class="btn btn-green" onclick="baixarJSON()">Baixar JSON (para publicar)</button>
+  </div>
+
+  <div class="card" id="instrucoes" style="display:none;">
+    <h2>Como publicar</h2>
+    <ol style="font-size:13px;color:var(--gray-600);line-height:2;padding-left:1.2rem;">
+      <li>Clique em "Baixar JSON" — o arquivo sera salvo no seu computador</li>
+      <li>Mova o arquivo para a pasta <code>propostas/</code> dentro do site</li>
+      <li>Faca commit e push para o GitHub</li>
+      <li>Envie o link para o cliente: <strong id="linkFinal"></strong></li>
+    </ol>
+  </div>
+</div>
+
+<script>
+const TEMPLATES = {
+  trafego: {
+    nome: 'Gestao de Trafego Pago',
+    descricao: 'Campanhas no Meta Ads e Google Ads gerenciadas com foco em custo por lead e retorno real. Cada real monitorado.',
+    itens: ['Meta Ads & Google Ads', 'Criativos e copy inclusos', 'Otimizacao semanal', 'Relatorio mensal detalhado'],
+    valor: 2400,
+    tipo: 'mensal'
+  },
+  social: {
+    nome: 'Social Media Profissional',
+    descricao: 'Gestao completa das redes com calendario editorial, producao de conteudo e design que posiciona e gera autoridade.',
+    itens: ['Calendario editorial mensal', 'Design e legendas inclusos', 'Instagram, Facebook & LinkedIn', 'Analise de desempenho'],
+    valor: 1800,
+    tipo: 'mensal'
+  },
+  consultoria: {
+    nome: 'Estrategia & Consultoria',
+    descricao: 'Diagnostico completo do posicionamento digital e plano de acao personalizado para direcao estrategica.',
+    itens: ['Diagnostico digital completo', 'Plano de marketing sob medida', 'Consultoria de posicionamento', 'Acompanhamento estrategico'],
+    valor: 3000,
+    tipo: 'mensal'
+  },
+  vazio: {
+    nome: '',
+    descricao: '',
+    itens: [''],
+    valor: 0,
+    tipo: 'mensal'
+  }
+};
+
+let servicos = [];
+
+// Auto-fill date
+document.getElementById('data').value = new Date().toISOString().split('T')[0];
+
+// Auto-generate slug from client name
+document.getElementById('cliente').addEventListener('input', function() {
+  const slug = this.value.toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+  document.getElementById('slug').value = slug;
+});
+
+function addTemplate(key) {
+  const tpl = JSON.parse(JSON.stringify(TEMPLATES[key]));
+  servicos.push(tpl);
+  renderServicos();
+}
+
+function renderServicos() {
+  const el = document.getElementById('servicosLista');
+  el.innerHTML = '';
+  servicos.forEach((sv, i) => {
+    const itensHTML = sv.itens.map((it, j) =>
+      '<div class="item-row">' +
+        '<input type="text" value="' + esc(it) + '" oninput="servicos[' + i + '].itens[' + j + ']=this.value">' +
+        '<button class="btn-remove-item" onclick="removeItem(' + i + ',' + j + ')">&times;</button>' +
+      '</div>'
+    ).join('');
+
+    const card = document.createElement('div');
+    card.className = 'servico-card';
+    card.innerHTML =
+      '<div class="card-header">' +
+        '<span class="card-num">Servico #' + (i + 1) + '</span>' +
+        '<button class="btn btn-red" onclick="removeServico(' + i + ')">Remover</button>' +
+      '</div>' +
+      '<div class="field"><label>Nome do servico</label>' +
+        '<input type="text" value="' + esc(sv.nome) + '" oninput="servicos[' + i + '].nome=this.value"></div>' +
+      '<div class="field"><label>Descricao</label>' +
+        '<textarea oninput="servicos[' + i + '].descricao=this.value">' + esc(sv.descricao) + '</textarea></div>' +
+      '<div class="field"><label>Itens inclusos</label>' +
+        itensHTML +
+        '<button class="btn-add-item" onclick="addItem(' + i + ')">+ Adicionar item</button>' +
+      '</div>' +
+      '<div class="row">' +
+        '<div class="field"><label>Valor (R$)</label>' +
+          '<input type="number" value="' + sv.valor + '" oninput="servicos[' + i + '].valor=Number(this.value)"></div>' +
+        '<div class="field"><label>Tipo de cobranca</label>' +
+          '<select onchange="servicos[' + i + '].tipo=this.value">' +
+            '<option value="mensal"' + (sv.tipo === 'mensal' ? ' selected' : '') + '>Mensal</option>' +
+            '<option value="unico"' + (sv.tipo === 'unico' ? ' selected' : '') + '>Unico</option>' +
+          '</select></div>' +
+      '</div>';
+    el.appendChild(card);
+  });
+}
+
+function removeServico(i) {
+  if (confirm('Remover servico #' + (i + 1) + '?')) {
+    servicos.splice(i, 1);
+    renderServicos();
+  }
+}
+
+function addItem(i) {
+  servicos[i].itens.push('');
+  renderServicos();
+}
+
+function removeItem(i, j) {
+  servicos[i].itens.splice(j, 1);
+  renderServicos();
+}
+
+function getData() {
+  return {
+    cliente: document.getElementById('cliente').value,
+    contato: document.getElementById('contato').value,
+    data: document.getElementById('data').value,
+    validade_dias: Number(document.getElementById('validade').value),
+    servicos: servicos
+  };
+}
+
+function getSlugValue() {
+  return document.getElementById('slug').value || 'proposta';
+}
+
+function previsualizar() {
+  const data = getData();
+  if (!data.cliente) { alert('Preencha o nome do cliente.'); return; }
+  if (data.servicos.length === 0) { alert('Adicione pelo menos um servico.'); return; }
+  // Save to localStorage for preview
+  localStorage.setItem('proposta_preview', JSON.stringify(data));
+  window.open('proposta.html?preview=1', '_blank');
+}
+
+function baixarJSON() {
+  const data = getData();
+  if (!data.cliente) { alert('Preencha o nome do cliente.'); return; }
+  if (data.servicos.length === 0) { alert('Adicione pelo menos um servico.'); return; }
+  const slug = getSlugValue();
+  const blob = new Blob([JSON.stringify(data, null, 2) + '\n'], { type: 'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = slug + '.json';
+  a.click();
+  URL.revokeObjectURL(a.href);
+
+  // Show instructions
+  document.getElementById('instrucoes').style.display = 'block';
+  document.getElementById('linkFinal').textContent = 'meiocomunica.com.br/proposta.html?c=' + slug;
+  showMsg('Arquivo ' + slug + '.json baixado!');
+}
+
+function showMsg(text) {
+  const el = document.getElementById('msg');
+  el.textContent = text;
+  el.style.display = 'block';
+  setTimeout(() => { el.style.display = 'none'; }, 4000);
+}
+
+function esc(str) {
+  if (!str) return '';
+  return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>

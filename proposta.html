@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Proposta Comercial | Meio Comunicacao e Consultoria</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #0D1B2A;
+      --navy-light: #1B2D45;
+      --yellow: #F5C318;
+      --yellow-soft: rgba(245,195,24,.12);
+      --white: #FAFAFA;
+      --gray-50: #f8f9fa;
+      --gray-100: #e9ecef;
+      --gray-400: #adb5bd;
+      --gray-600: #495057;
+      --gray-800: #212529;
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--gray-50); color: var(--gray-800); line-height: 1.6; }
+
+    /* ─── HEADER ──────────────────────────────────── */
+    .hero {
+      background: var(--navy);
+      color: #fff;
+      padding: 2.5rem 2rem 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(circle at 20% 50%, rgba(245,195,24,.08) 0%, transparent 60%),
+                  radial-gradient(circle at 80% 50%, rgba(245,195,24,.05) 0%, transparent 60%);
+    }
+    .hero-inner { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; display: flex; align-items: center; gap: 2rem; }
+    .hero-logo { height: 120px; border-radius: 14px; flex-shrink: 0; }
+    .hero-content { flex: 1; text-align: center; }
+    .hero-tag {
+      display: inline-block; background: var(--yellow-soft); color: var(--yellow);
+      font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase;
+      padding: 6px 16px; border-radius: 100px; margin-bottom: 1rem;
+    }
+    .hero h1 { font-size: 2rem; font-weight: 800; line-height: 1.2; margin-bottom: .5rem; }
+    .hero h1 span { color: var(--yellow); }
+    .hero-cliente { font-size: 1.1rem; color: rgba(255,255,255,.6); margin-bottom: 1.5rem; }
+    .hero-meta {
+      display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+      font-size: 13px; color: rgba(255,255,255,.45);
+    }
+    .hero-meta strong { color: var(--yellow); }
+
+    /* ─── CONTAINER ───────────────────────────────── */
+    .container { max-width: 820px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 3.5rem 0; }
+    .section-tag {
+      display: inline-block; background: var(--yellow-soft); color: var(--navy);
+      font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 100px; margin-bottom: .8rem;
+    }
+    .section-title { font-size: 1.5rem; font-weight: 800; color: var(--navy); margin-bottom: .5rem; }
+    .section-sub { font-size: 15px; color: var(--gray-600); max-width: 600px; margin-bottom: 2rem; }
+    .divider { border: none; border-top: 1px solid var(--gray-100); margin: 0; }
+
+    /* ─── QUEM SOMOS ─────────────────────────────── */
+    .about-text { font-size: 15px; color: var(--gray-600); line-height: 1.8; margin-bottom: 2rem; }
+    .stats-row { display: flex; gap: 1.5rem; flex-wrap: wrap; }
+    .stat {
+      flex: 1; min-width: 140px; background: #fff; border: 1px solid var(--gray-100);
+      border-radius: var(--radius); padding: 1.3rem; text-align: center;
+    }
+    .stat-num { font-size: 1.6rem; font-weight: 900; color: var(--navy); }
+    .stat-label { font-size: 12px; color: var(--gray-600); margin-top: 4px; }
+
+    /* ─── DIFERENCIAIS ───────────────────────────── */
+    .diff-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .diff-card {
+      background: #fff; border: 1px solid var(--gray-100); border-radius: var(--radius);
+      padding: 1.5rem; transition: border-color .3s;
+    }
+    .diff-card:hover { border-color: rgba(245,195,24,.4); }
+    .diff-num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 32px; height: 32px; border-radius: 8px;
+      background: var(--yellow-soft); color: var(--navy);
+      font-size: 13px; font-weight: 800; margin-bottom: .8rem;
+    }
+    .diff-card h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: .4rem; }
+    .diff-card p { font-size: 13px; color: var(--gray-600); line-height: 1.6; }
+
+    /* ─── METODO ──────────────────────────────────── */
+    .timeline { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .timeline-step {
+      flex: 1; min-width: 200px; background: #fff; border: 1px solid var(--gray-100);
+      border-radius: var(--radius); padding: 1.5rem; position: relative;
+    }
+    .timeline-step::after {
+      content: '→'; position: absolute; right: -14px; top: 50%;
+      transform: translateY(-50%); color: var(--yellow); font-size: 20px; font-weight: 800;
+    }
+    .timeline-step:last-child::after { display: none; }
+    .step-badge {
+      display: inline-block; background: var(--navy); color: var(--yellow);
+      font-size: 11px; font-weight: 700; padding: 4px 10px; border-radius: 6px;
+      margin-bottom: .8rem;
+    }
+    .timeline-step h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: .4rem; }
+    .timeline-step p { font-size: 13px; color: var(--gray-600); line-height: 1.6; }
+
+    /* ─── SERVICOS & INVESTIMENTO ─────────────────── */
+    .servico-card {
+      background: #fff; border: 1px solid var(--gray-100); border-radius: var(--radius);
+      padding: 2rem; margin-bottom: 1.2rem;
+    }
+    .servico-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: .8rem; flex-wrap: wrap; gap: .5rem; }
+    .servico-card h3 { font-size: 1.1rem; font-weight: 800; color: var(--navy); }
+    .servico-valor {
+      background: var(--yellow-soft); color: var(--navy); font-size: 1.1rem; font-weight: 800;
+      padding: 6px 16px; border-radius: 10px; white-space: nowrap;
+    }
+    .servico-desc { font-size: 14px; color: var(--gray-600); margin-bottom: 1rem; }
+    .servico-itens { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+    .servico-itens li {
+      font-size: 13px; color: var(--gray-600); padding-left: 20px;
+      position: relative;
+    }
+    .servico-itens li::before {
+      content: ''; position: absolute; left: 0; top: 7px;
+      width: 10px; height: 10px; border-radius: 3px; background: var(--yellow);
+    }
+    .total-bar {
+      background: var(--navy); color: #fff; border-radius: var(--radius);
+      padding: 1.5rem 2rem; display: flex; justify-content: space-between;
+      align-items: center; flex-wrap: wrap; gap: 1rem; margin-top: 1.5rem;
+    }
+    .total-label { font-size: 15px; font-weight: 600; }
+    .total-valor { font-size: 1.8rem; font-weight: 900; color: var(--yellow); }
+    .total-nota { font-size: 12px; color: rgba(255,255,255,.45); margin-top: 2px; }
+
+    /* ─── PROXIMOS PASSOS ─────────────────────────── */
+    .passos-grid { display: flex; gap: 1.2rem; flex-wrap: wrap; }
+    .passo {
+      flex: 1; min-width: 200px; background: #fff; border: 1px solid var(--gray-100);
+      border-radius: var(--radius); padding: 1.5rem; text-align: center;
+    }
+    .passo-quando {
+      display: inline-block; background: var(--navy); color: var(--yellow);
+      font-size: 11px; font-weight: 700; padding: 4px 12px; border-radius: 6px;
+      margin-bottom: .8rem;
+    }
+    .passo h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: .4rem; }
+    .passo p { font-size: 13px; color: var(--gray-600); line-height: 1.5; }
+
+    /* ─── CTA ──────────────────────────────────────── */
+    .cta-section {
+      background: var(--navy); color: #fff; text-align: center;
+      padding: 3rem 2rem 2rem; border-radius: var(--radius) var(--radius) 0 0;
+      margin-top: 2rem; position: relative;
+    }
+    .cta-section h2 { font-size: 1.6rem; font-weight: 800; margin-bottom: .5rem; }
+    .cta-section h2 span { color: var(--yellow); }
+    .cta-section p { color: rgba(255,255,255,.6); font-size: 14px; margin-bottom: 1.5rem; }
+    .cta-footer { display: flex; justify-content: space-between; align-items: center; max-width: 820px; margin: 2rem auto 0; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,.08); }
+    .cta-footer-logo { height: 50px; border-radius: 8px; opacity: .7; }
+    .cta-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: #25D366; color: #fff; text-decoration: none;
+      font-size: 16px; font-weight: 700; padding: 14px 32px;
+      border-radius: 12px; transition: opacity .2s;
+    }
+    .cta-btn:hover { opacity: .9; }
+    .cta-btn svg { width: 22px; height: 22px; fill: #fff; }
+    .cta-info { margin-top: 1.5rem; font-size: 13px; color: rgba(255,255,255,.4); }
+    .cta-info a { color: var(--yellow); text-decoration: none; }
+
+    .validade-badge {
+      display: inline-block; background: rgba(255,68,68,.15); color: #ff4444;
+      font-size: 12px; font-weight: 700; padding: 5px 14px; border-radius: 100px;
+      margin-top: 1rem;
+    }
+
+    /* ─── RESPONSIVE ──────────────────────────────── */
+    @media (max-width: 640px) {
+      .hero-inner { flex-direction: column; text-align: center; }
+      .hero h1 { font-size: 1.5rem; }
+      .cta-footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .cta-info { text-align: center !important; }
+      .diff-grid { grid-template-columns: 1fr; }
+      .timeline { flex-direction: column; }
+      .timeline-step::after { display: none; }
+      .servico-itens { grid-template-columns: 1fr; }
+      .passos-grid { flex-direction: column; }
+      .total-bar { flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Conteudo renderizado por JS -->
+<div id="app"></div>
+
+<script>
+function getSlug() {
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('c')) return params.get('c');
+  const path = window.location.pathname.replace(/\/$/, '').split('/');
+  return path[path.length - 1] || 'exemplo';
+}
+
+function formatCurrency(val) {
+  return 'R$ ' + val.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+}
+
+function calcValidade(dataStr, dias) {
+  const d = new Date(dataStr + 'T12:00:00');
+  d.setDate(d.getDate() + dias);
+  return d.toLocaleDateString('pt-BR');
+}
+
+function render(data) {
+  const validade = calcValidade(data.data, data.validade_dias);
+  const dataProposta = new Date(data.data + 'T12:00:00').toLocaleDateString('pt-BR');
+
+  document.title = 'Proposta — ' + data.cliente + ' | Meio Comunicacao';
+
+  const totalMensal = data.servicos.filter(sv => (sv.tipo || 'mensal') === 'mensal').reduce((s, sv) => s + sv.valor, 0);
+  const totalUnico = data.servicos.filter(sv => sv.tipo === 'unico').reduce((s, sv) => s + sv.valor, 0);
+
+  const servicosHTML = data.servicos.map(sv => {
+    const tipo = sv.tipo || 'mensal';
+    const sufixo = tipo === 'mensal' ? '/mes' : ' (unico)';
+    return '<div class="servico-card">' +
+      '<div class="servico-header">' +
+        '<h3>' + sv.nome + '</h3>' +
+        '<div class="servico-valor">' + formatCurrency(sv.valor) + sufixo + '</div>' +
+      '</div>' +
+      '<p class="servico-desc">' + sv.descricao + '</p>' +
+      '<ul class="servico-itens">' +
+        sv.itens.map(it => '<li>' + it + '</li>').join('') +
+      '</ul>' +
+    '</div>';
+  }).join('');
+
+  document.getElementById('app').innerHTML =
+    /* HEADER */
+    '<div class="hero">' +
+      '<div class="hero-inner">' +
+        '<img src="customcolor_logo_customcolor_background.png" alt="Meio Comunicacao" class="hero-logo">' +
+        '<div class="hero-content">' +
+          '<div class="hero-tag">Proposta Comercial</div>' +
+          '<h1>Proposta para <span>' + data.cliente + '</span></h1>' +
+          '<p class="hero-cliente">Preparada para ' + (data.contato || data.cliente) + '</p>' +
+          '<div class="hero-meta">' +
+            '<span>Data: <strong>' + dataProposta + '</strong></span>' +
+            '<span>Validade: <strong>' + validade + '</strong></span>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>' +
+
+    '<div class="container">' +
+
+    /* QUEM SOMOS */
+    '<section>' +
+      '<div class="section-tag">Quem Somos</div>' +
+      '<h2 class="section-title">Estrategia, criatividade e execucao.</h2>' +
+      '<p class="about-text">A Meio Comunicacao e uma agencia de marketing digital focada em resultados reais para PMEs. Desenvolvemos estrategias personalizadas e entregamos a execucao completa — da campanha ao criativo, do copy ao relatorio — tudo feito internamente com total controle de qualidade.</p>' +
+      '<div class="stats-row">' +
+        '<div class="stat"><div class="stat-num">+30</div><div class="stat-label">Clientes atendidos</div></div>' +
+        '<div class="stat"><div class="stat-num">360&deg;</div><div class="stat-label">Execucao integrada</div></div>' +
+        '<div class="stat"><div class="stat-num">48h</div><div class="stat-label">Para sua proposta</div></div>' +
+      '</div>' +
+    '</section>' +
+    '<hr class="divider">' +
+
+    /* DIFERENCIAIS */
+    '<section>' +
+      '<div class="section-tag">Diferenciais</div>' +
+      '<h2 class="section-title">Por que a Meio e diferente.</h2>' +
+      '<div class="section-sub"></div>' +
+      '<div class="diff-grid">' +
+        '<div class="diff-card"><div class="diff-num">01</div><h3>Execucao 360&deg; Interna</h3><p>Trafego, copy, design e social media feitos pela nossa equipe — sem terceirizar.</p></div>' +
+        '<div class="diff-card"><div class="diff-num">02</div><h3>Estrategia Personalizada</h3><p>Cada cliente recebe uma estrategia construida a partir do seu mercado e objetivo.</p></div>' +
+        '<div class="diff-card"><div class="diff-num">03</div><h3>Resultado Mensuravel</h3><p>Relatorio mensal com metricas reais. Voce sabe exatamente o retorno do investimento.</p></div>' +
+        '<div class="diff-card"><div class="diff-num">04</div><h3>Atendimento Proximo</h3><p>Sem call center. Voce fala diretamente com quem executa. Decisoes rapidas.</p></div>' +
+      '</div>' +
+    '</section>' +
+    '<hr class="divider">' +
+
+    /* METODO */
+    '<section>' +
+      '<div class="section-tag">Nosso Metodo</div>' +
+      '<h2 class="section-title">Do diagnostico ao resultado.</h2>' +
+      '<div class="section-sub"></div>' +
+      '<div class="timeline">' +
+        '<div class="timeline-step"><div class="step-badge">Semana 1</div><h3>Diagnostico</h3><p>Entendemos o seu negocio, publico-alvo, concorrencia e oportunidades.</p></div>' +
+        '<div class="timeline-step"><div class="step-badge">Semana 2-3</div><h3>Estrategia & Lancamento</h3><p>Criamos e ativamos campanhas e conteudo. Do criativo ao pixel, tudo junto.</p></div>' +
+        '<div class="timeline-step"><div class="step-badge">Mes a mes</div><h3>Otimizacao Continua</h3><p>Monitoramos, ajustamos e evoluimos. Relatorio mensal com proximos passos.</p></div>' +
+      '</div>' +
+    '</section>' +
+    '<hr class="divider">' +
+
+    /* SERVICOS & INVESTIMENTO */
+    '<section>' +
+      '<div class="section-tag">Investimento</div>' +
+      '<h2 class="section-title">Servicos e valores.</h2>' +
+      '<p class="section-sub">Escopo personalizado para ' + data.cliente + '.</p>' +
+      servicosHTML +
+      (totalMensal > 0 ?
+        '<div class="total-bar">' +
+          '<div><div class="total-label">Investimento mensal</div><div class="total-nota">Recorrente. Sem taxa de setup. Sem surpresas.</div></div>' +
+          '<div class="total-valor">' + formatCurrency(totalMensal) + '/mes</div>' +
+        '</div>' : '') +
+      (totalUnico > 0 ?
+        '<div class="total-bar" style="margin-top:.8rem;background:var(--navy-light);">' +
+          '<div><div class="total-label">Investimento unico</div><div class="total-nota">Pagamento unico na contratacao.</div></div>' +
+          '<div class="total-valor">' + formatCurrency(totalUnico) + '</div>' +
+        '</div>' : '') +
+    '</section>' +
+    '<hr class="divider">' +
+
+    /* PROXIMOS PASSOS */
+    '<section>' +
+      '<div class="section-tag">Proximos Passos</div>' +
+      '<h2 class="section-title">Simples e sem burocracia.</h2>' +
+      '<div class="section-sub"></div>' +
+      '<div class="passos-grid">' +
+        '<div class="passo"><div class="passo-quando">Hoje</div><h3>Reuniao de Diagnostico</h3><p>30 minutos para entender seu negocio, desafios e objetivos. Sem compromisso.</p></div>' +
+        '<div class="passo"><div class="passo-quando">Em 48h</div><h3>Proposta Personalizada</h3><p>Estrategia, servicos e investimento. Nada generico — feita para voce.</p></div>' +
+        '<div class="passo"><div class="passo-quando">Em 7 dias</div><h3>Inicio dos Trabalhos</h3><p>Onboarding, acesso as ferramentas e primeiros criativos.</p></div>' +
+      '</div>' +
+    '</section>' +
+
+    '</div>' +
+
+    /* CTA */
+    '<div class="cta-section">' +
+      '<h2>Vamos <span>comecar</span>?</h2>' +
+      '<p>Fale conosco para agendar sua reuniao de diagnostico.</p>' +
+      '<a href="https://wa.me/5516981334647?text=Ola!+Vi+a+proposta+da+Meio+e+gostaria+de+conversar." target="_blank" class="cta-btn">' +
+        '<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.03L.789 23.769l4.89-1.483A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.78c-2.19 0-4.22-.66-5.91-1.79l-.42-.27-2.9.88.82-2.83-.29-.44A9.76 9.76 0 012.22 12c0-5.39 4.39-9.78 9.78-9.78 5.39 0 9.78 4.39 9.78 9.78 0 5.39-4.39 9.78-9.78 9.78z"/></svg>' +
+        'Chamar no WhatsApp' +
+      '</a>' +
+      '<div class="validade-badge">Proposta valida ate ' + validade + '</div>' +
+      '<div class="cta-footer">' +
+        '<div class="cta-info" style="text-align:left;margin-top:0;">' +
+          '<p>henrique@meiocomunica.com.br | (16) 98133-4647</p>' +
+          '<p><a href="https://meiocomunica.com.br">www.meiocomunica.com.br</a></p>' +
+        '</div>' +
+        '<img src="customcolor_logo_customcolor_background.png" alt="Meio Comunicacao" class="cta-footer-logo">' +
+      '</div>' +
+    '</div>';
+}
+
+const params = new URLSearchParams(window.location.search);
+if (params.get('preview') === '1') {
+  try {
+    const data = JSON.parse(localStorage.getItem('proposta_preview'));
+    if (data) { render(data); } else { throw new Error(); }
+  } catch(e) {
+    document.getElementById('app').innerHTML = '<div style="text-align:center;padding:4rem;color:#999;">Nenhuma preview encontrada.</div>';
+  }
+} else {
+  const slug = getSlug();
+  fetch('propostas/' + slug + '.json?v=' + Date.now())
+    .then(r => { if (!r.ok) throw new Error('Proposta nao encontrada'); return r.json(); })
+    .then(render)
+    .catch(() => {
+    document.getElementById('app').innerHTML =
+      '<div style="text-align:center;padding:4rem 2rem;color:#999;">' +
+        '<h2 style="color:#0D1B2A;margin-bottom:1rem;">Proposta nao encontrada</h2>' +
+        '<p>Verifique o link recebido ou entre em contato conosco.</p>' +
+        '<a href="https://wa.me/5516981334647" style="display:inline-block;margin-top:1.5rem;background:#25D366;color:#fff;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:700;">Falar no WhatsApp</a>' +
+      '</div>';
+  });
+}
+</script>
+</body>
+</html>
