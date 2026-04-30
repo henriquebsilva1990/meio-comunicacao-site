@@ -1315,6 +1315,8 @@
   });
 
   // ─── DEPOIMENTOS DINÂMICOS ──────────────────────────
+  function escHTML(str) { if (!str) return ''; return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
   function renderDepoimentos(lista) {
     const grid = document.getElementById('testiGrid');
     if (!grid) return;
@@ -1322,17 +1324,17 @@
     lista.forEach((d, i) => {
       const estrelas = '★'.repeat(d.estrelas || 5) + '☆'.repeat(5 - (d.estrelas || 5));
       const avatarHTML = d.foto
-        ? '<img src="' + d.foto + '" alt="' + d.nome + '">'
-        : d.nome.charAt(0).toUpperCase();
+        ? '<img src="' + encodeURI(d.foto) + '" alt="' + escHTML(d.nome) + '">'
+        : escHTML(d.nome).charAt(0).toUpperCase();
       const card = document.createElement('div');
       card.className = 'testi-card fi d' + (i + 1);
       card.innerHTML =
         '<div class="stars">' + estrelas + '</div>' +
-        '<p class="testi-text">"' + d.texto + '"</p>' +
+        '<p class="testi-text">"' + escHTML(d.texto) + '"</p>' +
         '<div class="testi-author">' +
           '<div class="avatar">' + avatarHTML + '</div>' +
-          '<div><div class="testi-name">' + d.nome + '</div>' +
-          '<div class="testi-role">' + d.cargo + '</div></div>' +
+          '<div><div class="testi-name">' + escHTML(d.nome) + '</div>' +
+          '<div class="testi-role">' + escHTML(d.cargo) + '</div></div>' +
         '</div>';
       grid.appendChild(card);
     });

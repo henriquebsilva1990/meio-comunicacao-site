@@ -55,10 +55,32 @@
     .preview-role { font-size: 11px; color: rgba(255,255,255,.45); margin-top: 2px; }
 
     .msg { background: #d4edda; color: #155724; padding: 12px 16px; border-radius: 8px; margin-bottom: 1rem; display: none; font-size: 14px; }
+
+    .login-overlay { position:fixed;inset:0;background:var(--navy);z-index:9999;display:flex;align-items:center;justify-content:center; }
+    .login-box { background:#fff;border-radius:14px;padding:2.5rem;max-width:380px;width:100%;text-align:center; }
+    .login-box img { height:70px;border-radius:10px;margin-bottom:1.5rem; }
+    .login-box h2 { font-size:1.1rem;color:var(--navy);margin-bottom:.3rem; }
+    .login-box p { font-size:13px;color:var(--gray-600);margin-bottom:1.5rem; }
+    .login-box input { width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;font-size:14px;text-align:center;margin-bottom:1rem; }
+    .login-box button { width:100%;padding:12px;background:var(--yellow);color:var(--navy);border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer; }
+    .login-box button:hover { opacity:.9; }
+    .login-error { color:#ff4444;font-size:12px;margin-top:.5rem;display:none; }
   </style>
 </head>
 <body>
 
+<div class="login-overlay" id="loginOverlay">
+  <div class="login-box">
+    <img src="customcolor_logo_customcolor_background.png" alt="Meio Comunicação">
+    <h2>Área restrita</h2>
+    <p>Gerenciador de Depoimentos</p>
+    <input type="password" id="loginSenha" placeholder="Digite a senha" onkeydown="if(event.key==='Enter')tentarLogin()">
+    <button onclick="tentarLogin()">Entrar</button>
+    <div class="login-error" id="loginErro">Senha incorreta.</div>
+  </div>
+</div>
+
+<div id="appContent" style="display:none;">
 <div class="header">
   <img src="customcolor_logo_customcolor_background.png" alt="Meio Comunicação">
   <div>
@@ -81,8 +103,37 @@
     <div class="preview-grid" id="preview"></div>
   </div>
 </div>
+</div><!-- /appContent -->
 
 <script>
+const PASS_HASH = '5986906e619270ef599f34e3b26d3ce2e7aa5a38a3569dfabbd6933b54a603bf';
+const AUTH_KEY = 'meio_admin_auth';
+const AUTH_TTL = 24 * 60 * 60 * 1000;
+
+async function hashSenha(s) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(s));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+}
+async function tentarLogin() {
+  const h = await hashSenha(document.getElementById('loginSenha').value);
+  if (h === PASS_HASH) {
+    localStorage.setItem(AUTH_KEY, Date.now().toString());
+    document.getElementById('loginOverlay').style.display = 'none';
+    document.getElementById('appContent').style.display = 'block';
+  } else {
+    document.getElementById('loginErro').style.display = 'block';
+    document.getElementById('loginSenha').value = '';
+  }
+}
+const authTime = Number(localStorage.getItem(AUTH_KEY) || '0');
+if (authTime && (Date.now() - authTime) < AUTH_TTL) {
+  document.getElementById('loginOverlay').style.display = 'none';
+  document.getElementById('appContent').style.display = 'block';
+} else {
+  localStorage.removeItem(AUTH_KEY);
+  document.getElementById('loginSenha').focus();
+}
+
 let dados = [];
 
 function carregar() {

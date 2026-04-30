@@ -163,6 +163,8 @@
     <button class="btn btn-yellow" onclick="previsualizar()">Previsualizar</button>
     <button class="btn btn-green" onclick="publicar()" id="btnPublicar">Publicar proposta</button>
     <button class="btn btn-navy" onclick="baixarJSON()" style="font-size:12px;padding:10px 16px;">Baixar JSON</button>
+    <button class="btn" onclick="limparToken()" style="font-size:11px;padding:8px 14px;background:#eee;color:#666;">Limpar Token</button>
+    <button class="btn" onclick="logout()" style="font-size:11px;padding:8px 14px;background:#eee;color:#666;">Sair</button>
   </div>
 
   <div class="card msg-ok" id="linkBox" style="display:none;">
@@ -178,13 +180,20 @@
 </div><!-- /appContent -->
 
 <script>
-const ADMIN_PASS = 'Hbs*4078';
+const PASS_HASH = '5986906e619270ef599f34e3b26d3ce2e7aa5a38a3569dfabbd6933b54a603bf';
 const AUTH_KEY = 'meio_admin_auth';
+const AUTH_TTL = 24 * 60 * 60 * 1000; // 24h
 
-function tentarLogin() {
+async function hashSenha(senha) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(senha));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+async function tentarLogin() {
   const senha = document.getElementById('loginSenha').value;
-  if (senha === ADMIN_PASS) {
-    localStorage.setItem(AUTH_KEY, '1');
+  const hash = await hashSenha(senha);
+  if (hash === PASS_HASH) {
+    localStorage.setItem(AUTH_KEY, Date.now().toString());
     document.getElementById('loginOverlay').style.display = 'none';
     document.getElementById('appContent').style.display = 'block';
   } else {
@@ -193,11 +202,13 @@ function tentarLogin() {
   }
 }
 
-// Auto-login if already authenticated this session
-if (localStorage.getItem(AUTH_KEY) === '1') {
+// Auto-login if authenticated within TTL
+const authTime = Number(localStorage.getItem(AUTH_KEY) || '0');
+if (authTime && (Date.now() - authTime) < AUTH_TTL) {
   document.getElementById('loginOverlay').style.display = 'none';
   document.getElementById('appContent').style.display = 'block';
 } else {
+  localStorage.removeItem(AUTH_KEY);
   document.getElementById('loginSenha').focus();
 }
 
@@ -377,10 +388,7 @@ function baixarJSON() {
   a.click();
   URL.revokeObjectURL(a.href);
 
-  // Show instructions
-  document.getElementById('instrucoes').style.display = 'block';
-  document.getElementById('linkFinal').textContent = 'meiocomunica.com.br/proposta.html?c=' + slug;
-  showMsg('Arquivo ' + slug + '.json baixado!');
+  showMsg('Arquivo ' + slug + '.json baixado! Mova para propostas/ e faça deploy.');
 }
 
 const GH_REPO = 'henriquebsilva1990/meio-comunicacao-site';
@@ -457,6 +465,17 @@ function copiarLink() {
   input.select();
   navigator.clipboard.writeText(input.value);
   showMsg('Link copiado!');
+}
+
+function limparToken() {
+  localStorage.removeItem(GH_TOKEN_KEY);
+  showMsg('Token GitHub removido. Será solicitado novamente ao publicar.');
+}
+
+function logout() {
+  localStorage.removeItem(AUTH_KEY);
+  localStorage.removeItem(GH_TOKEN_KEY);
+  location.reload();
 }
 
 function showMsg(text) {

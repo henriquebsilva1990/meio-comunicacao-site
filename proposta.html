@@ -212,6 +212,11 @@ function getSlug() {
   return path[path.length - 1] || 'exemplo';
 }
 
+function esc(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
 function formatCurrency(val) {
   return 'R$ ' + val.toFixed(2).replace('.', ',').replace(/\B(?=(\d{3})+(?!\d))/g, '.');
 }
@@ -226,22 +231,22 @@ function render(data) {
   const validade = calcValidade(data.data, data.validade_dias);
   const dataProposta = new Date(data.data + 'T12:00:00').toLocaleDateString('pt-BR');
 
-  document.title = 'Proposta — ' + data.cliente + ' | Meio Comunicacao';
+  document.title = 'Proposta — ' + esc(data.cliente) + ' | Meio Comunicacao';
 
   const totalMensal = data.servicos.filter(sv => (sv.tipo || 'mensal') === 'mensal').reduce((s, sv) => s + sv.valor, 0);
   const totalUnico = data.servicos.filter(sv => sv.tipo === 'unico').reduce((s, sv) => s + sv.valor, 0);
 
   const servicosHTML = data.servicos.map(sv => {
     const tipo = sv.tipo || 'mensal';
-    const sufixo = tipo === 'mensal' ? '/mes' : ' (unico)';
+    const sufixo = tipo === 'mensal' ? '/mês' : ' (único)';
     return '<div class="servico-card">' +
       '<div class="servico-header">' +
-        '<h3>' + sv.nome + '</h3>' +
+        '<h3>' + esc(sv.nome) + '</h3>' +
         '<div class="servico-valor">' + formatCurrency(sv.valor) + sufixo + '</div>' +
       '</div>' +
-      '<p class="servico-desc">' + sv.descricao + '</p>' +
+      '<p class="servico-desc">' + esc(sv.descricao) + '</p>' +
       '<ul class="servico-itens">' +
-        sv.itens.map(it => '<li>' + it + '</li>').join('') +
+        sv.itens.map(it => '<li>' + esc(it) + '</li>').join('') +
       '</ul>' +
     '</div>';
   }).join('');
@@ -253,8 +258,8 @@ function render(data) {
         '<img src="customcolor_logo_customcolor_background.png" alt="Meio Comunicacao" class="hero-logo">' +
         '<div class="hero-content">' +
           '<div class="hero-tag">Proposta Comercial</div>' +
-          '<h1>Proposta para <span>' + data.cliente + '</span></h1>' +
-          '<p class="hero-cliente">Preparada para ' + (data.contato || data.cliente) + '</p>' +
+          '<h1>Proposta para <span>' + esc(data.cliente) + '</span></h1>' +
+          '<p class="hero-cliente">Preparada para ' + esc(data.contato || data.cliente) + '</p>' +
           '<div class="hero-meta">' +
             '<span>Data: <strong>' + dataProposta + '</strong></span>' +
             '<span>Validade: <strong>' + validade + '</strong></span>' +
@@ -309,7 +314,7 @@ function render(data) {
     '<section>' +
       '<div class="section-tag">Investimento</div>' +
       '<h2 class="section-title">Serviços e valores.</h2>' +
-      '<p class="section-sub">Escopo personalizado para ' + data.cliente + '.</p>' +
+      '<p class="section-sub">Escopo personalizado para ' + esc(data.cliente) + '.</p>' +
       servicosHTML +
       (totalMensal > 0 ?
         '<div class="total-bar">' +

@@ -1,6 +1,9 @@
 User-agent: *
 Allow: /
 Disallow: /admin.html
+Disallow: /admin-propostas.html
+Disallow: /proposta.html
+Disallow: /propostas/
 
 # Principais buscadores
 User-agent: Googlebot
