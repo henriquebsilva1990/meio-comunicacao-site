@@ -8,4 +8,10 @@
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="pt-BR" href="https://meiocomunica.com.br/"/>
   </url>
+  <url>
+    <loc>https://meiocomunica.com.br/politica-de-privacidade.html</loc>
+    <lastmod>2026-05-02</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
 </urlset>
