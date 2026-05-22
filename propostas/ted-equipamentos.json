@@ -1,0 +1,52 @@
+{
+  "cliente": "Ted Equipamentos",
+  "contato": "Fabio",
+  "data": "2026-05-22",
+  "validade_dias": 7,
+  "servicos": [
+    {
+      "nome": "Setup Inicial",
+      "descricao": "",
+      "itens": [
+        "Elaboração Manual Marca",
+        "Inicio Desenvolvimento do Site",
+        "Configuração Conta de Anúncio",
+        "Configuração Pixel",
+        "Mapeamento de concorrentes"
+      ],
+      "valor": 2000,
+      "tipo": "unico"
+    },
+    {
+      "nome": "Estratégia & Consultoria | Social Media",
+      "descricao": "Diagnóstico completo do posicionamento digital e plano de ação personalizado para direção estratégica.",
+      "itens": [
+        "Diagnóstico digital completo",
+        "Plano de marketing sob medida",
+        "Consultoria de posicionamento",
+        "Acompanhamento estratégico",
+        "Calendário editorial mensal",
+        "Design e legendas inclusos",
+        "Instagram, Facebook & LinkedIn",
+        "Análise de desempenho",
+        "Conteúdo para Blog",
+        "Relatório mensal detalhado",
+        "1 diária de Captação Local / mês"
+      ],
+      "valor": 3000,
+      "tipo": "mensal"
+    },
+    {
+      "nome": "Gestão de Tráfego Pago",
+      "descricao": "Campanhas no Meta Ads e Google Ads gerenciadas com foco em custo por lead e retorno real. Cada real monitorado.",
+      "itens": [
+        "Meta Ads & Google Ads",
+        "Criativos e copy inclusos",
+        "Otimização semanal",
+        "Relatório mensal detalhado"
+      ],
+      "valor": 2400,
+      "tipo": "mensal"
+    }
+  ]
+}
