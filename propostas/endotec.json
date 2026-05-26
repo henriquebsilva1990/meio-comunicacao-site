@@ -1,0 +1,28 @@
+{
+  "cliente": "Endotec",
+  "contato": "Odival",
+  "data": "2026-05-26",
+  "validade_dias": 7,
+  "servicos": [
+    {
+      "nome": "Captação e Edição de Vídeos e Fotos",
+      "descricao": "Captação e Edição de Vídeos para trafego pago e divulgação",
+      "itens": [
+        "Captação de 6 vídeos com edição",
+        "Deslocamento + Alimentação "
+      ],
+      "valor": 9000,
+      "tipo": "unico"
+    },
+    {
+      "nome": "Trafego Pago Meta",
+      "descricao": "Gestão de trafego pago no Meta",
+      "itens": [
+        "Criação de Campanhas",
+        "Otimização de Campanhas"
+      ],
+      "valor": 500,
+      "tipo": "mensal"
+    }
+  ]
+}
