@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardapio - Grandiosa Quermesse 2026</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #fff8f0;
+      color: #2d1200;
+    }
+
+    /* HEADER */
+    .hero {
+      background: #f5a623;
+      text-align: center;
+      padding: 0;
+      border-bottom: 6px solid #c0392b;
+    }
+    .hero img {
+      width: 100%;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .dates-banner {
+      background: #c0392b;
+      color: #fff;
+      text-align: center;
+      font-size: 0.95rem;
+      font-weight: 700;
+      padding: 10px 16px;
+      letter-spacing: 0.3px;
+    }
+
+    /* BUNTING */
+    .bunting {
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      height: 26px;
+      background: #fff8f0;
+    }
+    .bunting span {
+      display: inline-block;
+      width: 0; height: 0;
+      border-left: 13px solid transparent;
+      border-right: 13px solid transparent;
+      border-top: 22px solid;
+      margin: 0 1px;
+    }
+    .bunting span:nth-child(6n+1) { border-top-color: #e8c84a; }
+    .bunting span:nth-child(6n+2) { border-top-color: #c0392b; }
+    .bunting span:nth-child(6n+3) { border-top-color: #27ae60; }
+    .bunting span:nth-child(6n+4) { border-top-color: #2980b9; }
+    .bunting span:nth-child(6n+5) { border-top-color: #e67e22; }
+    .bunting span:nth-child(6n+6) { border-top-color: #8e44ad; }
+
+    /* CONTAINER */
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 0 12px 32px;
+    }
+
+    /* SECTION TITLES */
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 24px 0 12px;
+      font-size: 1.2rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #c0392b;
+    }
+    .section-title::before, .section-title::after {
+      content: '';
+      flex: 1;
+      height: 2px;
+      background: #f5a623;
+    }
+
+    /* MENU ITEMS */
+    .menu-list { list-style: none; display: flex; flex-direction: column; gap: 3px; }
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      border-radius: 10px;
+      padding: 12px 14px;
+      gap: 8px;
+      border-left: 4px solid #f5a623;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    .item-name {
+      font-size: 0.97rem;
+      font-weight: 600;
+      color: #2d1200;
+      flex: 1;
+      line-height: 1.3;
+    }
+    .item-sub {
+      font-size: 0.78rem;
+      color: #9b5e2a;
+      display: block;
+      font-weight: 400;
+      margin-top: 2px;
+    }
+    .item-price {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #fff;
+      white-space: nowrap;
+      background: #c0392b;
+      padding: 4px 10px;
+      border-radius: 20px;
+    }
+
+    /* NOTICE */
+    .notice {
+      margin: 28px 0 4px;
+      background: #fff3e0;
+      border: 2px solid #f5a623;
+      border-radius: 14px;
+      padding: 18px 16px;
+      text-align: center;
+    }
+    .notice h3 {
+      font-size: 0.95rem;
+      color: #c0392b;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-weight: 800;
+    }
+    .notice ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .notice ul li {
+      font-size: 0.88rem;
+      color: #4a2000;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      text-align: left;
+    }
+    .notice ul li::before {
+      content: '⚠️';
+      font-size: 0.8rem;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    /* SPONSORS */
+    .sponsors-section {
+      margin-top: 36px;
+      padding-top: 24px;
+      border-top: 3px dashed #f5a623;
+    }
+    .sponsors-title {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #c0392b;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+
+    .sponsor-tier { margin-bottom: 28px; }
+    .tier-label {
+      text-align: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      display: block;
+    }
+    .tier-master  .tier-label { background: #b8860b; color: #fff; }
+    .tier-premium .tier-label { background: #7f8c8d; color: #fff; }
+    .tier-parceiro .tier-label { background: #fff3e0; color: #9b5e2a; border: 1.5px solid #f5a623; }
+
+    .logos-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: stretch;
+    }
+    .logo-wrap {
+      background: #fff;
+      border-radius: 10px;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+    }
+    .tier-master  .logo-wrap { width: 175px; height: 100px; }
+    .tier-premium .logo-wrap { width: 130px; height: 78px; }
+    .tier-parceiro .logo-wrap { width: 105px; height: 65px; }
+
+    /* Master layout customizado - grid 3 colunas */
+    .master-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr 140px;
+      grid-template-rows: 1fr 1fr;
+      gap: 10px;
+      min-height: 220px;
+    }
+    .master-logo {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+      padding: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .master-logo img { max-width: 100%; max-height: 100%; object-fit: contain; width: 100%; height: 100%; }
+    .master-athenas {
+      grid-column: 3;
+      grid-row: 1 / 3;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .master-athenas img { max-width: 100%; max-height: 100%; object-fit: contain; }
+
+    .logo-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.72rem;
+      color: #9b5e2a;
+      padding: 20px 16px 36px;
+      border-top: 1px solid #f5d9a0;
+      margin-top: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <img src="WhatsApp Image 2026-06-01 at 13.47.23.jpeg" alt="Grandiosa Quermesse 2026">
+  </div>
+  <div class="dates-banner">
+    Dias 6, 13, 20 e 27 de Junho &nbsp;|&nbsp; Espaço Santa Maria Madalena
+  </div>
+
+  <div class="bunting">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <div class="container">
+
+    <!-- COMIDAS -->
+    <div class="section-title"><span>🍢</span> Comidas <span>🌽</span></div>
+    <ul class="menu-list">
+      <li class="menu-item">
+        <span class="item-name">Espeto
+          <span class="item-sub">Carne · Frango com Bacon · Tulipa · Linguiça</span>
+        </span>
+        <span class="item-price">R$ 14</span>
+      </li>
+      <li class="menu-item"><span class="item-name">Caldo de Mandioca</span><span class="item-price">R$ 12</span></li>
+      <li class="menu-item"><span class="item-name">Cachorro Quente</span><span class="item-price">R$ 12</span></li>
+      <li class="menu-item"><span class="item-name">Lanche de Linguiça</span><span class="item-price">R$ 18</span></li>
+      <li class="menu-item"><span class="item-name">Lanche de Pernil</span><span class="item-price">R$ 18</span></li>
+      <li class="menu-item"><span class="item-name">Milho Gourmet</span><span class="item-price">R$ 14</span></li>
+      <li class="menu-item"><span class="item-name">Pastel</span><span class="item-price">R$ 12</span></li>
+      <li class="menu-item"><span class="item-name">Kibe</span><span class="item-price">R$ 12</span></li>
+      <li class="menu-item"><span class="item-name">Porção de Batata Chips</span><span class="item-price">R$ 15</span></li>
+      <li class="menu-item"><span class="item-name">Porção de Frango Raquete</span><span class="item-price">R$ 25</span></li>
+      <li class="menu-item"><span class="item-name">Porção de Pururuca</span><span class="item-price">R$ 18</span></li>
+    </ul>
+
+    <!-- BEBIDAS -->
+    <div class="section-title"><span>🍺</span> Bebidas <span>🥤</span></div>
+    <ul class="menu-list">
+      <li class="menu-item"><span class="item-name">Água</span><span class="item-price">R$ 3</span></li>
+      <li class="menu-item"><span class="item-name">Água com Gas</span><span class="item-price">R$ 4</span></li>
+      <li class="menu-item">
+        <span class="item-name">Chopp Ecobier <span class="item-sub">Claro ou Escuro</span></span>
+        <span class="item-price">R$ 9</span>
+      </li>
+      <li class="menu-item"><span class="item-name">Cerveja sem Álcool</span><span class="item-price">R$ 7</span></li>
+      <li class="menu-item">
+        <span class="item-name">Refrigerante <span class="item-sub">Coca · Coca Zero · Guaraná · Guaraná Zero</span></span>
+        <span class="item-price">R$ 7</span>
+      </li>
+      <li class="menu-item">
+        <span class="item-name">Suco <span class="item-sub">Laranja ou Caju</span></span>
+        <span class="item-price">R$ 7</span>
+      </li>
+      <li class="menu-item"><span class="item-name">Leite Quente</span><span class="item-price">R$ 8</span></li>
+      <li class="menu-item"><span class="item-name">Quentão</span><span class="item-price">R$ 8</span></li>
+    </ul>
+
+    <!-- DOCES -->
+    <div class="section-title"><span>🍬</span> Doces <span>🍩</span></div>
+    <ul class="menu-list">
+      <li class="menu-item"><span class="item-name">Arroz Doce</span><span class="item-price">R$ 12</span></li>
+      <li class="menu-item"><span class="item-name">Bolo de Cenoura</span><span class="item-price">R$ 12</span></li>
+      <li class="menu-item"><span class="item-name">Canjica</span><span class="item-price">R$ 12</span></li>
+      <li class="menu-item"><span class="item-name">Cone Trufado</span><span class="item-price">R$ 15</span></li>
+      <li class="menu-item"><span class="item-name">Espeto de Morango com Chocolate</span><span class="item-price">R$ 18</span></li>
+      <li class="menu-item"><span class="item-name">Maçã do Amor</span><span class="item-price">R$ 15</span></li>
+      <li class="menu-item">
+        <span class="item-name">Mini Churros <span class="item-sub">3 unidades</span></span>
+        <span class="item-price">R$ 12</span>
+      </li>
+    </ul>
+
+    <!-- ENTRETENIMENTO -->
+    <div class="section-title"><span>🎡</span> Entretenimento <span>🎲</span></div>
+    <ul class="menu-list">
+      <li class="menu-item"><span class="item-name">Brincadeira</span><span class="item-price">R$ 6</span></li>
+      <li class="menu-item"><span class="item-name">Caneta</span><span class="item-price">R$ 2</span></li>
+      <li class="menu-item"><span class="item-name">Vale Binguinho</span><span class="item-price">R$ 2</span></li>
+      <li class="menu-item"><span class="item-name">Vale Bingão</span><span class="item-price">R$ 10</span></li>
+    </ul>
+
+    <!-- AVISO -->
+    <div class="notice">
+      <h3>Informações sobre as fichas</h3>
+      <ul>
+        <li>As fichas são válidas apenas para o dia em que foram adquiridas.</li>
+        <li>Não realizamos trocas de fichas.</li>
+        <li>Não fazemos devolução de fichas não utilizadas.</li>
+      </ul>
+    </div>
+
+    <!-- PATROCINADORES -->
+    <div class="sponsors-section">
+      <div class="sponsors-title">Nossos Patrocinadores</div>
+
+      <!-- MASTER -->
+      <div class="sponsor-tier tier-master">
+        <span class="tier-label">Master</span>
+        <div class="master-layout">
+          <div class="master-logo"><img src="Logo Master R$ 2000,00/bicicletaria.png" alt="Bicicletaria N. S. Aparecida"></div>
+          <div class="master-logo"><img src="Logo Master R$ 2000,00/2 - SUPERMERCADO SAVEGNAGO.png" alt="Savegnago"></div>
+          <div class="master-athenas"><img src="Logo Master R$ 2000,00/Logo Athenas.jpeg" alt="Athenas"></div>
+          <div class="master-logo"><img src="Logo Master R$ 2000,00/cacola.png" alt="Cacola Embalagens"></div>
+          <div class="master-logo"><img src="Logo Master R$ 2000,00/Homeplay - Arte para Projeção  (1).png" alt="Homeplay"></div>
+        </div>
+      </div>
+
+      <!-- PREMIUM -->
+      <div class="sponsor-tier tier-premium">
+        <span class="tier-label">Premium</span>
+        <div class="logos-grid">
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/moriah.png" alt="Moriah Net Comunicacoes"></div>
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/3. Logo JR Construções.png" alt="JR Construcoes"></div>
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/5 - Academia impacto.png" alt="Academia Impacto"></div>
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/70 - Jorginho Materiais de Construção.png" alt="Jorginho Materiais"></div>
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/LOGO_ASTEC fundo transp.png" alt="Astec"></div>
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/Log_Cascata.png" alt="Cascata"></div>
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/Logo Baianinho.jpeg" alt="Baianinho"></div>
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/Logo Force Racing Moto peças.jpeg" alt="Force Racing"></div>
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/Logo Garrafaria 2 irmãos.jpeg" alt="Garrafaria 2 Irmaos"></div>
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/hidro.png" alt="Hidro Ribeirao"></div>
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/Logo Luffa.jpeg" alt="Luffa"></div>
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/Logo MC Tintas.jpeg" alt="MC Tintas"></div>
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/Logo Petrograal.png" alt="Petrograal"></div>
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/Logo Santa Helena.png" alt="Santa Helena"></div>
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/Logo Supermercado Marquinho.png" alt="Supermercado Marquinho"></div>
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/Logo_Nova Brasa.png" alt="Nova Brasa"></div>
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/Logo_Otica e Cia.png" alt="Otica e Cia"></div>
+          <div class="logo-wrap"><img src="Logo Premium R$ 500,00/Madeiranit_logomarca_padrÃ£o_v1.png" alt="Madeiranit"></div>
+        </div>
+      </div>
+
+      <!-- PARCEIRO -->
+      <div class="sponsor-tier tier-parceiro">
+        <span class="tier-label">Parceiro</span>
+        <div class="logos-grid">
+          <div class="logo-wrap"><img src="Logo Parceiro R$ 300,00/11. Logo Lins.jpeg" alt="Lins"></div>
+          <div class="logo-wrap"><img src="Logo Parceiro R$ 300,00/24 - Gusta e Jo.png" alt="Gusta e Jo"></div>
+          <div class="logo-wrap"><img src="Logo Parceiro R$ 300,00/27 - Big Compra.png" alt="Big Compra"></div>
+          <div class="logo-wrap"><img src="Logo Parceiro R$ 300,00/3 - Açougue Ipuã 1 (2).png" alt="Acougue Ipua"></div>
+          <div class="logo-wrap"><img src="Logo Parceiro R$ 300,00/30 - Sorrissinho.jpeg" alt="Sorrissinho"></div>
+          <div class="logo-wrap"><img src="Logo Parceiro R$ 300,00/Logo Al Fracaroli.jpeg" alt="Al Fracaroli"></div>
+          <div class="logo-wrap"><img src="Logo Parceiro R$ 300,00/Logo Bar da Linha.jpeg" alt="Bar da Linha"></div>
+          <div class="logo-wrap"><img src="Logo Parceiro R$ 300,00/Logo Esquina do Pastel.png" alt="Esquina do Pastel"></div>
+          <div class="logo-wrap"><img src="Logo Parceiro R$ 300,00/favaro.png" alt="Favaro Motos"></div>
+          <div class="logo-wrap"><img src="Logo Parceiro R$ 300,00/Logo Granados Contadores.jpeg" alt="Granados Contadores"></div>
+          <div class="logo-wrap"><img src="Logo Parceiro R$ 300,00/Logo Sandro Ecopeças.png" alt="Sandro Ecopecas"></div>
+          <div class="logo-wrap"><img src="Logo Parceiro R$ 300,00/Logo Tonin Supermercados.png" alt="Tonin Supermercados"></div>
+          <div class="logo-wrap"><img src="Logo Parceiro R$ 300,00/Owa.jpeg" alt="Owa"></div>
+          <div class="logo-wrap"><img src="Logo Parceiro R$ 300,00/Zenac.png" alt="Zenac"></div>
+          <div class="logo-wrap"><img src="Logo Parceiro R$ 300,00/logo Vida Saudavel.jpeg" alt="Vida Saudavel"></div>
+          <div class="logo-wrap"><img src="Logo Parceiro R$ 300,00/eskimo.png" alt="Eskimo"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    Paróquia Nossa Senhora dos Canaviais &bull; Espaço Santa Maria Madalena &bull; Rua Antonio Augusto de Carvalho, 284, Simioni
+  </footer>
+
+</body>
+</html>
