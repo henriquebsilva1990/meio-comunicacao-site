@@ -132,6 +132,24 @@
     }
     .rte-body:empty::before { content: attr(data-placeholder); color: #bbb; pointer-events: none; }
 
+    /* ─── CARD OBSERVACOES DESTAQUE ──────────────────────────────────────── */
+    .card-obs {
+      border: 2px solid var(--yellow) !important;
+    }
+    .card-obs-header {
+      display: flex; align-items: center; justify-content: space-between;
+      background: #fffbea; border-radius: 8px 8px 0 0;
+      margin: -1.5rem -1.5rem 1rem -1.5rem; padding: .75rem 1.2rem;
+      border-bottom: 1px solid #f5e06e;
+    }
+    .card-obs-header h2 { margin: 0; font-size: 1rem; font-weight: 700; color: var(--navy); }
+    .card-obs-badge {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--yellow); color: var(--navy);
+      border-radius: 20px; padding: 3px 10px;
+      font-size: 11px; font-weight: 700; letter-spacing: .3px; white-space: nowrap;
+    }
+
     /* ─── LOGIN ───────────────────────────────────────────────────────────── */
     .login-overlay { position:fixed;inset:0;background:var(--navy);z-index:9999;display:flex;align-items:center;justify-content:center; }
     .login-box { background:#fff;border-radius:var(--radius);padding:2.5rem;max-width:380px;width:100%;text-align:center; }
@@ -253,8 +271,11 @@
   </div>
 
   <!-- ─── OBSERVACOES ─────────────────────────────────────────────────── -->
-  <div class="card">
-    <h2>Observacoes</h2>
+  <div class="card card-obs">
+    <div class="card-obs-header">
+      <h2>&#128197; Observacoes</h2>
+      <span class="card-obs-badge">&#128065; Aparece pro cliente</span>
+    </div>
     <p style="font-size:13px;color:var(--gray-600);margin-bottom:1rem;">Campo visivel ao cliente na proposta. Suporta formatacao.</p>
     <div class="field">
       <label>Observacoes (rich text)</label>
