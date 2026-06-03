@@ -6,7 +6,7 @@
   "servicos": [
     {
       "nome": "Setup Inicial",
-      "descricao": "",
+      "descricao": "Fechando o Contrato de Estrategia e Social Media o valor do Setup cai para R$1000,00 e é parcelado no tempo do contrato.",
       "itens": [
         "Elaboração Manual Marca",
         "Inicio Desenvolvimento do Site",
@@ -19,7 +19,7 @@
     },
     {
       "nome": "Estratégia & Consultoria | Social Media",
-      "descricao": "Diagnóstico completo do posicionamento digital e plano de ação personalizado para direção estratégica.",
+      "descricao": "Diagnóstico completo do posicionamento digital e plano de ação personalizado para direção estratégica\n\nFechando esse serviço junto com o Setup o tempo de contrato é de 3 meses.",
       "itens": [
         "Diagnóstico digital completo",
         "Plano de marketing sob medida",
@@ -34,18 +34,6 @@
         "1 diária de Captação Local / mês"
       ],
       "valor": 3000,
-      "tipo": "mensal"
-    },
-    {
-      "nome": "Gestão de Tráfego Pago",
-      "descricao": "Campanhas no Meta Ads e Google Ads gerenciadas com foco em custo por lead e retorno real. Cada real monitorado.",
-      "itens": [
-        "Meta Ads & Google Ads",
-        "Criativos e copy inclusos",
-        "Otimização semanal",
-        "Relatório mensal detalhado"
-      ],
-      "valor": 2400,
       "tipo": "mensal"
     }
   ]
