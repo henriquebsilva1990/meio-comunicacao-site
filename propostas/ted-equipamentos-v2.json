@@ -1,0 +1,41 @@
+{
+  "cliente": "Ted Equipamentos",
+  "contato": "Fabio",
+  "data": "2026-05-22",
+  "validade_dias": 7,
+  "servicos": [
+    {
+      "nome": "Setup Inicial",
+      "descricao": "",
+      "itens": [
+        "Elaboração Manual Marca",
+        "Inicio Desenvolvimento do Site",
+        "Configuração Conta de Anúncio",
+        "Configuração Pixel",
+        "Mapeamento de concorrentes"
+      ],
+      "valor": 2000,
+      "tipo": "unico"
+    },
+    {
+      "nome": "Estratégia & Consultoria | Social Media",
+      "descricao": "Diagnóstico completo do posicionamento digital e plano de ação personalizado para direção estratégica\n\nFechando esse serviço junto com o Setup o tempo de contrato é de 3 meses.",
+      "itens": [
+        "Diagnóstico digital completo",
+        "Plano de marketing sob medida",
+        "Consultoria de posicionamento",
+        "Acompanhamento estratégico",
+        "Calendário editorial mensal",
+        "Design e legendas inclusos",
+        "Instagram, Facebook & LinkedIn",
+        "Análise de desempenho",
+        "Conteúdo para Blog",
+        "Relatório mensal detalhado",
+        "1 diária de Captação Local / mês"
+      ],
+      "valor": 3000,
+      "tipo": "mensal"
+    }
+  ],
+  "observacoes": "Fechando o Contrato de Estrategia e Social Media o valor do Setup cai para R$1000,00 e é parcelado no tempo do contrato.<br><b>O tempo de contrato do Social Media fechando em conjunto com o Setup Inicial sera de 3 meses.</b>"
+}
