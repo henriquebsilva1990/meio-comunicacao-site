@@ -83,6 +83,7 @@
     .btn-sm:hover { opacity: .8; }
     .btn-ver { background: var(--navy); color: #fff; }
     .btn-editar { background: var(--yellow); color: var(--navy); }
+    .btn-pdf { background: #e9ecef; color: var(--navy); }
     .td-acoes { white-space: nowrap; display: flex; gap: 6px; }
 
     /* Estados da lista */
@@ -92,6 +93,44 @@
     @keyframes spin { to { transform: rotate(360deg); } }
 
     .msg-erro-lista { background: #f8d7da; color: #721c24; padding: 10px 14px; border-radius: 8px; font-size: 13px; margin-bottom: .8rem; display: none; }
+
+    /* ─── VERSIONAMENTO ──────────────────────────────────────────────────── */
+    .badge-versao { display: inline-block; background: var(--navy); color: var(--yellow); border-radius: 5px; padding: 1px 7px; font-size: 11px; font-weight: 700; margin-left: 6px; vertical-align: middle; }
+    .btn-chevron { background: none; border: none; cursor: pointer; color: var(--gray-600); font-size: 14px; padding: 4px 6px; line-height: 1; transition: transform .2s; }
+    .btn-chevron.aberto { transform: rotate(180deg); }
+    .historico-row td { padding: 0 !important; }
+    .historico-inner { background: #f8f9fa; border-top: 1px solid var(--gray-100); padding: .7rem 1rem .7rem 2rem; }
+    .historico-inner table { font-size: 12px; width: 100%; }
+    .historico-inner thead th { font-size: 10px; padding: 4px 8px; border-bottom: 1px solid var(--gray-100); }
+    .historico-inner tbody td { padding: 5px 8px; border-bottom: 1px solid var(--gray-100); }
+    .historico-inner tbody tr:last-child td { border-bottom: none; }
+    .badge-base { font-size: 10px; background: #fff3cd; color: #856404; border-radius: 4px; padding: 1px 5px; font-weight: 600; margin-left: 4px; }
+    .indicador-edicao { background: #fff3cd; border: 1px solid #ffc107; border-radius: 8px; padding: 8px 14px; font-size: 13px; color: #856404; margin-bottom: .6rem; display: none; }
+
+    /* ─── RICH TEXT EDITOR ──────────────────────────────────────────────── */
+    .rte-wrap { border: 1px solid #ddd; border-radius: 8px; overflow: hidden; }
+    .rte-toolbar {
+      display: flex; gap: 2px; padding: 6px 8px; background: #f8f9fa;
+      border-bottom: 1px solid var(--gray-100); flex-wrap: wrap; align-items: center;
+    }
+    .rte-toolbar button {
+      background: none; border: 1px solid transparent; border-radius: 5px;
+      padding: 4px 8px; cursor: pointer; font-size: 13px; line-height: 1;
+      color: var(--navy); transition: background .15s, border-color .15s; font-family: inherit;
+    }
+    .rte-toolbar button:hover { background: var(--gray-100); border-color: #ddd; }
+    .rte-toolbar button.ativo { background: var(--navy); color: #fff; border-color: var(--navy); }
+    .rte-toolbar .sep { width: 1px; background: #ddd; margin: 0 4px; align-self: stretch; }
+    .rte-toolbar .color-dot {
+      display: inline-block; width: 16px; height: 16px; border-radius: 50%;
+      border: 2px solid #ddd; cursor: pointer; flex-shrink: 0;
+    }
+    .rte-toolbar .color-dot:hover { border-color: var(--navy); }
+    .rte-body {
+      min-height: 100px; padding: 10px 12px; font-size: 14px; font-family: inherit;
+      outline: none; line-height: 1.6; color: var(--navy);
+    }
+    .rte-body:empty::before { content: attr(data-placeholder); color: #bbb; pointer-events: none; }
 
     /* ─── LOGIN ───────────────────────────────────────────────────────────── */
     .login-overlay { position:fixed;inset:0;background:var(--navy);z-index:9999;display:flex;align-items:center;justify-content:center; }
@@ -130,6 +169,7 @@
 
 <div class="container">
   <div class="msg msg-ok" id="msg"></div>
+  <div class="indicador-edicao" id="indicadorEdicao"></div>
 
   <!-- ─── LISTA DE PROPOSTAS EXISTENTES ─────────────────────────────────── -->
   <div class="card">
@@ -212,6 +252,36 @@
     <div id="servicosLista"></div>
   </div>
 
+  <!-- ─── OBSERVACOES ─────────────────────────────────────────────────── -->
+  <div class="card">
+    <h2>Observacoes</h2>
+    <p style="font-size:13px;color:var(--gray-600);margin-bottom:1rem;">Campo visivel ao cliente na proposta. Suporta formatacao.</p>
+    <div class="field">
+      <label>Observacoes (rich text)</label>
+      <div class="rte-wrap">
+        <div class="rte-toolbar">
+          <button type="button" onclick="rteCmd('bold')" title="Negrito"><b>B</b></button>
+          <button type="button" onclick="rteCmd('italic')" title="Italico"><i>I</i></button>
+          <button type="button" onclick="rteCmd('underline')" title="Sublinhado"><u>U</u></button>
+          <div class="sep"></div>
+          <button type="button" onclick="rteCmd('insertUnorderedList')" title="Lista">&#8226; Lista</button>
+          <button type="button" onclick="rteCmd('insertOrderedList')" title="Lista numerada">1. Lista</button>
+          <div class="sep"></div>
+          <span style="font-size:11px;color:var(--gray-600);margin-right:4px;">Cor:</span>
+          <span class="color-dot" style="background:#0D1B2A;" title="Navy" onclick="rteColor('#0D1B2A')"></span>
+          <span class="color-dot" style="background:#F5C318;" title="Amarelo" onclick="rteColor('#F5C318')"></span>
+          <span class="color-dot" style="background:#27ae60;" title="Verde" onclick="rteColor('#27ae60')"></span>
+          <span class="color-dot" style="background:#e74c3c;" title="Vermelho" onclick="rteColor('#e74c3c')"></span>
+          <span class="color-dot" style="background:#495057;" title="Cinza" onclick="rteColor('#495057')"></span>
+          <span class="color-dot" style="background:#000000;" title="Preto" onclick="rteColor('#000000')"></span>
+          <div class="sep"></div>
+          <button type="button" onclick="rteLimpar()" title="Limpar formatacao" style="font-size:11px;">Limpar fmt</button>
+        </div>
+        <div class="rte-body" id="rteBody" contenteditable="true" data-placeholder="Adicione observacoes, condicoes especiais, avisos..."></div>
+      </div>
+    </div>
+  </div>
+
   <!-- ─── ACOES ──────────────────────────────────────────────────────────── -->
   <div class="actions">
     <button class="btn btn-yellow" onclick="previsualizar()">Previsualizar</button>
@@ -234,6 +304,75 @@
 </div><!-- /appContent -->
 
 <script>
+// ─── Sanitizer de rich text ────────────────────────────────────────────────────
+// Usa DOMParser para percorrer a arvore e remover tudo que nao esta no whitelist.
+// Whitelist de tags inline/block permitidas e atributos aceitos por tag.
+const RTE_ALLOWED = {
+  B: [], STRONG: [], I: [], EM: [], U: [],
+  SPAN: ['style'],
+  P: [], BR: [],
+  UL: [], OL: [], LI: []
+};
+// Para SPAN, so o atributo style com color: é permitido.
+function sanitizeRichText(html) {
+  if (!html || !html.trim()) return '';
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  function walkNode(node) {
+    if (node.nodeType === Node.TEXT_NODE) return node.cloneNode(false);
+    if (node.nodeType !== Node.ELEMENT_NODE) return null;
+    const tag = node.tagName.toUpperCase();
+    if (!(tag in RTE_ALLOWED)) {
+      // Tag nao permitida: preservar texto filho mas descartar a tag
+      const frag = document.createDocumentFragment();
+      node.childNodes.forEach(child => {
+        const c = walkNode(child);
+        if (c) frag.appendChild(c);
+      });
+      return frag;
+    }
+    const el = document.createElement(tag);
+    const allowedAttrs = RTE_ALLOWED[tag];
+    allowedAttrs.forEach(attr => {
+      if (node.hasAttribute(attr)) {
+        // Para style, aceitar apenas color: ...
+        if (attr === 'style') {
+          const colorMatch = node.getAttribute('style').match(/color\s*:\s*[^;]+/i);
+          if (colorMatch) el.setAttribute('style', colorMatch[0]);
+        } else {
+          el.setAttribute(attr, node.getAttribute(attr));
+        }
+      }
+    });
+    node.childNodes.forEach(child => {
+      const c = walkNode(child);
+      if (c) el.appendChild(c);
+    });
+    return el;
+  }
+  const result = document.createElement('div');
+  doc.body.childNodes.forEach(child => {
+    const c = walkNode(child);
+    if (c) result.appendChild(c);
+  });
+  return result.innerHTML;
+}
+
+// ─── Rich Text Editor ──────────────────────────────────────────────────────────
+function rteCmd(cmd) {
+  document.getElementById('rteBody').focus();
+  document.execCommand(cmd, false, null);
+}
+
+function rteColor(hex) {
+  document.getElementById('rteBody').focus();
+  document.execCommand('foreColor', false, hex);
+}
+
+function rteLimpar() {
+  document.getElementById('rteBody').focus();
+  document.execCommand('removeFormat', false, null);
+}
+
 const PASS_HASH   = '5986906e619270ef599f34e3b26d3ce2e7aa5a38a3569dfabbd6933b54a603bf';
 const AUTH_KEY    = 'meio_admin_auth';
 const AUTH_TTL    = 24 * 60 * 60 * 1000;
@@ -280,6 +419,29 @@ function getToken() {
     if (token) localStorage.setItem(GH_TOKEN_KEY, token.trim());
   }
   return token;
+}
+
+// ─── Helpers de versionamento ─────────────────────────────────────────────────
+
+// Extrai { slug, version } de um nome de arquivo JSON.
+// "endotec.json"       => { slug: "endotec",       version: 1 }
+// "endotec-v2.json"    => { slug: "endotec",       version: 2 }
+// "endotec-v10.json"   => { slug: "endotec",       version: 10 }
+function parseFilename(name) {
+  const base = name.replace(/\.json$/, '');
+  const match = base.match(/^(.+)-v(\d+)$/);
+  if (match) return { slug: match[1], version: parseInt(match[2], 10) };
+  return { slug: base, version: 1 };
+}
+
+function propostaFilename(slug, version) {
+  return version <= 1 ? slug + '.json' : slug + '-v' + version + '.json';
+}
+
+function propostaUrl(slug, version) {
+  return version <= 1
+    ? 'proposta.html?c=' + encodeURIComponent(slug)
+    : 'proposta.html?c=' + encodeURIComponent(slug) + '&v=' + version;
 }
 
 // ─── Lista de propostas ────────────────────────────────────────────────────────
@@ -330,16 +492,34 @@ async function carregarLista() {
       return;
     }
 
-    const propostas = await Promise.all(jsons.map(f => fetchPropostaItem(f)));
+    // Buscar dados de todos os arquivos em paralelo
+    const itens = await Promise.all(jsons.map(f => fetchPropostaItem(f)));
 
-    propostas.sort((a, b) => {
-      if (!a.data && !b.data) return 0;
-      if (!a.data) return 1;
-      if (!b.data) return -1;
-      return b.data.localeCompare(a.data);
+    // Agrupar por slug
+    const gruposMap = new Map();
+    itens.forEach(item => {
+      if (!gruposMap.has(item.slug)) gruposMap.set(item.slug, []);
+      gruposMap.get(item.slug).push(item);
     });
 
-    renderListaTabela(propostas);
+    // Ordenar versoes dentro de cada grupo (crescente) e construir array de grupos
+    const grupos = [];
+    gruposMap.forEach((versoes, slug) => {
+      versoes.sort((a, b) => a.version - b.version);
+      grupos.push({ slug, versoes });
+    });
+
+    // Ordenar grupos pela data da versao mais recente (decrescente)
+    grupos.sort((a, b) => {
+      const dataA = a.versoes[a.versoes.length - 1].data || '';
+      const dataB = b.versoes[b.versoes.length - 1].data || '';
+      if (!dataA && !dataB) return 0;
+      if (!dataA) return 1;
+      if (!dataB) return -1;
+      return dataB.localeCompare(dataA);
+    });
+
+    renderListaTabela(grupos);
 
   } catch (e) {
     mostrarErroLista('Erro ao carregar propostas: ' + e.message);
@@ -351,13 +531,15 @@ async function carregarLista() {
 }
 
 async function fetchPropostaItem(arquivo) {
-  const slug = arquivo.name.replace('.json', '');
+  const { slug, version } = parseFilename(arquivo.name);
   try {
-    const resp = await fetch(arquivo.download_url + '?v=' + Date.now());
+    const resp = await fetch(arquivo.download_url + '?t=' + Date.now());
     if (!resp.ok) throw new Error('nao encontrado');
     const data = await resp.json();
     return {
-      slug:          slug,
+      slug,
+      version,
+      file:          arquivo.name,
       cliente:       data.cliente       || slug,
       contato:       data.contato       || '',
       data:          data.data          || '',
@@ -365,35 +547,85 @@ async function fetchPropostaItem(arquivo) {
       servicos:      data.servicos      || []
     };
   } catch (e) {
-    return { slug, cliente: slug, contato: '', data: '', validade_dias: '', servicos: [], erro: true };
+    return { slug, version, file: arquivo.name, cliente: slug, contato: '', data: '', validade_dias: '', servicos: [], erro: true };
   }
 }
 
-function renderListaTabela(propostas) {
-  const rows = propostas.map(p => {
-    const dataFmt = p.data ? formatarData(p.data) : '<span style="color:#bbb">—</span>';
-    const badges = p.servicos.length > 0
-      ? p.servicos.slice(0, 3).map(s => '<span class="badge">' + esc(s.nome) + '</span>').join('') +
-        (p.servicos.length > 3 ? '<span class="badge">+' + (p.servicos.length - 3) + '</span>' : '')
+function renderListaTabela(grupos) {
+  let rows = '';
+  grupos.forEach((grupo, gi) => {
+    const recente  = grupo.versoes[grupo.versoes.length - 1];
+    const vAtual   = recente.version;
+    const dataFmt  = recente.data ? formatarData(recente.data) : '<span style="color:#bbb">—</span>';
+    const badges   = recente.servicos.length > 0
+      ? recente.servicos.slice(0, 3).map(s => '<span class="badge">' + esc(s.nome) + '</span>').join('') +
+        (recente.servicos.length > 3 ? '<span class="badge">+' + (recente.servicos.length - 3) + '</span>' : '')
       : '<span style="color:#bbb;font-size:12px">—</span>';
 
-    const urlVer = 'proposta.html?c=' + encodeURIComponent(p.slug);
+    const urlVer      = propostaUrl(grupo.slug, vAtual);
+    const temHistorico = grupo.versoes.length > 1;
+    const chevronId   = 'chev-' + gi;
+    const histId      = 'hist-' + gi;
 
-    return '<tr>' +
-      '<td class="td-cliente">' + esc(p.cliente) +
-        (p.contato ? '<div class="td-contato">' + esc(p.contato) + '</div>' : '') +
-      '</td>' +
-      '<td class="td-data">' + dataFmt + '</td>' +
-      '<td class="td-slug">' + esc(p.slug) + '</td>' +
-      '<td class="td-servicos">' + badges + '</td>' +
-      '<td>' +
-        '<div class="td-acoes">' +
-          '<a class="btn-sm btn-ver" href="' + urlVer + '" target="_blank">Ver</a>' +
-          '<button class="btn-sm btn-editar" onclick="editarProposta(\'' + esc(p.slug) + '\')">Editar</button>' +
-        '</div>' +
-      '</td>' +
-    '</tr>';
-  }).join('');
+    // Linha principal
+    rows +=
+      '<tr>' +
+        '<td class="td-cliente">' +
+          esc(recente.cliente) +
+          '<span class="badge-versao">v' + vAtual + '</span>' +
+          (recente.contato ? '<div class="td-contato">' + esc(recente.contato) + '</div>' : '') +
+        '</td>' +
+        '<td class="td-data">' + dataFmt + '</td>' +
+        '<td class="td-slug">' + esc(grupo.slug) + '</td>' +
+        '<td class="td-servicos">' + badges + '</td>' +
+        '<td>' +
+          '<div class="td-acoes">' +
+            '<a class="btn-sm btn-ver" href="' + urlVer + '" target="_blank">Ver</a>' +
+            '<button class="btn-sm btn-editar" onclick="editarPropostaVersao(\'' + esc(grupo.slug) + '\',' + vAtual + ')">Editar</button>' +
+            '<a class="btn-sm btn-pdf" href="' + urlVer + '&print=1" target="_blank">PDF</a>' +
+            (temHistorico
+              ? '<button class="btn-chevron" id="' + chevronId + '" onclick="toggleHistorico(\'' + histId + '\',\'' + chevronId + '\')" title="Ver historico">&#9660;</button>'
+              : '') +
+          '</div>' +
+        '</td>' +
+      '</tr>';
+
+    // Linha do histórico (colapsada)
+    if (temHistorico) {
+      const versoesCrescente = grupo.versoes.slice().reverse(); // mais recente primeiro
+      const linhasHist = versoesCrescente.map(v => {
+        const vData  = v.data ? formatarData(v.data) : '—';
+        const urlV   = propostaUrl(grupo.slug, v.version);
+        const isBase = v.version === vAtual
+          ? '<span class="badge-base">atual</span>'
+          : '';
+        return '<tr>' +
+          '<td><strong>v' + v.version + '</strong>' + isBase + '</td>' +
+          '<td>' + vData + '</td>' +
+          '<td>' +
+            '<a class="btn-sm btn-ver" href="' + urlV + '" target="_blank" style="font-size:11px;padding:4px 10px;">Ver</a> ' +
+            '<button class="btn-sm btn-editar" onclick="editarPropostaVersao(\'' + esc(grupo.slug) + '\',' + v.version + ')" style="font-size:11px;padding:4px 10px;">Editar esta</button> ' +
+            '<a class="btn-sm btn-pdf" href="' + urlV + '&print=1" target="_blank" style="font-size:11px;padding:4px 10px;">PDF</a>' +
+          '</td>' +
+        '</tr>';
+      }).join('');
+
+      rows +=
+        '<tr class="historico-row" id="' + histId + '" style="display:none;">' +
+          '<td colspan="5">' +
+            '<div class="historico-inner">' +
+              '<table>' +
+                '<thead><tr><th>Versao</th><th>Data</th><th>Acoes</th></tr></thead>' +
+                '<tbody>' + linhasHist + '</tbody>' +
+              '</table>' +
+            '</div>' +
+          '</td>' +
+        '</tr>';
+    }
+  });
+
+  const totalSlug = grupos.length;
+  const totalVers = grupos.reduce((s, g) => s + g.versoes.length, 0);
 
   document.getElementById('listaCorpo').innerHTML =
     '<div class="table-wrap">' +
@@ -405,8 +637,17 @@ function renderListaTabela(propostas) {
       '</table>' +
     '</div>' +
     '<p style="font-size:12px;color:#bbb;margin-top:.8rem;text-align:right;">' +
-      propostas.length + ' proposta' + (propostas.length !== 1 ? 's' : '') +
+      totalSlug + ' proposta' + (totalSlug !== 1 ? 's' : '') +
+      (totalVers > totalSlug ? ' · ' + totalVers + ' versoes no total' : '') +
     '</p>';
+}
+
+function toggleHistorico(histId, chevronId) {
+  const row   = document.getElementById(histId);
+  const chev  = document.getElementById(chevronId);
+  const aberto = row.style.display !== 'none';
+  row.style.display  = aberto ? 'none' : '';
+  chev.classList.toggle('aberto', !aberto);
 }
 
 function renderListaVazia(motivo) {
@@ -420,11 +661,32 @@ function mostrarErroLista(texto) {
   el.style.display = 'block';
 }
 
-// Preenche o slug e dispara carregarProposta() — sem reload de pagina
+// Estado global: versao base sendo editada
+let _editandoSlug    = null;
+let _editandoVersao  = null;
+
+function setIndicadorEdicao(slug, versaoBase, proximaVersao) {
+  const el = document.getElementById('indicadorEdicao');
+  if (slug && versaoBase !== null) {
+    el.innerHTML = 'Editando a partir de <strong>v' + versaoBase + '</strong> do slug <strong>' + esc(slug) + '</strong> — ao publicar, sera criada <strong>v' + proximaVersao + '</strong>.';
+    el.style.display = 'block';
+  } else {
+    el.style.display = 'none';
+  }
+}
+
+// Atalho da lista: carrega versao mais recente do slug como base
 function editarProposta(slug) {
+  editarPropostaVersao(slug, null); // null = detectar automaticamente a mais recente
+}
+
+// Carrega uma versao especifica como base para edicao
+function editarPropostaVersao(slug, version) {
   document.getElementById('loadSlug').value = slug;
+  _editandoSlug   = slug;
+  _editandoVersao = version; // null = mais recente
   window.scrollTo({ top: document.getElementById('loadSlug').closest('.card').offsetTop - 20, behavior: 'smooth' });
-  carregarProposta();
+  carregarPropostaVersao(slug, version);
 }
 
 // ─── Carregar proposta ─────────────────────────────────────────────────────────
@@ -432,27 +694,76 @@ function editarProposta(slug) {
 async function carregarProposta() {
   const slug = document.getElementById('loadSlug').value.trim();
   if (!slug) { alert('Digite o slug da proposta.'); return; }
+  await carregarPropostaVersao(slug, null);
+}
+
+// Descobre a maior versao existente de um slug consultando o GitHub
+async function descobrirVersoes(slug, headers) {
   try {
-    const resp = await fetch('propostas/' + slug + '.json?v=' + Date.now());
-    if (!resp.ok) {
-      const ghResp = await fetch('https://raw.githubusercontent.com/henriquebsilva1990/meio-comunicacao-site/main/propostas/' + slug + '.json?v=' + Date.now());
-      if (!ghResp.ok) throw new Error('Proposta nao encontrada');
-      var data = await ghResp.json();
+    const resp = await fetch(
+      'https://api.github.com/repos/' + GH_REPO + '/contents/propostas',
+      { headers }
+    );
+    if (!resp.ok) return [];
+    const arquivos = await resp.json();
+    const versoes = [];
+    arquivos.forEach(f => {
+      if (!f.name.endsWith('.json')) return;
+      const parsed = parseFilename(f.name);
+      if (parsed.slug === slug) versoes.push(parsed.version);
+    });
+    return versoes.sort((a, b) => a - b);
+  } catch(e) {
+    return [];
+  }
+}
+
+async function carregarPropostaVersao(slug, version) {
+  const token = getToken();
+  const headers = token
+    ? { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
+    : {};
+
+  // Descobrir versoes existentes para saber qual e a mais recente e qual sera a proxima
+  const versoes = await descobrirVersoes(slug, headers);
+  const maiorVersao   = versoes.length > 0 ? Math.max(...versoes) : 1;
+  const versaoBase    = version !== null ? version : maiorVersao;
+  const proximaVersao = maiorVersao + 1;
+
+  const filename = propostaFilename(slug, versaoBase);
+  const ghUrl    = 'https://raw.githubusercontent.com/' + GH_REPO + '/main/propostas/' + filename;
+
+  try {
+    // Tenta local primeiro, depois GitHub raw
+    let data;
+    const localResp = await fetch('propostas/' + filename + '?t=' + Date.now());
+    if (localResp.ok) {
+      data = await localResp.json();
     } else {
-      var data = await resp.json();
+      const ghResp = await fetch(ghUrl + '?t=' + Date.now());
+      if (!ghResp.ok) throw new Error('Proposta nao encontrada');
+      data = await ghResp.json();
     }
-    document.getElementById('cliente').value  = data.cliente  || '';
-    document.getElementById('contato').value  = data.contato  || '';
-    document.getElementById('data').value     = data.data     || '';
-    document.getElementById('validade').value = data.validade_dias || 7;
+
+    document.getElementById('cliente').value  = data.cliente        || '';
+    document.getElementById('contato').value  = data.contato        || '';
+    document.getElementById('data').value     = data.data           || '';
+    document.getElementById('validade').value = data.validade_dias  || 7;
     document.getElementById('slug').value     = slug;
+    // Popula o editor de rich text (sanitiza ao carregar, defensivamente)
+    document.getElementById('rteBody').innerHTML = sanitizeRichText(data.observacoes || '');
     servicos = data.servicos || [];
     renderServicos();
-    showMsg('Proposta "' + slug + '" carregada! Edite e publique novamente.');
-    // Rolar para o formulario
+
+    // Atualizar estado e indicador
+    _editandoSlug   = slug;
+    _editandoVersao = versaoBase;
+    setIndicadorEdicao(slug, versaoBase, proximaVersao);
+
+    showMsg('Proposta "' + slug + '" v' + versaoBase + ' carregada. Ao publicar, sera criada v' + proximaVersao + '.');
     window.scrollTo({ top: document.getElementById('cliente').closest('.card').offsetTop - 20, behavior: 'smooth' });
   } catch (e) {
-    alert('Proposta "' + slug + '" nao encontrada. Verifique o slug.');
+    alert('Proposta "' + slug + '" (v' + versaoBase + ') nao encontrada. Verifique o slug.');
   }
 }
 
@@ -461,7 +772,8 @@ async function carregarProposta() {
   const p = new URLSearchParams(window.location.search);
   if (p.get('edit')) {
     document.getElementById('loadSlug').value = p.get('edit');
-    setTimeout(carregarProposta, 300);
+    _editandoSlug = p.get('edit');
+    setTimeout(() => carregarPropostaVersao(p.get('edit'), null), 300);
   }
 })();
 
@@ -574,12 +886,14 @@ function removeItem(i, j) {
 }
 
 function getData() {
+  const rteRaw = document.getElementById('rteBody').innerHTML;
   return {
     cliente:       document.getElementById('cliente').value,
     contato:       document.getElementById('contato').value,
     data:          document.getElementById('data').value,
     validade_dias: Number(document.getElementById('validade').value),
-    servicos:      servicos
+    servicos:      servicos,
+    observacoes:   sanitizeRichText(rteRaw)
   };
 }
 
@@ -620,23 +934,42 @@ async function publicar() {
   if (!token) return;
 
   const slug    = getSlugValue();
-  const path    = 'propostas/' + slug + '.json';
-  const content = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2) + '\n')));
+  const headers = { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' };
   const btn     = document.getElementById('btnPublicar');
   btn.textContent = 'Publicando...';
   btn.disabled = true;
 
   try {
-    const apiBase = 'https://api.github.com/repos/' + GH_REPO + '/contents/' + path;
-    const headers = { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' };
+    // Descobrir versoes existentes deste slug para determinar a proxima
+    const versoesExistentes = await descobrirVersoes(slug, headers);
+    let novaVersao;
 
+    if (versoesExistentes.length === 0) {
+      // Slug novo: publicar como v1 (sem sufixo) — comportamento original preservado
+      novaVersao = 1;
+    } else {
+      // Slug existente: proxima versao = maior + 1
+      novaVersao = Math.max(...versoesExistentes) + 1;
+    }
+
+    const filename = propostaFilename(slug, novaVersao);
+    const path     = 'propostas/' + filename;
+    const content  = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2) + '\n')));
+    const apiBase  = 'https://api.github.com/repos/' + GH_REPO + '/contents/' + path;
+
+    // Nunca sobrescrever: verificar se o arquivo alvo ja existe (seguranca extra)
     let sha = null;
     try {
-      const checkResp = await fetch(apiBase + '?ref=main', { headers: headers });
-      if (checkResp.ok) { const existing = await checkResp.json(); sha = existing.sha; }
-    } catch(e) { /* arquivo novo, tudo certo */ }
+      const checkResp = await fetch(apiBase + '?ref=main', { headers });
+      if (checkResp.ok) {
+        // Arquivo ja existe — nao deveria acontecer com logica de proxima versao,
+        // mas se acontecer, enviamos o sha para atualizar (fallback seguro)
+        const existing = await checkResp.json();
+        sha = existing.sha;
+      }
+    } catch(e) { /* arquivo novo, esperado */ }
 
-    const body = { message: 'proposta: ' + data.cliente, content: content };
+    const body = { message: 'proposta: ' + data.cliente + ' v' + novaVersao, content };
     if (sha) body.sha = sha;
 
     const resp = await fetch(apiBase, {
@@ -648,10 +981,15 @@ async function publicar() {
     const result = await resp.json();
     if (!resp.ok) throw new Error(result.message || 'Erro ' + resp.status);
 
-    const link = 'https://meiocomunica.com.br/proposta.html?c=' + slug;
+    const link = 'https://meiocomunica.com.br/' + propostaUrl(slug, novaVersao);
     document.getElementById('linkFinal').value = link;
     document.getElementById('linkBox').style.display = 'block';
-    showMsg('Proposta publicada com sucesso!');
+
+    // Atualizar indicador para refletir o novo estado
+    _editandoVersao = novaVersao;
+    setIndicadorEdicao(slug, novaVersao, novaVersao + 1);
+
+    showMsg('Publicado como v' + novaVersao + '! O deploy leva 1-2 minutos.');
 
     // Atualiza a lista automaticamente apos publicar
     carregarLista();
