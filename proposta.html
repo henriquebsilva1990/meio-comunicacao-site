@@ -141,6 +141,17 @@
     .total-label { font-size: 15px; font-weight: 600; }
     .total-valor { font-size: 1.8rem; font-weight: 900; color: var(--yellow); }
     .total-nota { font-size: 12px; color: rgba(255,255,255,.45); margin-top: 2px; }
+    .total-nota s { color: rgba(255,255,255,.55); }
+    .total-nota b { color: var(--yellow); font-weight: 700; }
+    .servico-de { font-size: 13px; color: var(--gray-600); text-decoration: line-through; opacity: .7; margin-right: 4px; font-weight: 600; }
+    .pagamento-box {
+      margin-top: .8rem; border: 1px solid var(--gray-200, #e6e6e6); border-radius: var(--radius);
+      padding: 1.1rem 1.4rem; background: #fbfbfd;
+    }
+    .pagamento-titulo { font-size: 12px; font-weight: 800; letter-spacing: .04em; text-transform: uppercase; color: var(--navy); margin-bottom: .5rem; }
+    .pagamento-linha { font-size: 15px; color: var(--navy); margin-top: 4px; }
+    .pagamento-tag { font-size: 11px; font-weight: 700; color: #1c7c4a; background: #e7f6ec; padding: 2px 7px; border-radius: 999px; margin-left: 4px; }
+    .pagamento-obs { font-size: 13px; color: var(--gray-600); margin-top: 6px; }
 
     /* ─── PROXIMOS PASSOS ─────────────────────────── */
     .passos-grid { display: flex; gap: 1.2rem; flex-wrap: wrap; }
@@ -356,13 +367,23 @@ function render(data) {
   const totalMensal = data.servicos.filter(sv => (sv.tipo || 'mensal') === 'mensal').reduce((s, sv) => s + sv.valor, 0);
   const totalUnico = data.servicos.filter(sv => sv.tipo === 'unico').reduce((s, sv) => s + sv.valor, 0);
 
+  // Ancoragem (empilhamento de valor): "valor avulso" por item, somado por cadência.
+  const cheioOf = sv => (sv.valor_cheio != null && Number(sv.valor_cheio) > Number(sv.valor)) ? Number(sv.valor_cheio) : Number(sv.valor);
+  const totalCheioMensal = data.servicos.filter(sv => (sv.tipo || 'mensal') === 'mensal').reduce((s, sv) => s + cheioOf(sv), 0);
+  const totalCheioUnico = data.servicos.filter(sv => sv.tipo === 'unico').reduce((s, sv) => s + cheioOf(sv), 0);
+  const pg = data.pagamento || null;
+
   const servicosHTML = data.servicos.map(sv => {
     const tipo = sv.tipo || 'mensal';
     const sufixo = tipo === 'mensal' ? '/mês' : ' (único)';
+    const temAncora = sv.valor_cheio != null && Number(sv.valor_cheio) > Number(sv.valor);
     return '<div class="servico-card">' +
       '<div class="servico-header">' +
         '<h3>' + esc(sv.nome) + '</h3>' +
-        '<div class="servico-valor">' + formatCurrency(sv.valor) + sufixo + '</div>' +
+        '<div class="servico-valor">' +
+          (temAncora ? '<span class="servico-de">' + formatCurrency(Number(sv.valor_cheio)) + '</span> ' : '') +
+          formatCurrency(sv.valor) + sufixo +
+        '</div>' +
       '</div>' +
       '<p class="servico-desc">' + esc(sv.descricao) + '</p>' +
       '<ul class="servico-itens">' +
@@ -461,14 +482,30 @@ function render(data) {
       servicosHTML +
       (totalMensal > 0 ?
         '<div class="total-bar">' +
-          '<div><div class="total-label">Investimento mensal</div><div class="total-nota">Recorrente. Sem taxa de setup. Sem surpresas.</div></div>' +
-
+          '<div><div class="total-label">Investimento mensal</div>' +
+            (totalCheioMensal > totalMensal
+              ? '<div class="total-nota">Valor avulso: <s>' + formatCurrency(totalCheioMensal) + '</s> &middot; você economiza <b>' + formatCurrency(totalCheioMensal - totalMensal) + '/mês</b></div>'
+              : '<div class="total-nota">Recorrente. Sem taxa de setup. Sem surpresas.</div>') +
+          '</div>' +
           '<div class="total-valor">' + formatCurrency(totalMensal) + '/mes</div>' +
         '</div>' : '') +
       (totalUnico > 0 ?
         '<div class="total-bar" style="margin-top:.8rem;background:var(--navy-light);">' +
-          '<div><div class="total-label">Investimento único</div><div class="total-nota">Pagamento único na contratação.</div></div>' +
+          '<div><div class="total-label">Investimento único</div>' +
+            (totalCheioUnico > totalUnico
+              ? '<div class="total-nota">Valor avulso: <s>' + formatCurrency(totalCheioUnico) + '</s> &middot; você economiza <b>' + formatCurrency(totalCheioUnico - totalUnico) + '</b></div>'
+              : '<div class="total-nota">Pagamento único na contratação.</div>') +
+          '</div>' +
           '<div class="total-valor">' + formatCurrency(totalUnico) + '</div>' +
+        '</div>' : '') +
+      (totalUnico > 0 && pg ?
+        '<div class="pagamento-box">' +
+          '<div class="pagamento-titulo">Formas de pagamento &mdash; investimento único</div>' +
+          '<div class="pagamento-linha"><b>À vista:</b> ' + formatCurrency(totalUnico) + (pg.avista_label ? ' &middot; ' + esc(pg.avista_label) : '') + '</div>' +
+          (pg.parcelas_max > 1
+            ? '<div class="pagamento-linha"><b>Parcelado:</b> em até ' + pg.parcelas_max + '&times; de ' + formatCurrency(totalUnico / pg.parcelas_max) + (pg.sem_juros ? ' <span class="pagamento-tag">sem juros</span>' : '') + '</div>'
+            : '') +
+          (pg.obs ? '<div class="pagamento-obs">' + esc(pg.obs) + '</div>' : '') +
         '</div>' : '') +
     '</section>' +
     '<hr class="divider">' +

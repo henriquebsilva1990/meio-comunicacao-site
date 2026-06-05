@@ -286,6 +286,22 @@
     <div id="servicosLista"></div>
   </div>
 
+  <!-- ─── FORMA DE PAGAMENTO (serviços únicos) ─────────────────────────── -->
+  <div class="card" id="cardPagamento">
+    <h2>&#128179; Forma de pagamento <span style="font-size:12px;color:var(--gray-600);font-weight:400;">(aparece na proposta só se houver serviço "único")</span></h2>
+    <p style="font-size:13px;color:var(--gray-600);margin-bottom:1rem;">Condições do investimento único. Parcelar reduz a barreira de entrada (ancoragem).</p>
+    <div class="row">
+      <div class="field"><label>À vista (texto)</label>
+        <input type="text" id="pgAvista" value="Pix ou transferência" placeholder="ex: Pix ou transferência"></div>
+      <div class="field"><label>Parcelar em até (Nx)</label>
+        <input type="number" id="pgParcelas" min="1" max="24" value="1"></div>
+    </div>
+    <label style="display:flex;align-items:center;gap:8px;margin-top:.6rem;font-size:14px;cursor:pointer;">
+      <input type="checkbox" id="pgSemJuros" checked> Parcelas sem juros</label>
+    <div class="field" style="margin-top:.6rem;"><label>Observação de pagamento (opcional)</label>
+      <input type="text" id="pgObs" placeholder="ex: entrada de 50% + saldo na entrega"></div>
+  </div>
+
   <!-- ─── OBSERVACOES ─────────────────────────────────────────────────── -->
   <div class="card card-obs">
     <div class="card-obs-header">
@@ -322,6 +338,8 @@
   <!-- ─── ACOES ──────────────────────────────────────────────────────────── -->
   <div class="actions">
     <button class="btn btn-yellow" onclick="previsualizar()">Previsualizar</button>
+    <button class="btn" onclick="salvarRascunho()" id="btnRascunho" style="background:#e9eef5;color:var(--navy);">Salvar rascunho</button>
+    <button class="btn" onclick="abrirRascunhos()" style="background:#e9eef5;color:var(--navy);">Rascunhos</button>
     <button class="btn btn-green" onclick="publicar()" id="btnPublicar">Publicar proposta</button>
     <button class="btn btn-navy" onclick="baixarJSON()" style="font-size:12px;padding:10px 16px;">Baixar JSON</button>
     <button class="btn" onclick="limparToken()" style="font-size:11px;padding:8px 14px;background:#eee;color:#666;">Limpar Token</button>
@@ -840,6 +858,7 @@ async function carregarPropostaVersao(slug, version) {
     document.getElementById('rteBody').innerHTML = sanitizeRichText(data.observacoes || '');
     servicos = data.servicos || [];
     renderServicos();
+    setPagamentoUI(data.pagamento);
 
     // Atualizar estado e indicador
     _editandoSlug   = slug;
@@ -915,6 +934,27 @@ function addTemplate(key) {
   renderServicos();
 }
 
+var _dragIdx = null;
+
+function setCheio(i, v) {
+  servicos[i].valor_cheio = (v === '' || v == null) ? null : Number(v);
+}
+
+function moveServico(i, dir) {
+  const j = i + dir;
+  if (j < 0 || j >= servicos.length) return;
+  const tmp = servicos[i]; servicos[i] = servicos[j]; servicos[j] = tmp;
+  renderServicos();
+}
+
+function dropServico(target) {
+  if (_dragIdx === null || _dragIdx === target) { _dragIdx = null; return; }
+  const moved = servicos.splice(_dragIdx, 1)[0];
+  servicos.splice(target, 0, moved);
+  _dragIdx = null;
+  renderServicos();
+}
+
 function renderServicos() {
   const el = document.getElementById('servicosLista');
   el.innerHTML = '';
@@ -928,10 +968,17 @@ function renderServicos() {
 
     const card = document.createElement('div');
     card.className = 'servico-card';
+    card.draggable = true;
+    card.dataset.idx = i;
+    const cheio = (sv.valor_cheio != null ? sv.valor_cheio : '');
     card.innerHTML =
       '<div class="card-header">' +
-        '<span class="card-num">Servico #' + (i + 1) + '</span>' +
-        '<button class="btn btn-red" onclick="removeServico(' + i + ')">Remover</button>' +
+        '<span class="card-num" title="Arraste para reordenar" style="cursor:grab">&#9783; Servico #' + (i + 1) + '</span>' +
+        '<div style="display:flex;gap:4px;align-items:center;">' +
+          '<button class="btn" onclick="moveServico(' + i + ',-1)" title="Subir"' + (i === 0 ? ' disabled' : '') + ' style="padding:4px 9px;">&#8593;</button>' +
+          '<button class="btn" onclick="moveServico(' + i + ',1)" title="Descer"' + (i === servicos.length - 1 ? ' disabled' : '') + ' style="padding:4px 9px;">&#8595;</button>' +
+          '<button class="btn btn-red" onclick="removeServico(' + i + ')">Remover</button>' +
+        '</div>' +
       '</div>' +
       '<div class="field"><label>Nome do servico</label>' +
         '<input type="text" value="' + esc(sv.nome) + '" oninput="servicos[' + i + '].nome=this.value"></div>' +
@@ -944,12 +991,19 @@ function renderServicos() {
       '<div class="row">' +
         '<div class="field"><label>Valor (R$)</label>' +
           '<input type="number" value="' + sv.valor + '" oninput="servicos[' + i + '].valor=Number(this.value)"></div>' +
-        '<div class="field"><label>Tipo de cobranca</label>' +
-          '<select onchange="servicos[' + i + '].tipo=this.value">' +
-            '<option value="mensal"' + (sv.tipo === 'mensal' ? ' selected' : '') + '>Mensal</option>' +
-            '<option value="unico"' + (sv.tipo === 'unico' ? ' selected' : '') + '>Unico</option>' +
-          '</select></div>' +
-      '</div>';
+        '<div class="field"><label>Valor avulso "de" (opcional)</label>' +
+          '<input type="number" value="' + cheio + '" placeholder="ancoragem, ex: 3000" oninput="setCheio(' + i + ', this.value)"></div>' +
+      '</div>' +
+      '<div class="field"><label>Tipo de cobranca</label>' +
+        '<select onchange="servicos[' + i + '].tipo=this.value">' +
+          '<option value="mensal"' + (sv.tipo === 'mensal' ? ' selected' : '') + '>Mensal</option>' +
+          '<option value="unico"' + (sv.tipo === 'unico' ? ' selected' : '') + '>Unico</option>' +
+        '</select></div>';
+
+    card.addEventListener('dragstart', function () { _dragIdx = i; card.style.opacity = '0.5'; });
+    card.addEventListener('dragend', function () { card.style.opacity = ''; });
+    card.addEventListener('dragover', function (e) { e.preventDefault(); });
+    card.addEventListener('drop', function (e) { e.preventDefault(); dropServico(i); });
     el.appendChild(card);
   });
 }
@@ -971,6 +1025,24 @@ function removeItem(i, j) {
   renderServicos();
 }
 
+function getPagamento() {
+  const parcelas = Math.max(1, parseInt(document.getElementById('pgParcelas').value, 10) || 1);
+  return {
+    avista_label: (document.getElementById('pgAvista').value || '').trim(),
+    parcelas_max: parcelas,
+    sem_juros: document.getElementById('pgSemJuros').checked,
+    obs: (document.getElementById('pgObs').value || '').trim() || null
+  };
+}
+
+function setPagamentoUI(p) {
+  p = p || {};
+  document.getElementById('pgAvista').value = (p.avista_label != null ? p.avista_label : 'Pix ou transferência');
+  document.getElementById('pgParcelas').value = p.parcelas_max || 1;
+  document.getElementById('pgSemJuros').checked = (p.sem_juros !== false);
+  document.getElementById('pgObs').value = p.obs || '';
+}
+
 function getData() {
   const rteRaw = document.getElementById('rteBody').innerHTML;
   return {
@@ -979,12 +1051,81 @@ function getData() {
     data:          document.getElementById('data').value,
     validade_dias: Number(document.getElementById('validade').value),
     servicos:      servicos,
+    pagamento:     getPagamento(),
     observacoes:   sanitizeRichText(rteRaw)
   };
 }
 
 function getSlugValue() {
   return document.getElementById('slug').value || 'proposta';
+}
+
+// ─── Rascunhos (servidor, via ponte) ─────────────────────────────────────────
+function aplicarDadosNoForm(data, slug) {
+  data = data || {};
+  document.getElementById('cliente').value  = data.cliente || '';
+  document.getElementById('contato').value  = data.contato || '';
+  document.getElementById('data').value     = data.data || '';
+  document.getElementById('validade').value = data.validade_dias || 7;
+  if (slug) document.getElementById('slug').value = slug;
+  document.getElementById('rteBody').innerHTML = sanitizeRichText(data.observacoes || '');
+  servicos = data.servicos || [];
+  renderServicos();
+  setPagamentoUI(data.pagamento);
+}
+
+async function salvarRascunho() {
+  const data = getData();
+  if (!data.cliente) { alert('Preencha o nome do cliente antes de salvar o rascunho.'); return; }
+  const slug = getSlugValue();
+  const btn = document.getElementById('btnRascunho');
+  const old = btn.textContent; btn.disabled = true; btn.textContent = 'Salvando...';
+  try {
+    await nexusBridge('save_draft', { slug: slug, title: data.cliente, data: data });
+    showMsg('Rascunho salvo no servidor (slug: ' + slug + '). Nada foi publicado.');
+  } catch (e) { alert('Falha ao salvar rascunho: ' + e.message); }
+  finally { btn.disabled = false; btn.textContent = old; }
+}
+
+async function abrirRascunhos() {
+  let res;
+  try { res = await nexusBridge('list_drafts', {}); } catch (e) { alert('Falha ao listar: ' + e.message); return; }
+  const drafts = res.drafts || [];
+  const ov = document.createElement('div');
+  ov.style.cssText = 'position:fixed;inset:0;background:rgba(13,27,42,.5);display:flex;align-items:center;justify-content:center;z-index:9999;padding:20px;';
+  const rows = drafts.length ? drafts.map(function (d) {
+    return '<div style="display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid #eee;">' +
+      '<div style="flex:1;min-width:0;"><b>' + esc(d.title || d.slug) + '</b><br>' +
+        '<span style="font-size:11px;color:#888;">' + esc(d.slug) + ' &middot; ' + new Date(d.updated_at).toLocaleString('pt-BR') + '</span></div>' +
+      '<button class="btn btn-green" data-open="' + esc(d.slug) + '" style="padding:6px 12px;">Abrir</button>' +
+      '<button class="btn btn-red" data-del="' + esc(d.slug) + '" style="padding:6px 12px;">Excluir</button>' +
+    '</div>';
+  }).join('') : '<p style="color:#888;">Nenhum rascunho salvo ainda.</p>';
+  ov.innerHTML = '<div style="background:#fff;border-radius:12px;max-width:560px;width:100%;max-height:80vh;overflow:auto;padding:22px;">' +
+    '<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;">' +
+      '<h2 style="margin:0;">Rascunhos</h2><button class="btn" id="rkClose" style="background:#eee;color:#666;">Fechar</button></div>' +
+    rows + '</div>';
+  document.body.appendChild(ov);
+  ov.addEventListener('click', function (e) { if (e.target === ov) ov.remove(); });
+  ov.querySelector('#rkClose').addEventListener('click', function () { ov.remove(); });
+  ov.querySelectorAll('[data-open]').forEach(function (b) {
+    b.addEventListener('click', async function () {
+      try {
+        const r = await nexusBridge('get_draft', { slug: b.dataset.open });
+        aplicarDadosNoForm(r.draft.data, r.draft.slug);
+        ov.remove();
+        showMsg('Rascunho carregado. Continue de onde parou.');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } catch (e) { alert('Falha ao abrir: ' + e.message); }
+    });
+  });
+  ov.querySelectorAll('[data-del]').forEach(function (b) {
+    b.addEventListener('click', async function () {
+      if (!confirm('Excluir o rascunho "' + b.dataset.del + '"?')) return;
+      try { await nexusBridge('delete_draft', { slug: b.dataset.del }); ov.remove(); abrirRascunhos(); }
+      catch (e) { alert('Falha ao excluir: ' + e.message); }
+    });
+  });
 }
 
 function previsualizar() {
