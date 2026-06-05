@@ -373,6 +373,20 @@ function render(data) {
   const totalCheioUnico = data.servicos.filter(sv => sv.tipo === 'unico').reduce((s, sv) => s + cheioOf(sv), 0);
   const pg = data.pagamento || null;
 
+  // Próximos passos (editável; default corrigido — a proposta já foi enviada)
+  const PASSOS_DEFAULT = [
+    { quando: 'Quando você decidir', titulo: 'Aceite da proposta', descricao: 'Você aprova por aqui (ou responde no contato). Sem papelada — é rápido.' },
+    { quando: 'Em até 3 dias', titulo: 'Reunião de alinhamento', descricao: 'Kickoff: alinhamos prioridades, prazos e coletamos os acessos necessários.' },
+    { quando: 'Na sequência', titulo: 'Início dos trabalhos', descricao: 'Mãos à obra. Os primeiros entregáveis saem já nos primeiros dias.' }
+  ];
+  const passos = (Array.isArray(data.proximos_passos) && data.proximos_passos.length) ? data.proximos_passos : PASSOS_DEFAULT;
+  const passosHTML = passos.map(p =>
+    '<div class="passo">' +
+      (p.quando ? '<div class="passo-quando">' + esc(p.quando) + '</div>' : '') +
+      '<h3>' + esc(p.titulo || '') + '</h3>' +
+      (p.descricao ? '<p>' + esc(p.descricao) + '</p>' : '') +
+    '</div>').join('');
+
   const servicosHTML = data.servicos.map(sv => {
     const tipo = sv.tipo || 'mensal';
     const sufixo = tipo === 'mensal' ? '/mês' : ' (único)';
@@ -508,28 +522,23 @@ function render(data) {
           (pg.obs ? '<div class="pagamento-obs">' + esc(pg.obs) + '</div>' : '') +
         '</div>' : '') +
     '</section>' +
-    '<hr class="divider">' +
 
-    /* PROXIMOS PASSOS */
+    obsHTML +
+
+    '<hr class="divider">' +
+    /* PROXIMOS PASSOS (no fim da proposta) */
     '<section>' +
       '<div class="section-tag">Próximos Passos</div>' +
       '<h2 class="section-title">Simples e sem burocracia.</h2>' +
-      '<div class="section-sub"></div>' +
-      '<div class="passos-grid">' +
-        '<div class="passo"><div class="passo-quando">Hoje</div><h3>Reunião de Diagnóstico</h3><p>30 minutos para entender seu negócio, desafios e objetivos. Sem compromisso.</p></div>' +
-        '<div class="passo"><div class="passo-quando">Em 48h</div><h3>Proposta Personalizada</h3><p>Estratégia, serviços e investimento. Nada genérico — feita para você.</p></div>' +
-        '<div class="passo"><div class="passo-quando">Em 7 dias</div><h3>Início dos Trabalhos</h3><p>Onboarding, acesso às ferramentas e primeiros criativos.</p></div>' +
-      '</div>' +
+      '<div class="passos-grid">' + passosHTML + '</div>' +
     '</section>' +
-
-    obsHTML +
 
     '</div>' +
 
     /* CTA */
     '<div class="cta-section">' +
       '<h2>Vamos <span>começar</span>?</h2>' +
-      '<p>Fale conosco para agendar sua reunião de diagnóstico.</p>' +
+      '<p>Aceite a proposta e já agendamos a reunião de alinhamento para começar.</p>' +
       '<a href="https://wa.me/5516981334647?text=Ola!+Vi+a+proposta+da+Meio+e+gostaria+de+conversar." target="_blank" class="cta-btn">' +
         '<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.03L.789 23.769l4.89-1.483A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.78c-2.19 0-4.22-.66-5.91-1.79l-.42-.27-2.9.88.82-2.83-.29-.44A9.76 9.76 0 012.22 12c0-5.39 4.39-9.78 9.78-9.78 5.39 0 9.78 4.39 9.78 9.78 0 5.39-4.39 9.78-9.78 9.78z"/></svg>' +
         'Chamar no WhatsApp' +

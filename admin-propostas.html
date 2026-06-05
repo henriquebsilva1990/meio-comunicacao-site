@@ -336,6 +336,14 @@
   </div>
 
   <!-- ─── ACOES ──────────────────────────────────────────────────────────── -->
+  <!-- ─── PROXIMOS PASSOS (fim da proposta) ────────────────────────────── -->
+  <div class="card">
+    <h2>&#129518; Próximos passos <span style="font-size:12px;color:var(--gray-600);font-weight:400;">(aparecem no fim da proposta)</span></h2>
+    <p style="font-size:13px;color:var(--gray-600);margin-bottom:1rem;">Já vem preenchido com o fluxo pós-proposta. Edite, reordene ou remova como quiser.</p>
+    <div id="passosLista"></div>
+    <button class="btn-add-item" onclick="addPasso()">+ Adicionar passo</button>
+  </div>
+
   <div class="actions">
     <button class="btn btn-yellow" onclick="previsualizar()">Previsualizar</button>
     <button class="btn" onclick="salvarRascunho()" id="btnRascunho" style="background:#e9eef5;color:var(--navy);">Salvar rascunho</button>
@@ -859,6 +867,8 @@ async function carregarPropostaVersao(slug, version) {
     servicos = data.servicos || [];
     renderServicos();
     setPagamentoUI(data.pagamento);
+    passos = (Array.isArray(data.proximos_passos) && data.proximos_passos.length) ? data.proximos_passos : JSON.parse(JSON.stringify(PASSOS_PADRAO));
+    renderPassos();
 
     // Atualizar estado e indicador
     _editandoSlug   = slug;
@@ -917,8 +927,48 @@ const TEMPLATES = {
 
 let servicos = [];
 
+// Próximos passos (default corrigido — a proposta já foi enviada)
+const PASSOS_PADRAO = [
+  { quando: 'Quando você decidir', titulo: 'Aceite da proposta', descricao: 'Você aprova por aqui (ou responde no contato). Sem papelada — é rápido.' },
+  { quando: 'Em até 3 dias', titulo: 'Reunião de alinhamento', descricao: 'Kickoff: alinhamos prioridades, prazos e coletamos os acessos necessários.' },
+  { quando: 'Na sequência', titulo: 'Início dos trabalhos', descricao: 'Mãos à obra. Os primeiros entregáveis saem já nos primeiros dias.' }
+];
+let passos = JSON.parse(JSON.stringify(PASSOS_PADRAO));
+
+function renderPassos() {
+  const el = document.getElementById('passosLista');
+  if (!el) return;
+  el.innerHTML = '';
+  passos.forEach((p, i) => {
+    const card = document.createElement('div');
+    card.className = 'servico-card';
+    card.innerHTML =
+      '<div class="card-header">' +
+        '<span class="card-num">Passo #' + (i + 1) + '</span>' +
+        '<div style="display:flex;gap:4px;align-items:center;">' +
+          '<button class="btn" onclick="movePasso(' + i + ',-1)" title="Subir"' + (i === 0 ? ' disabled' : '') + ' style="padding:4px 9px;">&#8593;</button>' +
+          '<button class="btn" onclick="movePasso(' + i + ',1)" title="Descer"' + (i === passos.length - 1 ? ' disabled' : '') + ' style="padding:4px 9px;">&#8595;</button>' +
+          '<button class="btn btn-red" onclick="removePasso(' + i + ')">Remover</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="row">' +
+        '<div class="field"><label>Quando (selo)</label>' +
+          '<input type="text" value="' + esc(p.quando || '') + '" placeholder="ex: Em até 3 dias" oninput="passos[' + i + '].quando=this.value"></div>' +
+        '<div class="field"><label>Título</label>' +
+          '<input type="text" value="' + esc(p.titulo || '') + '" oninput="passos[' + i + '].titulo=this.value"></div>' +
+      '</div>' +
+      '<div class="field"><label>Descrição</label>' +
+        '<textarea oninput="passos[' + i + '].descricao=this.value">' + esc(p.descricao || '') + '</textarea></div>';
+    el.appendChild(card);
+  });
+}
+function addPasso() { passos.push({ quando: '', titulo: '', descricao: '' }); renderPassos(); }
+function removePasso(i) { passos.splice(i, 1); renderPassos(); }
+function movePasso(i, d) { const j = i + d; if (j < 0 || j >= passos.length) return; const t = passos[i]; passos[i] = passos[j]; passos[j] = t; renderPassos(); }
+
 // Auto-fill date
 document.getElementById('data').value = new Date().toISOString().split('T')[0];
+renderPassos();
 
 // Auto-generate slug from client name
 document.getElementById('cliente').addEventListener('input', function() {
@@ -1052,6 +1102,7 @@ function getData() {
     validade_dias: Number(document.getElementById('validade').value),
     servicos:      servicos,
     pagamento:     getPagamento(),
+    proximos_passos: passos,
     observacoes:   sanitizeRichText(rteRaw)
   };
 }
@@ -1072,6 +1123,8 @@ function aplicarDadosNoForm(data, slug) {
   servicos = data.servicos || [];
   renderServicos();
   setPagamentoUI(data.pagamento);
+  passos = (Array.isArray(data.proximos_passos) && data.proximos_passos.length) ? data.proximos_passos : JSON.parse(JSON.stringify(PASSOS_PADRAO));
+  renderPassos();
 }
 
 async function salvarRascunho() {
