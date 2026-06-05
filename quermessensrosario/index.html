@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cardápio - Quermesse NS do Rosário 2026</title>
+  <meta name="description" content="Cardápio e patrocinadores da Quermesse 2026 da Paróquia Nossa Senhora do Rosário - Ribeirão Preto.">
+  <link rel="preload" as="image" href="05.jpeg" fetchpriority="high">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #0d1b4b;
+      color: #fff;
+    }
+
+    /* BUNTING topo */
+    .bunting {
+      display: flex;
+      justify-content: center;
+      overflow: hidden;
+      height: 26px;
+      background: #0d1b4b;
+    }
+    .bunting span {
+      display: inline-block;
+      width: 0; height: 0;
+      border-left: 13px solid transparent;
+      border-right: 13px solid transparent;
+      border-top: 22px solid;
+      margin: 0 1px;
+    }
+    .bunting span:nth-child(6n+1) { border-top-color: #e8c84a; }
+    .bunting span:nth-child(6n+2) { border-top-color: #c0392b; }
+    .bunting span:nth-child(6n+3) { border-top-color: #27ae60; }
+    .bunting span:nth-child(6n+4) { border-top-color: #1a3a8f; }
+    .bunting span:nth-child(6n+5) { border-top-color: #e8791a; }
+    .bunting span:nth-child(6n+6) { border-top-color: #e91e8c; }
+
+    /* HEADER */
+    .hero {
+      background: linear-gradient(180deg, #0d1b4b 0%, #1a3a8f 100%);
+      text-align: center;
+      padding: 28px 20px 24px;
+      border-bottom: 4px solid #e8c84a;
+    }
+    .hero-logo {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 10px;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+    }
+    .hero-title {
+      font-size: 2rem;
+      font-weight: 900;
+      color: #e8c84a;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+      line-height: 1.1;
+    }
+    .hero-sub {
+      font-size: 0.95rem;
+      color: #fff;
+      margin-top: 6px;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+    .hero-parish {
+      font-size: 0.8rem;
+      color: #ffd580;
+      margin-top: 3px;
+    }
+    .hero-tagline {
+      margin-top: 14px;
+      background: rgba(232,121,26,0.9);
+      border-radius: 20px;
+      padding: 6px 20px;
+      display: inline-block;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: 0.5px;
+    }
+
+    /* MENU PAGES */
+    .menu-pages {
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    .menu-page {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* PATROCINADORES */
+    .sponsors-section {
+      background: #fff8f0;
+      padding: 28px 12px 32px;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .sponsors-title {
+      text-align: center;
+      font-size: 1rem;
+      font-weight: 800;
+      color: #1a3a8f;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
+    .sponsor-tier { margin-bottom: 24px; }
+    .tier-label {
+      text-align: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      display: block;
+    }
+    .tier-ouro   .tier-label { background: #b8860b; color: #fff; }
+    .tier-prata  .tier-label { background: #7f8c8d; color: #fff; }
+    .tier-bronze .tier-label { background: #7d4e25; color: #fff; }
+
+    .logos-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      align-items: center;
+    }
+    .logo-wrap {
+      background: #fff;
+      border-radius: 10px;
+      padding: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.1);
+    }
+    .tier-ouro   .logo-wrap { width: 155px; height: 88px; }
+    .tier-prata  .logo-wrap { width: 120px; height: 72px; }
+    .tier-bronze .logo-wrap { width: 95px; height: 60px; }
+
+    .logo-wrap img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 0.72rem;
+      color: #9b5e2a;
+      background: #fff8f0;
+      padding: 16px 16px 36px;
+      border-top: 1px solid #f5d9a0;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- BUNTING TOPO -->
+  <div class="bunting">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <!-- HEADER -->
+  <div class="hero">
+    <img class="hero-logo" src="Logo PNG.png" alt="Paróquia Nossa Senhora do Rosário" width="80" height="80" decoding="async">
+    <div class="hero-title">Quermesse 2026</div>
+    <div class="hero-sub">Paróquia Nossa Senhora do Rosário</div>
+    <div class="hero-parish">Ribeirão Preto - SP</div>
+    <div class="hero-tagline">Sabores que unem, momentos que ficam!</div>
+  </div>
+
+  <!-- PÁGINAS DO CARDÁPIO -->
+  <div class="menu-pages">
+    <img class="menu-page" src="05.jpeg" alt="Boas-vindas - Nossa Senhora do Rosário" width="695" height="960" fetchpriority="high" decoding="async">
+    <img class="menu-page" src="04.jpeg" alt="Sistema Cartão de Recarga" width="678" height="960" loading="lazy" decoding="async">
+    <img class="menu-page" src="01.jpeg" alt="Para Beber" width="561" height="960" loading="lazy" decoding="async">
+    <img class="menu-page" src="02.jpeg" alt="Para Comer" width="601" height="960" loading="lazy" decoding="async">
+    <img class="menu-page" src="03.jpeg" alt="Para Adoçar e Diversão" width="960" height="796" loading="lazy" decoding="async">
+  </div>
+
+  <!-- PATROCINADORES -->
+  <div class="sponsors-section">
+    <div class="container">
+      <div class="sponsors-title">Nossos Patrocinadores</div>
+
+      <!-- OURO -->
+      <div class="sponsor-tier tier-ouro">
+        <span class="tier-label">Ouro</span>
+        <div class="logos-grid">
+          <div class="logo-wrap"><img src="Patrocinadores/Ouro/Baba.jpg" alt="Baba" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Ouro/HidroRibeirao.png" alt="Hidro Ribeirão" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Ouro/Logotipo Rio.png" alt="Rio" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Ouro/MRV.png" alt="MRV" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Ouro/Nova Optica.jpg" alt="Nova Ótica" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Ouro/Ola Consulta.png" alt="Olá Consulta" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Ouro/Romano Eventos.jpg" alt="Romano Eventos" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Ouro/maravilhas do lar.png" alt="Maravilhas do Lar" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Ouro/SBS.png" alt="SBS" loading="lazy" decoding="async"></div>
+        </div>
+      </div>
+
+      <!-- PRATA -->
+      <div class="sponsor-tier tier-prata">
+        <span class="tier-label">Prata</span>
+        <div class="logos-grid">
+          <div class="logo-wrap"><img src="Patrocinadores/Prata/A Base Flex.jpg" alt="A Base Flex" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Prata/Alpha Carimbos.jpg" alt="Alpha Carimbos" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Prata/Auto Lata.jpg" alt="Auto Lata" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Prata/Brascenter.jpg" alt="Brascenter" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Prata/Campez.jpg" alt="Campez" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Prata/Ducatti Pneus.jpg" alt="Ducatti Pneus" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Prata/Dudu.png" alt="Dudu" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Prata/Magazine Lucca.jpg" alt="Magazine Lucca" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Prata/Marcenaria Cardoso.jpg" alt="Marcenaria Cardoso" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Prata/Motta.png" alt="Motta" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Prata/Paraiso das Tintas.jpg" alt="Paraíso das Tintas" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Prata/Ribertec_Automacao_Seguranca.png" alt="Ribertec" loading="lazy" decoding="async"></div>
+        </div>
+      </div>
+
+      <!-- BRONZE -->
+      <div class="sponsor-tier tier-bronze">
+        <span class="tier-label">Bronze</span>
+        <div class="logos-grid">
+          <div class="logo-wrap"><img src="Patrocinadores/Bronze/50x50.png" alt="50x50" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Bronze/Babykids.jpg" alt="Babykids" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Bronze/Bicholandia.jpg" alt="Bicholândia" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Bronze/Construpaiva Peb quadrado.png" alt="Construpaiva" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Bronze/F5 Contabil.png" alt="F5 Contábil" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Bronze/Liceu.png" alt="Liceu" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Bronze/Logomarca EMAGRECENTRO.jpg" alt="Emagrecentro" loading="lazy" decoding="async"></div>
+          <div class="logo-wrap"><img src="Patrocinadores/Bronze/NetySilk.png" alt="NetySilk" loading="lazy" decoding="async"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    Paróquia Nossa Senhora do Rosário &bull; Ribeirão Preto - SP
+  </footer>
+
+</body>
+</html>
