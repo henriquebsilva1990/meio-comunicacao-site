@@ -245,6 +245,22 @@
     </div>
   </div>
 
+  <!-- ─── VINCULAR AO LEAD (NEXUS) ─────────────────────────────────────── -->
+  <div class="card">
+    <h2>&#128279; Vincular ao lead do Nexus <span style="font-size:12px;color:var(--gray-600);font-weight:400;">(opcional)</span></h2>
+    <p style="font-size:13px;color:var(--gray-600);margin-bottom:1rem;">Ao publicar, a proposta aparece no card do lead no pipeline e o lead avanca pra etapa "Proposta".</p>
+    <div class="row">
+      <div class="field" style="flex:2;">
+        <label>Lead</label>
+        <select id="nexusLead"><option value="">— nao vincular —</option></select>
+      </div>
+      <div class="field" style="flex:1;align-self:flex-end;">
+        <button class="btn btn-navy" type="button" onclick="carregarLeadsNexus()" id="btnLeads" style="width:100%;">Carregar leads</button>
+      </div>
+    </div>
+    <div id="nexusLeadMsg" style="font-size:12px;color:var(--gray-600);"></div>
+  </div>
+
   <!-- ─── MODELOS DE SERVICO ────────────────────────────────────────────── -->
   <div class="card">
     <h2>Adicionar Servicos</h2>
@@ -440,6 +456,55 @@ function getToken() {
     if (token) localStorage.setItem(GH_TOKEN_KEY, token.trim());
   }
   return token;
+}
+
+// ─── Ponte com o Nexus (pipeline) ───────────────────────────────────────────
+const NEXUS_BRIDGE_URL = 'https://wrxgpfsjupgbtowuspth.supabase.co/functions/v1/proposals-bridge';
+const NEXUS_SECRET_KEY = 'meio_nexus_secret';
+
+function getNexusSecret() {
+  let s = localStorage.getItem(NEXUS_SECRET_KEY);
+  if (!s) {
+    s = prompt('Cole o segredo de admin do Nexus (uma vez, fica salvo no navegador):');
+    if (s) localStorage.setItem(NEXUS_SECRET_KEY, s.trim());
+  }
+  return s;
+}
+
+async function nexusBridge(action, payload) {
+  const secret = getNexusSecret();
+  if (!secret) throw new Error('Sem segredo de admin do Nexus.');
+  const resp = await fetch(NEXUS_BRIDGE_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', 'x-meio-admin-secret': secret },
+    body: JSON.stringify(Object.assign({ action: action }, payload))
+  });
+  const j = await resp.json().catch(function(){ return {}; });
+  if (resp.status === 401) { localStorage.removeItem(NEXUS_SECRET_KEY); throw new Error('Segredo de admin invalido — tente de novo.'); }
+  if (!resp.ok) throw new Error(j.error || ('Erro ' + resp.status));
+  return j;
+}
+
+async function carregarLeadsNexus() {
+  const btn = document.getElementById('btnLeads');
+  const msg = document.getElementById('nexusLeadMsg');
+  const sel = document.getElementById('nexusLead');
+  if (btn) { btn.disabled = true; btn.textContent = 'Carregando...'; }
+  try {
+    const res = await nexusBridge('list_leads', {});
+    const leads = res.leads || [];
+    const cur = sel.value;
+    sel.innerHTML = '<option value="">— nao vincular —</option>' +
+      leads.map(function(l){
+        return '<option value="' + l.id + '">' + esc(l.name) + (l.city ? ' · ' + esc(l.city) : '') + (l.stage ? ' [' + esc(l.stage) + ']' : '') + '</option>';
+      }).join('');
+    sel.value = cur;
+    if (msg) msg.textContent = leads.length + ' lead(s) carregado(s).';
+  } catch (e) {
+    if (msg) msg.textContent = 'Falha: ' + e.message;
+  } finally {
+    if (btn) { btn.disabled = false; btn.textContent = 'Carregar leads'; }
+  }
 }
 
 // ─── Helpers de versionamento ─────────────────────────────────────────────────
@@ -955,6 +1020,8 @@ async function publicar() {
   if (!token) return;
 
   const slug    = getSlugValue();
+  const dealId  = (document.getElementById('nexusLead') || {}).value || '';
+  if (dealId) data.nexus_deal_id = dealId;  // rastreabilidade no proprio JSON
   const headers = { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' };
   const btn     = document.getElementById('btnPublicar');
   btn.textContent = 'Publicando...';
@@ -1010,7 +1077,32 @@ async function publicar() {
     _editandoVersao = novaVersao;
     setIndicadorEdicao(slug, novaVersao, novaVersao + 1);
 
-    showMsg('Publicado como v' + novaVersao + '! O deploy leva 1-2 minutos.');
+    // Vincular ao lead do Nexus (se um lead foi escolhido)
+    if (dealId) {
+      try {
+        const sv = data.servicos || [];
+        const sumCents = function(arr){ return Math.round(arr.reduce(function(s,x){ return s + (Number(x.valor)||0); }, 0) * 100); };
+        await nexusBridge('link_proposal', {
+          deal_id: dealId,
+          slug: slug,
+          version: novaVersao,
+          url: link,
+          titulo: data.cliente + (data.contato ? ' · ' + data.contato : ''),
+          valor_total_cents: sumCents(sv),
+          metadata: {
+            valor_mensal_cents: sumCents(sv.filter(function(x){ return x.tipo === 'mensal'; })),
+            valor_unico_cents:  sumCents(sv.filter(function(x){ return x.tipo !== 'mensal'; })),
+            validade_dias: data.validade_dias,
+            contato: data.contato
+          }
+        });
+        showMsg('Publicado como v' + novaVersao + ' e vinculado ao lead no Nexus! O deploy leva 1-2 minutos.');
+      } catch (e) {
+        showMsg('Publicado como v' + novaVersao + ', mas falhou vincular ao Nexus: ' + e.message);
+      }
+    } else {
+      showMsg('Publicado como v' + novaVersao + '! O deploy leva 1-2 minutos.');
+    }
 
     // Atualiza a lista automaticamente apos publicar
     carregarLista();
