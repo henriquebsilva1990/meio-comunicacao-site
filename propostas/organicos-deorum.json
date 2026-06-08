@@ -1,0 +1,63 @@
+{
+  "cliente": "Organicos Deorum",
+  "contato": "Gisele Ferreira",
+  "data": "2026-06-08",
+  "validade_dias": 7,
+  "servicos": [
+    {
+      "nome": "Social Media Profissional",
+      "descricao": "Gestão completa das redes com calendário editorial, produção de conteúdo e design que posiciona e gera autoridade.",
+      "itens": [
+        "Calendário editorial mensal",
+        "Design e legendas inclusos",
+        "Instagram, Facebook & Tiktok",
+        "Análise de desempenho",
+        "Diagnóstico digital completo",
+        "Consultoria de posicionamento",
+        "Plano de marketing sob medida",
+        "Acompanhamento e Reuniões Quinzenais"
+      ],
+      "valor": 2940,
+      "tipo": "mensal",
+      "valor_cheio": 4200
+    },
+    {
+      "nome": "Gestão de Tráfego Pago",
+      "descricao": "Campanhas no Meta Ads e Google Ads gerenciadas com foco em custo por lead e retorno real. Cada real monitorado.",
+      "itens": [
+        "Meta Ads & Google Ads",
+        "Criativos e copy inclusos",
+        "Otimização semanal",
+        "Relatório mensal detalhado",
+        "Acompanhamento e Reuniões Quinzenais"
+      ],
+      "valor": 2700,
+      "tipo": "mensal"
+    }
+  ],
+  "pagamento": {
+    "avista_label": "Pix ou transferência",
+    "parcelas_max": 1,
+    "sem_juros": true,
+    "obs": null
+  },
+  "proximos_passos": [
+    {
+      "quando": "Quando você decidir",
+      "titulo": "Aceite da proposta",
+      "descricao": "Você aprova por aqui (ou responde no contato). Sem papelada — é rápido."
+    },
+    {
+      "quando": "Em até 3 dias",
+      "titulo": "Reunião de alinhamento",
+      "descricao": "Kickoff: alinhamos prioridades, prazos e coletamos os acessos necessários."
+    },
+    {
+      "quando": "Na sequência",
+      "titulo": "Início dos trabalhos",
+      "descricao": "Mãos à obra. Os primeiros entregáveis saem já nos primeiros dias."
+    }
+  ],
+  "observacoes": "",
+  "nexus_deal_id": "62716219-0abe-4131-acd9-45877d4257c4"
+}
