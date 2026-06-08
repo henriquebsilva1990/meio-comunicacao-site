@@ -1,0 +1,62 @@
+{
+  "cliente": "InnoCondo",
+  "contato": "Wellington Souza",
+  "data": "2026-06-05",
+  "validade_dias": 7,
+  "servicos": [
+    {
+      "nome": "Projeto Nova Innocondo",
+      "descricao": "Desenvolvimento e fortalecimento da presença institucional da Innocondo, contemplando reformulação completa do site, atualização da identidade visual e criação de materiais corporativos e comerciais. \n\nO projeto inclui ainda a padronização da comunicação institucional, otimização da presença digital e estruturação dos principais canais online da marca, visando aumentar autoridade, credibilidade e suporte às ações comerciais e de relacionamento.",
+      "itens": [
+        "Reformulação do site institucional ",
+        "Fundo de tela institucional exclusivo",
+        "Apresentação institucional do Grupo Innocondo",
+        "Apresentação comercial da Innocondo Soluções",
+        "Assinatura de e-mail institucional",
+        "Reformulação do LinkedIn pessoal",
+        "Reformulação do LinkedIn corporativo",
+        "Estruturação da presença institucional básica",
+        "Reuniões de Alinhamento"
+      ],
+      "valor": 6300,
+      "tipo": "unico",
+      "valor_cheio": 12000
+    },
+    {
+      "nome": "Estratégia & Consultoria",
+      "descricao": "Diagnóstico completo do posicionamento digital e plano de ação personalizado para direção estratégica.",
+      "itens": [
+        "Diagnóstico digital completo",
+        "Plano de marketing sob medida",
+        "Consultoria de posicionamento",
+        "Pesquisa e reunião em 3 concorrentes diretos`"
+      ],
+      "valor": 1500,
+      "tipo": "unico"
+    }
+  ],
+  "pagamento": {
+    "avista_label": "Pix ou transferência",
+    "parcelas_max": 4,
+    "sem_juros": true,
+    "obs": "Entrada/30/60/90"
+  },
+  "proximos_passos": [
+    {
+      "quando": "Quando você decidir",
+      "titulo": "Aceite da proposta",
+      "descricao": "Você aprova por aqui (ou responde no contato). Sem papelada — é rápido."
+    },
+    {
+      "quando": "Em até 3 dias",
+      "titulo": "Reunião de alinhamento",
+      "descricao": "Kickoff: alinhamos prioridades, prazos e coletamos os acessos necessários."
+    },
+    {
+      "quando": "Na sequência",
+      "titulo": "Início dos trabalhos",
+      "descricao": "Mãos à obra. Os primeiros entregáveis saem já nos primeiros dias."
+    }
+  ],
+  "observacoes": "<b><i>Prazo de entrega: até 60 dias</i></b><br>O projeto será divídido em 2 etapas sendo:<br><br><b>Etapa 1:</b><br>-&nbsp;Reformulação do site institucional&nbsp;<br>-&nbsp;Apresentação institucional do Grupo Innocondo<br>-&nbsp;Apresentação comercial da Innocondo Soluções<br>-&nbsp;Assinatura de e-mail institucional<br><br><b>Etapa 2:</b><br>-&nbsp;Fundo de tela institucional exclusivo<br>-&nbsp;Reformulação do LinkedIn pessoal<br>-&nbsp;Reformulação do LinkedIn corporativo<br>-&nbsp;Estruturação da presença institucional básica (<span>Google Meu Negócio, Reclame Aqui e demais canais pertinentes, visando consolidar a presença e a credibilidade da marca.)</span>"
+}
