@@ -1,0 +1,30 @@
+{
+  "cliente": "Faculdade IOA + IOA Ribeirão Preto",
+  "contato": "",
+  "data": "2026-06-15",
+  "validade_dias": 7,
+  "servicos": [
+    {
+      "nome": "Social Media Profissional",
+      "descricao": "Gestão completa das redes com calendário editorial, produção de conteúdo e design que posiciona e gera autoridade.",
+      "itens": [
+        "Calendário editorial mensal",
+        "Design e legendas inclusos",
+        "Instagram, Facebook & LinkedIn",
+        "Análise de desempenho",
+        "Captação e Edição de Videos "
+      ],
+      "valor": 4500,
+      "tipo": "mensal",
+      "valor_cheio": 5600
+    }
+  ],
+  "pagamento": {
+    "avista_label": "Pix ou transferência",
+    "parcelas_max": 1,
+    "sem_juros": true,
+    "obs": null
+  },
+  "proximos_passos": [],
+  "observacoes": "<br>"
+}
