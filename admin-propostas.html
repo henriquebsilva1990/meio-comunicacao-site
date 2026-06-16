@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Criar Proposta | Meio Comunicacao</title>
   <meta name="robots" content="noindex, nofollow">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
     :root { --navy: #0D1B2A; --yellow: #F5C318; --gray-100: #e9ecef; --gray-600: #495057; --radius: 14px; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -169,10 +170,11 @@
   <div class="login-box">
     <img src="customcolor_logo_customcolor_background.png" alt="Meio Comunicacao">
     <h2>Area restrita</h2>
-    <p>Criador de Propostas Comerciais</p>
-    <input type="password" id="loginSenha" placeholder="Digite a senha" onkeydown="if(event.key==='Enter')tentarLogin()">
+    <p>Criador de Propostas Comerciais — entre com seu login do Nexus</p>
+    <input type="email" id="loginEmail" placeholder="seu@email.com" autocomplete="username" onkeydown="if(event.key==='Enter')document.getElementById('loginSenha').focus()">
+    <input type="password" id="loginSenha" placeholder="Senha" autocomplete="current-password" onkeydown="if(event.key==='Enter')tentarLogin()">
     <button onclick="tentarLogin()">Entrar</button>
-    <div class="login-error" id="loginErro">Senha incorreta.</div>
+    <div class="login-error" id="loginErro">Login incorreto.</div>
   </div>
 </div>
 
@@ -350,7 +352,6 @@
     <button class="btn" onclick="abrirRascunhos()" style="background:#e9eef5;color:var(--navy);">Rascunhos</button>
     <button class="btn btn-green" onclick="publicar()" id="btnPublicar">Publicar proposta</button>
     <button class="btn btn-navy" onclick="baixarJSON()" style="font-size:12px;padding:10px 16px;">Baixar JSON</button>
-    <button class="btn" onclick="limparToken()" style="font-size:11px;padding:8px 14px;background:#eee;color:#666;">Limpar Token</button>
     <button class="btn" onclick="logout()" style="font-size:11px;padding:8px 14px;background:#eee;color:#666;">Sair</button>
   </div>
 
@@ -436,53 +437,51 @@ function rteLimpar() {
   document.execCommand('removeFormat', false, null);
 }
 
-const PASS_HASH   = '5986906e619270ef599f34e3b26d3ce2e7aa5a38a3569dfabbd6933b54a603bf';
-const AUTH_KEY    = 'meio_admin_auth';
-const AUTH_TTL    = 24 * 60 * 60 * 1000;
-const GH_REPO     = 'henriquebsilva1990/meio-comunicacao-site';
-const GH_TOKEN_KEY = 'meio_gh_token';
+const GH_REPO   = 'henriquebsilva1990/meio-comunicacao-site';
+const SUPA_URL  = 'https://wrxgpfsjupgbtowuspth.supabase.co';
+const SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndyeGdwZnNqdXBnYnRvd3VzcHRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyNDUzOTIsImV4cCI6MjA5MjgyMTM5Mn0._FAsajl--qGEDDzkrelwDJexkxi2AZQVTacwq1Qp18E';
+const sb = window.supabase.createClient(SUPA_URL, SUPA_ANON);
+let CURRENT_USER = null; // { id, email, role }
 
-// ─── Auth ──────────────────────────────────────────────────────────────────────
+function isAdmin() { return !!(CURRENT_USER && ['admin_master','admin'].includes(CURRENT_USER.role)); }
 
-async function hashSenha(senha) {
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(senha));
-  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-}
+// ─── Auth (Supabase — mesmo login do Nexus) ──────────────────────────────────────
 
 async function tentarLogin() {
+  const email = (document.getElementById('loginEmail').value || '').trim();
   const senha = document.getElementById('loginSenha').value;
-  const hash = await hashSenha(senha);
-  if (hash === PASS_HASH) {
-    localStorage.setItem(AUTH_KEY, Date.now().toString());
-    document.getElementById('loginOverlay').style.display = 'none';
-    document.getElementById('appContent').style.display = 'block';
-    carregarLista();
-  } else {
-    document.getElementById('loginErro').style.display = 'block';
+  const erro  = document.getElementById('loginErro');
+  erro.style.display = 'none';
+  const { data, error } = await sb.auth.signInWithPassword({ email: email, password: senha });
+  if (error || !data || !data.session) {
+    erro.textContent = 'Login incorreto.'; erro.style.display = 'block';
     document.getElementById('loginSenha').value = '';
+    return;
   }
+  await aposLogin();
 }
 
-const authTime = Number(localStorage.getItem(AUTH_KEY) || '0');
-if (authTime && (Date.now() - authTime) < AUTH_TTL) {
+async function aposLogin() {
+  const { data } = await sb.auth.getSession();
+  const session = data && data.session;
+  if (!session) return;
+  const u = session.user;
+  CURRENT_USER = { id: u.id, email: u.email, role: (u.app_metadata && u.app_metadata.role) || '' };
   document.getElementById('loginOverlay').style.display = 'none';
   document.getElementById('appContent').style.display = 'block';
   carregarLista();
-} else {
-  localStorage.removeItem(AUTH_KEY);
-  document.getElementById('loginSenha').focus();
 }
 
-// ─── Token GitHub ──────────────────────────────────────────────────────────────
-
-function getToken() {
-  let token = localStorage.getItem(GH_TOKEN_KEY);
-  if (!token) {
-    token = prompt('Primeira vez: cole seu GitHub Token (sera salvo no navegador):');
-    if (token) localStorage.setItem(GH_TOKEN_KEY, token.trim());
-  }
-  return token;
+async function sair() {
+  await sb.auth.signOut();
+  location.reload();
 }
+
+// Auto-login se já houver sessão (mesma sessão do Nexus, se logado no mesmo navegador)
+sb.auth.getSession().then(function (r) {
+  if (r && r.data && r.data.session) aposLogin();
+  else { const e = document.getElementById('loginEmail'); if (e) e.focus(); }
+});
 
 // ─── Ponte com o Nexus (pipeline) ───────────────────────────────────────────
 const NEXUS_BRIDGE_URL = 'https://wrxgpfsjupgbtowuspth.supabase.co/functions/v1/proposals-bridge';
@@ -550,10 +549,11 @@ function propostaFilename(slug, version) {
   return version <= 1 ? slug + '.json' : slug + '-v' + version + '.json';
 }
 
-function propostaUrl(slug, version) {
-  return version <= 1
-    ? 'proposta.html?c=' + encodeURIComponent(slug)
-    : 'proposta.html?c=' + encodeURIComponent(slug) + '&v=' + version;
+function propostaUrl(slug, version, token) {
+  let u = 'proposta.html?c=' + encodeURIComponent(slug);
+  if (version > 1) u += '&v=' + version;
+  if (token) u += '&t=' + encodeURIComponent(token);
+  return u;
 }
 
 // ─── Lista de propostas ────────────────────────────────────────────────────────
@@ -565,77 +565,51 @@ async function carregarLista() {
 
   document.getElementById('msgErroLista').style.display = 'none';
   document.getElementById('listaCorpo').innerHTML =
-    '<div class="estado"><div class="spinner"></div><strong>Carregando...</strong>Buscando propostas no repositorio GitHub.</div>';
-
-  const token = getToken();
-  if (!token) {
-    mostrarErroLista('Token GitHub necessario para listar as propostas. Recarregue a pagina para tentar novamente.');
-    renderListaVazia('Token nao informado');
-    btn.disabled = false;
-    btn.textContent = 'Atualizar lista';
-    return;
-  }
-
-  const headers = {
-    'Authorization': 'Bearer ' + token,
-    'Accept': 'application/vnd.github+json'
-  };
+    '<div class="estado"><div class="spinner"></div><strong>Carregando...</strong>Buscando suas propostas.</div>';
 
   try {
-    const resp = await fetch(
-      'https://api.github.com/repos/' + GH_REPO + '/contents/propostas',
-      { headers: headers }
-    );
-
-    if (resp.status === 401) {
-      localStorage.removeItem(GH_TOKEN_KEY);
-      mostrarErroLista('Token GitHub invalido ou expirado. Recarregue a pagina para inserir um novo token.');
-      renderListaVazia('Erro de autenticacao no GitHub');
+    // RLS no banco já filtra: admin vê todas; comercial só as próprias.
+    const { data: rows, error } = await sb.from('v2_site_proposals')
+      .select('slug,version,titulo,cliente,status,owner_email,public_token,content,updated_at')
+      .order('updated_at', { ascending: false });
+    if (error) throw error;
+    if (!rows || rows.length === 0) {
+      renderListaVazia(isAdmin() ? 'Nenhuma proposta ainda.' : 'Você ainda não criou nenhuma proposta.');
       return;
     }
 
-    if (!resp.ok) throw new Error('Erro ' + resp.status + ' ao acessar o repositorio.');
-
-    const arquivos = await resp.json();
-    const jsons = arquivos.filter(f => f.name.endsWith('.json'));
-
-    if (jsons.length === 0) {
-      renderListaVazia('Nenhuma proposta encontrada na pasta propostas/');
-      return;
-    }
-
-    // Buscar dados de todos os arquivos em paralelo
-    const itens = await Promise.all(jsons.map(f => fetchPropostaItem(f)));
-
-    // Agrupar por slug
     const gruposMap = new Map();
-    itens.forEach(item => {
-      if (!gruposMap.has(item.slug)) gruposMap.set(item.slug, []);
-      gruposMap.get(item.slug).push(item);
+    rows.forEach(function (r) {
+      const c = r.content || {};
+      const item = {
+        slug: r.slug, version: r.version,
+        file: propostaFilename(r.slug, r.version),
+        cliente: r.cliente || c.cliente || r.slug,
+        contato: c.contato || '',
+        data: c.data || (r.updated_at ? r.updated_at.slice(0, 10) : ''),
+        validade_dias: c.validade_dias || '',
+        servicos: c.servicos || [],
+        status: r.status, owner_email: r.owner_email, token: r.public_token
+      };
+      if (!gruposMap.has(r.slug)) gruposMap.set(r.slug, []);
+      gruposMap.get(r.slug).push(item);
     });
 
-    // Ordenar versoes dentro de cada grupo (crescente) e construir array de grupos
     const grupos = [];
-    gruposMap.forEach((versoes, slug) => {
-      versoes.sort((a, b) => a.version - b.version);
-      grupos.push({ slug, versoes });
+    gruposMap.forEach(function (versoes, slug) {
+      versoes.sort(function (a, b) { return a.version - b.version; });
+      grupos.push({ slug: slug, versoes: versoes });
     });
-
-    // Ordenar grupos pela data da versao mais recente (decrescente)
-    grupos.sort((a, b) => {
-      const dataA = a.versoes[a.versoes.length - 1].data || '';
-      const dataB = b.versoes[b.versoes.length - 1].data || '';
-      if (!dataA && !dataB) return 0;
-      if (!dataA) return 1;
-      if (!dataB) return -1;
-      return dataB.localeCompare(dataA);
+    grupos.sort(function (a, b) {
+      const da = a.versoes[a.versoes.length - 1].data || '';
+      const db = b.versoes[b.versoes.length - 1].data || '';
+      return db.localeCompare(da);
     });
 
     renderListaTabela(grupos);
-
   } catch (e) {
-    mostrarErroLista('Erro ao carregar propostas: ' + e.message);
-    renderListaVazia('Falha na conexao com o GitHub');
+    mostrarErroLista('Erro ao carregar propostas: ' + (e.message || e));
+    renderListaVazia('Falha ao carregar');
   } finally {
     btn.disabled = false;
     btn.textContent = 'Atualizar lista';
@@ -674,7 +648,7 @@ function renderListaTabela(grupos) {
         (recente.servicos.length > 3 ? '<span class="badge">+' + (recente.servicos.length - 3) + '</span>' : '')
       : '<span style="color:#bbb;font-size:12px">—</span>';
 
-    const urlVer      = propostaUrl(grupo.slug, vAtual);
+    const urlVer      = propostaUrl(grupo.slug, vAtual, recente.token);
     const temHistorico = grupo.versoes.length > 1;
     const chevronId   = 'chev-' + gi;
     const histId      = 'hist-' + gi;
@@ -707,7 +681,7 @@ function renderListaTabela(grupos) {
       const versoesCrescente = grupo.versoes.slice().reverse(); // mais recente primeiro
       const linhasHist = versoesCrescente.map(v => {
         const vData  = v.data ? formatarData(v.data) : '—';
-        const urlV   = propostaUrl(grupo.slug, v.version);
+        const urlV   = propostaUrl(grupo.slug, v.version, v.token);
         const isBase = v.version === vAtual
           ? '<span class="badge-base">atual</span>'
           : '';
@@ -809,52 +783,32 @@ async function carregarProposta() {
   await carregarPropostaVersao(slug, null);
 }
 
-// Descobre a maior versao existente de um slug consultando o GitHub
-async function descobrirVersoes(slug, headers) {
+// Maior versao existente de um slug (consulta no banco; RLS garante visibilidade do dono/admin)
+async function descobrirVersoes(slug) {
   try {
-    const resp = await fetch(
-      'https://api.github.com/repos/' + GH_REPO + '/contents/propostas',
-      { headers }
-    );
-    if (!resp.ok) return [];
-    const arquivos = await resp.json();
-    const versoes = [];
-    arquivos.forEach(f => {
-      if (!f.name.endsWith('.json')) return;
-      const parsed = parseFilename(f.name);
-      if (parsed.slug === slug) versoes.push(parsed.version);
-    });
-    return versoes.sort((a, b) => a - b);
-  } catch(e) {
-    return [];
-  }
+    const { data, error } = await sb.from('v2_site_proposals').select('version').eq('slug', slug);
+    if (error || !data) return [];
+    return data.map(function (r) { return r.version; }).sort(function (a, b) { return a - b; });
+  } catch (e) { return []; }
 }
 
 async function carregarPropostaVersao(slug, version) {
-  const token = getToken();
-  const headers = token
-    ? { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' }
-    : {};
-
-  // Descobrir versoes existentes para saber qual e a mais recente e qual sera a proxima
-  const versoes = await descobrirVersoes(slug, headers);
-  const maiorVersao   = versoes.length > 0 ? Math.max(...versoes) : 1;
+  const versoes = await descobrirVersoes(slug);
+  const maiorVersao   = versoes.length > 0 ? Math.max.apply(null, versoes) : 1;
   const versaoBase    = version !== null ? version : maiorVersao;
   const proximaVersao = maiorVersao + 1;
 
-  const filename = propostaFilename(slug, versaoBase);
-  const ghUrl    = 'https://raw.githubusercontent.com/' + GH_REPO + '/main/propostas/' + filename;
-
   try {
-    // Tenta local primeiro, depois GitHub raw
-    let data;
-    const localResp = await fetch('propostas/' + filename + '?t=' + Date.now());
-    if (localResp.ok) {
+    // Conteudo vem do banco; fallback pro JSON do repo (propostas antigas ainda nao migradas)
+    let data = null;
+    const { data: row, error } = await sb.from('v2_site_proposals')
+      .select('content').eq('slug', slug).eq('version', versaoBase).limit(1).maybeSingle();
+    if (error) throw error;
+    if (row && row.content) data = row.content;
+    if (!data) {
+      const localResp = await fetch('propostas/' + propostaFilename(slug, versaoBase) + '?t=' + Date.now());
+      if (!localResp.ok) throw new Error('Proposta nao encontrada');
       data = await localResp.json();
-    } else {
-      const ghResp = await fetch(ghUrl + '?t=' + Date.now());
-      if (!ghResp.ok) throw new Error('Proposta nao encontrada');
-      data = await ghResp.json();
     }
 
     document.getElementById('cliente').value  = data.cliente        || '';
@@ -1210,60 +1164,30 @@ async function publicar() {
   if (!data.cliente) { alert('Preencha o nome do cliente.'); return; }
   if (data.servicos.length === 0) { alert('Adicione pelo menos um servico.'); return; }
 
-  const token = getToken();
-  if (!token) return;
-
   const slug    = getSlugValue();
   const dealId  = (document.getElementById('nexusLead') || {}).value || '';
-  if (dealId) data.nexus_deal_id = dealId;  // rastreabilidade no proprio JSON
-  const headers = { 'Authorization': 'Bearer ' + token, 'Accept': 'application/vnd.github+json' };
+  if (dealId) data.nexus_deal_id = dealId;
   const btn     = document.getElementById('btnPublicar');
   btn.textContent = 'Publicando...';
   btn.disabled = true;
 
   try {
-    // Descobrir versoes existentes deste slug para determinar a proxima
-    const versoesExistentes = await descobrirVersoes(slug, headers);
-    let novaVersao;
+    // Proxima versao = maior existente + 1 (consulta no banco)
+    const { data: existentes, error: eVer } = await sb.from('v2_site_proposals')
+      .select('version').eq('slug', slug).order('version', { ascending: false }).limit(1);
+    if (eVer) throw eVer;
+    const novaVersao = (existentes && existentes.length) ? (existentes[0].version + 1) : 1;
 
-    if (versoesExistentes.length === 0) {
-      // Slug novo: publicar como v1 (sem sufixo) — comportamento original preservado
-      novaVersao = 1;
-    } else {
-      // Slug existente: proxima versao = maior + 1
-      novaVersao = Math.max(...versoesExistentes) + 1;
-    }
+    // Grava no banco (owner_id = auth.uid() via default; RLS valida o dono).
+    const { data: ins, error: eIns } = await sb.from('v2_site_proposals').insert({
+      slug: slug, version: novaVersao, titulo: data.cliente, cliente: data.cliente,
+      status: 'enviada', content: data,
+      owner_email: (CURRENT_USER && CURRENT_USER.email) || null,
+      deal_id: dealId || null
+    }).select('public_token').single();
+    if (eIns) throw eIns;
 
-    const filename = propostaFilename(slug, novaVersao);
-    const path     = 'propostas/' + filename;
-    const content  = btoa(unescape(encodeURIComponent(JSON.stringify(data, null, 2) + '\n')));
-    const apiBase  = 'https://api.github.com/repos/' + GH_REPO + '/contents/' + path;
-
-    // Nunca sobrescrever: verificar se o arquivo alvo ja existe (seguranca extra)
-    let sha = null;
-    try {
-      const checkResp = await fetch(apiBase + '?ref=main', { headers });
-      if (checkResp.ok) {
-        // Arquivo ja existe — nao deveria acontecer com logica de proxima versao,
-        // mas se acontecer, enviamos o sha para atualizar (fallback seguro)
-        const existing = await checkResp.json();
-        sha = existing.sha;
-      }
-    } catch(e) { /* arquivo novo, esperado */ }
-
-    const body = { message: 'proposta: ' + data.cliente + ' v' + novaVersao, content };
-    if (sha) body.sha = sha;
-
-    const resp = await fetch(apiBase, {
-      method: 'PUT',
-      headers: { ...headers, 'Content-Type': 'application/json' },
-      body: JSON.stringify(body)
-    });
-
-    const result = await resp.json();
-    if (!resp.ok) throw new Error(result.message || 'Erro ' + resp.status);
-
-    const link = 'https://meiocomunica.com.br/' + propostaUrl(slug, novaVersao);
+    const link = 'https://meiocomunica.com.br/' + propostaUrl(slug, novaVersao, ins.public_token);
     document.getElementById('linkFinal').value = link;
     document.getElementById('linkBox').style.display = 'block';
 
@@ -1302,8 +1226,7 @@ async function publicar() {
     carregarLista();
 
   } catch (e) {
-    alert('Erro ao publicar: ' + e.message + '\n\nSe o token estiver errado, limpe e tente novamente.');
-    localStorage.removeItem(GH_TOKEN_KEY);
+    alert('Erro ao publicar: ' + (e.message || e));
   } finally {
     btn.textContent = 'Publicar proposta';
     btn.disabled = false;
@@ -1319,14 +1242,8 @@ function copiarLink() {
   showMsg('Link copiado!');
 }
 
-function limparToken() {
-  localStorage.removeItem(GH_TOKEN_KEY);
-  showMsg('Token GitHub removido. Sera solicitado novamente ao publicar.');
-}
-
-function logout() {
-  localStorage.removeItem(AUTH_KEY);
-  localStorage.removeItem(GH_TOKEN_KEY);
+async function logout() {
+  try { await sb.auth.signOut(); } catch (e) {}
   location.reload();
 }
 

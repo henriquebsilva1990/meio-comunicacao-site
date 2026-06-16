@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
   <title>Proposta Comercial | Meio Comunicacao e Consultoria</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
@@ -567,35 +568,42 @@ if (params.get('preview') === '1') {
 } else {
   const slug    = getSlug();
   const version = getVersion();
+  const token   = params.get('t') || '';
   const path    = getPropostaPath(slug, version);
   const vLabel  = version > 1 ? ' (v' + version + ')' : '';
 
-  fetch(path + '?t=' + Date.now())
-    .then(r => {
-      if (r.status === 404) throw new Error('404');
-      if (!r.ok) throw new Error('Proposta nao encontrada');
-      return r.json();
-    })
-    .then(data => {
-      render(data);
-      if (autoPrint) {
-        // Aguarda fontes e imagens carregarem antes de disparar o dialogo
-        window.addEventListener('load', function() {
-          setTimeout(function() { window.print(); }, 400);
-        });
-      }
-    })
-    .catch(e => {
-      const msg404 = e.message === '404'
-        ? 'A versão <strong>v' + version + '</strong> desta proposta não foi encontrada.'
-        : 'Verifique o link recebido ou entre em contato conosco.';
-      document.getElementById('app').innerHTML =
-        '<div style="text-align:center;padding:4rem 2rem;color:#999;">' +
-          '<h2 style="color:#0D1B2A;margin-bottom:1rem;">Proposta não encontrada' + esc(vLabel) + '</h2>' +
-          '<p>' + msg404 + '</p>' +
-          '<a href="https://wa.me/5516981334647" style="display:inline-block;margin-top:1.5rem;background:#25D366;color:#fff;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:700;">Falar no WhatsApp</a>' +
-        '</div>';
-    });
+  const SUPA_URL  = 'https://wrxgpfsjupgbtowuspth.supabase.co';
+  const SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndyeGdwZnNqdXBnYnRvd3VzcHRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyNDUzOTIsImV4cCI6MjA5MjgyMTM5Mn0._FAsajl--qGEDDzkrelwDJexkxi2AZQVTacwq1Qp18E';
+
+  function aposData(data) {
+    render(data);
+    if (autoPrint) window.addEventListener('load', function () { setTimeout(function () { window.print(); }, 400); });
+  }
+  function erroNaoEncontrada() {
+    document.getElementById('app').innerHTML =
+      '<div style="text-align:center;padding:4rem 2rem;color:#999;">' +
+        '<h2 style="color:#0D1B2A;margin-bottom:1rem;">Proposta não encontrada' + esc(vLabel) + '</h2>' +
+        '<p>Verifique o link recebido ou entre em contato conosco.</p>' +
+        '<a href="https://wa.me/5516981334647" style="display:inline-block;margin-top:1.5rem;background:#25D366;color:#fff;padding:12px 24px;border-radius:10px;text-decoration:none;font-weight:700;">Falar no WhatsApp</a>' +
+      '</div>';
+  }
+  // 1) Banco (token); 2) fallback pro JSON do repo (propostas antigas ainda não migradas).
+  function carregarDoRepo() {
+    fetch(path + '?t=' + Date.now())
+      .then(function (r) { if (!r.ok) throw new Error('nf'); return r.json(); })
+      .then(aposData)
+      .catch(erroNaoEncontrada);
+  }
+  (async function () {
+    if (token && window.supabase) {
+      try {
+        const sb = window.supabase.createClient(SUPA_URL, SUPA_ANON);
+        const { data, error } = await sb.rpc('get_site_proposal', { p_slug: slug, p_version: version, p_token: token });
+        if (!error && data) { aposData(data); return; }
+      } catch (e) { /* cai pro repo */ }
+    }
+    carregarDoRepo();
+  })();
 }
 </script>
 </body>
