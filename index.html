@@ -348,6 +348,21 @@
   .foot-bottom{margin-top:clamp(2.4rem,4vw,3.4rem);padding-top:1.6rem;border-top:1px solid var(--line-soft);
     font-size:12.5px;color:var(--on-dark-dim);display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap}
 
+  /* depoimentos */
+  .testi{background:var(--navy);padding:clamp(5rem,9vw,8rem) 0}
+  .testi .eyebrow{margin-bottom:18px}
+  .testi h2{font-size:clamp(2.2rem,4.6vw,3.4rem)}
+  .testi h2 em{font-style:italic;color:var(--gold-soft)}
+  .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:clamp(2.6rem,5vw,4rem)}
+  .tcard{background:linear-gradient(180deg,var(--navy-panel),#0c1d2e);border:1px solid var(--line-soft);border-radius:20px;padding:34px 30px;display:flex;flex-direction:column}
+  .tcard .tquote{font-family:var(--display);font-style:italic;color:var(--gold);font-size:3rem;line-height:.5;height:.42em;display:block}
+  .tcard blockquote{font-family:var(--display);font-style:italic;font-weight:400;font-size:1.2rem;line-height:1.42;color:#fff;margin:16px 0 24px}
+  .tcard figcaption{display:flex;align-items:center;gap:14px;margin-top:auto;border-top:1px solid var(--line-soft);padding-top:20px}
+  .tav{width:46px;height:46px;border-radius:50%;background:var(--gold);color:var(--navy);font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;flex:none;overflow:hidden}
+  .tav img{width:100%;height:100%;object-fit:cover}
+  .tcard figcaption b{display:block;font-size:15px;color:#fff;font-weight:700}
+  .tcard figcaption span{font-size:13px;color:var(--on-dark-mut)}
+
   /* whatsapp flutuante */
   .wa{position:fixed;right:22px;bottom:22px;z-index:60;display:flex;align-items:center;justify-content:center;gap:0;
     height:60px;width:60px;border-radius:999px;background:#25D366;color:#fff;overflow:hidden;
@@ -556,6 +571,14 @@
   </div>
 </section>
 
+<section class="testi" id="depoimentos" hidden>
+  <div class="wrap">
+    <div class="eyebrow rv">Depoimentos</div>
+    <h2 class="rv">Quem trabalha com a Meio, <em>fica.</em></h2>
+    <div class="testi-grid" id="testiGrid"></div>
+  </div>
+</section>
+
 <section class="cta" id="contato">
   <svg class="ghostring" viewBox="0 0 400 400" fill="none" aria-hidden="true">
     <circle cx="200" cy="200" r="198" stroke="rgba(245,195,24,.16)"/>
@@ -602,6 +625,22 @@
   var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
   document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
   addEventListener('load',function(){document.querySelectorAll('.hero .rv').forEach(function(el){el.classList.add('in')})});
+
+  (function(){
+    function esc(s){var d=document.createElement('div');d.textContent=s==null?'':String(s);return d.innerHTML;}
+    function initials(n){return String(n||'').trim().split(/\s+/).slice(0,2).map(function(w){return w[0]||'';}).join('').toUpperCase();}
+    fetch('depoimentos.json?v='+Date.now()).then(function(r){return r.json();}).then(function(list){
+      if(!Array.isArray(list)||!list.length) return;
+      var sec=document.getElementById('depoimentos'), grid=document.getElementById('testiGrid');
+      if(!sec||!grid) return;
+      grid.innerHTML=list.slice(0,3).map(function(d){
+        var av=d.foto?'<img src="'+esc(d.foto)+'" alt="'+esc(d.nome)+'">':esc(initials(d.nome));
+        return '<figure class="tcard"><span class="tquote">&ldquo;</span><blockquote>'+esc(d.texto)+
+          '</blockquote><figcaption><div class="tav">'+av+'</div><div><b>'+esc(d.nome)+'</b><span>'+esc(d.cargo)+'</span></div></figcaption></figure>';
+      }).join('');
+      sec.hidden=false;
+    }).catch(function(){});
+  })();
 </script>
 </body>
 </html>

@@ -1,0 +1,20 @@
+[
+  {
+    "nome": "Nome completo do cliente",
+    "cargo": "Cargo · Nome da Empresa",
+    "texto": "Frase real do cliente, 2 a 3 linhas. O ideal é citar um RESULTADO concreto (ex: dobramos os leads em 3 meses) e algo sobre a experiência (transparência, parceria).",
+    "foto": ""
+  },
+  {
+    "nome": "Dr. Fabrício Magalhães",
+    "cargo": "Coordenador · IOA",
+    "texto": "Em 4 meses de parceria, as matrículas vindas do digital cresceram de forma consistente — e pela primeira vez eu entendo exatamente onde cada real é investido.",
+    "foto": "assets/depoimentos/fabricio.jpg"
+  },
+  {
+    "nome": "Nome do cliente 3",
+    "cargo": "Cargo · Empresa",
+    "texto": "Terceira frase real. Use no máximo 3 depoimentos na home — os mais fortes.",
+    "foto": ""
+  }
+]
