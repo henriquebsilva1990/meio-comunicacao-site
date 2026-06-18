@@ -178,8 +178,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&display=swap" rel="stylesheet">
-<link href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700,900&display=swap" rel="stylesheet">
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<link rel="preload" as="style" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+<noscript>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,400;0,500;1,400&display=swap">
+<link rel="stylesheet" href="https://api.fontshare.com/v2/css?f[]=satoshi@400,500,700&display=swap">
+</noscript>
 <style>
   *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 
@@ -200,8 +204,6 @@
   img{max-width:100%;display:block}
   .wrap{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.4rem,5vw,3.5rem)}
 
-  body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9;opacity:.045;mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 
   .eyebrow{display:inline-flex;align-items:center;gap:12px;font-family:var(--body);font-size:11.5px;font-weight:600;
     letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
@@ -398,7 +400,7 @@
 
 <nav class="nav" id="nav">
   <div class="wrap">
-    <a href="#inicio" class="nav-logo"><img src="assets/logos/meio/meio-branco-transparente.png" alt="Meio Comunicação e Consultoria"></a>
+    <a href="#inicio" class="nav-logo"><img decoding="async" src="assets/logos/meio/meio-branco-transparente.png" alt="Meio Comunicação e Consultoria"></a>
     <div class="navlinks">
       <a href="#metodo">Método</a>
       <a href="#servicos">Serviços</a>
@@ -448,16 +450,16 @@
   <div class="lab">Marcas que confiam na Meio</div>
   <div class="marquee">
     <div class="track">
-      <div class="chip"><img src="assets/logos/clientes/ioa.png" alt="IOA"></div>
-      <div class="chip"><img src="assets/logos/clientes/faculdadeioa.png" alt="Faculdade IOA"></div>
-      <div class="chip"><img src="assets/logos/clientes/endotec.png" alt="Endotec"></div>
-      <div class="chip"><img src="assets/logos/clientes/mikrometais.png" alt="Mikro Metais"></div>
-      <div class="chip"><img src="assets/logos/clientes/babycenter.png" alt="Baby Center"></div>
-      <div class="chip" aria-hidden="true"><img src="assets/logos/clientes/ioa.png" alt=""></div>
-      <div class="chip" aria-hidden="true"><img src="assets/logos/clientes/faculdadeioa.png" alt=""></div>
-      <div class="chip" aria-hidden="true"><img src="assets/logos/clientes/endotec.png" alt=""></div>
-      <div class="chip" aria-hidden="true"><img src="assets/logos/clientes/mikrometais.png" alt=""></div>
-      <div class="chip" aria-hidden="true"><img src="assets/logos/clientes/babycenter.png" alt=""></div>
+      <div class="chip"><img loading="lazy" decoding="async" src="assets/logos/clientes/ioa.png" alt="IOA"></div>
+      <div class="chip"><img loading="lazy" decoding="async" src="assets/logos/clientes/faculdadeioa.png" alt="Faculdade IOA"></div>
+      <div class="chip"><img loading="lazy" decoding="async" src="assets/logos/clientes/endotec.png" alt="Endotec"></div>
+      <div class="chip"><img loading="lazy" decoding="async" src="assets/logos/clientes/mikrometais.png" alt="Mikro Metais"></div>
+      <div class="chip"><img loading="lazy" decoding="async" src="assets/logos/clientes/babycenter.png" alt="Baby Center"></div>
+      <div class="chip" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/logos/clientes/ioa.png" alt=""></div>
+      <div class="chip" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/logos/clientes/faculdadeioa.png" alt=""></div>
+      <div class="chip" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/logos/clientes/endotec.png" alt=""></div>
+      <div class="chip" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/logos/clientes/mikrometais.png" alt=""></div>
+      <div class="chip" aria-hidden="true"><img loading="lazy" decoding="async" src="assets/logos/clientes/babycenter.png" alt=""></div>
     </div>
   </div>
 </section>
@@ -598,7 +600,7 @@
   <div class="wrap">
     <div class="foot-top">
       <div class="foot-logo">
-        <img src="assets/logos/meio/meio-branco-transparente.png" alt="Meio Comunicação e Consultoria">
+        <img decoding="async" src="assets/logos/meio/meio-branco-transparente.png" alt="Meio Comunicação e Consultoria">
         <p>O departamento de marketing 360 da sua empresa. Do Instagram ao outdoor, potencializado por Inteligência Artificial.</p>
       </div>
       <div class="foot-contact">
