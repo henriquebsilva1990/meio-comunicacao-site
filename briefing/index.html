@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Briefing de Reestruturação — Site Institucional + Landing Page · Meio Comunica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#faf8f3;
+    --surface:#fffdf8;
+    --ink:#2a2620;
+    --ink-soft:#5c554a;
+    --ink-faint:#8a8170;
+    --gold:#9b7818;
+    --gold-soft:#c9a24b;
+    --line:#e7e0d2;
+    --line-strong:#d8cfba;
+    --danger:#a23b2e;
+    --ok:#5a7a3e;
+    --radius:14px;
+    --shadow:0 1px 2px rgba(42,38,32,.04), 0 8px 28px rgba(42,38,32,.06);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter',system-ui,-apple-system,sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:840px;margin:0 auto;padding:0 24px 120px}
+
+  /* ---------- Header ---------- */
+  header.cover{
+    padding:72px 0 40px;
+    border-bottom:1px solid var(--line);
+    margin-bottom:8px;
+  }
+  .brand{
+    display:flex;align-items:center;gap:10px;
+    font-size:13px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--gold);font-weight:600;
+  }
+  .brand .dot{width:7px;height:7px;border-radius:50%;background:var(--gold)}
+  h1{
+    font-family:'Instrument Serif',Georgia,serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:clamp(38px,6vw,60px);
+    line-height:1.04;
+    letter-spacing:-.01em;
+    margin:22px 0 14px;
+    color:var(--ink);
+  }
+  .lede{font-size:18px;color:var(--ink-soft);max-width:62ch;margin:0}
+  .meta-row{
+    display:flex;flex-wrap:wrap;gap:10px;margin-top:26px;
+  }
+  .meta-field{flex:1 1 200px}
+  .meta-field label{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-faint);margin-bottom:6px}
+  .meta-field input{width:100%}
+
+  /* ---------- How it works ---------- */
+  .howto{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:26px 28px;
+    margin:34px 0 8px;
+  }
+  .howto h2{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:26px;margin:0 0 6px}
+  .howto p{margin:0 0 14px;color:var(--ink-soft)}
+  .pills{display:flex;flex-wrap:wrap;gap:8px}
+  .pill{
+    font-size:13px;background:#f3eee2;border:1px solid var(--line-strong);
+    color:var(--ink-soft);padding:6px 12px;border-radius:100px;
+  }
+  .pill b{color:var(--ink);font-weight:600}
+
+  /* ---------- Sections ---------- */
+  section.block{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow);
+    padding:30px 30px 26px;
+    margin-top:22px;
+    scroll-margin-top:20px;
+  }
+  .block-head{display:flex;align-items:baseline;gap:14px;margin-bottom:4px}
+  .num{
+    font-family:'Instrument Serif',serif;font-style:italic;
+    font-size:30px;color:var(--gold-soft);line-height:1;min-width:38px;
+  }
+  .block-head h2{
+    font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;
+    font-size:28px;margin:0;letter-spacing:-.01em;
+  }
+  .block-sub{color:var(--ink-soft);margin:2px 0 22px 52px;font-size:15px}
+  @media(max-width:560px){.block-sub{margin-left:0}}
+
+  .field{margin-bottom:20px}
+  .field:last-child{margin-bottom:4px}
+  .field > label{
+    display:block;font-weight:600;font-size:15px;margin-bottom:4px;color:var(--ink);
+  }
+  .field .help{font-size:13px;color:var(--ink-faint);margin:0 0 8px}
+  .req{color:var(--gold);font-weight:700;margin-left:3px}
+  .opt{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink-faint);margin-left:6px;font-weight:500}
+
+  input[type=text],input[type=url],input[type=email],input[type=tel],textarea,select{
+    width:100%;font-family:inherit;font-size:15px;color:var(--ink);
+    background:#fff;border:1px solid var(--line-strong);border-radius:10px;
+    padding:11px 13px;transition:border-color .15s,box-shadow .15s;
+  }
+  textarea{min-height:84px;resize:vertical;line-height:1.55}
+  input:focus,textarea:focus,select:focus{
+    outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(155,120,24,.14);
+  }
+  input::placeholder,textarea::placeholder{color:#b7ad99}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+  @media(max-width:560px){.grid2{grid-template-columns:1fr}}
+
+  /* checkbox + radio groups */
+  .checkgrid{display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
+  @media(max-width:560px){.checkgrid{grid-template-columns:1fr}}
+  .check{
+    display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border:1px solid var(--line);
+    border-radius:10px;background:#fff;cursor:pointer;transition:border-color .15s,background .15s;
+    font-size:14px;line-height:1.4;
+  }
+  .check:hover{border-color:var(--gold-soft);background:#fffef9}
+  .check input{margin-top:2px;width:16px;height:16px;accent-color:var(--gold);flex:none;cursor:pointer}
+  .check span small{display:block;color:var(--ink-faint);font-size:12px}
+
+  /* ---------- Expectations block (the important one) ---------- */
+  .expect{
+    background:linear-gradient(180deg,#fbf6e9 0%,#fffdf8 100%);
+    border:1px solid var(--line-strong);
+  }
+  .expect .num{color:var(--gold)}
+  .expect-list{list-style:none;margin:0;padding:0}
+  .expect-list li{
+    display:flex;gap:13px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--line);
+  }
+  .expect-list li:first-child{border-top:none}
+  .expect-list .ic{
+    flex:none;width:26px;height:26px;border-radius:8px;background:#f3ead2;color:var(--gold);
+    display:grid;place-items:center;font-size:15px;font-weight:700;margin-top:1px;
+  }
+  .expect-list b{display:block;margin-bottom:1px}
+  .expect-list p{margin:0;color:var(--ink-soft);font-size:14.5px}
+  .ack{
+    margin-top:22px;padding:16px 18px;background:#fff;border:1px dashed var(--gold-soft);border-radius:12px;
+    display:flex;gap:12px;align-items:flex-start;
+  }
+  .ack input{margin-top:3px;width:18px;height:18px;accent-color:var(--gold);flex:none;cursor:pointer}
+  .ack label{font-size:14.5px;color:var(--ink);cursor:pointer}
+
+  /* RACI table */
+  .raci{width:100%;border-collapse:collapse;font-size:14px;margin-top:6px}
+  .raci th,.raci td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line)}
+  .raci th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-faint);font-weight:600}
+  .raci td:first-child{font-weight:500}
+  .raci select{padding:7px 9px;font-size:13px}
+
+  /* ---------- Footer / actions ---------- */
+  .closing{
+    text-align:center;padding:48px 24px 8px;
+  }
+  .closing h2{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;font-size:30px;margin:0 0 8px}
+  .closing p{color:var(--ink-soft);max-width:54ch;margin:0 auto 22px}
+  .send-steps{
+    list-style:none;counter-reset:s;max-width:48ch;margin:0 auto 26px;padding:0;text-align:left;
+  }
+  .send-steps li{
+    counter-increment:s;position:relative;padding:12px 14px 12px 50px;margin-bottom:10px;
+    background:var(--surface);border:1px solid var(--line);border-radius:12px;color:var(--ink-soft);font-size:15px;
+  }
+  .send-steps li::before{
+    content:counter(s);position:absolute;left:13px;top:50%;transform:translateY(-50%);
+    width:26px;height:26px;border-radius:50%;background:var(--gold);color:#fff;
+    display:grid;place-items:center;font-weight:700;font-size:14px;
+  }
+  .send-steps b{color:var(--ink)}
+  .send-steps a{color:var(--gold)}
+  a.btn{text-decoration:none;display:inline-flex;align-items:center}
+  .actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:sticky;bottom:0}
+  .btn{
+    font-family:inherit;font-size:15px;font-weight:600;cursor:pointer;
+    padding:13px 26px;border-radius:100px;border:1px solid transparent;transition:transform .12s,box-shadow .15s,background .15s;
+  }
+  .btn:active{transform:translateY(1px)}
+  .btn-primary{background:var(--gold);color:#fff;box-shadow:0 6px 18px rgba(155,120,24,.28)}
+  .btn-primary:hover{background:#876715}
+  .btn-ghost{background:#fff;color:var(--ink);border-color:var(--line-strong)}
+  .btn-ghost:hover{border-color:var(--gold-soft)}
+
+  .savebar{
+    position:fixed;left:50%;transform:translateX(-50%);bottom:18px;z-index:30;
+    display:flex;gap:10px;align-items:center;background:rgba(42,38,32,.94);color:#fff;
+    padding:9px 10px 9px 18px;border-radius:100px;box-shadow:0 10px 30px rgba(0,0,0,.22);
+    font-size:13.5px;backdrop-filter:blur(6px);
+  }
+  .savebar .saved{color:#cdebb0;font-size:12.5px;opacity:0;transition:opacity .3s}
+  .savebar button{
+    font-family:inherit;font-size:13.5px;font-weight:600;cursor:pointer;border:none;border-radius:100px;padding:8px 16px;
+  }
+  .savebar .b-print{background:var(--gold);color:#fff}
+  .savebar .b-clear{background:transparent;color:#d9d2c4;border:1px solid #5c554a}
+
+  footer.legal{text-align:center;color:var(--ink-faint);font-size:13px;margin-top:40px}
+  footer.legal a{color:var(--gold)}
+
+  /* ---------- Print ---------- */
+  @media print{
+    body{background:#fff;font-size:12px}
+    .wrap{padding:0}
+    .savebar,.actions,.howto .pills{display:none!important}
+    section.block,.howto,.expect{box-shadow:none;border:1px solid #ccc;break-inside:avoid;page-break-inside:avoid}
+    header.cover{padding-top:0}
+    input,textarea,select{border:1px solid #bbb!important;box-shadow:none!important}
+    .check:hover{background:#fff}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ============ COVER ============ -->
+  <header class="cover">
+    <div class="brand"><span class="dot"></span> Meio Comunica · Briefing de Projeto</div>
+    <h1>Reestruturação de site institucional + landing page</h1>
+    <p class="lede">Este documento define <b>o que vamos construir, com quem, em quanto tempo e o que esperar</b> de cada lado. Quanto mais preciso você for aqui, mais rápido e certeiro fica o projeto — e menos retrabalho pra todo mundo.</p>
+    <div class="meta-row">
+      <div class="meta-field"><label>Empresa / cliente</label><input type="text" data-k="empresa" placeholder="Nome da empresa"></div>
+      <div class="meta-field"><label>Responsável pelo preenchimento</label><input type="text" data-k="responsavel" placeholder="Seu nome"></div>
+      <div class="meta-field"><label>Data</label><input type="text" data-k="data" placeholder="__/__/____"></div>
+    </div>
+  </header>
+
+  <!-- ============ HOW TO ============ -->
+  <div class="howto">
+    <h2>Antes de começar — como usar este briefing</h2>
+    <p>Responda com calma, de preferência tudo de uma vez. Não precisa ter resposta perfeita: escreva o que você sabe e marque <b>“não sei / preciso conferir”</b> onde tiver dúvida — a gente fecha junto na reunião. Campos marcados com <span class="req">*</span> são essenciais pra começar.</p>
+    <div class="pills">
+      <span class="pill">⏱️ <b>15–25 min</b> de preenchimento</span>
+      <span class="pill">💾 Salva sozinho no navegador</span>
+      <span class="pill">🖨️ No fim: <b>Salvar PDF</b> e enviar</span>
+      <span class="pill">📩 Envie pra <b>henrique@meiocomunica.com.br</b></span>
+    </div>
+  </div>
+
+  <!-- ============ 1. EMPRESA ============ -->
+  <section class="block" id="s1">
+    <div class="block-head"><span class="num">01</span><h2>Sua empresa em poucas linhas</h2></div>
+    <p class="block-sub">Pra acertarmos o tom, precisamos entender o que vocês fazem e pra quem.</p>
+
+    <div class="field">
+      <label>O que a empresa vende / entrega <span class="req">*</span></label>
+      <p class="help">Em uma frase, como você explicaria pra alguém que nunca ouviu falar de vocês.</p>
+      <textarea data-k="oque_vende" placeholder="Ex: Projetos e execução de obras de engenharia civil para indústrias e condomínios."></textarea>
+    </div>
+
+    <div class="grid2">
+      <div class="field">
+        <label>Segmento / setor <span class="req">*</span></label>
+        <input type="text" data-k="segmento" placeholder="Ex: Engenharia, Odontologia, Indústria metalúrgica">
+      </div>
+      <div class="field">
+        <label>Tempo de mercado</label>
+        <input type="text" data-k="tempo_mercado" placeholder="Ex: 18 anos">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Seus 3 diferenciais reais <span class="req">*</span></label>
+      <p class="help">Por que um cliente escolhe vocês e não o concorrente? Evite “qualidade e bom atendimento” — seja específico.</p>
+      <textarea data-k="diferenciais" placeholder="1.&#10;2.&#10;3."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Quem é o cliente ideal de vocês <span class="req">*</span></label>
+      <p class="help">Quem toma a decisão de compra? Cargo, perfil, dor principal que ele tem.</p>
+      <textarea data-k="publico" placeholder="Ex: Síndicos de condomínios e gestores de facilities que precisam de obra com prazo garantido."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Concorrentes <span class="opt">opcional</span></label>
+      <p class="help">2 ou 3 nomes ou sites de quem vocês concorrem direto.</p>
+      <textarea data-k="concorrentes" placeholder="Nome — site"></textarea>
+    </div>
+
+    <div class="field">
+      <label>Como vocês querem ser percebidos</label>
+      <p class="help">Marque o tom que mais combina com a marca.</p>
+      <div class="checkgrid">
+        <label class="check"><input type="checkbox" data-k="tom_premium"><span>Premium / sofisticado</span></label>
+        <label class="check"><input type="checkbox" data-k="tom_tecnico"><span>Técnico / confiável</span></label>
+        <label class="check"><input type="checkbox" data-k="tom_proximo"><span>Próximo / humano</span></label>
+        <label class="check"><input type="checkbox" data-k="tom_inovador"><span>Inovador / moderno</span></label>
+        <label class="check"><input type="checkbox" data-k="tom_robusto"><span>Robusto / tradicional</span></label>
+        <label class="check"><input type="checkbox" data-k="tom_acessivel"><span>Acessível / direto</span></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 2. DIAGNÓSTICO ATUAL ============ -->
+  <section class="block" id="s2">
+    <div class="block-head"><span class="num">02</span><h2>O site de hoje</h2></div>
+    <p class="block-sub">O que existe agora e o que motivou a reestruturação.</p>
+
+    <div class="grid2">
+      <div class="field">
+        <label>Endereço do site atual <span class="opt">se houver</span></label>
+        <input type="url" data-k="url_atual" placeholder="https://">
+      </div>
+      <div class="field">
+        <label>Redes sociais ativas</label>
+        <input type="text" data-k="redes" placeholder="@instagram, LinkedIn...">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>O que NÃO funciona no site atual <span class="req">*</span></label>
+      <p class="help">O que te incomoda? Visual datado, não aparece no Google, não gera contato, difícil de atualizar...</p>
+      <textarea data-k="problemas" placeholder="Seja honesto — isso é o que mais nos ajuda."></textarea>
+    </div>
+
+    <div class="field">
+      <label>O que você quer manter / preservar <span class="opt">opcional</span></label>
+      <p class="help">Algum texto, conteúdo, seção ou elemento que funciona bem e não deve sumir.</p>
+      <textarea data-k="manter" placeholder=""></textarea>
+    </div>
+
+    <div class="field">
+      <label>Por que reestruturar agora? <span class="req">*</span></label>
+      <p class="help">O gatilho. Ex: vamos investir em tráfego pago, mudamos de posicionamento, perdemos clientes pelo site fraco.</p>
+      <textarea data-k="motivo_agora" placeholder=""></textarea>
+    </div>
+  </section>
+
+  <!-- ============ 3. OBJETIVOS ============ -->
+  <section class="block" id="s3">
+    <div class="block-head"><span class="num">03</span><h2>Objetivo — o que sucesso significa</h2></div>
+    <p class="block-sub">Site bonito não é meta. Precisamos saber o que ele tem que <em>fazer acontecer</em>.</p>
+
+    <div class="field">
+      <label>Qual é o objetivo nº 1 do projeto? <span class="req">*</span></label>
+      <div class="checkgrid">
+        <label class="check"><input type="checkbox" data-k="obj_autoridade"><span>Passar autoridade<small>parecer maior e mais sólido</small></span></label>
+        <label class="check"><input type="checkbox" data-k="obj_leads"><span>Gerar contatos / orçamentos<small>captação ativa</small></span></label>
+        <label class="check"><input type="checkbox" data-k="obj_vendas"><span>Vender online<small>e-commerce / checkout</small></span></label>
+        <label class="check"><input type="checkbox" data-k="obj_recrutar"><span>Atrair candidatos / parceiros</span></label>
+        <label class="check"><input type="checkbox" data-k="obj_suporte"><span>Apoiar a venda do time comercial</span></label>
+        <label class="check"><input type="checkbox" data-k="obj_seo"><span>Aparecer no Google</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Daqui a 6 meses, o que faria você dizer “valeu a pena”? <span class="req">*</span></label>
+      <p class="help">Se der, em número. Ex: “20 orçamentos qualificados por mês pelo site.”</p>
+      <textarea data-k="sucesso_6m" placeholder=""></textarea>
+    </div>
+
+    <div class="field">
+      <label>Você já mede algo hoje? <span class="opt">opcional</span></label>
+      <p class="help">Tem Google Analytics, pixel, CRM? Quantos contatos o site gera hoje, se souber.</p>
+      <textarea data-k="metricas_hoje" placeholder=""></textarea>
+    </div>
+  </section>
+
+  <!-- ============ 4. SITE INSTITUCIONAL ============ -->
+  <section class="block" id="s4">
+    <div class="block-head"><span class="num">04</span><h2>Escopo — site institucional</h2></div>
+    <p class="block-sub">As páginas e recursos do site principal.</p>
+
+    <div class="field">
+      <label>Páginas que o site precisa ter <span class="req">*</span></label>
+      <div class="checkgrid">
+        <label class="check"><input type="checkbox" data-k="pg_home" checked><span>Home</span></label>
+        <label class="check"><input type="checkbox" data-k="pg_sobre" checked><span>Sobre / Quem somos</span></label>
+        <label class="check"><input type="checkbox" data-k="pg_servicos" checked><span>Serviços / Soluções</span></label>
+        <label class="check"><input type="checkbox" data-k="pg_cases"><span>Cases / Portfólio</span></label>
+        <label class="check"><input type="checkbox" data-k="pg_depo"><span>Depoimentos / Clientes</span></label>
+        <label class="check"><input type="checkbox" data-k="pg_blog"><span>Blog / Conteúdo</span></label>
+        <label class="check"><input type="checkbox" data-k="pg_faq"><span>FAQ / Perguntas frequentes</span></label>
+        <label class="check"><input type="checkbox" data-k="pg_contato" checked><span>Contato</span></label>
+        <label class="check"><input type="checkbox" data-k="pg_equipe"><span>Equipe / Time</span></label>
+        <label class="check"><input type="checkbox" data-k="pg_loja"><span>Loja / Catálogo</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Outras páginas ou seções específicas</label>
+      <input type="text" data-k="pg_outras" placeholder="Ex: Área do cliente, Trabalhe conosco, Certificações">
+    </div>
+
+    <div class="field">
+      <label>Funcionalidades necessárias</label>
+      <div class="checkgrid">
+        <label class="check"><input type="checkbox" data-k="fn_whats" checked><span>Botão de WhatsApp</span></label>
+        <label class="check"><input type="checkbox" data-k="fn_form" checked><span>Formulário de contato</span></label>
+        <label class="check"><input type="checkbox" data-k="fn_mapa"><span>Mapa / localização</span></label>
+        <label class="check"><input type="checkbox" data-k="fn_multi"><span>Site em outro idioma</span></label>
+        <label class="check"><input type="checkbox" data-k="fn_area"><span>Área restrita / login</span></label>
+        <label class="check"><input type="checkbox" data-k="fn_agenda"><span>Agendamento online</span></label>
+        <label class="check"><input type="checkbox" data-k="fn_chat"><span>Chat / atendimento</span></label>
+        <label class="check"><input type="checkbox" data-k="fn_pix"><span>Pagamento / checkout</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>3 sites que você admira <span class="req">*</span></label>
+      <p class="help">Não precisa ser do seu setor. Diga o link <b>e o que você gosta nele</b> (o visual? a organização? o jeito de falar?).</p>
+      <textarea data-k="referencias" placeholder="1. site.com — gosto de...&#10;2.&#10;3."></textarea>
+    </div>
+
+    <div class="field">
+      <label>Algo que você NÃO quer de jeito nenhum <span class="opt">opcional</span></label>
+      <input type="text" data-k="nao_quer" placeholder="Ex: carrossel animado, fundo escuro, muito texto">
+    </div>
+  </section>
+
+  <!-- ============ 5. LANDING PAGE ============ -->
+  <section class="block" id="s5">
+    <div class="block-head"><span class="num">05</span><h2>Escopo — landing page</h2></div>
+    <p class="block-sub">A landing page é diferente do site: ela tem <b>um único objetivo</b> e geralmente recebe tráfego pago. Quanto mais focada, mais converte.</p>
+
+    <div class="field">
+      <label>Qual a ação única que a LP deve gerar? <span class="req">*</span></label>
+      <p class="help">Uma só. Ex: preencher formulário de orçamento, agendar avaliação, baixar material, comprar.</p>
+      <input type="text" data-k="lp_acao" placeholder="">
+    </div>
+
+    <div class="field">
+      <label>Para qual oferta / campanha?</label>
+      <p class="help">O que essa página está oferecendo e pra quem ela vai aparecer (anúncio, e-mail, link da bio...).</p>
+      <textarea data-k="lp_oferta" placeholder=""></textarea>
+    </div>
+
+    <div class="field">
+      <label>O que precisa ter na página</label>
+      <div class="checkgrid">
+        <label class="check"><input type="checkbox" data-k="lp_form" checked><span>Formulário de captura</span></label>
+        <label class="check"><input type="checkbox" data-k="lp_whats" checked><span>WhatsApp direto</span></label>
+        <label class="check"><input type="checkbox" data-k="lp_video"><span>Vídeo</span></label>
+        <label class="check"><input type="checkbox" data-k="lp_prova"><span>Depoimentos / prova social</span></label>
+        <label class="check"><input type="checkbox" data-k="lp_faq"><span>Perguntas frequentes</span></label>
+        <label class="check"><input type="checkbox" data-k="lp_preco"><span>Tabela de preços / planos</span></label>
+        <label class="check"><input type="checkbox" data-k="lp_garantia"><span>Garantia / selo de confiança</span></label>
+        <label class="check"><input type="checkbox" data-k="lp_contador"><span>Contador / urgência</span></label>
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Vai rodar tráfego pago nessa LP? <span class="opt">importante</span></label>
+      <p class="help">Se sim, precisamos instalar pixel/tags de medição — diz qual canal.</p>
+      <div class="checkgrid">
+        <label class="check"><input type="checkbox" data-k="lp_meta"><span>Meta Ads (Instagram/Facebook)</span></label>
+        <label class="check"><input type="checkbox" data-k="lp_google"><span>Google Ads</span></label>
+        <label class="check"><input type="checkbox" data-k="lp_organico"><span>Só orgânico / sem ads</span></label>
+        <label class="check"><input type="checkbox" data-k="lp_naosei"><span>Ainda não sei</span></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 6. IDENTIDADE VISUAL ============ -->
+  <section class="block" id="s6">
+    <div class="block-head"><span class="num">06</span><h2>Identidade visual</h2></div>
+    <p class="block-sub">Pra sabermos se trabalhamos com o que existe ou se há espaço pra evoluir.</p>
+
+    <div class="field">
+      <label>Vocês têm manual de marca / logo em vetor? <span class="req">*</span></label>
+      <div class="checkgrid">
+        <label class="check"><input type="checkbox" data-k="iv_manual"><span>Sim, manual de marca completo</span></label>
+        <label class="check"><input type="checkbox" data-k="iv_logo"><span>Só o logo (sem manual)</span></label>
+        <label class="check"><input type="checkbox" data-k="iv_nada"><span>Não temos / está desatualizado</span></label>
+        <label class="check"><input type="checkbox" data-k="iv_refazer"><span>Queremos refazer a identidade</span></label>
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="field">
+        <label>Cores da marca</label>
+        <input type="text" data-k="iv_cores" placeholder="Ex: azul-marinho e dourado">
+      </div>
+      <div class="field">
+        <label>Onde estão os arquivos da marca</label>
+        <input type="text" data-k="iv_arquivos" placeholder="Link do Drive / “envio depois”">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 7. CONTEÚDO — RACI ============ -->
+  <section class="block" id="s7">
+    <div class="block-head"><span class="num">07</span><h2>Conteúdo — quem entrega o quê</h2></div>
+    <p class="block-sub">Esta é a parte que mais trava projetos. Site não anda sem material. Marque quem fica responsável por cada item — e seja realista.</p>
+
+    <table class="raci">
+      <thead><tr><th>Material</th><th>Responsável</th><th>Quando fica pronto</th></tr></thead>
+      <tbody>
+        <tr><td>Textos das páginas</td>
+          <td><select data-k="raci_textos"><option value="">—</option><option>Cliente fornece</option><option>Meio escreve</option><option>Fazemos juntos</option></select></td>
+          <td><input type="text" data-k="prazo_textos" placeholder="data / “já tenho”"></td></tr>
+        <tr><td>Fotos da empresa / equipe / obra</td>
+          <td><select data-k="raci_fotos"><option value="">—</option><option>Cliente fornece</option><option>Meio produz</option><option>Banco de imagens</option></select></td>
+          <td><input type="text" data-k="prazo_fotos" placeholder=""></td></tr>
+        <tr><td>Logo em vetor (.ai/.svg/.pdf)</td>
+          <td><select data-k="raci_logo"><option value="">—</option><option>Cliente fornece</option><option>Meio recria</option></select></td>
+          <td><input type="text" data-k="prazo_logo" placeholder=""></td></tr>
+        <tr><td>Depoimentos de clientes</td>
+          <td><select data-k="raci_depo"><option value="">—</option><option>Cliente fornece</option><option>Meio coleta</option><option>Não teremos</option></select></td>
+          <td><input type="text" data-k="prazo_depo" placeholder=""></td></tr>
+        <tr><td>Vídeos</td>
+          <td><select data-k="raci_video"><option value="">—</option><option>Cliente fornece</option><option>Meio produz</option><option>Não teremos</option></select></td>
+          <td><input type="text" data-k="prazo_video" placeholder=""></td></tr>
+        <tr><td>Lista de serviços / produtos</td>
+          <td><select data-k="raci_lista"><option value="">—</option><option>Cliente fornece</option><option>Fazemos juntos</option></select></td>
+          <td><input type="text" data-k="prazo_lista" placeholder=""></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- ============ 8. TÉCNICO ============ -->
+  <section class="block" id="s8">
+    <div class="block-head"><span class="num">08</span><h2>Acessos técnicos</h2></div>
+    <p class="block-sub">Não precisa preencher tudo agora — mas saber o que existe evita surpresa no fim.</p>
+
+    <div class="grid2">
+      <div class="field">
+        <label>Domínio (endereço do site)</label>
+        <p class="help">Vocês têm acesso a onde o domínio foi registrado (Registro.br, GoDaddy)?</p>
+        <input type="text" data-k="tec_dominio" placeholder="Tenho acesso / não sei quem tem">
+      </div>
+      <div class="field">
+        <label>Hospedagem atual</label>
+        <input type="text" data-k="tec_host" placeholder="Onde o site está hoje, se souber">
+      </div>
+    </div>
+
+    <div class="grid2">
+      <div class="field">
+        <label>E-mails profissionais (@suaempresa)</label>
+        <input type="text" data-k="tec_email" placeholder="Já temos / queremos criar">
+      </div>
+      <div class="field">
+        <label>Sistemas a integrar</label>
+        <input type="text" data-k="tec_integra" placeholder="CRM, ERP, RD Station...">
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 9. PRAZO E INVESTIMENTO ============ -->
+  <section class="block" id="s9">
+    <div class="block-head"><span class="num">09</span><h2>Prazo e investimento</h2></div>
+    <p class="block-sub">Pra calibrar o escopo ao que é possível.</p>
+
+    <div class="grid2">
+      <div class="field">
+        <label>Prazo desejado</label>
+        <p class="help">Tem alguma data-limite? (evento, campanha, virada de ano)</p>
+        <input type="text" data-k="prazo_desejado" placeholder="Ex: até 30/08 por causa de campanha">
+      </div>
+      <div class="field">
+        <label>Faixa de investimento prevista <span class="opt">opcional</span></label>
+        <p class="help">Saber a faixa ajuda a desenhar a melhor solução — não “puxar o preço”.</p>
+        <input type="text" data-k="orcamento" placeholder="Faixa estimada">
+      </div>
+    </div>
+
+    <div class="field">
+      <label>Quem aprova as entregas? <span class="req">*</span></label>
+      <p class="help">Quem dá a palavra final. Se for mais de uma pessoa, liste todas — alinhamento aqui evita idas e vindas.</p>
+      <input type="text" data-k="aprovador" placeholder="Nome e cargo de quem aprova">
+    </div>
+  </section>
+
+  <!-- ============ 10. EXPECTATIVAS (THE CORE) ============ -->
+  <section class="block expect" id="s10">
+    <div class="block-head"><span class="num">10</span><h2>O que esperar — alinhamento honesto</h2></div>
+    <p class="block-sub">Pra não haver surpresa, deixamos claro como o projeto funciona de verdade. Leia com atenção.</p>
+
+    <ul class="expect-list">
+      <li><span class="ic">→</span><div><b>O site é uma ferramenta, não um milagre.</b><p>Um ótimo site aumenta confiança e conversão — mas sozinho ele não traz visitantes. Tráfego vem de Google, anúncios, redes e indicação. Site + distribuição é que geram resultado.</p></div></li>
+      <li><span class="ic">→</span><div><b>Prazo depende do seu material.</b><p>O cronograma começa a contar quando o conteúdo do bloco 07 chega. Atraso de textos, fotos ou aprovação empurra a entrega na mesma proporção — sem exceção.</p></div></li>
+      <li><span class="ic">→</span><div><b>Trabalhamos com rodadas de ajuste definidas.</b><p>Cada entrega tem um número combinado de rodadas de revisão. Mudanças de rumo depois do escopo fechado (novas páginas, nova identidade) são tratadas como aditivo, não como “ajuste”.</p></div></li>
+      <li><span class="ic">→</span><div><b>Escopo fechado é o que protege seu prazo e seu orçamento.</b><p>Tudo que está marcado neste briefing é o combinado. Pedidos novos são bem-vindos — entram como nova fase, com prazo e valor próprios.</p></div></li>
+      <li><span class="ic">→</span><div><b>Resultado de conversão se mede com o tempo.</b><p>Depois do site no ar, otimizamos com base em dados reais. Os primeiros números aparecem em semanas, não no dia do lançamento.</p></div></li>
+      <li><span class="ic">→</span><div><b>Aprovação centralizada acelera tudo.</b><p>Quanto menos pessoas no caminho da aprovação, mais rápido o projeto anda. Definir um aprovador final (bloco 09) é o maior acelerador que existe.</p></div></li>
+    </ul>
+
+    <div class="ack">
+      <input type="checkbox" data-k="ack_li" id="ack">
+      <label for="ack">Li e entendi como o projeto funciona. Estou de acordo em fornecer o material no prazo e em respeitar o escopo combinado pra que a entrega aconteça no tempo previsto.</label>
+    </div>
+
+    <div class="field" style="margin-top:22px">
+      <label>Ficou alguma dúvida ou expectativa que não foi contemplada?</label>
+      <textarea data-k="duvidas" placeholder="Escreva aqui qualquer coisa que ficou na cabeça."></textarea>
+    </div>
+  </section>
+
+  <!-- ============ CLOSING ============ -->
+  <div class="closing">
+    <h2>Último passo — salvar e enviar</h2>
+    <p>Pra fecharmos a proposta, precisamos do seu briefing preenchido. São dois cliques:</p>
+    <ol class="send-steps">
+      <li><b>Clique em “Salvar como PDF”</b> abaixo e guarde o arquivo.</li>
+      <li><b>Envie o PDF</b> para <a href="mailto:henrique@meiocomunica.com.br?subject=Briefing%20de%20reestrutura%C3%A7%C3%A3o%20de%20site">henrique@meiocomunica.com.br</a> (ou pelo WhatsApp da Meio).</li>
+    </ol>
+    <div class="actions">
+      <button class="btn btn-primary" onclick="window.print()">🖨️ Salvar como PDF</button>
+      <a class="btn btn-ghost" href="mailto:henrique@meiocomunica.com.br?subject=Briefing%20de%20reestrutura%C3%A7%C3%A3o%20de%20site&amp;body=Ol%C3%A1%2C%20segue%20em%20anexo%20o%20briefing%20preenchido.">✉️ Abrir e-mail para enviar</a>
+    </div>
+    <p style="margin-top:14px;font-size:13.5px;color:var(--ink-faint)">Não consegue salvar em PDF? Clique em <b>“Copiar respostas”</b> e cole no e-mail ou WhatsApp. <a href="#" onclick="copyResumo();return false;" style="color:var(--gold)">Copiar respostas</a></p>
+  </div>
+
+  <footer class="legal">
+    Meio Comunica · <a href="mailto:henrique@meiocomunica.com.br">henrique@meiocomunica.com.br</a> · Briefing de reestruturação de site institucional + landing page
+  </footer>
+</div>
+
+<!-- floating save bar -->
+<div class="savebar">
+  <span>Suas respostas ficam salvas neste navegador</span>
+  <span class="saved" id="savedMsg">✓ salvo</span>
+  <button class="b-print" onclick="window.print()">Salvar PDF</button>
+  <button class="b-clear" onclick="limpar()">Limpar</button>
+</div>
+
+<script>
+  const KEY = 'meio_briefing_site_lp_v1';
+  const fields = document.querySelectorAll('[data-k]');
+
+  function load(){
+    let data = {};
+    try{ data = JSON.parse(localStorage.getItem(KEY) || '{}'); }catch(e){}
+    fields.forEach(f=>{
+      const k = f.dataset.k;
+      if(!(k in data)) return;
+      if(f.type === 'checkbox') f.checked = data[k];
+      else f.value = data[k];
+    });
+  }
+  let t;
+  function save(){
+    const data = {};
+    fields.forEach(f=>{ data[f.dataset.k] = f.type==='checkbox' ? f.checked : f.value; });
+    localStorage.setItem(KEY, JSON.stringify(data));
+    const m = document.getElementById('savedMsg');
+    m.style.opacity = 1; clearTimeout(t); t = setTimeout(()=> m.style.opacity = 0, 1200);
+  }
+  fields.forEach(f=> f.addEventListener('input', save));
+
+  function limpar(){
+    if(confirm('Apagar todas as respostas deste briefing? Não dá pra desfazer.')){
+      localStorage.removeItem(KEY);
+      fields.forEach(f=>{ if(f.type==='checkbox') f.checked = f.hasAttribute('checked'); else f.value=''; });
+    }
+  }
+
+  function copyResumo(){
+    let out = 'BRIEFING — REESTRUTURAÇÃO SITE + LP · MEIO COMUNICA\n\n';
+    document.querySelectorAll('section.block, header.cover').forEach(sec=>{
+      const h = sec.querySelector('h1,h2');
+      if(h) out += '\n## ' + h.textContent.trim() + '\n';
+      sec.querySelectorAll('.field, .meta-field, .ack').forEach(fld=>{
+        const lab = fld.querySelector('label');
+        const inputs = fld.querySelectorAll('[data-k]');
+        let vals = [];
+        inputs.forEach(i=>{
+          if(i.type==='checkbox'){ if(i.checked){ const s=i.closest('.check')||i.closest('.ack'); vals.push((s?s.textContent:'sim').trim().replace(/\s+/g,' ')); } }
+          else if(i.value.trim()) vals.push(i.value.trim());
+        });
+        if(lab && vals.length) out += '- ' + lab.textContent.replace('*','').trim() + ': ' + vals.join(' | ') + '\n';
+      });
+    });
+    navigator.clipboard.writeText(out).then(()=> alert('Respostas copiadas! Cole no e-mail ou WhatsApp.'),()=> alert('Não consegui copiar — use o botão Salvar PDF.'));
+  }
+
+  load();
+</script>
+</body>
+</html>
