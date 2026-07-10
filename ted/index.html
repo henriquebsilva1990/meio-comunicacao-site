@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TED Equipamentos — Propostas de Site · Meio Comunicação</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Spectral:ital,wght@0,300;0,400;0,500;0,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul-vivo:#00A0E1; --azul-vivo-2:#0085BE; --azul-profundo:#0C3A5B; --azul-profundo-2:#0A2C45;
+    --branco:#fff; --tinta:#15222E; --tinta-suave:#5A6B78; --gelo:#F4F8FB; --linha:#DCE7EF; --azul-lav:#EAF6FD;
+    --ok:#3aa76d; --ok-bg:#e7f7ee; --mid:#c9922e; --mid-bg:#fbf3e2; --no:#cf5a5a; --no-bg:#fbeaea;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Spectral',Georgia,serif;color:var(--tinta);background:var(--gelo);line-height:1.65;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,h4,.serif{font-family:'Fraunces',Georgia,serif;}
+  a{color:inherit;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 24px;}
+  .eyebrow{font-family:'Spectral';font-size:12.5px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:#7fd0f4;}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:'Spectral';font-weight:600;font-size:15px;padding:13px 24px;border-radius:9px;transition:.18s;cursor:pointer;border:1.5px solid transparent;text-decoration:none;}
+  .btn-primary{background:var(--azul-vivo);color:#fff;}
+  .btn-primary:hover{background:var(--azul-vivo-2);transform:translateY(-1px);}
+
+  /* HEADER */
+  .top{background:radial-gradient(1000px 420px at 82% -10%,rgba(0,160,225,.32),transparent 60%),linear-gradient(160deg,var(--azul-profundo),var(--azul-profundo-2));color:#fff;padding:64px 0 58px;}
+  .top .brand{font-family:'Fraunces';font-weight:700;font-style:italic;font-size:24px;color:var(--azul-vivo);letter-spacing:-1px;}
+  .top .brand small{font-family:'Spectral';font-style:normal;font-weight:500;font-size:11px;letter-spacing:2px;color:#9fc2d8;text-transform:uppercase;display:inline-block;margin-left:8px;}
+  .top h1{font-size:44px;font-weight:600;letter-spacing:-1px;line-height:1.1;margin:26px 0 14px;max-width:760px;}
+  .top h1 em{font-style:italic;color:#7fd0f4;}
+  .top p{font-size:17px;color:#c5dcec;font-weight:300;max-width:600px;}
+  .top .meta{margin-top:28px;display:flex;gap:28px;flex-wrap:wrap;font-size:13px;color:#9fc2d8;border-top:1px solid rgba(255,255,255,.14);padding-top:22px;}
+  .top .meta b{color:#fff;font-family:'Fraunces';font-weight:500;}
+
+  section{padding:56px 0;}
+  .sec-lead{max-width:640px;margin-bottom:36px;}
+  .sec-lead .k{font-family:'Spectral';font-size:12.5px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--azul-vivo-2);}
+  .sec-lead h2{font-size:32px;font-weight:600;letter-spacing:-.6px;color:var(--azul-profundo);margin:8px 0 10px;}
+  .sec-lead p{font-size:16px;color:var(--tinta-suave);font-weight:300;}
+
+  /* CONCEITOS */
+  .concepts{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .concept{background:#fff;border:1px solid var(--linha);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;transition:.2s;}
+  .concept:hover{box-shadow:0 16px 40px rgba(12,58,91,.13);transform:translateY(-4px);}
+  .concept .thumb{height:170px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:18px;color:#fff;}
+  .thumb-a{background:linear-gradient(160deg,rgba(10,44,69,.5),rgba(12,58,91,.85)),url('https://images.unsplash.com/photo-1516467508483-a7212febe31a?q=80&w=800&auto=format&fit=crop');background-size:cover;background-position:center;}
+  .thumb-b{background:linear-gradient(160deg,rgba(10,44,69,.4),rgba(12,58,91,.8)),url('https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=800&auto=format&fit=crop');background-size:cover;background-position:center;}
+  .thumb-c{background:linear-gradient(150deg,var(--azul-vivo),var(--azul-profundo));}
+  .concept .thumb .lb{font-family:'Fraunces';font-weight:600;font-size:20px;}
+  .concept .num{position:absolute;top:14px;left:16px;font-family:'Fraunces';font-style:italic;font-size:15px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.25);width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;}
+  .concept .bd{padding:22px 22px 24px;display:flex;flex-direction:column;flex:1;}
+  .concept .bd h3{font-size:20px;font-weight:600;color:var(--azul-profundo);margin-bottom:6px;}
+  .concept .tagline{font-family:'Spectral';font-size:12px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--azul-vivo-2);margin-bottom:10px;}
+  .concept .bd p{font-size:14px;color:var(--tinta-suave);margin-bottom:18px;flex:1;}
+  .concept .bd .btn{width:100%;justify-content:center;}
+  @media(max-width:840px){.concepts{grid-template-columns:1fr;}}
+
+  /* SITEMAP */
+  .map-wrap{background:#fff;border:1px solid var(--linha);border-radius:18px;padding:14px;}
+  .map{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:2px;}
+  .map-col{padding:24px 22px;}
+  .map-col:not(:last-child){border-right:1px solid var(--linha);}
+  .map-col .pg{display:flex;align-items:center;gap:9px;font-family:'Fraunces';font-size:17px;font-weight:600;color:var(--azul-profundo);margin-bottom:12px;}
+  .map-col .pg .dot{width:9px;height:9px;border-radius:50%;background:var(--azul-vivo);flex-shrink:0;}
+  .map-col ul{list-style:none;}
+  .map-col li{font-size:13.5px;color:var(--tinta-suave);padding:5px 0 5px 18px;position:relative;}
+  .map-col li::before{content:"";position:absolute;left:0;top:12px;width:9px;height:1px;background:var(--linha);}
+  .map-col .badge{display:inline-block;font-size:10.5px;font-weight:600;letter-spacing:.5px;color:var(--azul-vivo-2);background:#EAF6FD;border:1px solid #cfeaf8;border-radius:20px;padding:1px 9px;margin-left:6px;}
+  @media(max-width:760px){.map-col{border-right:none !important;border-bottom:1px solid var(--linha);}}
+
+  /* NOTA */
+  .note{margin-top:30px;background:#FFFBEB;border:1px solid #FAD56E;border-radius:12px;padding:20px 24px;}
+  .note h4{font-family:'Fraunces';font-size:16px;color:#8a6d1f;margin-bottom:8px;}
+  .note ul{margin:0;padding-left:18px;}
+  .note li{font-size:13.5px;color:#8a6d1f;margin-bottom:4px;}
+
+  /* FEEDBACK */
+  .fb-sec{background:linear-gradient(160deg,var(--azul-profundo),var(--azul-profundo-2));color:#fff;}
+  .fb-sec .sec-lead h2{color:#fff;}
+  .fb-sec .sec-lead p{color:#c5dcec;}
+  .fb-sec .sec-lead .k{color:#7fd0f4;}
+  .fb{background:#fff;border-radius:20px;padding:38px 36px;color:var(--tinta);box-shadow:0 20px 50px rgba(10,44,69,.28);}
+  .fb .field{margin-bottom:28px;}
+  .fb .q{display:block;font-family:'Fraunces';font-size:19px;font-weight:600;color:var(--azul-profundo);margin-bottom:6px;}
+  .fb .qhint{font-size:13.5px;color:var(--tinta-suave);margin-bottom:14px;}
+  .fb .two{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .fb input[type=text],.fb textarea{width:100%;border:1.5px solid var(--linha);border-radius:11px;padding:13px 15px;font-family:'Spectral';font-size:15px;color:var(--tinta);background:var(--gelo);transition:.15s;}
+  .fb input[type=text]:focus,.fb textarea:focus{outline:none;border-color:var(--azul-vivo);background:#fff;}
+  .fb textarea{resize:vertical;min-height:96px;line-height:1.55;}
+  .fb .choices{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+  .choice input{position:absolute;opacity:0;pointer-events:none;}
+  .choice label{display:flex;flex-direction:column;gap:3px;text-align:center;padding:15px 10px;border:1.5px solid var(--linha);border-radius:13px;cursor:pointer;font-family:'Spectral';font-weight:600;font-size:15px;color:var(--azul-profundo);transition:.15s;}
+  .choice label small{font-weight:400;font-size:12px;color:var(--tinta-suave);}
+  .choice label:hover{border-color:var(--azul-vivo);}
+  .choice input:checked+label{border-color:var(--azul-vivo);background:var(--azul-lav);box-shadow:0 0 0 3px rgba(0,160,225,.12);}
+  .choice input:checked+label small{color:var(--azul-vivo-2);}
+  .aspects{display:flex;flex-direction:column;gap:10px;}
+  .aspect{display:grid;grid-template-columns:1fr auto;gap:14px;align-items:center;padding:13px 16px;border:1px solid var(--linha);border-radius:12px;}
+  .aspect .an{font-family:'Spectral';font-size:15px;font-weight:500;color:var(--azul-profundo);}
+  .aspect .an small{display:block;font-weight:400;font-size:12.5px;color:var(--tinta-suave);}
+  .rate{display:flex;gap:7px;}
+  .rate button{width:44px;height:40px;border:1.5px solid var(--linha);border-radius:10px;background:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:.15s;color:var(--tinta-suave);}
+  .rate button svg{width:20px;height:20px;}
+  .rate button:hover{border-color:var(--azul-vivo-2);}
+  .rate button.sel[data-v="up"]{background:var(--ok-bg);border-color:var(--ok);color:var(--ok);}
+  .rate button.sel[data-v="mid"]{background:var(--mid-bg);border-color:var(--mid);color:var(--mid);}
+  .rate button.sel[data-v="down"]{background:var(--no-bg);border-color:var(--no);color:var(--no);}
+  .fb .actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:6px;}
+  .fb .btn-pdf{background:var(--azul-vivo);color:#fff;}
+  .fb .btn-pdf:hover{background:var(--azul-vivo-2);}
+  .fb .btn-copy{background:#fff;color:var(--azul-profundo);border-color:var(--linha);}
+  .fb .btn-copy:hover{border-color:var(--azul-vivo);}
+  .fb .savenote{font-size:12.5px;color:var(--tinta-suave);margin-left:auto;display:flex;align-items:center;gap:6px;}
+  .fb .savenote b{color:var(--ok);}
+  @media(max-width:640px){.fb .choices{grid-template-columns:1fr 1fr;}.fb .two{grid-template-columns:1fr;}.aspect{grid-template-columns:1fr;}.rate{margin-top:4px;}}
+
+  /* PRINT — só o resumo do feedback vira PDF */
+  #print-view{display:none;}
+  @media print{
+    body{background:#fff;}
+    body>*{display:none !important;}
+    #print-view{display:block !important;padding:0;color:#111;font-family:'Spectral',Georgia,serif;}
+    #print-view h1{font-family:'Fraunces';font-size:24px;color:var(--azul-profundo);margin-bottom:2px;}
+    #print-view .pmeta{font-size:12px;color:#555;margin-bottom:18px;border-bottom:2px solid var(--azul-vivo);padding-bottom:12px;}
+    #print-view h2{font-family:'Fraunces';font-size:15px;color:var(--azul-profundo);margin:18px 0 8px;}
+    #print-view .prow{display:flex;justify-content:space-between;border-bottom:1px solid #e5e5e5;padding:7px 0;font-size:13.5px;}
+    #print-view .prow b{font-weight:600;}
+    #print-view .pchip{font-weight:600;}
+    #print-view .ptext{font-size:13.5px;white-space:pre-wrap;background:#f6f9fc;border:1px solid #e5e5e5;border-radius:8px;padding:10px 12px;margin-top:4px;min-height:24px;}
+    #print-view .ppref{font-family:'Fraunces';font-size:19px;color:var(--azul-vivo-2);font-weight:600;}
+  }
+  footer{background:var(--azul-profundo-2);color:#9fc0d6;padding:34px 0;text-align:center;font-size:13px;margin-top:20px;}
+  footer b{color:#fff;font-family:'Fraunces';}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">TED<small>Equipamentos para Reprodução</small></div>
+    <div class="eyebrow" style="margin-top:26px;">Proposta de site institucional · Apresentação de conceitos</div>
+    <h1>Três caminhos para o novo site da <em>TED</em>.</h1>
+    <p>Todos partem da mesma identidade — azul e branco, tipografia serifada, tom técnico e próximo — e mudam a forma de contar a história. Escolha o que mais representa a TED e seguimos com ele.</p>
+    <div class="meta">
+      <div><b>Cliente:</b> TED Equipamentos · Cravinhos, SP</div>
+      <div><b>Agência:</b> Meio Comunicação</div>
+      <div><b>Data:</b> Julho 2026 · v1</div>
+    </div>
+  </div>
+</header>
+
+<!-- CONCEITOS -->
+<section>
+  <div class="wrap">
+    <div class="sec-lead">
+      <span class="k">Escolha um conceito</span>
+      <h2>Os 3 modelos de home</h2>
+      <p>Clique em cada um para navegar a página inteira. São protótipos reais e responsivos — funcionam no celular também.</p>
+    </div>
+    <div class="concepts">
+      <div class="concept">
+        <div class="thumb thumb-a"><span class="num">A</span><span class="lb">Institucional</span></div>
+        <div class="bd">
+          <div class="tagline">Autoridade · Clássico</div>
+          <h3>Sólido e confiável</h3>
+          <p>Abertura com foto de campo e peso de marca. Transmite permanência e seriedade — a TED como referência estabelecida do setor.</p>
+          <a class="btn btn-primary" href="conceito-A-institucional.html">Ver conceito A →</a>
+        </div>
+      </div>
+      <div class="concept">
+        <div class="thumb thumb-b"><span class="num">B</span><span class="lb">Editorial</span></div>
+        <div class="bd">
+          <div class="tagline">Técnico · Científico</div>
+          <h3>Moderno e técnico</h3>
+          <p>Layout de revista científica, com o dado do "coração da pecuária" em destaque. Fala com o veterinário pelo domínio técnico.</p>
+          <a class="btn btn-primary" href="conceito-B-editorial.html">Ver conceito B →</a>
+        </div>
+      </div>
+      <div class="concept">
+        <div class="thumb thumb-c"><span class="num">C</span><span class="lb">Direto</span></div>
+        <div class="bd">
+          <div class="tagline">Comercial · Objetivo</div>
+          <h3>Focado em ação</h3>
+          <p>Home limpa com caminho curto para a loja e o WhatsApp. Menos institucional, mais "encontre o produto e fale com a gente".</p>
+          <a class="btn btn-primary" href="conceito-C-direto.html">Ver conceito C →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SITEMAP -->
+<section style="padding-top:8px;">
+  <div class="wrap">
+    <div class="sec-lead">
+      <span class="k">Estrutura do site</span>
+      <h2>Mapa das páginas e seções</h2>
+      <p>O site não é uma página só. Independentemente do conceito escolhido, esta é a estrutura completa que será construída — com menu no topo e blog para conteúdo.</p>
+    </div>
+    <div class="map-wrap"><div class="map">
+      <div class="map-col">
+        <div class="pg"><span class="dot"></span>Início</div>
+        <ul>
+          <li>Hero + posicionamento</li>
+          <li>Barra de confiança (números)</li>
+          <li>Áreas de atuação</li>
+          <li>Quem é a TED</li>
+          <li>Parceria IMV</li>
+          <li>Diferenciais</li>
+          <li>Blog em destaque</li>
+          <li>Chamada final + rodapé</li>
+        </ul>
+      </div>
+      <div class="map-col">
+        <div class="pg"><span class="dot"></span>Sobre</div>
+        <ul>
+          <li>História (desde 2014)</li>
+          <li>Fabricação própria</li>
+          <li>Equipe e estrutura</li>
+          <li>Propósito e valores</li>
+        </ul>
+        <div class="pg" style="margin-top:22px;"><span class="dot"></span>Produtos</div>
+        <ul>
+          <li>Aspiração Folicular <span class="badge">OPU</span></li>
+          <li>Fertilização in Vitro <span class="badge">FIV</span></li>
+          <li>Transferência de Embriões <span class="badge">TE</span></li>
+          <li>Inseminação Artificial <span class="badge">IA</span></li>
+          <li>Peças & Acessórios</li>
+          <li>→ Compra na loja online</li>
+        </ul>
+      </div>
+      <div class="map-col">
+        <div class="pg"><span class="dot"></span>Blog</div>
+        <ul>
+          <li>Índice de artigos</li>
+          <li>Guias técnicos (OPU, FIV)</li>
+          <li>Boas práticas e checklists</li>
+          <li>Conteúdo de mercado</li>
+          <li>Página de cada artigo</li>
+        </ul>
+        <div class="pg" style="margin-top:22px;"><span class="dot"></span>IMV Technologies</div>
+        <ul>
+          <li>Parceria oficial no Brasil</li>
+          <li>Linha de produtos IMV</li>
+        </ul>
+        <div class="pg" style="margin-top:22px;"><span class="dot"></span>Contato</div>
+        <ul>
+          <li>WhatsApp e telefone</li>
+          <li>Endereço · Cravinhos-SP</li>
+          <li>Redes sociais</li>
+        </ul>
+      </div>
+      <div class="map-col">
+        <div class="pg"><span class="dot"></span>Loja online</div>
+        <ul>
+          <li>Catálogo com preços</li>
+          <li>Checkout · 12x sem juros</li>
+          <li>Envio nacional</li>
+          <li><em>(loja atual, integrada por link)</em></li>
+        </ul>
+        <div class="pg" style="margin-top:22px;"><span class="dot"></span>Sempre visível</div>
+        <ul>
+          <li>Menu no topo (todas as páginas)</li>
+          <li>Botão de WhatsApp flutuante</li>
+          <li>Rodapé com mapa do site</li>
+        </ul>
+      </div>
+    </div></div>
+
+    <div class="note">
+      <h4>O que ainda é provisório nestes protótipos</h4>
+      <ul>
+        <li><b>Logo:</b> os modelos usam um "TED" provisório — a arte oficial da marca entra na versão final.</li>
+        <li><b>Fotos:</b> imagens de banco com filtro azul, no lugar das fotos reais da fábrica, equipe e equipamentos da TED.</li>
+        <li><b>Textos:</b> conteúdo de referência — a redação final é ajustada com a TED.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- FEEDBACK -->
+<section class="fb-sec" id="feedback">
+  <div class="wrap">
+    <div class="sec-lead">
+      <span class="k">Sua opinião</span>
+      <h2>Conte o que você achou</h2>
+      <p>Marque e escreva abaixo — vai salvando sozinho enquanto você preenche. No fim, clique em <b>“Salvar feedback em PDF”</b> e nos envie o arquivo, ou use “Copiar resumo”.</p>
+    </div>
+    <div class="fb">
+      <div class="field two">
+        <div><span class="q">Seu nome</span><input type="text" id="fb-nome" placeholder="Quem está avaliando"></div>
+        <div><span class="q">Empresa / cargo</span><input type="text" id="fb-empresa" placeholder="Opcional"></div>
+      </div>
+
+      <div class="field">
+        <span class="q">Qual conceito você prefere?</span>
+        <div class="qhint">O que mais representa a TED.</div>
+        <div class="choices">
+          <div class="choice"><input type="radio" name="pref" id="pref-a" value="A · Institucional"><label for="pref-a">Conceito A<small>Institucional</small></label></div>
+          <div class="choice"><input type="radio" name="pref" id="pref-b" value="B · Editorial"><label for="pref-b">Conceito B<small>Editorial</small></label></div>
+          <div class="choice"><input type="radio" name="pref" id="pref-c" value="C · Direto"><label for="pref-c">Conceito C<small>Direto</small></label></div>
+          <div class="choice"><input type="radio" name="pref" id="pref-d" value="Ainda em dúvida"><label for="pref-d">Em dúvida<small>misturar ideias</small></label></div>
+        </div>
+      </div>
+
+      <div class="field">
+        <span class="q">O que funcionou pra você?</span>
+        <div class="qhint">Marque em cada aspecto: gostei · mais ou menos · não curti.</div>
+        <div class="aspects" id="fb-aspects">
+          <div class="aspect" data-aspect="Layout e estrutura"><div class="an">Layout e estrutura<small>organização e hierarquia da página</small></div><div class="rate"></div></div>
+          <div class="aspect" data-aspect="Cores e visual"><div class="an">Cores e visual<small>azul e branco, tipografia serifada</small></div><div class="rate"></div></div>
+          <div class="aspect" data-aspect="Tom da comunicação"><div class="an">Tom da comunicação<small>textos e mensagens</small></div><div class="rate"></div></div>
+          <div class="aspect" data-aspect="Navegação e menu"><div class="an">Navegação e menu<small>facilidade de encontrar as coisas</small></div><div class="rate"></div></div>
+          <div class="aspect" data-aspect="Destaque dos produtos"><div class="an">Destaque dos produtos<small>categorias e caminho pra loja</small></div><div class="rate"></div></div>
+        </div>
+      </div>
+
+      <div class="field two">
+        <div><span class="q">O que você mais gostou?</span><textarea id="fb-gostou" placeholder="Pode ser específico: uma seção, uma frase, o visual…"></textarea></div>
+        <div><span class="q">O que você mudaria ou não gostou?</span><textarea id="fb-mudaria" placeholder="O que tirar, trocar ou incluir…"></textarea></div>
+      </div>
+
+      <div class="actions">
+        <button type="button" class="btn btn-pdf" id="fb-pdf">Salvar feedback em PDF</button>
+        <button type="button" class="btn btn-copy" id="fb-copy">Copiar resumo</button>
+        <span class="savenote" id="fb-save"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- resumo que vira PDF ao imprimir -->
+<div id="print-view"></div>
+
+<footer>
+  <div class="wrap">
+    <p><b>TED Equipamentos para Reprodução Animal</b> · Cravinhos, SP · Distribuidora oficial IMV Technologies</p>
+    <p style="margin-top:6px;color:#5d839e;">Proposta de site por Meio Comunicação · Julho 2026</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var KEY='ted-feedback-v1';
+  var LABELS={up:'Gostei',mid:'Mais ou menos',down:'Não curti'};
+  var ICONS={
+    up:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10v12"/><path d="M15 5.88 14 10h5.83a2 2 0 0 1 1.92 2.56l-2.33 8A2 2 0 0 1 17.5 22H4a2 2 0 0 1-2-2v-8a2 2 0 0 1 2-2h2.76a2 2 0 0 0 1.79-1.11L12 2a3.13 3.13 0 0 1 3 3.88Z"/></svg>',
+    mid:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14"/></svg>',
+    down:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 14V2"/><path d="M9 18.12 10 14H4.17a2 2 0 0 1-1.92-2.56l2.33-8A2 2 0 0 1 6.5 2H20a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-2.76a2 2 0 0 0-1.79 1.11L12 22a3.13 3.13 0 0 1-3-3.88Z"/></svg>'
+  };
+  var ORDER=['up','mid','down'];
+  var aspects=[].slice.call(document.querySelectorAll('#fb-aspects .aspect'));
+
+  // monta os 3 botões em cada aspecto
+  aspects.forEach(function(a){
+    var rate=a.querySelector('.rate');
+    ORDER.forEach(function(v){
+      var b=document.createElement('button');
+      b.type='button';b.className='rate-btn';b.setAttribute('data-v',v);
+      b.setAttribute('aria-label',LABELS[v]);b.title=LABELS[v];b.innerHTML=ICONS[v];
+      b.addEventListener('click',function(){
+        var already=b.classList.contains('sel');
+        rate.querySelectorAll('.rate-btn').forEach(function(x){x.classList.remove('sel');});
+        if(!already)b.classList.add('sel');
+        save();
+      });
+      rate.appendChild(b);
+    });
+  });
+
+  function state(){
+    var asp={};
+    aspects.forEach(function(a){
+      var sel=a.querySelector('.rate-btn.sel');
+      asp[a.getAttribute('data-aspect')]=sel?sel.getAttribute('data-v'):'';
+    });
+    var pref=document.querySelector('input[name=pref]:checked');
+    return {
+      nome:val('fb-nome'),empresa:val('fb-empresa'),
+      pref:pref?pref.value:'',aspects:asp,
+      gostou:val('fb-gostou'),mudaria:val('fb-mudaria')
+    };
+  }
+  function val(id){var e=document.getElementById(id);return e?e.value:'';}
+
+  function save(){
+    try{localStorage.setItem(KEY,JSON.stringify(state()));}catch(e){}
+    var n=document.getElementById('fb-save');
+    n.innerHTML='<b>✓</b> salvo automaticamente';
+  }
+  function restore(){
+    var raw;try{raw=localStorage.getItem(KEY);}catch(e){}
+    if(!raw)return;var s;try{s=JSON.parse(raw);}catch(e){return;}
+    if(s.nome)setv('fb-nome',s.nome);
+    if(s.empresa)setv('fb-empresa',s.empresa);
+    if(s.gostou)setv('fb-gostou',s.gostou);
+    if(s.mudaria)setv('fb-mudaria',s.mudaria);
+    if(s.pref){var r=document.querySelector('input[name=pref][value="'+s.pref+'"]');if(r)r.checked=true;}
+    if(s.aspects){aspects.forEach(function(a){
+      var v=s.aspects[a.getAttribute('data-aspect')];
+      if(v){var b=a.querySelector('.rate-btn[data-v="'+v+'"]');if(b)b.classList.add('sel');}
+    });}
+  }
+  function setv(id,v){var e=document.getElementById(id);if(e)e.value=v;}
+
+  ['fb-nome','fb-empresa','fb-gostou','fb-mudaria'].forEach(function(id){
+    var e=document.getElementById(id);if(e)e.addEventListener('input',save);
+  });
+  document.querySelectorAll('input[name=pref]').forEach(function(r){r.addEventListener('change',save);});
+
+  function fmtDate(){var d=new Date();function p(n){return(n<10?'0':'')+n;}return p(d.getDate())+'/'+p(d.getMonth()+1)+'/'+d.getFullYear();}
+
+  function buildPrint(){
+    var s=state();
+    var pv=document.getElementById('print-view');
+    var who=s.nome||'—';if(s.empresa)who+=' ('+s.empresa+')';
+    var rows='';aspects.forEach(function(a){
+      var k=a.getAttribute('data-aspect');var v=s.aspects[k];
+      rows+='<div class="prow"><b>'+k+'</b><span class="pchip">'+(v?LABELS[v]:'—')+'</span></div>';
+    });
+    pv.innerHTML=
+      '<h1>Feedback — Site TED Equipamentos</h1>'+
+      '<div class="pmeta">Avaliado por: '+esc(who)+' &nbsp;·&nbsp; Data: '+fmtDate()+'</div>'+
+      '<h2>Conceito preferido</h2><div class="ppref">'+esc(s.pref||'Não indicado')+'</div>'+
+      '<h2>Avaliação por aspecto</h2>'+rows+
+      '<h2>O que mais gostou</h2><div class="ptext">'+esc(s.gostou||'—')+'</div>'+
+      '<h2>O que mudaria / não gostou</h2><div class="ptext">'+esc(s.mudaria||'—')+'</div>';
+  }
+  function esc(t){return (t+'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+  document.getElementById('fb-pdf').addEventListener('click',function(){buildPrint();window.print();});
+
+  document.getElementById('fb-copy').addEventListener('click',function(){
+    var s=state();var L='';aspects.forEach(function(a){var k=a.getAttribute('data-aspect');var v=s.aspects[k];L+='• '+k+': '+(v?LABELS[v]:'—')+'\n';});
+    var txt='FEEDBACK — Site TED Equipamentos\n'+
+      'Avaliado por: '+(s.nome||'—')+(s.empresa?' ('+s.empresa+')':'')+' · '+fmtDate()+'\n\n'+
+      'Conceito preferido: '+(s.pref||'Não indicado')+'\n\n'+
+      'Avaliação por aspecto:\n'+L+'\n'+
+      'O que mais gostou:\n'+(s.gostou||'—')+'\n\n'+
+      'O que mudaria / não gostou:\n'+(s.mudaria||'—')+'\n';
+    var btn=this;
+    function done(){btn.textContent='Copiado ✓';setTimeout(function(){btn.textContent='Copiar resumo';},2000);}
+    if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(done,function(){fallback(txt);done();});}
+    else{fallback(txt);done();}
+  });
+  function fallback(t){var ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}document.body.removeChild(ta);}
+
+  restore();
+})();
+</script>
+
+</body>
+</html>

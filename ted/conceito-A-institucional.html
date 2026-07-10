@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TED Equipamentos — Conceito A · Institucional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500;1,9..144,600&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --azul-vivo:#00A0E1; --azul-vivo-2:#0085BE; --azul-profundo:#0C3A5B; --azul-profundo-2:#0A2C45;
+    --branco:#fff; --tinta:#15222E; --tinta-suave:#5A6B78; --gelo:#F4F8FB; --linha:#DCE7EF;
+    --sombra:0 6px 24px rgba(12,58,91,.09);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Spectral',Georgia,serif;color:var(--tinta);background:var(--branco);line-height:1.65;-webkit-font-smoothing:antialiased;}
+  h1,h2,h3,h4,.serif{font-family:'Fraunces',Georgia,serif;}
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+  .btn{display:inline-flex;align-items:center;gap:9px;font-family:'Spectral';font-weight:600;font-size:15px;
+    padding:13px 24px;border-radius:8px;transition:.18s;cursor:pointer;border:1.5px solid transparent;}
+  .btn-primary{background:var(--azul-vivo);color:#fff;}
+  .btn-primary:hover{background:var(--azul-vivo-2);transform:translateY(-1px);}
+  .btn-ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.5);}
+  .btn-ghost:hover{background:rgba(255,255,255,.12);border-color:#fff;}
+  .btn-outline{background:#fff;color:var(--azul-profundo);border-color:var(--linha);}
+  .btn-outline:hover{border-color:var(--azul-vivo);color:var(--azul-vivo-2);}
+  .eyebrow{font-family:'Spectral';font-size:12.5px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--azul-vivo-2);}
+
+  /* NAV */
+  header.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--linha);}
+  .nav-in{display:flex;align-items:center;gap:28px;height:70px;}
+  .logo{font-family:'Fraunces';font-weight:700;font-style:italic;font-size:26px;letter-spacing:-1px;color:var(--azul-vivo);}
+  .logo small{display:block;font-family:'Spectral';font-style:normal;font-weight:500;font-size:8.5px;letter-spacing:3px;color:var(--tinta-suave);text-transform:uppercase;margin-top:-4px;}
+  nav.links{display:flex;gap:24px;margin-left:auto;align-items:center;}
+  nav.links>a,.dropdown>a{font-size:14.5px;color:var(--azul-profundo);font-weight:500;transition:.15s;cursor:pointer;}
+  nav.links>a:hover,.dropdown>a:hover{color:var(--azul-vivo);}
+  .dropdown{position:relative;padding:24px 0;}
+  .dropdown>a::after{content:"";display:inline-block;width:6px;height:6px;border-right:1.6px solid currentColor;border-bottom:1.6px solid currentColor;transform:rotate(45deg);margin-left:6px;vertical-align:2px;opacity:.6;}
+  .dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(8px);background:#fff;border:1px solid var(--linha);border-radius:14px;box-shadow:var(--sombra);padding:10px;min-width:270px;opacity:0;visibility:hidden;transition:.18s;}
+  .dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);}
+  .dropdown-menu a{display:block;padding:10px 14px;border-radius:9px;font-size:13.5px;color:var(--azul-profundo);font-weight:500;}
+  .dropdown-menu a:hover{background:var(--gelo);color:var(--azul-vivo);}
+  .dropdown-menu a small{display:block;font-family:'Spectral';font-size:11px;color:var(--tinta-suave);font-weight:400;}
+  .dropdown-menu .sep{border-top:1px solid var(--linha);margin:6px 0;}
+  .dropdown-menu a.go{color:var(--azul-vivo-2);font-weight:600;}
+  .nav-cta{display:flex;gap:10px;}
+  .burger{display:none;width:44px;height:44px;border:1px solid var(--linha);border-radius:9px;background:#fff;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:4px;margin-left:8px;}
+  .burger span{width:20px;height:2px;background:var(--azul-profundo);border-radius:2px;transition:.25s;}
+  .burger.active span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .burger.active span:nth-child(2){opacity:0;}
+  .burger.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+  .mobile-menu{display:none;position:fixed;top:70px;left:0;right:0;bottom:0;background:#fff;z-index:49;padding:18px 24px 40px;overflow-y:auto;}
+  .mobile-menu.open{display:block;}
+  .mobile-menu a{display:block;padding:15px 4px;font-family:'Fraunces';font-size:18px;font-weight:600;color:var(--azul-profundo);border-bottom:1px solid var(--linha);}
+  .mobile-menu .sub{padding-left:6px;}
+  .mobile-menu .sub a{font-family:'Spectral';font-size:14.5px;font-weight:500;color:var(--tinta-suave);padding:11px 4px;border-bottom:1px solid var(--gelo);}
+  .mobile-menu .mlabel{font-family:'Spectral';font-size:11.5px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--azul-vivo-2);margin:20px 0 4px;}
+  .mobile-menu .m-cta{display:flex;flex-direction:column;gap:10px;margin-top:24px;}
+  .mobile-menu .m-cta .btn{width:100%;justify-content:center;}
+  @media(max-width:900px){nav.links{display:none;}.nav-cta{display:none;}.burger{display:flex;margin-left:auto;}}
+
+  /* HERO */
+  .hero{position:relative;color:#fff;overflow:hidden;}
+  .hero-bg{position:absolute;inset:0;background:
+    linear-gradient(115deg,rgba(10,44,69,.94) 0%,rgba(12,58,91,.82) 45%,rgba(0,133,190,.55) 100%),
+    url('https://images.unsplash.com/photo-1516467508483-a7212febe31a?q=80&w=1600&auto=format&fit=crop');
+    background-size:cover;background-position:center;}
+  .hero-in{position:relative;padding:104px 0 96px;}
+  .hero h1{font-size:56px;font-weight:600;line-height:1.06;letter-spacing:-1.2px;max-width:800px;}
+  .hero h1 em{font-style:italic;color:#7fd0f4;}
+  .hero p{font-size:19px;font-weight:300;color:#cfe3f0;max-width:560px;margin-top:24px;}
+  .hero-cta{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;}
+  .hero-badges{display:flex;gap:30px;margin-top:52px;flex-wrap:wrap;border-top:1px solid rgba(255,255,255,.16);padding-top:26px;max-width:760px;}
+  .hero-badges div{font-size:13.5px;color:#9fc2d8;}
+  .hero-badges b{display:block;font-family:'Fraunces';font-size:26px;font-weight:600;color:#fff;letter-spacing:-.5px;}
+  @media(max-width:760px){.hero h1{font-size:36px;}.hero-in{padding:64px 0 56px;}}
+
+  /* STRIP confiança */
+  .strip{background:var(--azul-profundo);color:#fff;}
+  .strip-in{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:0;}
+  .strip-item{padding:26px 20px;border-right:1px solid rgba(255,255,255,.1);text-align:center;}
+  .strip-item:last-child{border-right:none;}
+  .strip-item b{display:block;font-family:'Fraunces';font-size:30px;font-weight:600;color:#7fd0f4;letter-spacing:-.5px;}
+  .strip-item span{font-size:13px;color:#bcd6e8;}
+  @media(max-width:760px){.strip-in{grid-template-columns:1fr 1fr;}.strip-item:nth-child(2){border-right:none;}}
+
+  /* SECTION base */
+  section.blk{padding:88px 0;}
+  .sec-head{max-width:680px;margin-bottom:48px;}
+  .sec-head h2{font-size:38px;font-weight:600;letter-spacing:-.7px;line-height:1.12;margin:12px 0 14px;color:var(--azul-profundo);}
+  .sec-head p{font-size:17px;color:var(--tinta-suave);font-weight:300;}
+  .alt{background:var(--gelo);}
+
+  /* CATEGORIAS */
+  .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+  .cat{background:#fff;border:1px solid var(--linha);border-top:3px solid var(--azul-vivo);border-radius:14px;padding:30px 26px;transition:.2s;}
+  .cat:hover{box-shadow:var(--sombra);transform:translateY(-3px);}
+  .cat .ic{width:46px;height:46px;color:var(--azul-vivo);margin-bottom:16px;}
+  .cat h3{font-size:20px;font-weight:600;color:var(--azul-profundo);margin-bottom:7px;}
+  .cat p{font-size:14.5px;color:var(--tinta-suave);}
+  .cat .go{display:inline-block;margin-top:14px;font-family:'Spectral';font-weight:600;font-size:13.5px;color:var(--azul-vivo-2);}
+  @media(max-width:860px){.cat-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.cat-grid{grid-template-columns:1fr;}}
+
+  /* QUEM É / PILARES */
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center;}
+  .split-img{border-radius:16px;overflow:hidden;box-shadow:var(--sombra);aspect-ratio:4/3;
+    background:linear-gradient(160deg,rgba(12,58,91,.15),rgba(12,58,91,.5)),url('https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=1200&auto=format&fit=crop');background-size:cover;background-position:center;}
+  .pilares{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:26px;}
+  .pilar h4{font-size:16.5px;color:var(--azul-profundo);margin-bottom:5px;display:flex;align-items:center;gap:8px;}
+  .pilar h4 .dot{width:8px;height:8px;border-radius:50%;background:var(--azul-vivo);flex-shrink:0;}
+  .pilar p{font-size:14px;color:var(--tinta-suave);}
+  @media(max-width:820px){.split{grid-template-columns:1fr;gap:32px;}}
+
+  /* IMV */
+  .imv{background:linear-gradient(160deg,var(--azul-profundo),var(--azul-profundo-2));color:#fff;border-radius:20px;padding:52px 48px;display:grid;grid-template-columns:1.3fr 1fr;gap:40px;align-items:center;}
+  .imv h2{color:#fff;font-size:30px;font-weight:600;letter-spacing:-.5px;line-height:1.15;}
+  .imv p{color:#bcd6e8;font-size:15.5px;font-weight:300;margin-top:14px;}
+  .imv-badge{text-align:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:16px;padding:32px;}
+  .imv-badge .lg{font-family:'Fraunces';font-weight:700;font-size:34px;letter-spacing:1px;color:#fff;}
+  .imv-badge .lg small{font-size:12px;letter-spacing:3px;display:block;color:#7fd0f4;font-weight:500;margin-top:4px;}
+  .imv-badge b{display:block;font-family:'Fraunces';font-size:40px;color:#7fd0f4;margin-top:18px;}
+  .imv-badge span{font-size:12.5px;color:#9fc2d8;}
+  @media(max-width:760px){.imv{grid-template-columns:1fr;padding:36px 26px;}}
+
+  /* DIFERENCIAIS */
+  .dif-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .dif{padding:24px;background:#fff;border:1px solid var(--linha);border-radius:12px;}
+  .dif .ic{width:34px;height:34px;color:var(--azul-vivo);margin-bottom:12px;}
+  .dif h4{font-size:15.5px;color:var(--azul-profundo);margin-bottom:5px;}
+  .dif p{font-size:13.5px;color:var(--tinta-suave);}
+  @media(max-width:860px){.dif-grid{grid-template-columns:1fr 1fr;}}
+
+  /* BLOG */
+  .blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .post{background:#fff;border:1px solid var(--linha);border-radius:14px;overflow:hidden;transition:.2s;}
+  .post:hover{box-shadow:var(--sombra);transform:translateY(-3px);}
+  .post .ph{aspect-ratio:16/10;background-size:cover;background-position:center;}
+  .post .bd{padding:20px 22px;}
+  .post .tag{font-family:'Spectral';font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--azul-vivo-2);}
+  .post h4{font-size:18px;font-weight:600;color:var(--azul-profundo);margin:8px 0 6px;line-height:1.25;}
+  .post p{font-size:13.5px;color:var(--tinta-suave);}
+  @media(max-width:860px){.blog-grid{grid-template-columns:1fr;}}
+
+  /* CTA final */
+  .cta-final{background:var(--azul-vivo);color:#fff;border-radius:20px;padding:56px 48px;text-align:center;}
+  .cta-final h2{color:#fff;font-size:34px;font-weight:600;letter-spacing:-.6px;max-width:640px;margin:0 auto 12px;}
+  .cta-final p{color:#e2f4fc;font-size:17px;font-weight:300;max-width:520px;margin:0 auto 30px;}
+  .cta-final .btn-white{background:#fff;color:var(--azul-vivo-2);}
+  .cta-final .btn-white:hover{background:var(--azul-profundo);color:#fff;}
+
+  /* FOOTER */
+  footer{background:var(--azul-profundo-2);color:#9fc0d6;padding:64px 0 32px;margin-top:0;}
+  .foot-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1.4fr;gap:36px;padding-bottom:40px;border-bottom:1px solid rgba(255,255,255,.1);}
+  .foot-grid h5{font-family:'Fraunces';font-size:15px;color:#fff;margin-bottom:14px;font-weight:600;}
+  .foot-grid a,.foot-grid p{display:block;font-size:13.5px;color:#9fc0d6;margin-bottom:8px;}
+  .foot-grid a:hover{color:#7fd0f4;}
+  .foot-logo{font-family:'Fraunces';font-weight:700;font-style:italic;font-size:26px;color:var(--azul-vivo);margin-bottom:12px;}
+  .foot-bottom{padding-top:24px;font-size:12px;color:#5d839e;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;}}
+
+  /* WhatsApp flutuante */
+  .wa{position:fixed;bottom:24px;right:24px;z-index:60;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.22);transition:.2s;}
+  .wa:hover{transform:scale(1.06);}
+  .wa svg{width:30px;height:30px;color:#fff;}
+
+  /* banner conceito */
+  .concept-tag{position:fixed;bottom:24px;left:24px;z-index:70;background:var(--azul-profundo);color:#7fd0f4;font-family:'Spectral';font-size:11px;letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:8px;box-shadow:0 4px 14px rgba(0,0,0,.2);}
+</style>
+</head>
+<body>
+<div class="concept-tag">Conceito A · Institucional / Autoridade</div>
+
+<!-- NAV -->
+<span id="top"></span>
+<header class="nav">
+  <div class="wrap nav-in">
+    <!-- TED-PENDENTE: substituir por logo oficial (Logos TED/Logo TED azul 2025.png) -->
+    <a href="#" class="logo">TED<small>Equipamentos</small></a>
+    <nav class="links">
+      <a href="#top">Início</a>
+      <a href="#sobre">Sobre</a>
+      <div class="dropdown">
+        <a href="#categorias">Produtos</a>
+        <div class="dropdown-menu">
+          <a href="#categorias">Aspiração Folicular <small>OPU</small></a>
+          <a href="#categorias">Fertilização in Vitro <small>FIV</small></a>
+          <a href="#categorias">Transferência de Embriões <small>TE</small></a>
+          <a href="#categorias">Inseminação Artificial <small>IA e IATF</small></a>
+          <a href="#categorias">Peças & Acessórios <small>Descongeladores, aquecedores, racks</small></a>
+          <div class="sep"></div>
+          <a class="go" href="#">Ver todos na loja →</a>
+        </div>
+      </div>
+      <a href="#imv">IMV Technologies</a>
+      <a href="#blog">Blog</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn btn-outline" href="#">Loja online</a>
+      <a class="btn btn-primary" href="#">Falar no WhatsApp</a>
+    </div>
+    <button class="burger" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+<div class="mobile-menu">
+  <a href="#top">Início</a>
+  <a href="#sobre">Sobre</a>
+  <div class="mlabel">Produtos</div>
+  <div class="sub">
+    <a href="#categorias">Aspiração Folicular (OPU)</a>
+    <a href="#categorias">Fertilização in Vitro (FIV)</a>
+    <a href="#categorias">Transferência de Embriões (TE)</a>
+    <a href="#categorias">Inseminação Artificial (IA)</a>
+    <a href="#categorias">Peças & Acessórios</a>
+  </div>
+  <a href="#imv">IMV Technologies</a>
+  <a href="#blog">Blog</a>
+  <a href="#contato">Contato</a>
+  <div class="m-cta">
+    <a class="btn btn-outline" href="#">Loja online</a>
+    <a class="btn btn-primary" href="#">Falar no WhatsApp</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="wrap hero-in">
+    <div class="eyebrow" style="color:#7fd0f4;">Fabricação nacional · Desde 2014</div>
+    <h1 style="margin-top:18px;">Fabricado no Brasil, desenvolvido para o <em>veterinário brasileiro</em>.</h1>
+    <p>Equipamentos e insumos para cada etapa da reprodução animal — OPU, FIV, TE e IA. O fabricante que projeta, produz e atende o telefone.</p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="#">Ver a linha completa</a>
+      <a class="btn btn-ghost" href="#">Falar com um especialista</a>
+    </div>
+    <div class="hero-badges">
+      <div><b>12 anos</b>no campo brasileiro</div>
+      <div><b>100%</b>fabricação própria</div>
+      <div><b>IMV</b>distribuidora oficial no Brasil</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="wrap"><div class="strip-in">
+    <div class="strip-item"><b>12</b><span>anos de mercado</span></div>
+    <div class="strip-item"><b>5</b><span>áreas técnicas</span></div>
+    <div class="strip-item"><b>60+</b><span>países (rede IMV)</span></div>
+    <div class="strip-item"><b>Brasil</b><span>entrega nacional</span></div>
+  </div></div>
+</div>
+
+<!-- CATEGORIAS -->
+<section class="blk" id="categorias">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Áreas de atuação</span>
+      <h2>Equipamento certo para cada etapa da reprodução</h2>
+      <p>Do ovário ao embrião: uma linha completa, pensada para a rotina real do campo e do laboratório.</p>
+    </div>
+    <div class="cat-grid">
+      <div class="cat">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2v6m0 0l-3 9a3 3 0 006 0l-3-9z"/><circle cx="12" cy="20" r="1.4"/></svg>
+        <h3>Aspiração Folicular</h3><p>Bombas de aspiração, guias e agulhas para OPU com vácuo calibrado e precisão.</p>
+        <span class="go">Ver produtos →</span>
+      </div>
+      <div class="cat">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg>
+        <h3>Fertilização in Vitro</h3><p>Insumos e consumíveis para as etapas de FIV com controle de qualidade.</p>
+        <span class="go">Ver produtos →</span>
+      </div>
+      <div class="cat">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12s3-7 8-7 8 7 8 7-3 7-8 7-8-7-8-7z"/><circle cx="12" cy="12" r="2.5"/></svg>
+        <h3>Transferência de Embriões</h3><p>Aplicadores, bainhas e acessórios para TE com segurança e higiene.</p>
+        <span class="go">Ver produtos →</span>
+      </div>
+      <div class="cat">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 3l6 6-9 9-6 1 1-6 8-8z"/><path d="M13 5l6 6"/></svg>
+        <h3>Inseminação Artificial</h3><p>Aplicadores e insumos para IA e IATF com qualidade de campo.</p>
+        <span class="go">Ver produtos →</span>
+      </div>
+      <div class="cat">
+        <svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5.6 5.6l2.1 2.1m8.6 8.6l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg>
+        <h3>Peças & Acessórios</h3><p>Descongeladores, aquecedores, racks e reposição para todo o fluxo.</p>
+        <span class="go">Ver produtos →</span>
+      </div>
+      <div class="cat" style="background:linear-gradient(160deg,var(--azul-profundo),var(--azul-profundo-2));border-top-color:transparent;color:#fff;display:flex;flex-direction:column;justify-content:center;">
+        <h3 style="color:#fff;">Linha completa na loja</h3>
+        <p style="color:#bcd6e8;">Catálogo completo, preços e compra com 12x sem juros e envio para todo o Brasil.</p>
+        <a class="btn btn-primary" href="#" style="margin-top:16px;align-self:flex-start;">Ir para a loja →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section class="blk alt" id="sobre">
+  <div class="wrap split">
+    <div>
+      <span class="eyebrow">Quem é a TED</span>
+      <h2 style="font-size:36px;font-weight:600;letter-spacing:-.6px;color:var(--azul-profundo);margin:12px 0 14px;line-height:1.12;">O fabricante que atende o telefone — antes, durante e depois da compra.</h2>
+      <p style="font-size:16px;color:var(--tinta-suave);font-weight:300;">Sediada em Cravinhos-SP, no coração da maior produção de embriões in vitro do mundo, a TED projeta e fabrica seus próprios equipamentos, adaptados à realidade do campo brasileiro.</p>
+      <div class="pilares">
+        <div class="pilar"><h4><span class="dot"></span>Fabricação própria</h4><p>DNA nacional, controle de qualidade e adaptação ao campo.</p></div>
+        <div class="pilar"><h4><span class="dot"></span>Parceira do veterinário</h4><p>Próxima, ágil e acessível. Suporte técnico direto.</p></div>
+        <div class="pilar"><h4><span class="dot"></span>Domínio técnico</h4><p>Fala a língua de quem trabalha com OPU, FIV, TE e IA.</p></div>
+        <div class="pilar"><h4><span class="dot"></span>Coração da pecuária</h4><p>Origem como prova de expertise: Cravinhos, SP.</p></div>
+      </div>
+      <a class="btn btn-outline" href="#" style="margin-top:28px;">Conheça nossa história</a>
+    </div>
+    <div class="split-img" role="img" aria-label="Veterinário em campo — placeholder, substituir por foto real da TED"></div>
+  </div>
+</section>
+
+<!-- IMV -->
+<section class="blk" id="imv">
+  <div class="wrap">
+    <div class="imv">
+      <div>
+        <span class="eyebrow" style="color:#7fd0f4;">Parceria internacional</span>
+        <h2 style="margin-top:12px;">Distribuidora oficial IMV Technologies no Brasil</h2>
+        <p>Acesso ao que há de mais avançado em reprodução animal no mundo — com entrega, suporte e atendimento nacional. A líder global presente em mais de 60 países, na sua porta.</p>
+        <a class="btn btn-ghost" href="#" style="margin-top:24px;">Ver produtos IMV</a>
+      </div>
+      <div class="imv-badge">
+        <!-- TED-PENDENTE: aplicar logo IMV conforme kit de marca da parceira -->
+        <div class="lg">IMV<small>TECHNOLOGIES</small></div>
+        <b>60+</b><span>países atendidos pela rede IMV</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIFERENCIAIS -->
+<section class="blk alt">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Por que a TED</span><h2>Diferenciais que se sentem no campo</h2></div>
+    <div class="dif-grid">
+      <div class="dif"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M22 16.9v3a2 2 0 01-2.2 2 19.8 19.8 0 01-8.6-3 19.5 19.5 0 01-6-6 19.8 19.8 0 01-3-8.6A2 2 0 014.1 2h3a2 2 0 012 1.7c.1.9.3 1.8.6 2.7a2 2 0 01-.5 2.1L8 9.6a16 16 0 006 6l1.1-1.1a2 2 0 012.1-.5c.9.3 1.8.5 2.7.6a2 2 0 011.7 2z"/></svg><h4>Suporte técnico direto</h4><p>Fala com quem fabricou. Sem intermediário.</p></div>
+      <div class="dif"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><h4>Entrega nacional</h4><p>De Cravinhos para qualquer ponto do Brasil.</p></div>
+      <div class="dif"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6M9 13h6M9 17h6"/></svg><h4>Manuais de operação</h4><p>Documentação técnica para cada equipamento.</p></div>
+      <div class="dif"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg><h4>12x sem juros</h4><p>Pagamento facilitado, PIX, boleto e cartão.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section class="blk" id="blog">
+  <div class="wrap">
+    <div class="sec-head"><span class="eyebrow">Conteúdo técnico</span><h2>Conhecimento que fica no campo</h2><p>Guias, checklists e boas práticas para quem trabalha com reprodução bovina.</p></div>
+    <div class="blog-grid">
+      <article class="post"><div class="ph" style="background-image:linear-gradient(180deg,rgba(10,44,69,.1),rgba(10,44,69,.45)),url('https://images.unsplash.com/photo-1579154204601-01588f351e67?q=80&w=800&auto=format&fit=crop');"></div><div class="bd"><span class="tag">Guia técnico</span><h4>OPU: guia completo do Ovum Pick-Up</h4><p>O que é, equipamentos envolvidos e o que impacta o resultado.</p></div></article>
+      <article class="post"><div class="ph" style="background-image:linear-gradient(180deg,rgba(10,44,69,.1),rgba(10,44,69,.45)),url('https://images.unsplash.com/photo-1605000797499-95a51c5269ae?q=80&w=800&auto=format&fit=crop');"></div><div class="bd"><span class="tag">Mercado</span><h4>Por que o Brasil lidera a FIV bovina no mundo</h4><p>O cenário global e o papel do equipamento nacional.</p></div></article>
+      <article class="post"><div class="ph" style="background-image:linear-gradient(180deg,rgba(10,44,69,.1),rgba(10,44,69,.45)),url('https://images.unsplash.com/photo-1516467508483-a7212febe31a?q=80&w=800&auto=format&fit=crop');"></div><div class="bd"><span class="tag">Boas práticas</span><h4>IATF vs. IA convencional: quando usar cada uma</h4><p>Diferenças práticas para a decisão no campo.</p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="blk">
+  <div class="wrap">
+    <div class="cta-final">
+      <h2>Pronto para conhecer a linha completa?</h2>
+      <p>Fale com um especialista da TED e encontre o equipamento certo para cada etapa.</p>
+      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;">
+        <a class="btn btn-white" href="#">Falar no WhatsApp</a>
+        <a class="btn btn-ghost" href="#" style="border-color:rgba(255,255,255,.7);">Ir para a loja</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contato">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">TED</div>
+        <p>Equipamentos para reprodução animal, fabricados no Brasil. Distribuidora oficial IMV Technologies.</p>
+      </div>
+      <div><h5>Produtos</h5><a href="#">Aspiração Folicular</a><a href="#">Fertilização in Vitro</a><a href="#">Transferência de Embriões</a><a href="#">Inseminação Artificial</a><a href="#">Peças & Acessórios</a><a href="#">Ver tudo na loja →</a></div>
+      <div><h5>Institucional</h5><a href="#">Início</a><a href="#">Sobre a TED</a><a href="#">IMV Technologies</a><a href="#">Blog</a><a href="#">Loja online</a><a href="#">Contato</a></div>
+      <div><h5>Contato</h5><p>Cravinhos, SP</p><p>WhatsApp (16) 3951-3622</p><p>@ted.equipamentos</p><a class="btn btn-primary" href="#" style="margin-top:8px;">Falar agora</a></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 TED Equipamentos para Reprodução Animal · Cravinhos, SP</span>
+      <span>Site por Meio Comunicação</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.5 14.4c-.3-.1-1.7-.9-2-1-.3-.1-.5-.1-.6.2-.2.3-.7.9-.8 1-.2.2-.3.2-.6.1-.3-.2-1.2-.5-2.3-1.4-.9-.8-1.4-1.7-1.6-2-.2-.3 0-.5.1-.6l.5-.5c.1-.2.2-.3.3-.5 0-.2 0-.4 0-.5-.1-.2-.6-1.5-.9-2-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.5.1-.7.3-.3.3-1 .9-1 2.3s1 2.7 1.2 2.9c.1.2 2 3.1 4.9 4.3.7.3 1.2.5 1.6.6.7.2 1.3.2 1.8.1.5-.1 1.7-.7 2-1.4.2-.7.2-1.2.2-1.4-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 00-8.6 15l-1.4 5 5.2-1.3A10 10 0 1012 2z"/></svg></a>
+
+<script>
+  (function(){
+    var b=document.querySelector('.burger'),mm=document.querySelector('.mobile-menu');
+    if(!b||!mm)return;
+    b.addEventListener('click',function(){var o=mm.classList.toggle('open');b.classList.toggle('active');b.setAttribute('aria-label',o?'Fechar menu':'Abrir menu');});
+    mm.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){mm.classList.remove('open');b.classList.remove('active');});});
+  })();
+</script>
+</body>
+</html>
