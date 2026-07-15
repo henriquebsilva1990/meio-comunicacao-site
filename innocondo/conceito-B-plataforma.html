@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innocondo — O ecossistema inteligente do mercado condominial</title>
+<meta name="description" content="Consultoria estratégica, tecnologia inédita e soluções que elevam a gestão de administradoras, síndicos e condomínios. +17 anos de experiência no segmento.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --navy-900:#0C1638;
+  --navy-800:#0F1B44;
+  --navy-700:#142254;
+  --navy:#182868;
+  --navy-500:#2A3E86;
+  --ink:#10152B;
+  --slate:#565E78;
+  --slate-2:#7A82A0;
+  --line:#E4E7EF;
+  --paper:#FAFAF7;
+  --white:#FFFFFF;
+  --blue:#3E7BFA;
+  --cyan:#12B5B0;
+  --cyan-soft:#5FD6D0;
+  --amber:#E8A33D;
+  --radius:18px;
+  --radius-lg:26px;
+  --shadow-sm:0 1px 2px rgba(16,21,43,.05),0 6px 18px rgba(16,21,43,.06);
+  --shadow-md:0 14px 40px rgba(16,21,43,.10);
+  --shadow-glow:0 30px 90px -30px rgba(18,181,176,.45);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --maxw:1200px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Manrope',system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Sora',system-ui,sans-serif;line-height:1.1;letter-spacing:-.02em;font-weight:700}
+a{color:inherit;text-decoration:none;cursor:pointer}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+img,svg{display:block;max-width:100%}
+ul{list-style:none}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.eyebrow{
+  font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--cyan);display:inline-flex;align-items:center;gap:9px;
+}
+.eyebrow::before{content:"";width:22px;height:1.5px;background:var(--cyan);display:inline-block}
+.eyebrow.on-dark{color:var(--cyan-soft)}
+.sec{padding:104px 0}
+.sec-head{max-width:640px;margin-bottom:52px}
+.sec-head h2{font-size:clamp(1.9rem,3.6vw,2.85rem);margin:16px 0 14px}
+.sec-head p{color:var(--slate);font-size:1.08rem}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-weight:600;font-size:.98rem;padding:14px 24px;border-radius:12px;
+  transition:transform .18s var(--ease),box-shadow .22s var(--ease),background .22s var(--ease),color .2s var(--ease),border-color .2s var(--ease);
+  cursor:pointer;white-space:nowrap;
+}
+.btn svg{width:18px;height:18px;stroke-width:1.8}
+.btn-primary{background:var(--cyan);color:#04201F;box-shadow:0 10px 26px -10px rgba(18,181,176,.7)}
+.btn-primary:hover{background:var(--cyan-soft);transform:translateY(-2px);box-shadow:0 16px 34px -12px rgba(18,181,176,.75)}
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--white);border:1px solid rgba(255,255,255,.18)}
+.btn-ghost:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.34);transform:translateY(-2px)}
+.btn-solid{background:var(--navy);color:var(--white)}
+.btn-solid:hover{background:var(--navy-700);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.btn-line{background:transparent;color:var(--navy);border:1px solid var(--line)}
+.btn-line:hover{border-color:var(--navy-500);transform:translateY(-2px)}
+.btn-wa{background:#128C7E;color:#fff}
+.btn-wa:hover{background:#0e7568;transform:translateY(-2px)}
+:focus-visible{outline:2.5px solid var(--blue);outline-offset:3px;border-radius:6px}
+
+/* ============ LOGO / MONOGRAM ============ */
+.logo{display:inline-flex;align-items:center;gap:11px}
+.mono{width:36px;height:36px;flex:0 0 36px;border-radius:10px;overflow:visible}
+.logo-txt{font-family:'Sora';font-weight:700;font-size:1.2rem;letter-spacing:-.02em;color:var(--ink)}
+.logo-txt b{font-weight:800}
+.logo-txt .thin{font-weight:500;opacity:.62}
+.on-dark .logo-txt,.hdr-dark .logo-txt{color:#fff}
+
+/* ============ HEADER ============ */
+.hdr{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background .3s var(--ease),box-shadow .3s var(--ease),backdrop-filter .3s;
+  padding:16px 0;
+}
+.hdr-dark .logo-txt{color:#fff}
+.hdr.scrolled{background:rgba(250,250,247,.86);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--line)}
+.hdr.scrolled .logo-txt{color:var(--ink)}
+.hdr.scrolled .nav a{color:var(--slate)}
+.hdr.scrolled .nav a:hover{color:var(--ink)}
+.hdr.scrolled .menu-btn span{background:var(--ink)}
+.hdr-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav{display:flex;align-items:center;gap:30px}
+.nav a{font-size:.94rem;font-weight:500;color:rgba(255,255,255,.82);transition:color .18s;position:relative}
+.nav a:hover{color:#fff}
+.nav a::after{content:"";position:absolute;left:0;bottom:-5px;height:1.5px;width:0;background:var(--cyan);transition:width .22s var(--ease)}
+.nav a:hover::after{width:100%}
+.hdr-cta{display:flex;align-items:center;gap:14px}
+.menu-btn{display:none;flex-direction:column;gap:5px;padding:8px;z-index:120}
+.menu-btn span{width:24px;height:2px;background:#fff;border-radius:2px;transition:.25s var(--ease)}
+.mobile-nav{
+  position:fixed;inset:0;background:var(--navy-900);z-index:110;
+  display:flex;flex-direction:column;justify-content:center;gap:8px;padding:40px;
+  transform:translateX(100%);transition:transform .4s var(--ease);
+}
+.mobile-nav.open{transform:translateX(0)}
+.mobile-nav a{font-family:'Sora';font-size:1.5rem;color:#fff;font-weight:600;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.mobile-nav .btn{margin-top:24px;justify-content:center}
+
+/* ============ HERO ============ */
+.hero{
+  position:relative;background:var(--navy-900);color:#fff;
+  padding:150px 0 110px;overflow:hidden;
+}
+.hero-mesh{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-mesh::before,.hero-mesh::after{content:"";position:absolute;border-radius:50%;filter:blur(90px);opacity:.55}
+.hero-mesh::before{width:620px;height:620px;background:radial-gradient(circle,rgba(18,181,176,.42),transparent 68%);top:-180px;right:-120px}
+.hero-mesh::after{width:560px;height:560px;background:radial-gradient(circle,rgba(62,123,250,.36),transparent 66%);bottom:-220px;left:-160px}
+.hero-grid-lines{position:absolute;inset:0;opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:54px 54px;mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 80%)}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.04fr .96fr;gap:56px;align-items:center}
+.hero-copy{max-width:560px}
+.hero h1{font-size:clamp(2.3rem,4.7vw,3.7rem);font-weight:800;margin:22px 0 22px}
+.hero h1 .grad{background:linear-gradient(100deg,var(--cyan-soft),var(--blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:1.18rem;color:rgba(255,255,255,.78);max-width:520px;margin-bottom:34px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:40px}
+.hero-proof{display:flex;gap:30px;flex-wrap:wrap;padding-top:30px;border-top:1px solid rgba(255,255,255,.1)}
+.proof-item .n{font-family:'Sora';font-size:1.75rem;font-weight:700;color:#fff;line-height:1}
+.proof-item .n span{color:var(--cyan-soft)}
+.proof-item .l{font-size:.83rem;color:rgba(255,255,255,.6);margin-top:6px;max-width:150px}
+
+/* ---- HERO GLASS DASHBOARD ---- */
+.hero-visual{position:relative}
+.glass{
+  position:relative;background:linear-gradient(160deg,rgba(255,255,255,.09),rgba(255,255,255,.03));
+  border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:16px;
+  box-shadow:var(--shadow-glow),inset 0 1px 0 rgba(255,255,255,.14);
+  backdrop-filter:blur(14px);
+}
+.app{background:#0B1A3F;border:1px solid rgba(255,255,255,.07);border-radius:14px;overflow:hidden;display:grid;grid-template-columns:56px 1fr}
+.app-side{background:rgba(255,255,255,.02);border-right:1px solid rgba(255,255,255,.06);padding:14px 0;display:flex;flex-direction:column;align-items:center;gap:16px}
+.app-side .dot{width:26px;height:26px;border-radius:8px;background:rgba(255,255,255,.06);display:grid;place-items:center}
+.app-side .dot.active{background:linear-gradient(135deg,var(--cyan),var(--blue))}
+.app-side .dot svg{width:14px;height:14px;stroke:rgba(255,255,255,.6);stroke-width:1.8;fill:none}
+.app-side .dot.active svg{stroke:#fff}
+.app-main{padding:16px 18px}
+.app-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.app-top h5{font-family:'Sora';font-size:.86rem;color:#fff;font-weight:600}
+.app-top .status{display:inline-flex;align-items:center;gap:7px;font-size:.68rem;color:var(--cyan-soft);background:rgba(18,181,176,.12);padding:4px 10px;border-radius:20px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);position:relative}
+.live-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;background:var(--cyan);opacity:.5;animation:ping 2.2s var(--ease) infinite}
+@keyframes ping{0%{transform:scale(.6);opacity:.55}80%,100%{transform:scale(2.1);opacity:0}}
+.kpis{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-bottom:14px}
+.kpi{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:11px 12px}
+.kpi .kl{font-size:.62rem;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:.08em}
+.kpi .kv{font-family:'Sora';font-size:1.15rem;font-weight:700;color:#fff;margin-top:4px}
+.kpi .kt{font-size:.62rem;color:var(--cyan-soft);margin-top:2px}
+.kpi .kt.warn{color:var(--amber)}
+.chart{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:10px;padding:14px 14px 8px}
+.chart .ct{font-size:.66rem;color:rgba(255,255,255,.55);margin-bottom:10px;display:flex;justify-content:space-between}
+.chart .ct b{color:#fff;font-family:'Sora'}
+.bars{display:flex;align-items:flex-end;gap:8px;height:66px}
+.bars .bar{flex:1;border-radius:5px 5px 0 0;background:rgba(255,255,255,.1);position:relative;transition:height .8s var(--ease)}
+.bars .bar.hi{background:linear-gradient(to top,var(--cyan),var(--cyan-soft))}
+.rows{margin-top:12px;display:flex;flex-direction:column;gap:7px}
+.row{display:flex;align-items:center;gap:9px;font-size:.68rem;color:rgba(255,255,255,.72)}
+.row .tag{width:7px;height:7px;border-radius:50%}
+.row .g{background:var(--cyan)}.row .b{background:var(--blue)}.row .a{background:var(--amber)}
+.row .val{margin-left:auto;color:#fff;font-family:'Sora';font-weight:600}
+.float-card{position:absolute;background:#fff;color:var(--ink);border-radius:14px;padding:13px 16px;box-shadow:var(--shadow-md);display:flex;align-items:center;gap:12px}
+.float-card .fc-ic{width:34px;height:34px;border-radius:9px;display:grid;place-items:center;flex:0 0 34px}
+.float-card .fc-ic svg{width:18px;height:18px;stroke-width:1.8;fill:none}
+.float-card .fc-t{font-size:.66rem;color:var(--slate)}
+.float-card .fc-v{font-family:'Sora';font-weight:700;font-size:.95rem}
+.float-1{top:-22px;left:-30px}
+.float-2{bottom:-24px;right:-26px}
+
+/* ============ FRENTES ============ */
+.frentes{background:var(--white)}
+.frentes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.frente{
+  position:relative;background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:32px 30px 30px;overflow:hidden;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s;
+}
+.frente:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:transparent}
+.frente::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.frente:hover::before{transform:scaleX(1)}
+.frente.c::before{background:var(--navy)}
+.frente.t::before{background:var(--cyan)}
+.frente.s::before{background:var(--amber)}
+.frente-mono{width:52px;height:52px;border-radius:14px;margin-bottom:22px;box-shadow:var(--shadow-sm)}
+.frente h3{font-size:1.32rem;margin-bottom:6px}
+.frente .role{font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:14px}
+.frente.c .role{color:var(--navy-500)}
+.frente.t .role{color:var(--cyan)}
+.frente.s .role{color:var(--amber)}
+.frente p{color:var(--slate);font-size:.98rem;margin-bottom:20px}
+.frente .lnk{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:.92rem;color:var(--navy);transition:gap .2s var(--ease)}
+.frente .lnk svg{width:16px;height:16px;stroke-width:2}
+.frente:hover .lnk{gap:12px}
+.frente.t .lnk{color:var(--cyan)}
+.badge-new{position:absolute;top:26px;right:26px;font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#04201F;background:var(--cyan-soft);padding:4px 9px;border-radius:6px}
+.badge-soon{position:absolute;top:26px;right:26px;font-size:.64rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--slate);background:var(--line);padding:4px 9px;border-radius:6px}
+
+/* ============ POR QUE ============ */
+.porque{background:var(--paper);position:relative}
+.porque-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.dif{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.dif:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.dif-ic{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--navy-500));display:grid;place-items:center;margin-bottom:18px}
+.dif-ic svg{width:22px;height:22px;stroke:#fff;stroke-width:1.6;fill:none}
+.dif.accent .dif-ic{background:linear-gradient(135deg,var(--cyan),var(--blue))}
+.dif h3{font-size:1.06rem;margin-bottom:8px}
+.dif p{color:var(--slate);font-size:.92rem}
+
+/* ============ SOLUÇÕES BENTO ============ */
+.solucoes{background:var(--navy-900);color:#fff;position:relative;overflow:hidden}
+.solucoes .hero-mesh::before{opacity:.3;top:-260px}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(150px,auto);gap:16px}
+.cell{
+  position:relative;background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:26px;overflow:hidden;
+  transition:transform .3s var(--ease),border-color .3s,background .3s;display:flex;flex-direction:column;
+}
+.cell:hover{transform:translateY(-5px);border-color:rgba(18,181,176,.5);background:linear-gradient(160deg,rgba(18,181,176,.1),rgba(255,255,255,.02))}
+.cell-ic{width:42px;height:42px;border-radius:11px;background:rgba(255,255,255,.06);display:grid;place-items:center;margin-bottom:16px}
+.cell-ic svg{width:21px;height:21px;stroke:var(--cyan-soft);stroke-width:1.6;fill:none}
+.cell h3{font-size:1.12rem;margin-bottom:8px;color:#fff}
+.cell p{color:rgba(255,255,255,.66);font-size:.9rem}
+.cell.span2{grid-column:span 2}
+.cell.feature{grid-column:span 2;grid-row:span 2;background:linear-gradient(155deg,rgba(18,181,176,.16),rgba(62,123,250,.08));border-color:rgba(18,181,176,.3);justify-content:space-between}
+.cell.feature .cell-ic{background:linear-gradient(135deg,var(--cyan),var(--blue))}
+.cell.feature .cell-ic svg{stroke:#fff}
+.cell.feature h3{font-size:1.5rem;margin-top:auto}
+.cell.feature p{font-size:.98rem;max-width:340px}
+.cell .tagpill{display:inline-flex;align-self:flex-start;font-size:.64rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan-soft);background:rgba(18,181,176,.14);padding:4px 10px;border-radius:20px;margin-bottom:14px}
+
+/* ============ PROVA SOCIAL ============ */
+.prova{background:var(--white)}
+.depos{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:56px}
+.depo{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px 28px;display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.depo:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.quote-ic{width:34px;height:34px;color:var(--cyan);margin-bottom:16px;opacity:.9}
+.depo p{font-size:1rem;color:var(--ink);margin-bottom:22px;flex:1}
+.depo-who{display:flex;align-items:center;gap:13px}
+.depo-av{width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--navy-500));display:grid;place-items:center;color:#fff;font-family:'Sora';font-weight:700;font-size:1rem;flex:0 0 44px}
+.depo-who .nm{font-family:'Sora';font-weight:600;font-size:.94rem}
+.depo-who .rl{font-size:.8rem;color:var(--slate)}
+.logos-strip{border-top:1px solid var(--line);padding-top:36px}
+.logos-strip .lbl{text-align:center;font-size:.8rem;color:var(--slate);letter-spacing:.05em;margin-bottom:24px}
+.logos-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:18px}
+.logo-ph{height:52px;min-width:150px;flex:1;max-width:190px;border:1px dashed var(--line);border-radius:12px;display:grid;place-items:center;color:var(--slate);font-size:.82rem;font-weight:600;background:var(--paper);opacity:.85}
+
+/* ============ NÚMEROS ============ */
+.numeros{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.numeros::before{content:"";position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(18,181,176,.3),transparent 70%);filter:blur(80px);top:-200px;right:-100px}
+.num-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.num{text-align:center;padding:20px}
+.num .big{font-family:'Sora';font-size:clamp(2.4rem,5vw,3.4rem);font-weight:800;line-height:1;background:linear-gradient(120deg,#fff,var(--cyan-soft));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.num .cap{font-size:.92rem;color:rgba(255,255,255,.72);margin-top:12px}
+.num .tbc{font-size:.68rem;color:rgba(255,255,255,.42);margin-top:6px;font-style:italic}
+
+/* ============ CTA FINAL ============ */
+.cta{background:var(--paper);position:relative}
+.cta-card{
+  position:relative;background:var(--navy-900);border-radius:32px;overflow:hidden;
+  display:grid;grid-template-columns:1.05fr .95fr;gap:0;box-shadow:var(--shadow-md);
+}
+.cta-left{padding:56px 52px;position:relative;z-index:2}
+.cta-left h2{font-size:clamp(1.8rem,3.4vw,2.6rem);color:#fff;margin:16px 0 16px}
+.cta-left p{color:rgba(255,255,255,.74);font-size:1.05rem;margin-bottom:28px;max-width:380px}
+.cta-bullets{display:flex;flex-direction:column;gap:12px}
+.cta-bullets li{display:flex;align-items:center;gap:11px;color:rgba(255,255,255,.86);font-size:.95rem}
+.cta-bullets svg{width:20px;height:20px;stroke:var(--cyan);stroke-width:2;fill:none;flex:0 0 20px}
+.cta-form{background:#fff;padding:44px 40px;position:relative;z-index:2}
+.cta-form h3{font-size:1.25rem;margin-bottom:6px}
+.cta-form .fsub{color:var(--slate);font-size:.9rem;margin-bottom:24px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:6px}
+.field input{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:11px;font-family:inherit;font-size:.95rem;color:var(--ink);background:var(--paper);transition:border-color .2s,box-shadow .2s}
+.field input:focus{outline:none;border-color:var(--cyan);box-shadow:0 0 0 3px rgba(18,181,176,.14);background:#fff}
+.field input::placeholder{color:#9aa1b5}
+.cta-form .btn{width:100%;justify-content:center;margin-top:8px}
+.cta-form .alt{text-align:center;margin-top:16px;font-size:.86rem;color:var(--slate)}
+.cta-form .alt a{color:var(--cyan);font-weight:600}
+.form-note{font-size:.74rem;color:var(--slate);text-align:center;margin-top:14px}
+
+/* ============ FOOTER ============ */
+.ft{background:var(--navy-900);color:#fff;padding:76px 0 0}
+.ft-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:52px;border-bottom:1px solid rgba(255,255,255,.1)}
+.ft-brand p{color:rgba(255,255,255,.64);font-size:.94rem;margin:18px 0 22px;max-width:300px}
+.ft-social{display:flex;gap:12px}
+.ft-social a{width:40px;height:40px;border-radius:11px;border:1px solid rgba(255,255,255,.14);display:grid;place-items:center;transition:background .2s,border-color .2s,transform .2s}
+.ft-social a:hover{background:rgba(255,255,255,.08);border-color:var(--cyan);transform:translateY(-2px)}
+.ft-social svg{width:18px;height:18px;stroke:#fff;stroke-width:1.6;fill:none}
+.ft-col h4{font-family:'Sora';font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan-soft);margin-bottom:18px;font-weight:600}
+.ft-col a{display:block;color:rgba(255,255,255,.68);font-size:.92rem;margin-bottom:12px;transition:color .18s,padding .18s}
+.ft-col a:hover{color:#fff;padding-left:4px}
+.ft-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding:26px 0 34px}
+.ft-bottom p{color:rgba(255,255,255,.5);font-size:.84rem}
+.ft-bottom .links{display:flex;gap:22px}
+.ft-bottom .links a{color:rgba(255,255,255,.5);font-size:.84rem;transition:color .18s}
+.ft-bottom .links a:hover{color:#fff}
+.ft-area{display:inline-flex;align-items:center;gap:7px;color:var(--cyan-soft);font-size:.84rem;font-weight:600}
+.ft-area svg{width:15px;height:15px;stroke:var(--cyan-soft);stroke-width:1.8;fill:none}
+
+/* ============ REVEAL ANIM ============ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.08s}
+.reveal[data-d="2"]{transition-delay:.16s}
+.reveal[data-d="3"]{transition-delay:.24s}
+.reveal[data-d="4"]{transition-delay:.32s}
+/* hero orchestrated load */
+.hl{opacity:0;transform:translateY(20px);animation:hlin .8s var(--ease) forwards}
+.hl-1{animation-delay:.15s}.hl-2{animation-delay:.3s}.hl-3{animation-delay:.45s}.hl-4{animation-delay:.6s}.hl-5{animation-delay:.72s}
+@keyframes hlin{to{opacity:1;transform:none}}
+.hv{opacity:0;transform:translateY(30px) scale(.97);animation:hvin 1s var(--ease) .5s forwards}
+@keyframes hvin{to{opacity:1;transform:none}}
+.float-1{animation:floaty 6s ease-in-out infinite}
+.float-2{animation:floaty 6s ease-in-out .8s infinite}
+@keyframes floaty{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:52px}
+  .hero-visual{max-width:520px;margin:0 auto}
+  .porque-grid{grid-template-columns:repeat(2,1fr)}
+  .num-grid{grid-template-columns:repeat(2,1fr);gap:36px 20px}
+  .cta-card{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr 1fr}
+  .ft-brand{grid-column:1/-1}
+}
+@media(max-width:860px){
+  .nav,.hdr-cta .btn{display:none}
+  .menu-btn{display:flex}
+  .frentes-grid{grid-template-columns:1fr}
+  .depos{grid-template-columns:1fr}
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .cell.feature{grid-column:span 2;grid-row:span 1}
+}
+@media(max-width:560px){
+  .sec{padding:76px 0}
+  .wrap{padding:0 18px}
+  .hero{padding:126px 0 84px}
+  .porque-grid,.bento{grid-template-columns:1fr}
+  .cell.feature,.cell.span2{grid-column:span 1}
+  .num-grid{grid-template-columns:1fr 1fr}
+  .cta-left,.cta-form{padding:36px 26px}
+  .hero-proof{gap:20px}
+  .float-1{left:-8px;top:-14px;transform:scale(.86)}
+  .float-2{right:-8px;bottom:-14px;transform:scale(.86)}
+  .hero-actions .btn{flex:1;justify-content:center}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+  .hl,.hv{opacity:1;transform:none}
+  .live-dot::after{animation:none;opacity:0}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="hdr hdr-dark" id="hdr">
+  <div class="wrap hdr-inner">
+    <a href="#" class="logo" aria-label="Innocondo — início">
+      <svg class="mono" viewBox="0 0 36 36" aria-hidden="true">
+        <rect x="0" y="0" width="36" height="36" rx="10" fill="#182868"/>
+        <rect x="15.4" y="14.5" width="4.2" height="14" rx="2.1" fill="#fff"/>
+        <circle cx="17.5" cy="9.4" r="2.5" fill="#fff"/>
+        <path d="M11 24.5 L25.5 10.5" stroke="url(#mg)" stroke-width="3" stroke-linecap="round"/>
+        <defs><linearGradient id="mg" x1="11" y1="24" x2="25" y2="10" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#3E7BFA"/><stop offset="1" stop-color="#12B5B0"/>
+        </linearGradient></defs>
+      </svg>
+      <span class="logo-txt"><b>Inno</b>condo</span>
+    </a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="#ecossistema">Ecossistema</a>
+      <a href="#frentes">Consultoria</a>
+      <a href="#solucoes">Tecnologia</a>
+      <a href="#prova">Cases</a>
+      <a href="#">Conteúdo</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="hdr-cta">
+      <a href="#contato" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M14 9a2 2 0 0 1-2 2H6l-4 4V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2z"/><path d="M18 9h2a2 2 0 0 1 2 2v11l-4-4h-6a2 2 0 0 1-2-2v-1"/></svg>
+        Fale com um especialista
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#ecossistema">Ecossistema</a>
+  <a href="#frentes">Consultoria</a>
+  <a href="#solucoes">Tecnologia</a>
+  <a href="#prova">Cases</a>
+  <a href="#">Conteúdo</a>
+  <a href="#contato">Contato</a>
+  <a href="#contato" class="btn btn-primary">Fale com um especialista</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="ecossistema">
+  <div class="hero-mesh" aria-hidden="true"></div>
+  <div class="hero-grid-lines" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <span class="eyebrow on-dark hl hl-1">Ecossistema condominial inteligente</span>
+      <h1 class="hl hl-2">A gestão condominial entra numa <span class="grad">nova era</span> de eficiência</h1>
+      <p class="hero-sub hl hl-3">Reunimos consultoria estratégica, tecnologia inédita e soluções sob medida para administradoras, síndicos e condomínios evoluírem com dados, automação e método.</p>
+      <div class="hero-actions hl hl-4">
+        <a href="#frentes" class="btn btn-primary">
+          Conheça o ecossistema
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="#contato" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>
+          Falar no WhatsApp
+        </a>
+      </div>
+      <div class="hero-proof hl hl-5">
+        <div class="proof-item"><div class="n">+17<span> anos</span></div><div class="l">de experiência prática no segmento</div></div>
+        <div class="proof-item"><div class="n">+120<span>*</span></div><div class="l">condomínios impactados <em>(a confirmar)</em></div></div>
+        <div class="proof-item"><div class="n">100%</div><div class="l">foco exclusivo no mercado condominial</div></div>
+      </div>
+    </div>
+
+    <div class="hero-visual hv">
+      <div class="glass">
+        <div class="app">
+          <div class="app-side">
+            <div class="dot active" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+            <div class="dot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg></div>
+            <div class="dot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg></div>
+            <div class="dot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V7l8-4v18"/><path d="M19 21V11l-6-4"/></svg></div>
+          </div>
+          <div class="app-main">
+            <div class="app-top">
+              <h5>Painel do condomínio</h5>
+              <span class="status"><span class="live-dot"></span>Ao vivo</span>
+            </div>
+            <div class="kpis">
+              <div class="kpi"><div class="kl">Inadimplência</div><div class="kv">3,2%</div><div class="kt">▼ 41% no ano</div></div>
+              <div class="kpi"><div class="kl">Conciliação</div><div class="kv">Auto</div><div class="kt">em tempo real</div></div>
+              <div class="kpi"><div class="kl">Chamados</div><div class="kv">12</div><div class="kt warn">3 pendentes</div></div>
+            </div>
+            <div class="chart">
+              <div class="ct"><span>Receitas x Custos</span><b>+18%</b></div>
+              <div class="bars">
+                <div class="bar" style="height:40%"></div>
+                <div class="bar" style="height:55%"></div>
+                <div class="bar" style="height:48%"></div>
+                <div class="bar hi" style="height:70%"></div>
+                <div class="bar" style="height:60%"></div>
+                <div class="bar hi" style="height:88%"></div>
+              </div>
+              <div class="rows">
+                <div class="row"><span class="tag g"></span>Automação bancária<span class="val">R$ 42k</span></div>
+                <div class="row"><span class="tag b"></span>Novas receitas<span class="val">R$ 11k</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="float-card float-1">
+        <div class="fc-ic" style="background:rgba(18,181,176,.14)"><svg viewBox="0 0 24 24" stroke="#12B5B0"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg></div>
+        <div><div class="fc-t">Processos automatizados</div><div class="fc-v">14 rotinas ativas</div></div>
+      </div>
+      <div class="float-card float-2">
+        <div class="fc-ic" style="background:rgba(62,123,250,.14)"><svg viewBox="0 0 24 24" stroke="#3E7BFA"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><path d="M12 19v3"/></svg></div>
+        <div><div class="fc-t">Atendimento IA</div><div class="fc-v">24h por dia</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 FRENTES ============ -->
+<section class="sec frentes" id="frentes">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">O ecossistema</span>
+      <h2>Três frentes, uma mesma inteligência</h2>
+      <p>A Innocondo integra consultoria, tecnologia e soluções num sistema único — pensado exclusivamente para o mercado condominial.</p>
+    </div>
+    <div class="frentes-grid">
+      <article class="frente c reveal" data-d="1">
+        <svg class="frente-mono" viewBox="0 0 52 52" aria-hidden="true">
+          <rect width="52" height="52" rx="15" fill="#182868"/>
+          <rect x="21.5" y="20" width="5" height="18" rx="2.5" fill="#fff"/>
+          <circle cx="24" cy="14" r="3.1" fill="#fff"/>
+          <path d="M32 20a10 10 0 1 0 0 14" stroke="#3E7BFA" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="role">iC · Consultoria</div>
+        <h3>Consultoria estratégica</h3>
+        <p>Diagnóstico completo, plano de implementação e suporte contínuo para elevar a gestão da sua administradora.</p>
+        <a href="#" class="lnk">Explorar consultoria <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </article>
+
+      <article class="frente t reveal" data-d="2">
+        <span class="badge-new">Inédito</span>
+        <svg class="frente-mono" viewBox="0 0 52 52" aria-hidden="true">
+          <rect width="52" height="52" rx="15" fill="#182868"/>
+          <rect x="19.5" y="20" width="5" height="18" rx="2.5" fill="#fff"/>
+          <circle cx="22" cy="14" r="3.1" fill="#fff"/>
+          <path d="M28 21h11M33.5 21v17" stroke="#12B5B0" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+        </svg>
+        <div class="role">iT · Tecnologia</div>
+        <h3>Tecnologia inédita</h3>
+        <p>Plataforma de gestão criada do zero para o dia a dia condominial — automação, dados e decisão num só lugar.</p>
+        <a href="#solucoes" class="lnk">Conhecer a plataforma <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </article>
+
+      <article class="frente s reveal" data-d="3">
+        <span class="badge-soon">Em breve</span>
+        <svg class="frente-mono" viewBox="0 0 52 52" aria-hidden="true">
+          <rect width="52" height="52" rx="15" fill="#182868"/>
+          <rect x="19.5" y="20" width="5" height="18" rx="2.5" fill="#fff"/>
+          <circle cx="22" cy="14" r="3.1" fill="#fff"/>
+          <path d="M39 23a7 7 0 1 0-9 8 5 5 0 1 0 1 7h6.5" stroke="#E8A33D" stroke-width="3.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <div class="role">iS · Soluções</div>
+        <h3>Soluções que escalam</h3>
+        <p>Parceiros estratégicos e produtos complementares para ampliar receita e eficiência em todo o condomínio.</p>
+        <a href="#" class="lnk">Ver soluções <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POR QUE INNOCONDO ============ -->
+<section class="sec porque">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Por que Innocondo</span>
+      <h2>Especialistas que só falam de condomínio</h2>
+      <p>Não somos generalistas. Cada método, produto e recomendação nasce da vivência real do mercado condominial.</p>
+    </div>
+    <div class="porque-grid">
+      <div class="dif reveal" data-d="1">
+        <div class="dif-ic"><svg viewBox="0 0 24 24"><path d="m12 3 1.9 5.8H20l-4.9 3.5 1.9 5.7L12 14.5 7 18l1.9-5.7L4 8.8h6.1z"/></svg></div>
+        <h3>Especialização exclusiva</h3>
+        <p>Foco total no mercado condominial — nada de soluções genéricas adaptadas de outros setores.</p>
+      </div>
+      <div class="dif accent reveal" data-d="2">
+        <div class="dif-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+        <h3>Ecossistema integrado</h3>
+        <p>Consultoria, tecnologia e parceiros conversam entre si — uma jornada única, sem retrabalho.</p>
+      </div>
+      <div class="dif reveal" data-d="3">
+        <div class="dif-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>+17 anos de prática</h3>
+        <p>Experiência acumulada em campo, transformada em método replicável e resultados consistentes.</p>
+      </div>
+      <div class="dif reveal" data-d="4">
+        <div class="dif-ic"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6" rx="1"/><rect x="12" y="8" width="3" height="10" rx="1"/><rect x="17" y="5" width="3" height="13" rx="1"/></svg></div>
+        <h3>Resultados mensuráveis</h3>
+        <p>Indicadores claros de eficiência, receita e satisfação — decisão baseada em dados, não em achismo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SOLUÇÕES BENTO ============ -->
+<section class="sec solucoes" id="solucoes">
+  <div class="hero-mesh" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="sec-head reveal">
+      <span class="eyebrow on-dark">Soluções em destaque</span>
+      <h2 style="color:#fff">Tudo o que a gestão condominial precisa</h2>
+      <p style="color:rgba(255,255,255,.72)">Da automação de processos à inteligência artificial, cada solução conecta pessoas, dados e rotina em um só ecossistema.</p>
+    </div>
+    <div class="bento">
+      <article class="cell feature reveal" data-d="1">
+        <span class="tagpill">Plataforma iT</span>
+        <div>
+          <div class="cell-ic"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/><path d="m7 11 2.5-2.5L12 11l3-3"/></svg></div>
+          <h3>Gestão condominial num só painel</h3>
+          <p>Financeiro, chamados, comunicação e indicadores integrados. A tecnologia inédita que dá clareza total ao síndico e à administradora.</p>
+        </div>
+      </article>
+      <article class="cell reveal" data-d="1">
+        <div class="cell-ic"><svg viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"/><path d="M2 21c0-3 1.85-5.36 5.08-6"/></svg></div>
+        <h3>Diagnóstico de Processos</h3>
+        <p>Mapeamento completo de gargalos e oportunidades.</p>
+      </article>
+      <article class="cell reveal" data-d="2">
+        <div class="cell-ic"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="12" rx="2"/><path d="M7 8V6a5 5 0 0 1 10 0v2M12 13v3"/></svg></div>
+        <h3>Automação Bancária</h3>
+        <p>Conciliação e cobranças sem trabalho manual.</p>
+      </article>
+      <article class="cell reveal" data-d="1">
+        <div class="cell-ic"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9zM2 9h2M2 15h2M20 9h2M20 15h2M9 2v2M15 2v2M9 20v2M15 20v2"/></svg></div>
+        <h3>RPA</h3>
+        <p>Robôs que executam rotinas repetitivas 24h.</p>
+      </article>
+      <article class="cell reveal" data-d="2">
+        <div class="cell-ic"><svg viewBox="0 0 24 24"><path d="M12 8V4H8"/><rect x="4" y="8" width="16" height="12" rx="2"/><path d="M2 14h2M20 14h2M15 13v2M9 13v2"/></svg></div>
+        <h3>IA & Chatbot</h3>
+        <p>Atendimento inteligente a moradores e síndicos.</p>
+      </article>
+      <article class="cell reveal" data-d="3">
+        <div class="cell-ic"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <h3>Capacitações</h3>
+        <p>Treinamento de equipes e síndicos profissionais.</p>
+      </article>
+      <article class="cell reveal" data-d="4">
+        <div class="cell-ic"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Incremento de Receitas</h3>
+        <p>Novas fontes de receita para o condomínio.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROVA SOCIAL ============ -->
+<section class="sec prova" id="prova">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Confiança de quem já vive</span>
+      <h2>Administradoras que evoluíram com a Innocondo</h2>
+      <p>Resultados reais de quem trocou a rotina manual por método, tecnologia e acompanhamento próximo.</p>
+    </div>
+    <div class="depos">
+      <article class="depo reveal" data-d="1">
+        <svg class="quote-ic" viewBox="0 0 24 24" fill="currentColor"><path d="M9.6 4C6 5.4 4 8.4 4 12.5V20h7v-8H7.8c.2-2.2 1.3-3.6 3.4-4.4zm10 0c-3.6 1.4-5.6 4.4-5.6 8.5V20h7v-8h-3.2c.2-2.2 1.3-3.6 3.4-4.4z"/></svg>
+        <p>"Saímos do controle em planilhas para um painel que o síndico entende em segundos. A inadimplência caiu e o retrabalho praticamente sumiu."</p>
+        <div class="depo-who"><div class="depo-av">MR</div><div><div class="nm">Nome do cliente</div><div class="rl">Diretor · Administradora <em>(placeholder)</em></div></div></div>
+      </article>
+      <article class="depo reveal" data-d="2">
+        <svg class="quote-ic" viewBox="0 0 24 24" fill="currentColor"><path d="M9.6 4C6 5.4 4 8.4 4 12.5V20h7v-8H7.8c.2-2.2 1.3-3.6 3.4-4.4zm10 0c-3.6 1.4-5.6 4.4-5.6 8.5V20h7v-8h-3.2c.2-2.2 1.3-3.6 3.4-4.4z"/></svg>
+        <p>"O diagnóstico foi cirúrgico. Mostraram exatamente onde perdíamos tempo e receita — e implementaram junto com a gente, sem enrolação."</p>
+        <div class="depo-who"><div class="depo-av">SC</div><div><div class="nm">Nome do cliente</div><div class="rl">Síndica profissional <em>(placeholder)</em></div></div></div>
+      </article>
+      <article class="depo reveal" data-d="3">
+        <svg class="quote-ic" viewBox="0 0 24 24" fill="currentColor"><path d="M9.6 4C6 5.4 4 8.4 4 12.5V20h7v-8H7.8c.2-2.2 1.3-3.6 3.4-4.4zm10 0c-3.6 1.4-5.6 4.4-5.6 8.5V20h7v-8h-3.2c.2-2.2 1.3-3.6 3.4-4.4z"/></svg>
+        <p>"É raro achar quem entenda condomínio de verdade. A Innocondo fala a nossa língua e trouxe tecnologia que ninguém mais tinha oferecido."</p>
+        <div class="depo-who"><div class="depo-av">JP</div><div><div class="nm">Nome do cliente</div><div class="rl">Gestor · Condomínio <em>(placeholder)</em></div></div></div>
+      </article>
+    </div>
+    <div class="logos-strip reveal">
+      <p class="lbl">Administradoras e condomínios que confiam na Innocondo</p>
+      <div class="logos-row">
+        <div class="logo-ph">logo cliente</div>
+        <div class="logo-ph">logo cliente</div>
+        <div class="logo-ph">logo cliente</div>
+        <div class="logo-ph">logo cliente</div>
+        <div class="logo-ph">logo cliente</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NÚMEROS ============ -->
+<section class="sec numeros">
+  <div class="wrap">
+    <div class="num-grid">
+      <div class="num reveal" data-d="1"><div class="big">+17</div><div class="cap">anos de experiência no segmento</div></div>
+      <div class="num reveal" data-d="2"><div class="big">+120</div><div class="cap">condomínios impactados</div><div class="tbc">número a confirmar</div></div>
+      <div class="num reveal" data-d="3"><div class="big">+30</div><div class="cap">processos automatizados</div><div class="tbc">número a confirmar</div></div>
+      <div class="num reveal" data-d="4"><div class="big">3</div><div class="cap">frentes num só ecossistema</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="sec cta" id="contato">
+  <div class="wrap">
+    <div class="cta-card reveal">
+      <div class="cta-left">
+        <div class="hero-mesh" aria-hidden="true" style="opacity:.7"></div>
+        <span class="eyebrow on-dark" style="position:relative;z-index:2">Vamos conversar</span>
+        <h2>Leve sua administradora ao próximo patamar</h2>
+        <p>Conte seu cenário atual. Nossos especialistas mostram, na prática, onde a Innocondo pode gerar mais eficiência e receita.</p>
+        <ul class="cta-bullets">
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Diagnóstico inicial sem compromisso</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Atendimento consultivo, não comercial agressivo</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Resposta de um especialista de verdade</li>
+        </ul>
+      </div>
+      <div class="cta-form">
+        <h3>Fale com um especialista</h3>
+        <p class="fsub">Preencha e retornamos em até 1 dia útil.</p>
+        <form id="leadForm" novalidate>
+          <div class="field"><label for="nome">Nome</label><input id="nome" name="nome" type="text" placeholder="Seu nome completo" autocomplete="name"></div>
+          <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" placeholder="voce@empresa.com.br" autocomplete="email"></div>
+          <div class="field"><label for="empresa">Empresa</label><input id="empresa" name="empresa" type="text" placeholder="Nome da administradora" autocomplete="organization"></div>
+          <div class="field"><label for="wpp">WhatsApp</label><input id="wpp" name="wpp" type="tel" placeholder="(00) 00000-0000" autocomplete="tel"></div>
+          <button type="submit" class="btn btn-solid">Solicitar contato
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+          <div class="alt">ou fale agora no <a href="#">WhatsApp →</a></div>
+          <p class="form-note">Placeholder de formulário — integrar com CRM/WhatsApp na implementação.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ft on-dark">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="#" class="logo">
+          <svg class="mono" viewBox="0 0 36 36" aria-hidden="true">
+            <rect width="36" height="36" rx="10" fill="#182868"/>
+            <rect x="15.4" y="14.5" width="4.2" height="14" rx="2.1" fill="#fff"/>
+            <circle cx="17.5" cy="9.4" r="2.5" fill="#fff"/>
+            <path d="M11 24.5 L25.5 10.5" stroke="url(#mg2)" stroke-width="3" stroke-linecap="round"/>
+            <defs><linearGradient id="mg2" x1="11" y1="24" x2="25" y2="10" gradientUnits="userSpaceOnUse"><stop stop-color="#3E7BFA"/><stop offset="1" stop-color="#12B5B0"/></linearGradient></defs>
+          </svg>
+          <span class="logo-txt"><b>Inno</b>condo</span>
+        </a>
+        <p>O ecossistema inteligente do mercado condominial: consultoria, tecnologia e soluções em um só lugar.</p>
+        <div class="ft-social">
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg></a>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>Ecossistema</h4>
+        <a href="#frentes">Consultoria</a>
+        <a href="#solucoes">Tecnologia</a>
+        <a href="#">Soluções</a>
+        <a href="#prova">Cases</a>
+      </div>
+      <div class="ft-col">
+        <h4>Institucional</h4>
+        <a href="#ecossistema">Sobre a Innocondo</a>
+        <a href="#">Conteúdo</a>
+        <a href="#contato">Contato</a>
+        <a href="#">Trabalhe conosco</a>
+      </div>
+      <div class="ft-col">
+        <h4>Fale conosco</h4>
+        <a href="#contato">Fale com um especialista</a>
+        <a href="#">contato@innocondo.com.br</a>
+        <a href="#">Endereço · a confirmar</a>
+        <a href="#" class="ft-area"><svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>Área do cliente</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p>© 2026 Innocondo · Todos os direitos reservados.</p>
+      <div class="links">
+        <a href="#">Política de privacidade</a>
+        <a href="#">Termos de uso</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  // Header scroll state
+  var hdr = document.getElementById('hdr');
+  function onScroll(){
+    if(window.scrollY > 40){ hdr.classList.add('scrolled'); hdr.classList.remove('hdr-dark'); }
+    else { hdr.classList.remove('scrolled'); hdr.classList.add('hdr-dark'); }
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // Mobile menu
+  var mb = document.getElementById('menuBtn'), mn = document.getElementById('mobileNav');
+  function toggleMenu(open){
+    mn.classList.toggle('open', open);
+    mb.setAttribute('aria-expanded', open?'true':'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  mb.addEventListener('click', function(){ toggleMenu(!mn.classList.contains('open')); });
+  mn.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ toggleMenu(false); }); });
+
+  // Reveal on scroll
+  var items = document.querySelectorAll('.reveal');
+  if(reduce || !('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:.14, rootMargin:'0px 0px -60px 0px'});
+    items.forEach(function(el){ io.observe(el); });
+  }
+
+  // Form guard (placeholder — no real submit)
+  var form = document.getElementById('leadForm');
+  if(form){
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var btn = form.querySelector('button[type=submit]');
+      btn.textContent = 'Recebido — retornaremos em breve';
+      btn.style.background = '#12B5B0';
+      btn.style.color = '#04201F';
+      btn.disabled = true;
+    });
+  }
+})();
+</script>
+
+<!-- Meio Comunica · Conceito B Plataforma High-Tech · Innocondo -->
+</body>
+</html>

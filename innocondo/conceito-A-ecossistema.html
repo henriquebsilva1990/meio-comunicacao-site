@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Innocondo — O ecossistema do mercado condominial</title>
+<meta name="description" content="Innocondo une consultoria estratégica, tecnologia e soluções para levar administradoras, síndicos e condomínios ao próximo patamar de gestão.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy-900:#0C1638; --navy-700:#142254; --navy:#182868; --navy-500:#2A3E86;
+  --ink:#10152B; --slate:#565E78; --line:#E4E7EF; --paper:#FAFAF7; --white:#FFFFFF;
+  --blue:#3E7BFA;
+  --serif:"Fraunces",Georgia,serif; --sans:"DM Sans",system-ui,sans-serif;
+  --wrap:1280px; --gut:clamp(20px,5vw,72px);
+  --r:14px; --ease:cubic-bezier(.22,.61,.36,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  font-family:var(--sans);background:var(--paper);color:var(--ink);
+  font-weight:400;line-height:1.6;font-size:clamp(15px,1.05vw,17px);
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--navy);color:#fff}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--gut)}
+.serif{font-family:var(--serif)}
+.eyebrow{
+  font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;
+  color:var(--slate);display:inline-flex;align-items:center;gap:.7em;
+}
+.eyebrow .num{color:var(--blue);font-variant-numeric:tabular-nums}
+.eyebrow .bar{width:34px;height:1px;background:var(--line)}
+.mono-num{font-family:var(--serif);font-variant-numeric:tabular-nums;font-weight:500}
+
+/* ---------- MONOGRAM ---------- */
+.brand{display:inline-flex;align-items:center;gap:12px}
+.brand svg{flex:0 0 auto}
+.brand .wm{font-family:var(--serif);font-weight:500;font-size:1.28rem;letter-spacing:-.01em;color:var(--ink);line-height:1}
+.brand .wm b{font-weight:600}
+.brand .wm .sub{display:block;font-family:var(--sans);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--slate);font-weight:500;margin-top:3px}
+
+/* ---------- HEADER ---------- */
+header{position:sticky;top:0;z-index:60;background:rgba(250,250,247,.82);backdrop-filter:saturate(180%) blur(14px);border-bottom:1px solid transparent;transition:border-color .3s,box-shadow .3s}
+header.stuck{border-color:var(--line);box-shadow:0 8px 30px -24px rgba(16,21,43,.5)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px;gap:24px}
+.nav ul{list-style:none;display:flex;gap:30px;align-items:center}
+.nav ul a{font-size:.9rem;color:var(--slate);font-weight:400;position:relative;padding:4px 0;transition:color .2s}
+.nav ul a::after{content:"";position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--navy);transition:width .25s var(--ease)}
+.nav ul a:hover{color:var(--ink)}
+.nav ul a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:14px}
+.btn{
+  display:inline-flex;align-items:center;gap:9px;font-family:var(--sans);font-size:.9rem;font-weight:500;
+  padding:12px 20px;border-radius:100px;cursor:pointer;border:1px solid transparent;
+  transition:transform .18s var(--ease),background .2s,color .2s,border-color .2s,box-shadow .25s;white-space:nowrap;
+}
+.btn svg{width:17px;height:17px}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-primary:hover{background:var(--navy-700);transform:translateY(-2px);box-shadow:0 14px 26px -14px rgba(24,40,104,.7)}
+.btn-accent{background:var(--blue);color:#fff}
+.btn-accent:hover{transform:translateY(-2px);box-shadow:0 14px 26px -14px rgba(62,123,250,.75)}
+.btn-ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--navy);transform:translateY(-2px)}
+.btn-lg{padding:15px 26px;font-size:.98rem}
+.menu-btn{display:none;background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;cursor:pointer;color:var(--ink);align-items:center;justify-content:center}
+.menu-btn svg{width:22px;height:22px}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;padding-top:clamp(48px,7vw,96px);padding-bottom:clamp(56px,7vw,104px)}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(32px,4vw,64px);align-items:center}
+.hero-kicker{margin-bottom:26px}
+.hero h1{
+  font-family:var(--serif);font-weight:400;line-height:1.02;letter-spacing:-.02em;
+  font-size:clamp(2.6rem,6.4vw,5.1rem);color:var(--ink);
+}
+.hero h1 em{font-style:italic;color:var(--navy)}
+.hero h1 .accent{color:var(--blue);font-style:italic}
+.hero-sub{max-width:38ch;margin-top:26px;color:var(--slate);font-size:clamp(1.02rem,1.35vw,1.2rem);line-height:1.55}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}
+.hero-proof{display:flex;flex-wrap:wrap;gap:0;margin-top:46px;border-top:1px solid var(--line);padding-top:28px}
+.hero-proof .item{padding-right:34px;margin-right:34px;border-right:1px solid var(--line)}
+.hero-proof .item:last-child{border-right:0;margin-right:0;padding-right:0}
+.hero-proof .n{font-family:var(--serif);font-size:clamp(1.7rem,2.6vw,2.3rem);font-weight:500;color:var(--navy);line-height:1;letter-spacing:-.01em}
+.hero-proof .l{font-size:.82rem;color:var(--slate);margin-top:8px;max-width:15ch}
+
+/* orbital diagram */
+.orbit-wrap{position:relative;aspect-ratio:1/1;width:100%;max-width:520px;margin-inline:auto}
+.orbit-wrap svg{width:100%;height:100%;overflow:visible}
+.o-ring{fill:none;stroke:var(--line);stroke-width:1}
+.o-ring.dash{stroke-dasharray:3 6;stroke:#cfd5e6}
+.o-link{fill:none;stroke:var(--line);stroke-width:1}
+.o-node-c{fill:var(--white);stroke:var(--line);stroke-width:1}
+.o-label{font-family:var(--sans);font-size:12.5px;font-weight:500;fill:var(--ink)}
+.o-sub{font-family:var(--sans);font-size:9.5px;fill:var(--slate);letter-spacing:.04em}
+.o-mono-lbl{font-family:var(--serif);font-size:13px;font-weight:600}
+
+/* ---------- SECTION SHELL ---------- */
+section{position:relative}
+.sec{padding-block:clamp(60px,8vw,120px)}
+.sec-head{max-width:52ch;margin-bottom:clamp(38px,5vw,64px)}
+.sec-head.center{margin-inline:auto;text-align:center}
+.sec-title{font-family:var(--serif);font-weight:400;letter-spacing:-.018em;line-height:1.05;font-size:clamp(1.95rem,4vw,3.15rem);color:var(--ink);margin-top:20px}
+.sec-title em{font-style:italic;color:var(--navy)}
+.sec-lead{margin-top:20px;color:var(--slate);font-size:clamp(1rem,1.25vw,1.12rem);max-width:46ch}
+.center .sec-lead{margin-inline:auto}
+
+/* ---------- 3 FRENTES ---------- */
+.fronts{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.front{
+  position:relative;background:var(--white);border:1px solid var(--line);border-radius:var(--r);
+  padding:34px 30px 30px;display:flex;flex-direction:column;min-height:340px;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s;overflow:hidden;
+}
+.front::before{content:"";position:absolute;left:0;top:0;height:3px;width:100%;background:var(--accent,var(--navy));transform:scaleX(0);transform-origin:left;transition:transform .4s var(--ease)}
+.front:hover{transform:translateY(-6px);box-shadow:0 30px 50px -34px rgba(16,21,43,.4);border-color:transparent}
+.front:hover::before{transform:scaleX(1)}
+.front .fmono{margin-bottom:24px}
+.front .fnum{position:absolute;top:30px;right:30px;font-family:var(--serif);font-size:.95rem;color:var(--slate);font-variant-numeric:tabular-nums}
+.front h3{font-family:var(--serif);font-weight:500;font-size:1.5rem;letter-spacing:-.01em;color:var(--ink);margin-bottom:12px}
+.front p{color:var(--slate);font-size:.98rem;line-height:1.55}
+.front .flink{margin-top:auto;padding-top:24px;display:inline-flex;align-items:center;gap:9px;font-size:.88rem;font-weight:500;color:var(--navy)}
+.front .flink svg{width:16px;height:16px;transition:transform .25s var(--ease)}
+.front:hover .flink svg{transform:translateX(5px)}
+.front .flink .tag{color:var(--slate);font-weight:400;font-size:.78rem}
+
+/* ---------- POR QUE ---------- */
+.why{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(36px,5vw,72px);align-items:start}
+.why-list{display:grid;gap:2px}
+.why-item{display:grid;grid-template-columns:auto 1fr;gap:22px;padding:26px 4px;border-top:1px solid var(--line);align-items:start}
+.why-item:last-child{border-bottom:1px solid var(--line)}
+.why-item .wi{width:44px;height:44px;border-radius:11px;border:1px solid var(--line);background:var(--white);display:flex;align-items:center;justify-content:center;color:var(--navy);flex:0 0 auto}
+.why-item .wi svg{width:21px;height:21px;stroke-width:1.5}
+.why-item h4{font-family:var(--serif);font-weight:500;font-size:1.22rem;color:var(--ink);margin-bottom:7px;letter-spacing:-.01em}
+.why-item p{color:var(--slate);font-size:.96rem}
+.why-item .idx{font-family:var(--serif);font-variant-numeric:tabular-nums;color:var(--blue);font-size:.82rem;margin-bottom:10px;display:block}
+
+/* ---------- SERVIÇOS ---------- */
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r);overflow:hidden}
+.svc{background:var(--paper);padding:32px 28px;min-height:190px;display:flex;flex-direction:column;transition:background .3s}
+.svc:hover{background:var(--white)}
+.svc .si{width:40px;height:40px;color:var(--navy);margin-bottom:20px}
+.svc:hover .si{color:var(--blue)}
+.svc .si svg{width:100%;height:100%;stroke-width:1.5}
+.svc h4{font-family:var(--serif);font-weight:500;font-size:1.16rem;color:var(--ink);margin-bottom:9px;letter-spacing:-.01em}
+.svc p{color:var(--slate);font-size:.9rem;line-height:1.5}
+
+/* ---------- NÚMEROS (dark band) ---------- */
+.band{background:var(--navy-900);color:#fff;position:relative;overflow:hidden}
+.band::before{content:"";position:absolute;inset:0;background:radial-gradient(120% 120% at 80% -10%,rgba(62,123,250,.16),transparent 55%);pointer-events:none}
+.band .wrap{position:relative}
+.band-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.stat{padding:8px 0}
+.stat .n{font-family:var(--serif);font-weight:400;letter-spacing:-.02em;font-size:clamp(2.6rem,5vw,4rem);line-height:1;color:#fff}
+.stat .n span{color:var(--blue);font-style:italic}
+.stat .l{color:#B9C1DC;font-size:.9rem;margin-top:14px;max-width:20ch}
+.stat .l em{font-style:normal;color:#7f8bb3;font-size:.76rem;display:block;margin-top:4px}
+.band-note{margin-top:44px;padding-top:26px;border-top:1px solid rgba(255,255,255,.12);color:#8b96bd;font-size:.82rem}
+
+/* ---------- PROVA SOCIAL ---------- */
+.quotes{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.quote{background:var(--white);border:1px solid var(--line);border-radius:var(--r);padding:34px 30px;display:flex;flex-direction:column}
+.quote .qm{color:var(--blue);opacity:.9;margin-bottom:18px}
+.quote .qm svg{width:34px;height:34px}
+.quote p{font-family:var(--serif);font-weight:400;font-size:1.12rem;line-height:1.5;color:var(--ink);letter-spacing:-.005em}
+.quote .who{margin-top:auto;padding-top:26px;display:flex;align-items:center;gap:13px}
+.quote .av{width:44px;height:44px;border-radius:50%;background:var(--line);flex:0 0 auto;display:flex;align-items:center;justify-content:center;color:var(--slate);font-family:var(--serif);font-weight:600;font-size:1rem}
+.quote .who .nm{font-size:.9rem;font-weight:500;color:var(--ink)}
+.quote .who .rl{font-size:.78rem;color:var(--slate)}
+.logos{margin-top:52px;padding-top:34px;border-top:1px solid var(--line)}
+.logos .lbl{text-align:center;font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:var(--slate);margin-bottom:26px}
+.logo-row{display:flex;flex-wrap:wrap;justify-content:center;gap:18px 44px;align-items:center}
+.logo-ph{font-family:var(--serif);font-style:italic;color:#a9b0c6;font-size:1.05rem;letter-spacing:.01em;opacity:.85}
+
+/* ---------- CTA FINAL ---------- */
+.cta-sec{padding-block:clamp(60px,8vw,110px)}
+.cta-card{background:var(--white);border:1px solid var(--line);border-radius:22px;overflow:hidden;display:grid;grid-template-columns:1.05fr .95fr;box-shadow:0 40px 80px -60px rgba(16,21,43,.5)}
+.cta-left{background:linear-gradient(160deg,var(--navy) 0%,var(--navy-900) 100%);color:#fff;padding:clamp(38px,4.4vw,58px);position:relative;overflow:hidden}
+.cta-left::after{content:"";position:absolute;right:-60px;bottom:-60px;width:260px;height:260px;border:1px solid rgba(255,255,255,.12);border-radius:50%}
+.cta-left::before{content:"";position:absolute;right:-10px;bottom:-10px;width:150px;height:150px;border:1px solid rgba(62,123,250,.35);border-radius:50%}
+.cta-left .eyebrow{color:#9fb0e6}.cta-left .eyebrow .bar{background:rgba(255,255,255,.25)}
+.cta-left h2{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,3vw,2.7rem);line-height:1.06;letter-spacing:-.02em;margin-top:22px}
+.cta-left h2 em{font-style:italic;color:#9fb6ff}
+.cta-left p{color:#c3cbe6;margin-top:20px;max-width:32ch;font-size:1rem}
+.cta-left .wpp{margin-top:32px;display:inline-flex;align-items:center;gap:10px;font-size:.92rem;color:#fff;font-weight:500}
+.cta-left .wpp svg{width:19px;height:19px}
+.cta-right{padding:clamp(34px,4vw,52px)}
+.cta-right h3{font-family:var(--serif);font-weight:500;font-size:1.3rem;margin-bottom:6px;color:var(--ink)}
+.cta-right .fnote{color:var(--slate);font-size:.88rem;margin-bottom:26px}
+.field{margin-bottom:16px}
+.field label{display:block;font-size:.78rem;font-weight:500;color:var(--slate);margin-bottom:7px;letter-spacing:.01em}
+.field input{width:100%;font-family:var(--sans);font-size:.95rem;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:13px 15px;transition:border-color .2s,box-shadow .2s}
+.field input::placeholder{color:#9aa2ba}
+.field input:hover{border-color:#cbd2e4}
+.field input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(62,123,250,.14)}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.cta-right .btn{width:100%;justify-content:center;margin-top:8px}
+.cta-right .priv{font-size:.74rem;color:var(--slate);margin-top:16px;text-align:center}
+
+/* ---------- FOOTER ---------- */
+footer{background:var(--navy-900);color:#c3cbe6;padding-top:clamp(56px,7vw,90px)}
+.foot-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px}
+footer .brand .wm{color:#fff}
+footer .brand .wm .sub{color:#8b96bd}
+.foot-about{color:#8b96bd;font-size:.92rem;margin-top:22px;max-width:34ch;line-height:1.6}
+.foot-social{display:flex;gap:12px;margin-top:26px}
+.foot-social a{width:40px;height:40px;border:1px solid rgba(255,255,255,.14);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#c3cbe6;transition:background .2s,color .2s,border-color .2s,transform .2s}
+.foot-social a:hover{background:var(--blue);color:#fff;border-color:var(--blue);transform:translateY(-2px)}
+.foot-social a svg{width:19px;height:19px}
+.foot-col h5{font-size:.74rem;letter-spacing:.2em;text-transform:uppercase;color:#7f8bb3;margin-bottom:20px;font-weight:500}
+.foot-col ul{list-style:none;display:grid;gap:13px}
+.foot-col a{font-size:.92rem;color:#c3cbe6;transition:color .2s}
+.foot-col a:hover{color:#fff}
+.foot-col .addr{font-size:.9rem;color:#8b96bd;line-height:1.6}
+.foot-bottom{margin-top:clamp(48px,6vw,72px);border-top:1px solid rgba(255,255,255,.1);padding:26px 0;display:flex;flex-wrap:wrap;gap:16px;justify-content:space-between;align-items:center}
+.foot-bottom p{font-size:.82rem;color:#7f8bb3}
+.foot-bottom .links{display:flex;gap:24px}
+.foot-bottom .links a{font-size:.82rem;color:#8b96bd}
+.foot-bottom .links a:hover{color:#fff}
+
+/* ---------- MOBILE NAV PANEL ---------- */
+.mnav{position:fixed;inset:0;z-index:80;background:var(--paper);transform:translateX(100%);transition:transform .4s var(--ease);display:flex;flex-direction:column;padding:22px var(--gut)}
+.mnav.open{transform:translateX(0)}
+.mnav-top{display:flex;justify-content:space-between;align-items:center;height:52px}
+.mnav-close{background:none;border:1px solid var(--line);border-radius:10px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink)}
+.mnav ul{list-style:none;margin-top:24px;display:grid;gap:4px}
+.mnav ul a{font-family:var(--serif);font-size:1.7rem;color:var(--ink);padding:14px 0;border-bottom:1px solid var(--line);display:block}
+.mnav .btn{margin-top:26px;width:100%;justify-content:center}
+
+/* ---------- REVEAL ---------- */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+[data-d="1"]{transition-delay:.06s}[data-d="2"]{transition-delay:.12s}[data-d="3"]{transition-delay:.18s}[data-d="4"]{transition-delay:.24s}[data-d="5"]{transition-delay:.30s}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:1024px){
+  .hero-grid{grid-template-columns:1fr;gap:44px}
+  .orbit-wrap{max-width:440px}
+  .why{grid-template-columns:1fr;gap:30px}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .foot-about-col{grid-column:1/-1}
+}
+@media(max-width:860px){
+  .nav ul,.nav-actions .btn-primary{display:none}
+  .menu-btn{display:flex}
+  .fronts{grid-template-columns:1fr}
+  .front{min-height:auto}
+  .svc-grid{grid-template-columns:1fr 1fr}
+  .quotes{grid-template-columns:1fr}
+  .band-grid{grid-template-columns:1fr 1fr;gap:34px 24px}
+  .cta-card{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .hero-proof{gap:22px}
+  .hero-proof .item{border-right:0;margin-right:0;padding-right:0;flex:0 0 42%}
+  .svc-grid{grid-template-columns:1fr}
+  .band-grid{grid-template-columns:1fr}
+  .field-row{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .foot-bottom{flex-direction:column;align-items:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1!important;transform:none!important;transition:none!important}
+  .btn:hover,.front:hover,.foot-social a:hover{transform:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ MONOGRAM (reusable symbol) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mono" viewBox="0 0 48 48">
+    <rect x="1" y="1" width="46" height="46" rx="12" fill="var(--m-bg,#182868)"/>
+    <circle cx="19" cy="15" r="3.4" fill="#fff"/>
+    <rect x="16.2" y="21.5" width="5.6" height="16.5" rx="2.8" fill="#fff"/>
+    <path d="M26 34 L38 14" stroke="var(--m-acc,#3E7BFA)" stroke-width="4.4" stroke-linecap="round"/>
+    <circle cx="38" cy="14" r="2.4" fill="var(--m-acc,#3E7BFA)"/>
+  </symbol>
+</svg>
+
+<!-- ============ HEADER ============ -->
+<header id="top">
+  <div class="wrap">
+    <nav class="nav" aria-label="Principal">
+      <a href="#top" class="brand" aria-label="Innocondo — página inicial">
+        <svg width="42" height="42" aria-hidden="true"><use href="#mono"/></svg>
+        <span class="wm"><b>Inno</b>condo<span class="sub">Ecossistema Condominial</span></span>
+      </a>
+      <ul>
+        <li><a href="#ecossistema">Ecossistema</a></li>
+        <li><a href="#ecossistema">Consultoria</a></li>
+        <li><a href="#ecossistema">Tecnologia</a></li>
+        <li><a href="#prova">Cases</a></li>
+        <li><a href="#servicos">Conteúdo</a></li>
+        <li><a href="#contato">Contato</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a href="#contato" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-4-1L3 20l1.1-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg>
+          Fale com um especialista
+        </a>
+        <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<!-- mobile nav -->
+<div class="mnav" id="mnav" aria-hidden="true">
+  <div class="mnav-top">
+    <span class="brand"><svg width="38" height="38" aria-hidden="true"><use href="#mono"/></svg><span class="wm"><b>Inno</b>condo</span></span>
+    <button class="mnav-close" id="mnavClose" aria-label="Fechar menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+  <ul>
+    <li><a href="#ecossistema">Ecossistema</a></li>
+    <li><a href="#ecossistema">Consultoria</a></li>
+    <li><a href="#ecossistema">Tecnologia</a></li>
+    <li><a href="#prova">Cases</a></li>
+    <li><a href="#servicos">Conteúdo</a></li>
+    <li><a href="#contato">Contato</a></li>
+  </ul>
+  <a href="#contato" class="btn btn-accent">Fale com um especialista</a>
+</div>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow hero-kicker reveal"><span class="num">01</span><span class="bar"></span>O ecossistema condominial</p>
+        <h1 class="reveal" data-d="1">Um só parceiro para a <em>evolução</em> da gestão condominial<span class="accent">.</span></h1>
+        <p class="hero-sub reveal" data-d="2">Consultoria estratégica, tecnologia e soluções sob medida — reunidas para levar administradoras, síndicos e condomínios ao próximo patamar.</p>
+        <div class="hero-cta reveal" data-d="3">
+          <a href="#ecossistema" class="btn btn-primary btn-lg">
+            Conheça o ecossistema
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+          <a href="#contato" class="btn btn-ghost btn-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-4-1L3 20l1.1-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg>
+            Falar no WhatsApp
+          </a>
+        </div>
+        <div class="hero-proof reveal" data-d="4">
+          <div class="item"><div class="n">+17</div><div class="l">anos de prática no segmento</div></div>
+          <div class="item"><div class="n">3</div><div class="l">frentes em um só ecossistema</div></div>
+          <div class="item"><div class="n">100%</div><div class="l">especialização em condomínios</div></div>
+        </div>
+      </div>
+
+      <!-- orbital diagram -->
+      <div class="hero-viz reveal" data-d="3">
+        <div class="orbit-wrap">
+          <svg viewBox="0 0 400 400" role="img" aria-label="Diagrama do ecossistema Innocondo: as frentes Consultoria, Tecnologia e Soluções orbitando o símbolo central da marca.">
+            <circle class="o-ring" cx="200" cy="200" r="150"/>
+            <circle class="o-ring dash" cx="200" cy="200" r="108"/>
+            <!-- links center -> nodes -->
+            <path class="o-link" d="M200 200 L200 50"/>
+            <path class="o-link" d="M200 200 L330 275"/>
+            <path class="o-link" d="M200 200 L70 275"/>
+
+            <!-- center monogram -->
+            <g id="orbitCore">
+              <circle cx="200" cy="200" r="46" fill="#fff" stroke="var(--line)"/>
+              <g transform="translate(176,176) scale(1)">
+                <rect x="1" y="1" width="46" height="46" rx="12" fill="#182868"/>
+                <circle cx="19" cy="15" r="3.4" fill="#fff"/>
+                <rect x="16.2" y="21.5" width="5.6" height="16.5" rx="2.8" fill="#fff"/>
+                <path d="M26 34 L38 14" stroke="#3E7BFA" stroke-width="4.4" stroke-linecap="round"/>
+                <circle cx="38" cy="14" r="2.4" fill="#3E7BFA"/>
+              </g>
+            </g>
+
+            <!-- node: Consultoria (top) -->
+            <g class="o-node" transform="translate(200,50)">
+              <circle class="o-node-c" r="30"/>
+              <text class="o-mono-lbl" fill="#182868" text-anchor="middle" y="5">iC</text>
+              <text class="o-label" text-anchor="middle" y="-42">Consultoria</text>
+              <text class="o-sub" text-anchor="middle" y="-28">ESTRATÉGIA</text>
+            </g>
+            <!-- node: Tecnologia (bottom-right) -->
+            <g class="o-node" transform="translate(330,275)">
+              <circle class="o-node-c" r="30"/>
+              <text class="o-mono-lbl" fill="#12B5B0" text-anchor="middle" y="5">iT</text>
+              <text class="o-label" text-anchor="middle" y="52">Tecnologia</text>
+              <text class="o-sub" text-anchor="middle" y="66">PRODUTO</text>
+            </g>
+            <!-- node: Soluções (bottom-left) -->
+            <g class="o-node" transform="translate(70,275)">
+              <circle class="o-node-c" r="30"/>
+              <text class="o-mono-lbl" fill="#C99A46" text-anchor="middle" y="5">iS</text>
+              <text class="o-label" text-anchor="middle" y="52">Soluções</text>
+              <text class="o-sub" text-anchor="middle" y="66">EXECUÇÃO</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 FRENTES ============ -->
+<section class="sec" id="ecossistema">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow"><span class="num">02</span><span class="bar"></span>As frentes do ecossistema</p>
+      <h2 class="sec-title">Três frentes, uma <em>mesma inteligência</em> sobre condomínios.</h2>
+      <p class="sec-lead">Cada frente resolve um desafio da gestão. Juntas, formam um sistema que evolui com a sua administradora.</p>
+    </div>
+
+    <div class="fronts">
+      <article class="front reveal" data-d="1" style="--accent:var(--navy)">
+        <span class="fnum">01</span>
+        <span class="fmono"><svg width="52" height="52" style="--m-acc:#182868" aria-hidden="true"><use href="#mono"/></svg></span>
+        <h3>Consultoria</h3>
+        <p>Diagnóstico, plano de implementação e suporte contínuo para reorganizar processos e destravar resultados na gestão condominial.</p>
+        <a href="#contato" class="flink">Conhecer a consultoria <span class="tag">· iC</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+
+      <article class="front reveal" data-d="2" style="--accent:var(--cyan-tech,#12B5B0)">
+        <span class="fnum">02</span>
+        <span class="fmono"><svg width="52" height="52" style="--m-acc:#12B5B0" aria-hidden="true"><use href="#mono"/></svg></span>
+        <h3>Tecnologia</h3>
+        <p>Um produto inédito no mercado condominial: automação, dados e inteligência aplicados ao dia a dia da administradora. <em style="font-style:italic;color:var(--slate)">Nome a confirmar na reunião.</em></p>
+        <a href="#contato" class="flink">Entrar na lista de acesso <span class="tag">· iT</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+
+      <article class="front reveal" data-d="3" style="--accent:var(--gold,#C99A46)">
+        <span class="fnum">03</span>
+        <span class="fmono"><svg width="52" height="52" style="--m-acc:#C99A46" aria-hidden="true"><use href="#mono"/></svg></span>
+        <h3>Soluções</h3>
+        <p>Serviços e parcerias estratégicas que ampliam a capacidade do condomínio — da eficiência operacional ao incremento de receitas.</p>
+        <a href="#contato" class="flink">Ver soluções <span class="tag">· iS</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POR QUE INNOCONDO ============ -->
+<section class="sec" id="porque" style="background:var(--white);border-top:1px solid var(--line);border-bottom:1px solid var(--line)">
+  <div class="wrap">
+    <div class="why">
+      <div class="why-intro reveal">
+        <p class="eyebrow"><span class="num">03</span><span class="bar"></span>Por que Innocondo</p>
+        <h2 class="sec-title">Autoridade construída <em>onde importa</em>: dentro do condomínio.</h2>
+        <p class="sec-lead">Não somos generalistas que atendem qualquer mercado. Vivemos o condomínio há quase duas décadas — e é isso que muda o resultado.</p>
+      </div>
+
+      <div class="why-list">
+        <div class="why-item reveal" data-d="1">
+          <div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2l3 6 6 .9-4.5 4.3L18 20l-6-3.2L6 20l1.5-6.8L3 8.9 9 8z"/></svg></div>
+          <div><span class="idx">i.</span><h4>Especialização exclusiva</h4><p>Foco único no mercado condominial. Cada recomendação nasce da realidade de administradoras e síndicos — não de manual genérico.</p></div>
+        </div>
+        <div class="why-item reveal" data-d="2">
+          <div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/></svg></div>
+          <div><span class="idx">ii.</span><h4>Ecossistema integrado</h4><p>Consultoria, tecnologia e parceiros estratégicos conversam entre si. Uma decisão vira processo, e o processo vira ferramenta.</p></div>
+        </div>
+        <div class="why-item reveal" data-d="3">
+          <div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V8l9-5 9 5v13M3 21h18M9 21v-6h6v6M8 12h.01M16 12h.01"/></svg></div>
+          <div><span class="idx">iii.</span><h4>+17 anos de prática</h4><p>Experiência real acumulada no segmento. Sabemos onde a gestão trava — e o caminho mais curto para destravar.</p></div>
+        </div>
+        <div class="why-item reveal" data-d="4">
+          <div class="wi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18M7 15l4-4 3 3 5-6"/></svg></div>
+          <div><span class="idx">iv.</span><h4>Resultados mensuráveis</h4><p>Eficiência operacional, redução de retrabalho e incremento de receitas — com indicadores acompanhados, não promessas.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SERVIÇOS ============ -->
+<section class="sec" id="servicos">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow"><span class="num">04</span><span class="bar"></span>Soluções em destaque</p>
+      <h2 class="sec-title">O que colocamos <em>para funcionar</em> na sua operação.</h2>
+    </div>
+
+    <div class="svc-grid">
+      <div class="svc reveal" data-d="1">
+        <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3H5a2 2 0 0 0-2 2v4M15 3h4a2 2 0 0 1 2 2v4M9 21H5a2 2 0 0 1-2-2v-4M15 21h4a2 2 0 0 0 2-2v-4"/><circle cx="12" cy="12" r="3"/></svg></span>
+        <h4>Diagnóstico de Processos</h4><p>Mapa completo de onde a gestão perde tempo, dinheiro e informação.</p>
+      </div>
+      <div class="svc reveal" data-d="2">
+        <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 14h4M7 21h10"/></svg></span>
+        <h4>Automação Bancária</h4><p>Conciliação e rotinas financeiras sem planilha manual e sem erro.</p>
+      </div>
+      <div class="svc reveal" data-d="3">
+        <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9zM9 2v2M15 2v2M9 20v2M15 20v2M2 9h2M2 15h2M20 9h2M20 15h2"/></svg></span>
+        <h4>RPA — Robôs de Processos</h4><p>Tarefas repetitivas executadas por robôs, liberando o seu time.</p>
+      </div>
+      <div class="svc reveal" data-d="1">
+        <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a4 4 0 0 1 4 4v1a4 4 0 0 1 0 8v1a4 4 0 0 1-8 0v-1a4 4 0 0 1 0-8V7a4 4 0 0 1 4-4z"/><path d="M12 3v18"/></svg></span>
+        <h4>IA &amp; Chatbot</h4><p>Atendimento e triagem inteligentes para moradores e síndicos.</p>
+      </div>
+      <div class="svc reveal" data-d="2">
+        <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c0 1 2.7 2.5 6 2.5s6-1.5 6-2.5v-5"/></svg></span>
+        <h4>Capacitações</h4><p>Times e síndicos treinados para operar com autonomia e método.</p>
+      </div>
+      <div class="svc reveal" data-d="3">
+        <span class="si"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
+        <h4>Incremento de Receitas</h4><p>Novas fontes de receita para o condomínio, com governança e transparência.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NÚMEROS (dark band) ============ -->
+<section class="band sec" aria-label="Números da Innocondo">
+  <div class="wrap">
+    <div class="sec-head reveal" style="margin-bottom:52px">
+      <p class="eyebrow" style="color:#9fb0e6"><span class="num" style="color:var(--blue)">05</span><span class="bar" style="background:rgba(255,255,255,.25)"></span>Em números</p>
+    </div>
+    <div class="band-grid">
+      <div class="stat reveal" data-d="1"><div class="n">+17</div><div class="l">anos de experiência prática no segmento condominial</div></div>
+      <div class="stat reveal" data-d="2"><div class="n">+<span>120</span></div><div class="l">condomínios impactados <em>número a confirmar</em></div></div>
+      <div class="stat reveal" data-d="3"><div class="n">+<span>40</span></div><div class="l">processos automatizados em administradoras <em>a confirmar</em></div></div>
+      <div class="stat reveal" data-d="4"><div class="n">3</div><div class="l">frentes integradas em um único ecossistema</div></div>
+    </div>
+    <p class="band-note reveal">Indicadores marcados como “a confirmar” serão validados com o cliente antes da publicação. Placeholder honesto para a reunião.</p>
+  </div>
+</section>
+
+<!-- ============ PROVA SOCIAL ============ -->
+<section class="sec" id="prova">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <p class="eyebrow" style="justify-content:center"><span class="num">06</span><span class="bar"></span>Quem já anda com a gente</p>
+      <h2 class="sec-title">A confiança de quem <em>gere de verdade</em>.</h2>
+    </div>
+
+    <div class="quotes">
+      <figure class="quote reveal" data-d="1">
+        <span class="qm"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 7H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2H4v2h1a4 4 0 0 0 4-4V9a2 2 0 0 0 0-2zM20 7h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2h-1v2h1a4 4 0 0 0 4-4V9a2 2 0 0 0 0-2z"/></svg></span>
+        <blockquote><p>“A Innocondo mostrou onde perdíamos horas todo mês. Em pouco tempo, a rotina financeira virou outra coisa.”</p></blockquote>
+        <figcaption class="who"><span class="av">A</span><span><span class="nm">Depoimento a confirmar</span><span class="rl">Administradora parceira</span></span></figcaption>
+      </figure>
+      <figure class="quote reveal" data-d="2">
+        <span class="qm"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 7H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2H4v2h1a4 4 0 0 0 4-4V9a2 2 0 0 0 0-2zM20 7h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2h-1v2h1a4 4 0 0 0 4-4V9a2 2 0 0 0 0-2z"/></svg></span>
+        <blockquote><p>“Consultoria que entende de condomínio de verdade. Recomendação prática, aplicável no dia seguinte.”</p></blockquote>
+        <figcaption class="who"><span class="av">S</span><span><span class="nm">Depoimento a confirmar</span><span class="rl">Síndico profissional</span></span></figcaption>
+      </figure>
+      <figure class="quote reveal" data-d="3">
+        <span class="qm"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 7H5a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2H4v2h1a4 4 0 0 0 4-4V9a2 2 0 0 0 0-2zM20 7h-4a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2v2a2 2 0 0 1-2 2h-1v2h1a4 4 0 0 0 4-4V9a2 2 0 0 0 0-2z"/></svg></span>
+        <blockquote><p>“O que me convenceu foi o ecossistema: estratégia e tecnologia falando a mesma língua.”</p></blockquote>
+        <figcaption class="who"><span class="av">G</span><span><span class="nm">Depoimento a confirmar</span><span class="rl">Gestor de administradora</span></span></figcaption>
+      </figure>
+    </div>
+
+    <div class="logos reveal">
+      <p class="lbl">Administradoras e parceiros do ecossistema</p>
+      <div class="logo-row">
+        <span class="logo-ph">logo cliente</span>
+        <span class="logo-ph">logo cliente</span>
+        <span class="logo-ph">logo cliente</span>
+        <span class="logo-ph">logo cliente</span>
+        <span class="logo-ph">logo cliente</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="cta-sec" id="contato">
+  <div class="wrap">
+    <div class="cta-card reveal">
+      <div class="cta-left">
+        <p class="eyebrow"><span class="num" style="color:var(--blue)">07</span><span class="bar"></span>Vamos conversar</p>
+        <h2>Leve sua administradora ao <em>próximo patamar</em>.</h2>
+        <p>Conte o momento da sua operação. Um especialista Innocondo responde com um diagnóstico inicial — sem compromisso.</p>
+        <a href="#contato" class="wpp">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-4-1L3 20l1.1-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg>
+          Prefere WhatsApp? Fale agora com um especialista
+        </a>
+      </div>
+      <div class="cta-right">
+        <h3>Fale com um especialista</h3>
+        <p class="fnote">Retornamos em até 1 dia útil.</p>
+        <form id="ctaForm" novalidate>
+          <div class="field">
+            <label for="f-nome">Nome</label>
+            <input id="f-nome" name="nome" type="text" placeholder="Seu nome completo" autocomplete="name" required>
+          </div>
+          <div class="field-row">
+            <div class="field">
+              <label for="f-email">E-mail</label>
+              <input id="f-email" name="email" type="email" placeholder="voce@empresa.com" autocomplete="email" required>
+            </div>
+            <div class="field">
+              <label for="f-wpp">WhatsApp</label>
+              <input id="f-wpp" name="whatsapp" type="tel" placeholder="(00) 00000-0000" autocomplete="tel" required>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-emp">Empresa / Condomínio</label>
+            <input id="f-emp" name="empresa" type="text" placeholder="Nome da administradora ou condomínio" autocomplete="organization">
+          </div>
+          <button type="submit" class="btn btn-accent btn-lg">
+            Quero falar com a Innocondo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </button>
+          <p class="priv">Seus dados são usados apenas para este contato. Sem spam.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-about-col">
+        <span class="brand"><svg width="42" height="42" style="--m-acc:#3E7BFA" aria-hidden="true"><use href="#mono"/></svg><span class="wm"><b>Inno</b>condo<span class="sub">Ecossistema Condominial</span></span></span>
+        <p class="foot-about">Consultoria, tecnologia e soluções para a evolução da gestão condominial. Especialização exclusiva, ecossistema integrado.</p>
+        <div class="foot-social">
+          <a href="#" aria-label="LinkedIn da Innocondo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v6h-4v-6a2 2 0 0 0-4 0v6h-4v-10h4v1.5A4 4 0 0 1 16 8z"/><rect x="2" y="9" width="4" height="11"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" aria-label="Instagram da Innocondo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="3.5"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+          <a href="#" aria-label="WhatsApp da Innocondo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-4-1L3 20l1.1-5.4A8.5 8.5 0 1 1 21 11.5z"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h5>Ecossistema</h5>
+        <ul>
+          <li><a href="#ecossistema">Consultoria</a></li>
+          <li><a href="#ecossistema">Tecnologia</a></li>
+          <li><a href="#ecossistema">Soluções</a></li>
+          <li><a href="#servicos">Serviços</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Empresa</h5>
+        <ul>
+          <li><a href="#porque">Por que Innocondo</a></li>
+          <li><a href="#prova">Cases</a></li>
+          <li><a href="#servicos">Conteúdo</a></li>
+          <li><a href="#contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h5>Contato</h5>
+        <ul>
+          <li><a href="#contato">Fale com um especialista</a></li>
+          <li><a href="#contato">Área do cliente · login</a></li>
+          <li><span class="addr">Endereço a confirmar<br>Atendimento em todo o Brasil</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <p>© 2026 Innocondo · Ecossistema Condominial. Todos os direitos reservados.</p>
+      <div class="links">
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Uso</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var rm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* sticky header */
+  var header = document.getElementById('top');
+  var onScroll = function(){ header.classList.toggle('stuck', window.scrollY > 8); };
+  window.addEventListener('scroll', onScroll, {passive:true}); onScroll();
+
+  /* reveal on scroll (staggered) */
+  var items = document.querySelectorAll('.reveal');
+  if(rm || !('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:.12, rootMargin:'0px 0px -8% 0px'});
+    items.forEach(function(el){ io.observe(el); });
+  }
+
+  /* mobile nav */
+  var mnav = document.getElementById('mnav');
+  var openBtn = document.getElementById('menuBtn');
+  var closeBtn = document.getElementById('mnavClose');
+  var toggle = function(open){
+    mnav.classList.toggle('open', open);
+    mnav.setAttribute('aria-hidden', open ? 'false' : 'true');
+    openBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+  openBtn.addEventListener('click', function(){ toggle(true); });
+  closeBtn.addEventListener('click', function(){ toggle(false); });
+  mnav.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ toggle(false); }); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') toggle(false); });
+
+  /* form (demo — sem backend) */
+  var form = document.getElementById('ctaForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var btn = form.querySelector('button[type=submit]');
+    btn.innerHTML = 'Recebido! Retornamos em breve ✓'.replace('✓','') + '';
+    btn.style.background = '#182868';
+    btn.disabled = true;
+  });
+})();
+</script>
+
+<!-- Meio Comunica · Conceito A Ecossistema Editorial · Innocondo -->
+</body>
+</html>
