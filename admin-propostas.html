@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Criar Proposta | Meio Comunicacao</title>
+  <title>Criar Proposta | Meio Comunicação</title>
   <meta name="robots" content="noindex, nofollow">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <style>
@@ -254,7 +254,7 @@
     <div class="row">
       <div class="field" style="flex:2;">
         <label>Lead</label>
-        <select id="nexusLead"><option value="">— nao vincular —</option></select>
+        <select id="nexusLead"><option value="">— não vincular —</option></select>
       </div>
       <div class="field" style="flex:1;align-self:flex-end;">
         <button class="btn btn-navy" type="button" onclick="carregarLeadsNexus()" id="btnLeads" style="width:100%;">Carregar leads</button>
@@ -265,23 +265,23 @@
 
   <!-- ─── MODELOS DE SERVICO ────────────────────────────────────────────── -->
   <div class="card">
-    <h2>Adicionar Servicos</h2>
+    <h2>Adicionar Serviços</h2>
     <p style="font-size:13px;color:var(--gray-600);margin-bottom:1rem;">Clique em um modelo para adicionar ou crie um do zero.</p>
     <div class="tpl-grid">
       <button class="tpl-btn" onclick="addTemplate('trafego')">
-        <h4>Gestao de Trafego Pago</h4>
-        <p>Meta Ads & Google Ads, criativos, otimizacao semanal</p>
+        <h4>Gestão de Tráfego Pago</h4>
+        <p>Meta Ads & Google Ads, criativos, otimização semanal</p>
       </button>
       <button class="tpl-btn" onclick="addTemplate('social')">
         <h4>Social Media Profissional</h4>
-        <p>Calendario editorial, design, legendas, analise</p>
+        <p>Calendário editorial, design, legendas, análise</p>
       </button>
       <button class="tpl-btn" onclick="addTemplate('consultoria')">
-        <h4>Estrategia & Consultoria</h4>
+        <h4>Estratégia & Consultoria</h4>
         <p>Diagnostico, plano de marketing, acompanhamento</p>
       </button>
       <button class="tpl-btn" onclick="addTemplate('vazio')">
-        <h4>+ Servico personalizado</h4>
+        <h4>+ Serviço personalizado</h4>
         <p>Criar do zero</p>
       </button>
     </div>
@@ -307,12 +307,12 @@
   <!-- ─── OBSERVACOES ─────────────────────────────────────────────────── -->
   <div class="card card-obs">
     <div class="card-obs-header">
-      <h2>&#128197; Observacoes</h2>
+      <h2>&#128197; Observações</h2>
       <span class="card-obs-badge">&#128065; Aparece pro cliente</span>
     </div>
     <p style="font-size:13px;color:var(--gray-600);margin-bottom:1rem;">Campo visivel ao cliente na proposta. Suporta formatacao.</p>
     <div class="field">
-      <label>Observacoes (rich text)</label>
+      <label>Observações (rich text)</label>
       <div class="rte-wrap">
         <div class="rte-toolbar">
           <button type="button" onclick="rteCmd('bold')" title="Negrito"><b>B</b></button>
@@ -332,7 +332,7 @@
           <div class="sep"></div>
           <button type="button" onclick="rteLimpar()" title="Limpar formatacao" style="font-size:11px;">Limpar fmt</button>
         </div>
-        <div class="rte-body" id="rteBody" contenteditable="true" data-placeholder="Adicione observacoes, condicoes especiais, avisos..."></div>
+        <div class="rte-body" id="rteBody" contenteditable="true" data-placeholder="Adicione observações, condições especiais, avisos..."></div>
       </div>
     </div>
   </div>
@@ -519,7 +519,7 @@ async function carregarLeadsNexus() {
     const res = await nexusBridge('list_leads', {});
     const leads = res.leads || [];
     const cur = sel.value;
-    sel.innerHTML = '<option value="">— nao vincular —</option>' +
+    sel.innerHTML = '<option value="">— não vincular —</option>' +
       leads.map(function(l){
         return '<option value="' + l.id + '">' + esc(l.name) + (l.city ? ' · ' + esc(l.city) : '') + (l.stage ? ' [' + esc(l.stage) + ']' : '') + '</option>';
       }).join('');
@@ -620,7 +620,7 @@ async function fetchPropostaItem(arquivo) {
   const { slug, version } = parseFilename(arquivo.name);
   try {
     const resp = await fetch(arquivo.download_url + '?t=' + Date.now());
-    if (!resp.ok) throw new Error('nao encontrado');
+    if (!resp.ok) throw new Error('não encontrado');
     const data = await resp.json();
     return {
       slug,
@@ -717,7 +717,7 @@ function renderListaTabela(grupos) {
     '<div class="table-wrap">' +
       '<table>' +
         '<thead><tr>' +
-          '<th>Cliente</th><th>Data</th><th>Slug</th><th>Servicos</th><th>Acoes</th>' +
+          '<th>Cliente</th><th>Data</th><th>Slug</th><th>Serviços</th><th>Ações</th>' +
         '</tr></thead>' +
         '<tbody>' + rows + '</tbody>' +
       '</table>' +
@@ -807,7 +807,7 @@ async function carregarPropostaVersao(slug, version) {
     if (row && row.content) data = row.content;
     if (!data) {
       const localResp = await fetch('propostas/' + propostaFilename(slug, versaoBase) + '?t=' + Date.now());
-      if (!localResp.ok) throw new Error('Proposta nao encontrada');
+      if (!localResp.ok) throw new Error('Proposta não encontrada');
       data = await localResp.json();
     }
 
@@ -832,7 +832,7 @@ async function carregarPropostaVersao(slug, version) {
     showMsg('Proposta "' + slug + '" v' + versaoBase + ' carregada. Ao publicar, sera criada v' + proximaVersao + '.');
     window.scrollTo({ top: document.getElementById('cliente').closest('.card').offsetTop - 20, behavior: 'smooth' });
   } catch (e) {
-    alert('Proposta "' + slug + '" (v' + versaoBase + ') nao encontrada. Verifique o slug.');
+    alert('Proposta "' + slug + '" (v' + versaoBase + ') não encontrada. Verifique o slug.');
   }
 }
 
@@ -977,16 +977,16 @@ function renderServicos() {
     const cheio = (sv.valor_cheio != null ? sv.valor_cheio : '');
     card.innerHTML =
       '<div class="card-header">' +
-        '<span class="card-num" title="Arraste para reordenar" style="cursor:grab">&#9783; Servico #' + (i + 1) + '</span>' +
+        '<span class="card-num" title="Arraste para reordenar" style="cursor:grab">&#9783; Serviço #' + (i + 1) + '</span>' +
         '<div style="display:flex;gap:4px;align-items:center;">' +
           '<button class="btn" onclick="moveServico(' + i + ',-1)" title="Subir"' + (i === 0 ? ' disabled' : '') + ' style="padding:4px 9px;">&#8593;</button>' +
           '<button class="btn" onclick="moveServico(' + i + ',1)" title="Descer"' + (i === servicos.length - 1 ? ' disabled' : '') + ' style="padding:4px 9px;">&#8595;</button>' +
           '<button class="btn btn-red" onclick="removeServico(' + i + ')">Remover</button>' +
         '</div>' +
       '</div>' +
-      '<div class="field"><label>Nome do servico</label>' +
+      '<div class="field"><label>Nome do serviço</label>' +
         '<input type="text" value="' + esc(sv.nome) + '" oninput="servicos[' + i + '].nome=this.value"></div>' +
-      '<div class="field"><label>Descricao</label>' +
+      '<div class="field"><label>Descrição</label>' +
         '<textarea oninput="servicos[' + i + '].descricao=this.value">' + esc(sv.descricao) + '</textarea></div>' +
       '<div class="field"><label>Itens inclusos</label>' +
         itensHTML +
@@ -1001,7 +1001,7 @@ function renderServicos() {
       '<div class="field"><label>Tipo de cobranca</label>' +
         '<select onchange="servicos[' + i + '].tipo=this.value">' +
           '<option value="mensal"' + (sv.tipo === 'mensal' ? ' selected' : '') + '>Mensal</option>' +
-          '<option value="unico"' + (sv.tipo === 'unico' ? ' selected' : '') + '>Unico</option>' +
+          '<option value="unico"' + (sv.tipo === 'unico' ? ' selected' : '') + '>Único</option>' +
         '</select></div>';
 
     card.addEventListener('dragstart', function () { _dragIdx = i; card.style.opacity = '0.5'; });
@@ -1013,7 +1013,7 @@ function renderServicos() {
 }
 
 function removeServico(i) {
-  if (confirm('Remover servico #' + (i + 1) + '?')) {
+  if (confirm('Remover serviço #' + (i + 1) + '?')) {
     servicos.splice(i, 1);
     renderServicos();
   }
@@ -1138,7 +1138,7 @@ async function abrirRascunhos() {
 function previsualizar() {
   const data = getData();
   if (!data.cliente) { alert('Preencha o nome do cliente.'); return; }
-  if (data.servicos.length === 0) { alert('Adicione pelo menos um servico.'); return; }
+  if (data.servicos.length === 0) { alert('Adicione pelo menos um serviço.'); return; }
   localStorage.setItem('proposta_preview', JSON.stringify(data));
   window.open('proposta.html?preview=1', '_blank');
 }
@@ -1146,7 +1146,7 @@ function previsualizar() {
 function baixarJSON() {
   const data = getData();
   if (!data.cliente) { alert('Preencha o nome do cliente.'); return; }
-  if (data.servicos.length === 0) { alert('Adicione pelo menos um servico.'); return; }
+  if (data.servicos.length === 0) { alert('Adicione pelo menos um serviço.'); return; }
   const slug = getSlugValue();
   const blob = new Blob([JSON.stringify(data, null, 2) + '\n'], { type: 'application/json' });
   const a = document.createElement('a');
@@ -1162,7 +1162,7 @@ function baixarJSON() {
 async function publicar() {
   const data = getData();
   if (!data.cliente) { alert('Preencha o nome do cliente.'); return; }
-  if (data.servicos.length === 0) { alert('Adicione pelo menos um servico.'); return; }
+  if (data.servicos.length === 0) { alert('Adicione pelo menos um serviço.'); return; }
 
   const slug    = getSlugValue();
   const dealId  = (document.getElementById('nexusLead') || {}).value || '';

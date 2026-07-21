@@ -6,7 +6,7 @@
   "servicos": [
     {
       "nome": "Captação e Edição de Vídeos e Fotos",
-      "descricao": "Captação e Edição de Vídeos para trafego pago e divulgação",
+      "descricao": "Captação e Edição de Vídeos para tráfego pago e divulgação",
       "itens": [
         "Captação de 6 vídeos com edição",
         "Deslocamento + Alimentação "
@@ -15,8 +15,8 @@
       "tipo": "unico"
     },
     {
-      "nome": "Trafego Pago Meta",
-      "descricao": "Gestão de trafego pago no Meta",
+      "nome": "Tráfego Pago Meta",
+      "descricao": "Gestão de tráfego pago no Meta",
       "itens": [
         "Criação de Campanhas",
         "Otimização de Campanhas"

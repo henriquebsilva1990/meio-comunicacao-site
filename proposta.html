@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="robots" content="noindex, nofollow">
-  <title>Proposta Comercial | Meio Comunicacao e Consultoria</title>
+  <title>Proposta Comercial | Meio Comunicação e Consultoria</title>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -363,7 +363,7 @@ function render(data) {
   const validade = calcValidade(data.data, data.validade_dias);
   const dataProposta = new Date(data.data + 'T12:00:00').toLocaleDateString('pt-BR');
 
-  document.title = 'Proposta — ' + esc(data.cliente) + ' | Meio Comunicacao';
+  document.title = 'Proposta — ' + esc(data.cliente) + ' | Meio Comunicação';
 
   const totalMensal = data.servicos.filter(sv => (sv.tipo || 'mensal') === 'mensal').reduce((s, sv) => s + sv.valor, 0);
   const totalUnico = data.servicos.filter(sv => sv.tipo === 'unico').reduce((s, sv) => s + sv.valor, 0);
@@ -424,7 +424,7 @@ function render(data) {
     return '<hr class="divider">' +
       '<section>' +
         '<div class="obs-section">' +
-          '<div class="obs-label">Observacoes</div>' +
+          '<div class="obs-label">Observações</div>' +
           '<div class="obs-body">' + sanitized + '</div>' +
         '</div>' +
       '</section>';
@@ -434,7 +434,7 @@ function render(data) {
     /* HEADER */
     '<div class="hero">' +
       '<div class="hero-inner">' +
-        '<img src="customcolor_logo_customcolor_background.png" alt="Meio Comunicacao" class="hero-logo">' +
+        '<img src="customcolor_logo_customcolor_background.png" alt="Meio Comunicação" class="hero-logo">' +
         '<div class="hero-content">' +
           '<div class="hero-tag">Proposta Comercial</div>' +
           '<h1>Proposta para <span>' + esc(data.cliente) + '</span></h1>' +
@@ -456,7 +456,7 @@ function render(data) {
       '<p class="about-text">A Meio Comunicação é uma agência de marketing digital focada em resultados reais para PMEs. Desenvolvemos estratégias personalizadas e entregamos a execução completa — da campanha ao criativo, do copy ao relatório — tudo feito internamente com total controle de qualidade.</p>' +
       '<div class="stats-row">' +
         '<div class="stat"><div class="stat-num">+30</div><div class="stat-label">Clientes atendidos</div></div>' +
-        '<div class="stat"><div class="stat-num">360&deg;</div><div class="stat-label">Execucao integrada</div></div>' +
+        '<div class="stat"><div class="stat-num">360&deg;</div><div class="stat-label">Execução integrada</div></div>' +
         '<div class="stat"><div class="stat-num">48h</div><div class="stat-label">Para sua proposta</div></div>' +
       '</div>' +
     '</section>' +
@@ -502,7 +502,7 @@ function render(data) {
               ? '<div class="total-nota">Valor avulso: <s>' + formatCurrency(totalCheioMensal) + '</s> &middot; você economiza <b>' + formatCurrency(totalCheioMensal - totalMensal) + '/mês</b></div>'
               : '<div class="total-nota">Recorrente. Sem taxa de setup. Sem surpresas.</div>') +
           '</div>' +
-          '<div class="total-valor">' + formatCurrency(totalMensal) + '/mes</div>' +
+          '<div class="total-valor">' + formatCurrency(totalMensal) + '/mês</div>' +
         '</div>' : '') +
       (totalUnico > 0 ?
         '<div class="total-bar" style="margin-top:.8rem;background:var(--navy-light);">' +
@@ -540,7 +540,7 @@ function render(data) {
     '<div class="cta-section">' +
       '<h2>Vamos <span>começar</span>?</h2>' +
       '<p>Aceite a proposta e já agendamos a reunião de alinhamento para começar.</p>' +
-      '<a href="https://wa.me/5516981334647?text=Ola!+Vi+a+proposta+da+Meio+e+gostaria+de+conversar." target="_blank" class="cta-btn">' +
+      '<a href="https://wa.me/5516981334647?text=Ol%C3%A1!+Vi+a+proposta+da+Meio+e+gostaria+de+conversar." target="_blank" class="cta-btn">' +
         '<svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.03L.789 23.769l4.89-1.483A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.78c-2.19 0-4.22-.66-5.91-1.79l-.42-.27-2.9.88.82-2.83-.29-.44A9.76 9.76 0 012.22 12c0-5.39 4.39-9.78 9.78-9.78 5.39 0 9.78 4.39 9.78 9.78 0 5.39-4.39 9.78-9.78 9.78z"/></svg>' +
         'Chamar no WhatsApp' +
       '</a>' +
@@ -550,7 +550,7 @@ function render(data) {
           '<p>henrique@meiocomunica.com.br | (16) 98133-4647</p>' +
           '<p><a href="https://meiocomunica.com.br">www.meiocomunica.com.br</a></p>' +
         '</div>' +
-        '<img src="customcolor_logo_customcolor_background.png" alt="Meio Comunicacao" class="cta-footer-logo">' +
+        '<img src="customcolor_logo_customcolor_background.png" alt="Meio Comunicação" class="cta-footer-logo">' +
       '</div>' +
     '</div>';
 }
