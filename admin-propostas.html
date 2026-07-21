@@ -422,6 +422,13 @@ function sanitizeRichText(html) {
 }
 
 // ─── Rich Text Editor ──────────────────────────────────────────────────────────
+// mousedown na toolbar NÃO pode roubar a seleção do contenteditable — senão
+// bold/cor rodam sem seleção e nada acontece (spans sempre; buttons no Safari).
+document.addEventListener('DOMContentLoaded', function () {
+  const tb = document.querySelector('.rte-toolbar');
+  if (tb) tb.addEventListener('mousedown', function (e) { e.preventDefault(); });
+});
+
 function rteCmd(cmd) {
   document.getElementById('rteBody').focus();
   document.execCommand(cmd, false, null);
@@ -429,7 +436,11 @@ function rteCmd(cmd) {
 
 function rteColor(hex) {
   document.getElementById('rteBody').focus();
+  // styleWithCSS: emite <span style="color:..."> em vez de <font color>,
+  // que o sanitizador removeria no salvar. Volta a false pra bold seguir como <b>.
+  try { document.execCommand('styleWithCSS', false, true); } catch (e) {}
   document.execCommand('foreColor', false, hex);
+  try { document.execCommand('styleWithCSS', false, false); } catch (e) {}
 }
 
 function rteLimpar() {
