@@ -49,9 +49,13 @@ destinatários assim:
 - **regra 1** — quem tem `papel = 'henrique'` recebe sempre (Telegram + WhatsApp);
 - **regra 2** — a pessoa nomeada em `triggered_by` recebe pelo canal dela.
 
-Não existe campo de destinatário explícito, então usamos `triggered_by: 'bruna'`
-para incluir a Bruna. **Efeito colateral:** o notificador acrescenta a linha
-"— disparado por: bruna" no fim da mensagem. A correção limpa é uma regra
+Não existe campo de destinatário explícito, então usamos `triggered_by: 'meio'`,
+que aponta para a linha `meio` de `v2.notify_registry` (WhatsApp comercial da
+agência, 5516997340173).
+
+Quem recebe: **Henrique** (Telegram + WhatsApp, pela regra 1) e o **número da
+Meio** (WhatsApp, pela regra 2). **Efeito colateral:** o notificador acrescenta a
+linha "— disparado por: meio" no fim da mensagem. A correção limpa é uma regra
 adicional no notifier da VPS.
 
 ## Editar o conteúdo

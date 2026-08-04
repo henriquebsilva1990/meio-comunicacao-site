@@ -76,16 +76,32 @@
     gap:16px;padding:18px var(--pad);
   }
   .topo img{height:38px;width:auto;display:block}
-  .passo{
+  /* ── Barra de progresso ───────────────────────────────────────────────
+     Some na abertura (nada começou) e aparece do cadastro em diante,
+     saindo de 0% e fechando em 100% na tela de resultado. */
+  .progresso{position:relative;z-index:2;padding:2px var(--pad) 16px}
+  .progresso[hidden]{display:none}
+
+  .progresso-topo{
+    display:flex;align-items:baseline;justify-content:space-between;
+    gap:12px;margin-bottom:9px;
+  }
+  .progresso-passo{
     font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
-    color:var(--on-dark-dim);white-space:nowrap;
+    color:var(--on-dark-mut);white-space:nowrap;
+  }
+  .progresso-pct{
+    font-family:var(--display);font-size:16px;font-weight:500;color:var(--gold);
+    font-variant-numeric:tabular-nums;   /* o número não "pula" ao contar */
+    line-height:1;
   }
 
-  /* Barra de progresso */
-  .barra{position:relative;z-index:2;height:3px;background:rgba(255,255,255,.07);overflow:hidden}
-  .barra i{
-    display:block;height:100%;width:0;background:var(--gold);
-    transition:width .45s var(--ease);
+  .trilho{height:8px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden}
+  .trilho i{
+    display:block;height:100%;width:0;border-radius:999px;
+    background:linear-gradient(90deg,var(--gold-soft),var(--gold));
+    box-shadow:0 0 14px rgba(245,195,24,.45);
+    transition:width .55s var(--ease);
   }
 
   /* ── Palco ────────────────────────────────────────────────────────────── */
@@ -257,9 +273,16 @@
       <img src="logo-meio.png" alt="Meio Comunicação" width="108" height="76" fetchpriority="high">
     </picture>
   </a>
-  <span class="passo" id="passo" aria-live="polite"></span>
 </header>
-<div class="barra" role="progressbar" aria-label="Progresso do diagnóstico" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="barra"><i id="barraFill"></i></div>
+
+<div class="progresso" id="progresso" hidden>
+  <div class="progresso-topo">
+    <span class="progresso-passo" id="progressoPasso" aria-live="polite"></span>
+    <span class="progresso-pct" id="progressoPct">0%</span>
+  </div>
+  <div class="trilho" id="trilho" role="progressbar" aria-label="Progresso do diagnóstico"
+       aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="trilhoFill"></i></div>
+</div>
 
 <main>
   <!-- 0 · Abertura -->
@@ -420,16 +443,74 @@
     api(p).catch(function(){});
   }
 
+  // ── Progresso ───────────────────────────────────────────────────────────
+  // O percentual conta na mesma curva do preenchimento da barra, senão o
+  // número chega antes e a animação parece quebrada.
+  var pctAtual = 0;
+  var semAnimacao = window.matchMedia &&
+                    window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  var travaPct = null;
+
+  function animarPct(destino){
+    var alvo = $("progressoPct");
+    var dur = 550;
+
+    // Com a aba em segundo plano o requestAnimationFrame é pausado. Sem este
+    // atalho o número fica travado no valor antigo enquanto a barra avança.
+    if (semAnimacao || destino === pctAtual || document.hidden) {
+      clearTimeout(travaPct);
+      alvo.textContent = destino + "%";
+      pctAtual = destino;
+      return;
+    }
+
+    var inicio = pctAtual, delta = destino - inicio, t0 = null;
+    function quadro(ts){
+      if (t0 === null) t0 = ts;
+      var p = Math.min((ts - t0) / dur, 1);
+      var suave = 1 - Math.pow(1 - p, 3);
+      alvo.textContent = Math.round(inicio + delta * suave) + "%";
+      if (p < 1) requestAnimationFrame(quadro);
+      else { clearTimeout(travaPct); alvo.textContent = destino + "%"; pctAtual = destino; }
+    }
+    requestAnimationFrame(quadro);
+
+    // Rede de segurança: se a animação for pausada no meio (troca de aba),
+    // o número não pode ficar parado num valor que não é o real.
+    clearTimeout(travaPct);
+    travaPct = setTimeout(function(){
+      alvo.textContent = destino + "%";
+      pctAtual = destino;
+    }, dur + 150);
+  }
+
+  // passoAtual vai de 1 (cadastro) a TOTAL (última pergunta); TOTAL+1 = resultado.
+  // O percentual mede o que já FOI concluído, por isso o -1: quem está no passo 1
+  // ainda não completou nada, e quem chega ao resultado completou tudo.
+  function progresso(passoAtual){
+    var bloco = $("progresso");
+    if (!passoAtual) { bloco.hidden = true; return; }
+    bloco.hidden = false;
+
+    var feitos = Math.max(0, Math.min(passoAtual - 1, TOTAL));
+    var pct = Math.round(feitos / TOTAL * 100);
+
+    $("trilhoFill").style.width = pct + "%";
+    $("trilho").setAttribute("aria-valuenow", pct);
+    $("progressoPasso").textContent = passoAtual > TOTAL
+      ? "Diagnóstico pronto"
+      : ("Passo " + passoAtual + " de " + TOTAL);
+    animarPct(pct);
+  }
+
   // ── Navegação ───────────────────────────────────────────────────────────
   function mostrar(id, passoAtual){
     var telas = document.querySelectorAll(".tela");
     for (var i=0;i<telas.length;i++) telas[i].classList.remove("on");
     $(id).classList.add("on");
 
-    var pct = passoAtual ? Math.round(passoAtual/TOTAL*100) : 0;
-    $("barraFill").style.width = pct + "%";
-    $("barra").setAttribute("aria-valuenow", pct);
-    $("passo").textContent = passoAtual ? ("Passo " + passoAtual + " de " + TOTAL) : "";
+    progresso(passoAtual);
 
     window.scrollTo(0,0);
     var foco = $(id).querySelector("input, button, a");
@@ -517,7 +598,7 @@
 
   // ── Resultado ───────────────────────────────────────────────────────────
   function concluir(){
-    mostrar("t-resultado", TOTAL);
+    mostrar("t-resultado", TOTAL + 1);   // fecha a barra em 100%
     $("rs-titulo").textContent = "Calculando seu diagnóstico...";
 
     api({ action:"finish", session_token:token, respostas:respostas })

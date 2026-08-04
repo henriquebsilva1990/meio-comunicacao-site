@@ -106,14 +106,18 @@ const NOME_PERFIL: Record<string, string> = {
 // ── Notificação ──────────────────────────────────────────────────────────────
 
 /**
- * Avisa Henrique e Bruna a cada evento do quiz.
+ * Avisa a agência a cada evento do quiz.
  *
  * O notificador da VPS resolve destinatários assim (scripts/ops/vps/notifier.js):
  *   regra 1 — quem tem papel 'henrique' recebe SEMPRE (Telegram + WhatsApp);
  *   regra 2 — a pessoa nomeada em `triggered_by` recebe pelo canal dela.
- * Não existe campo de destinatário explícito, então `triggered_by: 'bruna'` é o
- * único jeito de incluir a Bruna sem alterar infra compartilhada. Efeito colateral:
- * o notificador acrescenta a linha "— disparado por: bruna" no fim da mensagem.
+ * Não existe campo de destinatário explícito, então `triggered_by` é o único
+ * jeito de endereçar sem alterar infra compartilhada. Apontamos para 'meio',
+ * cadastrado em v2.notify_registry com o WhatsApp comercial 5516997340173.
+ *
+ * Quem recebe: Henrique (Telegram + WhatsApp, regra 1) e o número da Meio
+ * (WhatsApp, regra 2). Efeito colateral do notificador: ele acrescenta a linha
+ * "— disparado por: meio" no fim da mensagem.
  *
  * Falha de notificação nunca derruba a resposta ao usuário.
  */
@@ -127,7 +131,7 @@ async function notificar(
     agente: "quiz-instagram",
     status: "done",
     resumo,
-    triggered_by: "bruna",
+    triggered_by: "meio",
   });
   if (error) console.error("notify_outbox falhou:", error.message);
 }
