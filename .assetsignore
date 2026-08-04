@@ -1,0 +1,4 @@
+# Arquivos que ficam no repo mas nao vao para o site publico.
+# O fonte da edge function revela o campo honeypot e os limites de rate limit;
+# o DDL revela o schema. Nada disso precisa estar servido.
+quiz-instagram/_infra/*
