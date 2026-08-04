@@ -11,6 +11,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # Fontes internas ficam versionadas no repo, mas nao vao para a CDN publica.
+      - name: Remove fontes internas do artefato de deploy
+        run: rm -rf quiz-instagram/_infra
+
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
