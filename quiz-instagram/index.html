@@ -247,8 +247,12 @@
 
 <header class="topo">
   <a href="/" aria-label="Meio Comunicação — página inicial">
-    <img src="/assets/logos/meio/meio-branco-transparente.png" alt="Meio Comunicação"
-         width="200" height="140" fetchpriority="high">
+    <!-- Logo servido no tamanho de exibição (54x38 @2x). O original de 200x140
+         custava 16 KB para renderizar 54 px de largura. -->
+    <picture>
+      <source srcset="logo-meio.webp" type="image/webp">
+      <img src="logo-meio.png" alt="Meio Comunicação" width="108" height="76" fetchpriority="high">
+    </picture>
   </a>
   <span class="passo" id="passo" aria-live="polite"></span>
 </header>
