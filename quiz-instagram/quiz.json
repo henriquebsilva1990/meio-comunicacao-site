@@ -1,0 +1,134 @@
+{
+  "_leia_me": "Conteúdo do quiz. Pode editar este arquivo sem tocar no index.html. Perguntas: A = Tímida, B = Sem constância, C = Perdida. O perfil final é calculado no servidor — mudar as letras aqui muda o quiz inteiro.",
+
+  "abertura": {
+    "eyebrow": "Diagnóstico gratuito",
+    "titulo": "Seu Instagram trava por um motivo. Descubra qual.",
+    "subtitulo": "Seis perguntas, dois minutos. No final você recebe o diagnóstico do seu perfil e os três primeiros passos para sair da inércia.",
+    "cta": "Começar diagnóstico",
+    "rodape": "Feito pela Meio Comunicação · Leva menos de 2 minutos"
+  },
+
+  "cadastro": {
+    "titulo": "Antes de começar",
+    "subtitulo": "Preencha para receber o diagnóstico completo no final.",
+    "consentimento": "Autorizo a Meio Comunicação a entrar em contato comigo pelo WhatsApp e e-mail sobre este diagnóstico.",
+    "cta": "Continuar"
+  },
+
+  "nicho": {
+    "titulo": "{nome}, qual é o seu ramo de atuação?",
+    "subtitulo": "Escreva do seu jeito — confeitaria, estética, consultoria, o que for.",
+    "placeholder": "Ex.: confeitaria artesanal",
+    "cta": "Continuar"
+  },
+
+  "perguntas": [
+    {
+      "n": 1,
+      "pergunta": "{nome}, quando você pensa em gravar um Reels, o que trava você?",
+      "opcoes": {
+        "A": "Medo de aparecer, de ser julgada, de \"não ficar bom\"",
+        "B": "Esqueço ou deixo pra depois",
+        "C": "Não sei nem que conteúdo gravar"
+      }
+    },
+    {
+      "n": 2,
+      "pergunta": "Como está seu Instagram hoje?",
+      "opcoes": {
+        "A": "Tenho ideias boas, mas ficam no rascunho",
+        "B": "Postei forte duas semanas e sumi",
+        "C": "Posto esporádico, sem fio condutor"
+      }
+    },
+    {
+      "n": 3,
+      "pergunta": "Se alguém pedisse pra ver seu plano de conteúdo agora...",
+      "opcoes": {
+        "A": "Tenho um plano, mas não executo por insegurança",
+        "B": "Tenho um plano — já abandonei uns três",
+        "C": "Que plano? Vou no feeling"
+      }
+    },
+    {
+      "n": 4,
+      "pergunta": "O quanto você sabe mexer no Instagram (Reels, edição, Stories)?",
+      "opcoes": {
+        "A": "Sei mexer bem — o problema sou eu na câmera",
+        "B": "Sei mexer, uso quando bate a vontade",
+        "C": "Vou aprendendo na tentativa e erro"
+      }
+    },
+    {
+      "n": 5,
+      "pergunta": "{nome}, se você descrevesse sua relação com o Instagram em uma palavra, seria:",
+      "opcoes": {
+        "A": "Insegurança",
+        "B": "Inconstância",
+        "C": "Confusão"
+      }
+    },
+    {
+      "n": 6,
+      "pergunta": "Se eu te desse uma varinha mágica, o que você resolveria primeiro?",
+      "opcoes": {
+        "A": "Perder o medo de câmera",
+        "B": "Ter constância sem depender de motivação",
+        "C": "Ter um caminho claro pra seguir"
+      }
+    }
+  ],
+
+  "resultados": {
+    "timida": {
+      "rotulo": "Tímida",
+      "titulo": "Seu perfil é o da Tímida",
+      "diagnostico": "{nome}, seu problema não é falta de conteúdo nem de estratégia — é a câmera. Você sabe o que fazer, mas trava na hora de aparecer, e isso trava todo o resto: postagem, constância, resultado.",
+      "estrategia": [
+        "Comece a aparecer em formatos de baixa exposição — voz sobre imagem, mãos, bastidores — antes de ir para o rosto direto.",
+        "Grave sem publicar por 3 a 5 dias, só para dessensibilizar o medo da câmera.",
+        "Defina um roteiro fixo curto, de 15 a 20 segundos, para tirar a insegurança do \"o que eu falo agora\"."
+      ],
+      "amarracao": "Perder o medo de câmera não se resolve com mais um tutorial. Se resolve com um plano feito para o seu caso, com alguém do lado."
+    },
+    "sem_constancia": {
+      "rotulo": "Sem constância",
+      "titulo": "Seu perfil é o da Sem constância",
+      "diagnostico": "{nome}, você não tem falta de ideia nem de vontade — tem falta de sistema. Você começa forte, mas depende de motivação para sustentar, e motivação sempre acaba.",
+      "estrategia": [
+        "Defina um volume mínimo sustentável — dois posts por semana, não cinco. Constância baixa e real vence intensidade que não dura.",
+        "Grave em lote, um dia por semana, em vez de tentar criar todo dia.",
+        "Use um calendário fixo com dia e horário definidos, para tirar a decisão diária de \"vou postar hoje?\"."
+      ],
+      "amarracao": "Sistema não se copia de um post salvo. Se monta em cima da sua rotina real — e é isso que a gente faz junto."
+    },
+    "perdida": {
+      "rotulo": "Perdida",
+      "titulo": "Seu perfil é o da Perdida",
+      "diagnostico": "{nome}, seu problema não é execução — é direção. Você posta sem saber para onde está indo, e isso gera ansiedade e resultado disperso.",
+      "estrategia": [
+        "Defina um objetivo claro para os próximos 90 dias: vendas, autoridade ou comunidade. Escolha um.",
+        "Mapeie três pilares de conteúdo ligados a esse objetivo, em vez de conteúdo aleatório.",
+        "Crie um plano simples de quatro semanas antes de postar qualquer coisa nova."
+      ],
+      "amarracao": "Direção não vem de mais conteúdo consumido. Vem de alguém que olha o seu caso de fora e desenha o caminho."
+    }
+  },
+
+  "oferta": {
+    "eyebrow": "Seu próximo passo",
+    "nome": "Mapa de Ação — Instagram",
+    "formato": "Encontro de 1h30, ao vivo e individual",
+    "entrega": "Diagnóstico completo do seu perfil + plano de ação personalizado para 1 mês",
+    "preco_cheio": "R$ 497,00",
+    "preco_cupom": "R$ 248,50",
+    "desconto": "50% OFF",
+    "validade_horas": 72,
+    "chamada": "{nome}, como parte do seu diagnóstico você garantiu 50% de desconto no Mapa de Ação — Instagram.",
+    "cta": "Garantir meu Mapa de Ação",
+    "whatsapp": "5516981334647",
+    "mensagem_whatsapp": "Oi! Acabei de fazer o Quiz de Diagnóstico de Instagram e meu perfil é {perfil}. Quero garantir meu Mapa de Ação com os 50% OFF.",
+    "pos_cta": "Você fala direto com a Meio pelo WhatsApp para escolher o horário."
+  }
+}

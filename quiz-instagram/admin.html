@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leads do Quiz de Instagram | Meio</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="/favicon.png">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --navy:#0D1B2A; --panel:#0f2235; --gold:#F5C318;
+    --on:#EAEDF1; --mut:#94A2B2; --dim:#8b99a7; --line:rgba(255,255,255,.10);
+    --timida:#7aa7ff; --constancia:#f5c318; --perdida:#ff9f7a;
+  }
+  body{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;background:var(--navy);
+       color:var(--on);min-height:100svh;line-height:1.5;font-size:15px}
+
+  /* ── Login ──────────────────────────────────────────────────────────── */
+  .overlay{position:fixed;inset:0;background:var(--navy);display:grid;place-items:center;z-index:50;padding:24px}
+  .card{width:100%;max-width:380px;background:var(--panel);border:1px solid var(--line);
+        border-radius:18px;padding:32px}
+  .card h1{font-size:20px;margin-bottom:6px}
+  .card p{font-size:13.5px;color:var(--mut);margin-bottom:22px}
+  input,select{width:100%;font:inherit;font-size:16px;padding:12px 14px;border-radius:11px;
+        background:rgba(255,255,255,.05);color:#fff;border:1px solid var(--line);margin-bottom:12px}
+  input:focus,select:focus{outline:2px solid var(--gold);outline-offset:1px;border-color:transparent}
+  button{font:inherit;font-weight:600;cursor:pointer;border:0;border-radius:11px;
+         padding:12px 20px;background:var(--gold);color:var(--navy);min-height:44px}
+  button.sec{background:transparent;color:var(--mut);border:1px solid var(--line)}
+  .erro{color:#ff8b7a;font-size:13px;margin-bottom:12px;display:none}
+
+  /* ── App ────────────────────────────────────────────────────────────── */
+  #app{display:none;padding:22px clamp(14px,3vw,32px) 60px}
+  header{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between;
+         margin-bottom:22px}
+  h2{font-size:20px}
+  .sub{font-size:13px;color:var(--dim)}
+  .acoes{display:flex;gap:10px;flex-wrap:wrap}
+
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:22px}
+  .kpi{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px}
+  .kpi b{display:block;font-size:26px;font-weight:700;line-height:1.2}
+  .kpi span{font-size:11.5px;color:var(--dim);text-transform:uppercase;letter-spacing:.1em}
+
+  .filtros{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:18px}
+  .filtros input,.filtros select{margin:0}
+
+  .wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--panel)}
+  table{border-collapse:collapse;width:100%;min-width:900px;font-size:13.5px}
+  th,td{padding:12px 14px;text-align:left;border-bottom:1px solid var(--line);white-space:nowrap}
+  th{font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--dim);
+     position:sticky;top:0;background:var(--panel)}
+  tr:last-child td{border-bottom:0}
+  td.wrapok{white-space:normal;min-width:150px}
+
+  .tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;
+       text-transform:uppercase;letter-spacing:.06em}
+  .t-timida{background:rgba(122,167,255,.16);color:var(--timida)}
+  .t-sem_constancia{background:rgba(245,195,24,.16);color:var(--constancia)}
+  .t-perdida{background:rgba(255,159,122,.16);color:var(--perdida)}
+  .t-vazio{background:rgba(255,255,255,.07);color:var(--dim)}
+  .st{font-size:12px;color:var(--mut)}
+  .sim{color:#7ad19f;font-weight:700}
+  .nao{color:var(--dim)}
+  a.wa{color:var(--gold);text-decoration:none;font-weight:600}
+  a.wa:hover{text-decoration:underline}
+  .vazio{padding:44px;text-align:center;color:var(--dim)}
+</style>
+</head>
+<body>
+
+<div class="overlay" id="login">
+  <div class="card">
+    <h1>Leads do Quiz</h1>
+    <p>Entre com o mesmo login do Nexus.</p>
+    <input id="email" type="email" placeholder="E-mail" autocomplete="username">
+    <input id="senha" type="password" placeholder="Senha" autocomplete="current-password">
+    <p class="erro" id="loginErro"></p>
+    <button id="btnEntrar" style="width:100%">Entrar</button>
+  </div>
+</div>
+
+<div id="app">
+  <header>
+    <div>
+      <h2>Quiz de Diagnóstico — Instagram</h2>
+      <p class="sub" id="atualizado"></p>
+    </div>
+    <div class="acoes">
+      <button class="sec" id="btnRecarregar">Recarregar</button>
+      <button id="btnCsv">Exportar CSV</button>
+      <button class="sec" id="btnSair">Sair</button>
+    </div>
+  </header>
+
+  <div class="kpis" id="kpis"></div>
+
+  <div class="filtros">
+    <input id="fBusca" type="search" placeholder="Buscar nome, WhatsApp, e-mail ou nicho">
+    <select id="fPerfil">
+      <option value="">Todos os perfis</option>
+      <option value="timida">Tímida</option>
+      <option value="sem_constancia">Sem constância</option>
+      <option value="perdida">Perdida</option>
+    </select>
+    <select id="fStatus">
+      <option value="">Todos os status</option>
+      <option value="concluido">Concluído</option>
+      <option value="em_andamento">Abandonou no meio</option>
+      <option value="iniciado">Só cadastrou</option>
+    </select>
+  </div>
+
+  <div class="wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Quando</th><th>Nome</th><th>WhatsApp</th><th>E-mail</th>
+          <th>Nicho</th><th>Perfil</th><th>Status</th><th>Clicou WhatsApp</th><th>Origem</th>
+        </tr>
+      </thead>
+      <tbody id="tbody"></tbody>
+    </table>
+    <p class="vazio" id="vazio" style="display:none">Nenhum lead ainda.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  var SUPA_URL  = 'https://wrxgpfsjupgbtowuspth.supabase.co';
+  var SUPA_ANON = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndyeGdwZnNqdXBnYnRvd3VzcHRoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzcyNDUzOTIsImV4cCI6MjA5MjgyMTM5Mn0._FAsajl--qGEDDzkrelwDJexkxi2AZQVTacwq1Qp18E';
+  var sb = window.supabase.createClient(SUPA_URL, SUPA_ANON);
+
+  var LEADS = [];
+  var $ = function(id){ return document.getElementById(id); };
+
+  var ROTULO = { timida:'Tímida', sem_constancia:'Sem constância', perdida:'Perdida' };
+  var STATUS = { iniciado:'Só cadastrou', em_andamento:'Abandonou no meio', concluido:'Concluído' };
+
+  // ── Auth ────────────────────────────────────────────────────────────────
+  function entrar(){
+    var erro = $('loginErro');
+    erro.style.display = 'none';
+    sb.auth.signInWithPassword({
+      email: ($('email').value||'').trim(),
+      password: $('senha').value
+    }).then(function(r){
+      if (r.error || !r.data || !r.data.session) {
+        erro.textContent = 'Login incorreto.';
+        erro.style.display = 'block';
+        $('senha').value = '';
+        return;
+      }
+      abrir();
+    });
+  }
+
+  function abrir(){
+    $('login').style.display = 'none';
+    $('app').style.display = 'block';
+    carregar();
+  }
+
+  // ── Dados ───────────────────────────────────────────────────────────────
+  function carregar(){
+    sb.from('v2_quiz_leads')
+      .select('created_at,nome,whatsapp,email,nicho,perfil,status,ultima_tela,clicou_whatsapp,utm_source,utm_campaign')
+      .order('created_at', { ascending:false })
+      .limit(1000)
+      .then(function(r){
+        if (r.error) {
+          $('vazio').textContent = 'Erro ao carregar: ' + r.error.message;
+          $('vazio').style.display = 'block';
+          return;
+        }
+        LEADS = r.data || [];
+        $('atualizado').textContent =
+          LEADS.length + ' lead(s) · atualizado às ' +
+          new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+        pintar();
+      });
+  }
+
+  function filtrados(){
+    var q = ($('fBusca').value||'').trim().toLowerCase();
+    var p = $('fPerfil').value;
+    var s = $('fStatus').value;
+    return LEADS.filter(function(l){
+      if (p && l.perfil !== p) return false;
+      if (s && l.status !== s) return false;
+      if (!q) return true;
+      return [l.nome,l.whatsapp,l.email,l.nicho].join(' ').toLowerCase().indexOf(q) > -1;
+    });
+  }
+
+  function pintar(){
+    var lista = filtrados();
+
+    // KPIs sobre a lista inteira, não sobre o filtro — é o retrato do funil.
+    var total = LEADS.length;
+    var concl = LEADS.filter(function(l){ return l.status === 'concluido'; }).length;
+    var cliq  = LEADS.filter(function(l){ return l.clicou_whatsapp; }).length;
+    var pct = function(n){ return total ? Math.round(n/total*100) + '%' : '—'; };
+
+    $('kpis').innerHTML =
+      kpi(total, 'Cadastros') +
+      kpi(concl + ' · ' + pct(concl), 'Concluíram o quiz') +
+      kpi((total-concl) + ' · ' + pct(total-concl), 'Abandonaram') +
+      kpi(cliq + ' · ' + pct(cliq), 'Clicaram no WhatsApp');
+
+    var tb = $('tbody');
+    tb.textContent = '';
+    lista.forEach(function(l){
+      var tr = document.createElement('tr');
+      tr.appendChild(td(new Date(l.created_at).toLocaleString('pt-BR',
+        {day:'2-digit',month:'2-digit',hour:'2-digit',minute:'2-digit'})));
+      tr.appendChild(td(l.nome, 'wrapok'));
+
+      var tdw = document.createElement('td');
+      var a = document.createElement('a');
+      a.className = 'wa';
+      a.href = 'https://wa.me/' + l.whatsapp;
+      a.target = '_blank'; a.rel = 'noopener';
+      a.textContent = formataFone(l.whatsapp);
+      tdw.appendChild(a);
+      tr.appendChild(tdw);
+
+      tr.appendChild(td(l.email, 'wrapok'));
+      tr.appendChild(td(l.nicho || '—', 'wrapok'));
+
+      var tdp = document.createElement('td');
+      var sp = document.createElement('span');
+      sp.className = 'tag ' + (l.perfil ? 't-'+l.perfil : 't-vazio');
+      sp.textContent = l.perfil ? ROTULO[l.perfil] : 'sem perfil';
+      tdp.appendChild(sp);
+      tr.appendChild(tdp);
+
+      var st = STATUS[l.status] || l.status;
+      if (l.status !== 'concluido') st += ' (tela ' + l.ultima_tela + ')';
+      tr.appendChild(td(st, 'st'));
+
+      var tdc = document.createElement('td');
+      tdc.className = l.clicou_whatsapp ? 'sim' : 'nao';
+      tdc.textContent = l.clicou_whatsapp ? 'sim' : '—';
+      tr.appendChild(tdc);
+
+      tr.appendChild(td([l.utm_source,l.utm_campaign].filter(Boolean).join(' / ') || 'direto', 'wrapok'));
+      tb.appendChild(tr);
+    });
+
+    $('vazio').style.display = lista.length ? 'none' : 'block';
+    if (!lista.length && LEADS.length) $('vazio').textContent = 'Nenhum lead com esses filtros.';
+  }
+
+  function kpi(valor, rotulo){
+    return '<div class="kpi"><b>'+valor+'</b><span>'+rotulo+'</span></div>';
+  }
+  function td(txt, cls){
+    var e = document.createElement('td');
+    if (cls) e.className = cls;
+    e.textContent = txt == null ? '' : txt;
+    return e;
+  }
+  function formataFone(w){
+    if (!w || w.length < 12) return w || '';
+    var d = w.slice(2);
+    return '(' + d.slice(0,2) + ') ' + d.slice(2, d.length-4) + '-' + d.slice(-4);
+  }
+
+  // ── CSV ─────────────────────────────────────────────────────────────────
+  function csv(){
+    var cols = ['created_at','nome','whatsapp','email','nicho','perfil','status',
+                'ultima_tela','clicou_whatsapp','utm_source','utm_campaign'];
+    var esc = function(v){
+      var s = v == null ? '' : String(v);
+      return '"' + s.replace(/"/g,'""') + '"';
+    };
+    var linhas = [cols.join(';')];
+    filtrados().forEach(function(l){
+      linhas.push(cols.map(function(c){ return esc(l[c]); }).join(';'));
+    });
+    // BOM para o Excel abrir os acentos direito
+    var blob = new Blob(['﻿' + linhas.join('\r\n')], {type:'text/csv;charset=utf-8'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url;
+    a.download = 'quiz-instagram-leads-' + new Date().toISOString().slice(0,10) + '.csv';
+    a.click();
+    URL.revokeObjectURL(url);
+  }
+
+  // ── Liga ────────────────────────────────────────────────────────────────
+  $('btnEntrar').addEventListener('click', entrar);
+  $('senha').addEventListener('keydown', function(e){ if (e.key === 'Enter') entrar(); });
+  $('btnRecarregar').addEventListener('click', carregar);
+  $('btnCsv').addEventListener('click', csv);
+  $('btnSair').addEventListener('click', function(){ sb.auth.signOut().then(function(){ location.reload(); }); });
+  ['fBusca','fPerfil','fStatus'].forEach(function(id){
+    $(id).addEventListener('input', pintar);
+  });
+
+  // Reaproveita a sessão do Nexus se já estiver logado no mesmo navegador
+  sb.auth.getSession().then(function(r){
+    if (r && r.data && r.data.session) abrir();
+    else $('email').focus();
+  });
+})();
+</script>
+</body>
+</html>
