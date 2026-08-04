@@ -256,10 +256,6 @@ input:focus,textarea:focus{outline:0}
 .v3 nav a:hover{color:var(--b3)}
 .v3 .burger{color:var(--creme)}
 
-.v3 .topo{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:.5}
-.v3 .topo path{fill:none;stroke:var(--b1);stroke-width:.8;opacity:.5}
-.v3 .topo path:nth-child(even){stroke:var(--b2);opacity:.28}
-
 .v3 .hero{position:relative;overflow:hidden;border-bottom:1px solid rgba(199,154,94,.18)}
 .v3 .hero .cols{display:grid;grid-template-columns:1.05fr .8fr;gap:0;align-items:stretch;position:relative}
 .v3 .hero-txt{padding:clamp(52px,7vw,104px) clamp(30px,5vw,80px) clamp(56px,8vw,104px) 0;
@@ -287,9 +283,10 @@ input:focus,textarea:focus{outline:0}
 .v3 h2{font-family:var(--news);font-weight:200;font-size:clamp(27px,3.4vw,44px);letter-spacing:-.01em;line-height:1.2;margin:22px 0 0}
 .v3 h2 em{font-style:italic;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .v3 .forksvg{width:100%;height:auto;display:block;margin:30px 0 -6px;overflow:visible}
-.v3 .forksvg path{fill:none;stroke:var(--b2);stroke-width:1.2;opacity:.62;transition:stroke .35s,opacity .35s,stroke-width .35s}
-.v3 .forksvg circle{fill:var(--b2);opacity:.72;transition:fill .35s,opacity .35s}
-.v3 .forksvg .lit path,.v3 .forksvg path.lit{stroke:var(--b3);opacity:1;stroke-width:2}
+.v3 .forksvg path{fill:none;stroke:var(--b2);stroke-width:2.6;stroke-linecap:round;opacity:.66;
+  vector-effect:non-scaling-stroke;transition:stroke .35s,opacity .35s,stroke-width .35s}
+.v3 .forksvg circle{fill:var(--b2);opacity:.78;transition:fill .35s,opacity .35s}
+.v3 .forksvg .lit path,.v3 .forksvg path.lit{stroke:var(--b3);opacity:1;stroke-width:4}
 .v3 .forksvg circle.lit{fill:var(--b3);opacity:1}
 .v3 .paths{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:rgba(199,154,94,.2);border:1px solid rgba(199,154,94,.2)}
 .v3 .path{background:var(--ebano-2);padding:32px 28px 36px;transition:background .35s}
@@ -640,16 +637,6 @@ input:focus,textarea:focus{outline:0}
   </header>
 
   <div class="hero">
-    <svg class="topo" viewBox="0 0 1200 640" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M-40 70 C 190 20, 380 130, 610 78 S 1000 8, 1250 92"/>
-      <path d="M-40 138 C 200 84, 390 196, 620 142 S 1010 70, 1250 158"/>
-      <path d="M-40 208 C 180 150, 400 266, 630 206 S 1020 132, 1250 226"/>
-      <path d="M-40 280 C 210 220, 380 340, 615 276 S 1000 198, 1250 296"/>
-      <path d="M-40 352 C 190 292, 410 412, 640 348 S 1030 268, 1250 368"/>
-      <path d="M-40 424 C 200 364, 380 486, 620 420 S 1010 338, 1250 442"/>
-      <path d="M-40 496 C 180 436, 400 558, 630 492 S 1020 408, 1250 514"/>
-      <path d="M-40 568 C 210 508, 390 630, 615 564 S 1000 478, 1250 586"/>
-    </svg>
     <div class="wrap cols">
       <div class="hero-txt">
         <span class="eyebrow">Advogado · Ribeirão Preto — SP</span>
