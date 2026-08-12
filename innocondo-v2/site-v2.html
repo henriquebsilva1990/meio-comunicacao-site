@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grupo Innocondo — Organizar, conectar e transformar o mercado condominial</title>
+<meta name="description" content="O Grupo Innocondo reúne consultoria, soluções e tecnologia num só ecossistema para a gestão condominial. +17 anos de experiência ao lado de síndicos, condomínios e administrações.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap"></noscript>
+
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --navy-900:#0C1638;
+  --navy-800:#0F1B44;
+  --navy-700:#142254;
+  --navy:#182868;
+  --navy-500:#2A3E86;
+  --ink:#10152B;
+  --slate:#565E78;
+  --slate-2:#7A82A0;
+  --line:#E4E7EF;
+  --paper:#FAFAF7;
+  --white:#FFFFFF;
+  --blue:#3E7BFA;      /* grupo / inovação */
+  --cyan:#12B5B0;      /* tecnologia (em breve) */
+  --cyan-soft:#5FD6D0;
+  --amber:#E0982E;     /* soluções / seguros */
+  --amber-soft:#F0B764;
+  --radius:18px;
+  --radius-lg:26px;
+  --shadow-sm:0 1px 2px rgba(16,21,43,.05),0 6px 18px rgba(16,21,43,.06);
+  --shadow-md:0 14px 40px rgba(16,21,43,.10);
+  --shadow-glow:0 30px 90px -30px rgba(62,123,250,.4);
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --maxw:1200px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Manrope',system-ui,sans-serif;
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:'Sora',system-ui,sans-serif;line-height:1.1;letter-spacing:-.02em;font-weight:700}
+a{color:inherit;text-decoration:none;cursor:pointer}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+img,svg{display:block;max-width:100%}
+ul{list-style:none}
+::selection{background:var(--navy);color:#fff}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.eyebrow{
+  font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--blue);display:inline-flex;align-items:center;gap:9px;
+}
+.eyebrow::before{content:"";width:22px;height:1.5px;background:currentColor;display:inline-block}
+.eyebrow.on-dark{color:var(--cyan-soft)}
+.sec{padding:104px 0}
+.sec-head{max-width:660px;margin-bottom:52px}
+.sec-head.center{margin-inline:auto;text-align:center}
+.sec-head.center .eyebrow{justify-content:center}
+.sec-head h2{font-size:clamp(1.9rem,3.6vw,2.85rem);margin:16px 0 14px}
+.sec-head p{color:var(--slate);font-size:1.08rem}
+
+/* ============ BUTTONS ============ */
+.btn{
+  display:inline-flex;align-items:center;gap:9px;
+  font-weight:600;font-size:.98rem;padding:14px 24px;border-radius:12px;
+  transition:transform .18s var(--ease),box-shadow .22s var(--ease),background .22s var(--ease),color .2s var(--ease),border-color .2s var(--ease);
+  cursor:pointer;white-space:nowrap;
+}
+.btn svg{width:18px;height:18px;stroke-width:1.8}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 10px 26px -12px rgba(62,123,250,.7)}
+.btn-primary:hover{background:#2f68e6;transform:translateY(-2px);box-shadow:0 16px 34px -12px rgba(62,123,250,.75)}
+.btn-ghost{background:rgba(255,255,255,.06);color:var(--white);border:1px solid rgba(255,255,255,.18)}
+.btn-ghost:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.34);transform:translateY(-2px)}
+.btn-solid{background:var(--navy);color:var(--white)}
+.btn-solid:hover{background:var(--navy-700);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+.btn-line{background:transparent;color:var(--navy);border:1px solid var(--line)}
+.btn-line:hover{border-color:var(--navy-500);transform:translateY(-2px)}
+.btn-wa{background:#128C7E;color:#fff}
+.btn-wa:hover{background:#0e7568;transform:translateY(-2px)}
+:focus-visible{outline:2.5px solid var(--blue);outline-offset:3px;border-radius:6px}
+
+/* ============ LOGO / MONOGRAM ============ */
+.logo{display:inline-flex;align-items:center;gap:11px}
+.mono{width:36px;height:36px;flex:0 0 36px;border-radius:10px;overflow:visible}
+.logo-txt{font-family:'Sora';font-weight:700;font-size:1.2rem;letter-spacing:-.02em;color:var(--ink)}
+.logo-txt b{font-weight:800}
+.logo-txt .grp{display:block;font-family:'Manrope';font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--slate);font-weight:600;margin-top:2px}
+.on-dark .logo-txt,.hdr-dark .logo-txt{color:#fff}
+.on-dark .logo-txt .grp{color:var(--cyan-soft)}
+
+/* ============ HEADER ============ */
+.hdr{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  transition:background .3s var(--ease),box-shadow .3s var(--ease),backdrop-filter .3s;
+  padding:15px 0;
+}
+.hdr-dark .logo-txt{color:#fff}
+.hdr.scrolled{background:rgba(250,250,247,.88);backdrop-filter:blur(16px);box-shadow:0 1px 0 var(--line)}
+.hdr.scrolled .logo-txt{color:var(--ink)}
+.hdr.scrolled .logo-txt .grp{color:var(--slate)}
+.hdr.scrolled .nav a{color:var(--slate)}
+.hdr.scrolled .nav a:hover{color:var(--ink)}
+.hdr.scrolled .menu-btn span{background:var(--ink)}
+.hdr-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav{display:flex;align-items:center;gap:28px}
+.nav a{font-size:.94rem;font-weight:500;color:rgba(255,255,255,.82);transition:color .18s;position:relative}
+.nav a:hover{color:#fff}
+.nav a::after{content:"";position:absolute;left:0;bottom:-5px;height:1.5px;width:0;background:var(--blue);transition:width .22s var(--ease)}
+.nav a:hover::after{width:100%}
+.hdr-cta{display:flex;align-items:center;gap:14px}
+.menu-btn{display:none;flex-direction:column;gap:5px;padding:8px;z-index:120}
+.menu-btn span{width:24px;height:2px;background:#fff;border-radius:2px;transition:.25s var(--ease)}
+.mobile-nav{
+  position:fixed;inset:0;background:var(--navy-900);z-index:110;
+  display:flex;flex-direction:column;justify-content:center;gap:8px;padding:40px;
+  transform:translateX(100%);transition:transform .4s var(--ease);
+}
+.mobile-nav.open{transform:translateX(0)}
+.mobile-nav a{font-family:'Sora';font-size:1.5rem;color:#fff;font-weight:600;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.mobile-nav .btn{margin-top:24px;justify-content:center}
+
+/* ============ HERO — GRUPO + PROPÓSITO ============ */
+.hero{
+  position:relative;background:var(--navy-900);color:#fff;
+  padding:150px 0 108px;overflow:hidden;
+}
+.hero-mesh{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-mesh::before,.hero-mesh::after{content:"";position:absolute;border-radius:50%;filter:blur(90px);opacity:.5}
+.hero-mesh::before{width:620px;height:620px;background:radial-gradient(circle,rgba(62,123,250,.4),transparent 68%);top:-180px;right:-120px}
+.hero-mesh::after{width:560px;height:560px;background:radial-gradient(circle,rgba(18,181,176,.3),transparent 66%);bottom:-220px;left:-160px}
+.hero-grid-lines{position:absolute;inset:0;opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:54px 54px;mask-image:radial-gradient(ellipse 90% 70% at 50% 0%,#000 30%,transparent 80%)}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center}
+.hero-copy{max-width:580px}
+.hero .kicker-grp{display:inline-flex;align-items:center;gap:9px;font-size:.8rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan-soft);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);padding:7px 14px;border-radius:100px}
+.hero h1{font-size:clamp(2.3rem,4.7vw,3.6rem);font-weight:800;margin:22px 0 22px}
+.hero h1 .grad{background:linear-gradient(100deg,var(--cyan-soft),var(--blue));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero-sub{font-size:1.16rem;color:rgba(255,255,255,.8);max-width:520px;margin-bottom:34px}
+.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:40px}
+.hero-proof{display:flex;gap:30px;flex-wrap:wrap;padding-top:30px;border-top:1px solid rgba(255,255,255,.1)}
+.proof-item .n{font-family:'Sora';font-size:1.75rem;font-weight:700;color:#fff;line-height:1}
+.proof-item .n span{color:var(--cyan-soft)}
+.proof-item .l{font-size:.83rem;color:rgba(255,255,255,.62);margin-top:6px;max-width:160px}
+
+/* ---- HERO ECOSSISTEMA (grupo + frentes juntas) ---- */
+.hero-visual{position:relative}
+.orbit-shell{
+  position:relative;background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.13);border-radius:26px;padding:26px 22px 22px;
+  box-shadow:var(--shadow-glow),inset 0 1px 0 rgba(255,255,255,.12);
+  backdrop-filter:blur(14px);
+}
+.orbit-shell .os-cap{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;padding:0 6px}
+.orbit-shell .os-cap span{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.orbit-shell .os-cap .live{display:inline-flex;align-items:center;gap:7px;font-size:.68rem;color:var(--cyan-soft);background:rgba(18,181,176,.12);padding:4px 10px;border-radius:20px}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);position:relative}
+.live-dot::after{content:"";position:absolute;inset:-4px;border-radius:50%;background:var(--cyan);opacity:.5;animation:ping 2.4s var(--ease) infinite}
+@keyframes ping{0%{transform:scale(.6);opacity:.55}80%,100%{transform:scale(2.1);opacity:0}}
+.orbit-svg{width:100%;height:auto;overflow:visible}
+.orbit-legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:16px;padding:14px 8px 4px;border-top:1px solid rgba(255,255,255,.08)}
+.orbit-legend .lg{display:inline-flex;align-items:center;gap:8px;font-size:.76rem;color:rgba(255,255,255,.78)}
+.orbit-legend .lg .sw{width:10px;height:10px;border-radius:3px;flex:0 0 10px}
+.orbit-legend .lg small{color:rgba(255,255,255,.45);font-size:.68rem}
+
+/* ============ O QUE É O GRUPO ============ */
+.grupo{background:var(--white)}
+.grupo-inner{display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,72px);align-items:center}
+.grupo-copy h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin:16px 0 18px}
+.grupo-copy p{color:var(--slate);font-size:1.08rem;margin-bottom:16px}
+.grupo-copy p b{color:var(--ink);font-weight:700}
+.essence{
+  margin-top:26px;padding:26px 28px;border-left:3px solid var(--blue);
+  background:var(--paper);border-radius:0 var(--radius) var(--radius) 0;
+}
+.essence p{font-family:'Sora';font-weight:500;font-size:1.12rem;line-height:1.45;color:var(--navy);margin:0}
+.grupo-diagram{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:34px 30px}
+.gd-title{font-family:'Sora';font-weight:600;font-size:.86rem;letter-spacing:.06em;text-transform:uppercase;color:var(--slate);margin-bottom:24px;text-align:center}
+.gd-flow{display:flex;flex-direction:column;gap:12px}
+.gd-node{display:flex;align-items:center;gap:16px;background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:16px 18px;transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s}
+.gd-node:hover{transform:translateX(4px);box-shadow:var(--shadow-sm)}
+.gd-node .gd-ic{width:42px;height:42px;flex:0 0 42px;border-radius:11px;display:grid;place-items:center}
+.gd-node.g .gd-ic{background:linear-gradient(135deg,var(--navy),var(--navy-500))}
+.gd-node .gd-ic svg{width:21px;height:21px;stroke:#fff;stroke-width:1.7;fill:none}
+.gd-node h4{font-size:1rem;margin-bottom:2px}
+.gd-node p{font-size:.86rem;color:var(--slate);margin:0}
+.gd-parent{background:var(--navy);border-color:var(--navy)}
+.gd-parent h4{color:#fff}.gd-parent p{color:rgba(255,255,255,.72)}
+.gd-parent .gd-ic{background:rgba(255,255,255,.1)}
+.gd-branch{display:flex;align-items:center;justify-content:center;color:var(--slate-2)}
+.gd-branch svg{width:20px;height:20px;stroke-width:2;fill:none;stroke:currentColor}
+.gd-children{display:grid;grid-template-columns:1fr;gap:10px;padding-left:20px;border-left:2px dashed var(--line);margin-left:20px}
+
+/* ============ 3 FRENTES ============ */
+.frentes{background:var(--paper)}
+.frentes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.frente{
+  position:relative;background:var(--white);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:32px 30px 30px;overflow:hidden;display:flex;flex-direction:column;min-height:340px;
+  transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s;
+}
+.frente:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:transparent}
+.frente::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;transform:scaleX(0);transform-origin:left;transition:transform .35s var(--ease)}
+.frente:hover::before{transform:scaleX(1)}
+.frente.c::before{background:var(--navy)}
+.frente.s::before{background:var(--amber)}
+.frente.t::before{background:var(--cyan)}
+.frente-mono{width:52px;height:52px;border-radius:14px;margin-bottom:22px;box-shadow:var(--shadow-sm)}
+.frente .role{font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px}
+.frente.c .role{color:var(--navy-500)}
+.frente.s .role{color:var(--amber)}
+.frente.t .role{color:var(--cyan)}
+.frente h3{font-size:1.34rem;margin-bottom:10px}
+.frente p{color:var(--slate);font-size:.98rem;margin-bottom:20px;flex:1}
+.frente .lnk{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:.92rem;color:var(--navy);transition:gap .2s var(--ease)}
+.frente .lnk svg{width:16px;height:16px;stroke-width:2}
+.frente:hover .lnk{gap:12px}
+.frente.s .lnk{color:var(--amber)}
+.frente.t .lnk{color:var(--cyan)}
+.badge{position:absolute;top:26px;right:26px;font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:6px}
+.badge-live{color:#5a3c05;background:var(--amber-soft)}
+.badge-soon{color:var(--slate);background:var(--line)}
+
+/* ============ EVOLUÇÃO ============ */
+.evolucao{background:var(--white)}
+.evo-track{position:relative;margin-top:20px}
+.evo-line{position:absolute;left:23px;top:16px;bottom:16px;width:2px;background:linear-gradient(var(--navy),var(--amber),var(--cyan));opacity:.35}
+.evo-steps{display:grid;gap:26px}
+.evo-step{position:relative;display:grid;grid-template-columns:48px 1fr;gap:22px;align-items:start}
+.evo-dot{width:48px;height:48px;flex:0 0 48px;border-radius:14px;display:grid;place-items:center;background:var(--white);border:1px solid var(--line);color:var(--navy);box-shadow:var(--shadow-sm);position:relative;z-index:2}
+.evo-dot svg{width:22px;height:22px;stroke-width:1.6;fill:none;stroke:currentColor}
+.evo-step .num{font-family:'Sora';font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue);margin-bottom:4px;display:block}
+.evo-step h4{font-size:1.18rem;margin-bottom:6px}
+.evo-step p{color:var(--slate);font-size:.98rem;max-width:60ch}
+
+/* ============ DIFERENCIAIS ============ */
+.porque{background:var(--paper)}
+.porque-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.dif{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:28px 24px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.dif:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.dif-ic{width:46px;height:46px;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--navy-500));display:grid;place-items:center;margin-bottom:18px}
+.dif-ic svg{width:22px;height:22px;stroke:#fff;stroke-width:1.6;fill:none}
+.dif.accent .dif-ic{background:linear-gradient(135deg,var(--blue),var(--cyan))}
+.dif h3{font-size:1.06rem;margin-bottom:8px}
+.dif p{color:var(--slate);font-size:.92rem}
+
+/* ============ CAPACIDADES BENTO ============ */
+.solucoes{background:var(--navy-900);color:#fff;position:relative;overflow:hidden}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:minmax(150px,auto);gap:16px}
+.cell{
+  position:relative;background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);padding:26px;overflow:hidden;
+  transition:transform .3s var(--ease),border-color .3s,background .3s;display:flex;flex-direction:column;
+}
+.cell:hover{transform:translateY(-5px);border-color:rgba(62,123,250,.5);background:linear-gradient(160deg,rgba(62,123,250,.1),rgba(255,255,255,.02))}
+.cell-ic{width:42px;height:42px;border-radius:11px;background:rgba(255,255,255,.06);display:grid;place-items:center;margin-bottom:16px}
+.cell-ic svg{width:21px;height:21px;stroke:var(--cyan-soft);stroke-width:1.6;fill:none}
+.cell h3{font-size:1.12rem;margin-bottom:8px;color:#fff}
+.cell p{color:rgba(255,255,255,.66);font-size:.9rem}
+.cell.feature{grid-column:span 2;grid-row:span 2;background:linear-gradient(155deg,rgba(224,152,46,.16),rgba(62,123,250,.08));border-color:rgba(224,152,46,.3);justify-content:space-between}
+.cell.feature .cell-ic{background:linear-gradient(135deg,var(--amber),var(--amber-soft))}
+.cell.feature .cell-ic svg{stroke:#3a2606}
+.cell.feature h3{font-size:1.5rem;margin-top:auto}
+.cell.feature p{font-size:.98rem;max-width:340px}
+.cell .tagpill{display:inline-flex;align-self:flex-start;font-size:.64rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#3a2606;background:var(--amber-soft);padding:4px 10px;border-radius:20px;margin-bottom:14px}
+
+/* ============ PROVA SOCIAL ============ */
+.prova{background:var(--white)}
+.depos{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:56px}
+.depo{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius-lg);padding:30px 28px;display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.depo:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.quote-ic{width:34px;height:34px;color:var(--blue);margin-bottom:16px;opacity:.9}
+.depo p{font-size:1rem;color:var(--ink);margin-bottom:22px;flex:1}
+.depo-who{display:flex;align-items:center;gap:13px}
+.depo-av{width:46px;height:46px;border-radius:12px;background:var(--line);display:grid;place-items:center;color:var(--slate);font-family:'Sora';font-weight:700;font-size:.72rem;flex:0 0 46px;text-align:center;line-height:1.05}
+.depo-who .nm{font-family:'Sora';font-weight:600;font-size:.94rem}
+.depo-who .rl{font-size:.8rem;color:var(--slate)}
+.logos-strip{border-top:1px solid var(--line);padding-top:36px}
+.logos-strip .lbl{text-align:center;font-size:.8rem;color:var(--slate);letter-spacing:.05em;margin-bottom:24px}
+.logos-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:18px}
+.logo-ph{height:52px;min-width:150px;flex:1;max-width:190px;border:1px dashed var(--line);border-radius:12px;display:grid;place-items:center;color:var(--slate);font-size:.82rem;font-weight:600;background:var(--paper);opacity:.85}
+
+/* ============ ONDE QUEREMOS CHEGAR ============ */
+.futuro{background:var(--navy);color:#fff;position:relative;overflow:hidden}
+.futuro::before{content:"";position:absolute;width:560px;height:560px;border-radius:50%;background:radial-gradient(circle,rgba(62,123,250,.32),transparent 70%);filter:blur(90px);top:-220px;right:-140px}
+.futuro-inner{position:relative;z-index:2;display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(36px,5vw,64px);align-items:center}
+.futuro h2{font-size:clamp(1.9rem,3.6vw,2.7rem);color:#fff;margin:16px 0 0}
+.futuro h2 em{font-style:normal;color:var(--cyan-soft)}
+.futuro-vis{display:grid;gap:16px}
+.vision-card{display:flex;gap:18px;align-items:flex-start;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:24px 26px;transition:transform .3s var(--ease),background .3s,border-color .3s}
+.vision-card:hover{transform:translateY(-4px);background:rgba(255,255,255,.08);border-color:rgba(95,214,208,.4)}
+.vision-card .vc-ic{width:44px;height:44px;flex:0 0 44px;border-radius:12px;background:rgba(95,214,208,.14);display:grid;place-items:center}
+.vision-card .vc-ic svg{width:22px;height:22px;stroke:var(--cyan-soft);stroke-width:1.6;fill:none}
+.vision-card h4{font-size:1.1rem;color:#fff;margin-bottom:6px}
+.vision-card p{color:rgba(255,255,255,.7);font-size:.94rem}
+
+/* ============ ÁREA DO CLIENTE ============ */
+.area{background:var(--paper)}
+.area-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.plat{
+  position:relative;background:var(--white);border:1px solid var(--line);border-radius:var(--radius-lg);
+  padding:30px 28px;display:flex;flex-direction:column;transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s;
+}
+.plat.available:hover{transform:translateY(-5px);box-shadow:var(--shadow-md);border-color:var(--amber)}
+.plat.soon{opacity:.82}
+.plat-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}
+.plat-mono{width:46px;height:46px;border-radius:12px;box-shadow:var(--shadow-sm)}
+.plat .st{font-size:.62rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:6px}
+.plat .st.on{color:#295c1a;background:#d6f0c8}
+.plat .st.off{color:var(--slate);background:var(--line)}
+.plat h3{font-size:1.16rem;margin-bottom:6px}
+.plat p{color:var(--slate);font-size:.9rem;margin-bottom:22px;flex:1}
+.plat .btn{width:100%;justify-content:center}
+.plat .btn[aria-disabled="true"]{background:var(--paper);color:var(--slate-2);border:1px solid var(--line);box-shadow:none;cursor:not-allowed;pointer-events:none}
+.area-note{text-align:center;margin-top:30px;font-size:.86rem;color:var(--slate)}
+
+/* ============ FAQ ============ */
+.faq{background:var(--white)}
+.faq-list{max-width:820px;margin:0 auto;display:grid;gap:12px}
+.faq-item{border:1px solid var(--line);border-radius:var(--radius);background:var(--paper);overflow:hidden;transition:border-color .25s,box-shadow .25s}
+.faq-item[open]{border-color:var(--navy-500);box-shadow:var(--shadow-sm)}
+.faq-item summary{list-style:none;cursor:pointer;padding:22px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;font-family:'Sora';font-weight:600;font-size:1.04rem;color:var(--ink)}
+.faq-item summary::-webkit-details-marker{display:none}
+.faq-item summary .q-ic{width:24px;height:24px;flex:0 0 24px;color:var(--blue);transition:transform .3s var(--ease)}
+.faq-item summary .q-ic svg{width:24px;height:24px;stroke-width:2;fill:none;stroke:currentColor}
+.faq-item[open] summary .q-ic{transform:rotate(45deg)}
+.faq-item .faq-a{padding:0 24px 24px;color:var(--slate);font-size:.98rem}
+
+/* ============ CTA FINAL ============ */
+.cta{background:var(--paper)}
+.cta-card{
+  position:relative;background:var(--navy-900);border-radius:32px;overflow:hidden;
+  display:grid;grid-template-columns:1.05fr .95fr;gap:0;box-shadow:var(--shadow-md);
+}
+.cta-left{padding:56px 52px;position:relative;z-index:2}
+.cta-left h2{font-size:clamp(1.8rem,3.4vw,2.5rem);color:#fff;margin:16px 0 16px}
+.cta-left p{color:rgba(255,255,255,.76);font-size:1.05rem;margin-bottom:28px;max-width:400px}
+.cta-bullets{display:flex;flex-direction:column;gap:12px;margin-bottom:30px}
+.cta-bullets li{display:flex;align-items:center;gap:11px;color:rgba(255,255,255,.86);font-size:.95rem}
+.cta-bullets svg{width:20px;height:20px;stroke:var(--cyan-soft);stroke-width:2;fill:none;flex:0 0 20px}
+.cta-wa{display:inline-flex;align-items:center;gap:10px}
+.cta-form{background:#fff;padding:44px 40px;position:relative;z-index:2}
+.cta-form h3{font-size:1.25rem;margin-bottom:6px}
+.cta-form .fsub{color:var(--slate);font-size:.9rem;margin-bottom:24px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:.8rem;font-weight:600;color:var(--ink);margin-bottom:6px}
+.field input{width:100%;padding:13px 15px;border:1px solid var(--line);border-radius:11px;font-family:inherit;font-size:.95rem;color:var(--ink);background:var(--paper);transition:border-color .2s,box-shadow .2s}
+.field input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(62,123,250,.14);background:#fff}
+.field input::placeholder{color:#9aa1b5}
+.cta-form .btn{width:100%;justify-content:center;margin-top:8px}
+.cta-form .alt{text-align:center;margin-top:16px;font-size:.86rem;color:var(--slate)}
+.cta-form .alt a{color:var(--blue);font-weight:600}
+.form-note{font-size:.74rem;color:var(--slate);text-align:center;margin-top:14px}
+
+/* ============ FOOTER ============ */
+.ft{background:var(--navy-900);color:#fff;padding:76px 0 0}
+.ft-endorse{display:flex;align-items:center;gap:14px;padding:22px 26px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:var(--radius);margin-bottom:52px}
+.ft-endorse svg{width:34px;height:34px;flex:0 0 34px}
+.ft-endorse p{color:rgba(255,255,255,.78);font-size:.94rem;margin:0}
+.ft-endorse p b{color:#fff;font-weight:700}
+.ft-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;padding-bottom:52px;border-bottom:1px solid rgba(255,255,255,.1)}
+.ft-brand p{color:rgba(255,255,255,.64);font-size:.94rem;margin:18px 0 22px;max-width:300px}
+.ft-social{display:flex;gap:12px}
+.ft-social a{width:40px;height:40px;border-radius:11px;border:1px solid rgba(255,255,255,.14);display:grid;place-items:center;transition:background .2s,border-color .2s,transform .2s}
+.ft-social a:hover{background:rgba(255,255,255,.08);border-color:var(--blue);transform:translateY(-2px)}
+.ft-social svg{width:18px;height:18px;stroke:#fff;stroke-width:1.6;fill:none}
+.ft-col h4{font-family:'Sora';font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan-soft);margin-bottom:18px;font-weight:600}
+.ft-col a{display:block;color:rgba(255,255,255,.68);font-size:.92rem;margin-bottom:12px;transition:color .18s,padding .18s}
+.ft-col a:hover{color:#fff;padding-left:4px}
+.ft-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding:26px 0 34px}
+.ft-bottom p{color:rgba(255,255,255,.5);font-size:.84rem}
+.ft-bottom .links{display:flex;gap:22px}
+.ft-bottom .links a{color:rgba(255,255,255,.5);font-size:.84rem;transition:color .18s}
+.ft-bottom .links a:hover{color:#fff}
+
+/* ============ REVEAL ANIM ============ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.08s}
+.reveal[data-d="2"]{transition-delay:.16s}
+.reveal[data-d="3"]{transition-delay:.24s}
+.reveal[data-d="4"]{transition-delay:.32s}
+.hl{opacity:0;transform:translateY(20px);animation:hlin .8s var(--ease) forwards}
+.hl-1{animation-delay:.15s}.hl-2{animation-delay:.3s}.hl-3{animation-delay:.45s}.hl-4{animation-delay:.6s}.hl-5{animation-delay:.72s}
+@keyframes hlin{to{opacity:1;transform:none}}
+.hv{opacity:0;transform:translateY(30px) scale(.97);animation:hvin 1s var(--ease) .5s forwards}
+@keyframes hvin{to{opacity:1;transform:none}}
+.orbit-dot{transform-origin:center;animation:orbitpulse 3.4s var(--ease) infinite}
+.orbit-dot.d2{animation-delay:1.1s}.orbit-dot.d3{animation-delay:2.2s}
+@keyframes orbitpulse{0%,100%{opacity:.5}50%{opacity:1}}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;gap:52px}
+  .hero-visual{max-width:520px;margin:0 auto;width:100%}
+  .grupo-inner{grid-template-columns:1fr;gap:44px}
+  .futuro-inner{grid-template-columns:1fr;gap:36px}
+  .porque-grid{grid-template-columns:repeat(2,1fr)}
+  .area-grid{grid-template-columns:1fr}
+  .cta-card{grid-template-columns:1fr}
+  .ft-top{grid-template-columns:1fr 1fr}
+  .ft-brand{grid-column:1/-1}
+}
+@media(max-width:860px){
+  .nav,.hdr-cta .btn{display:none}
+  .menu-btn{display:flex}
+  .frentes-grid{grid-template-columns:1fr}
+  .depos{grid-template-columns:1fr}
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .cell.feature{grid-column:span 2;grid-row:span 1}
+}
+@media(max-width:560px){
+  .sec{padding:76px 0}
+  .wrap{padding:0 18px}
+  .hero{padding:120px 0 80px}
+  .porque-grid,.bento{grid-template-columns:1fr}
+  .cell.feature{grid-column:span 1}
+  .cta-left,.cta-form{padding:36px 26px}
+  .hero-proof{gap:20px}
+  .hero-actions .btn{flex:1;justify-content:center}
+  .evo-step{grid-template-columns:40px 1fr;gap:16px}
+  .evo-dot{width:40px;height:40px;flex:0 0 40px}
+  .evo-line{left:19px}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  .reveal{opacity:1;transform:none}
+  .hl,.hv{opacity:1;transform:none}
+  .live-dot::after,.orbit-dot{animation:none;opacity:1}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="hdr hdr-dark" id="hdr">
+  <div class="wrap hdr-inner">
+    <a href="#topo" class="logo" aria-label="Grupo Innocondo — início">
+      <svg class="mono" viewBox="0 0 36 36" aria-hidden="true">
+        <rect x="0" y="0" width="36" height="36" rx="10" fill="#182868"/>
+        <rect x="15.4" y="14.5" width="4.2" height="14" rx="2.1" fill="#fff"/>
+        <circle cx="17.5" cy="9.4" r="2.5" fill="#fff"/>
+        
+        <defs><linearGradient id="mgH" x1="11" y1="25" x2="26" y2="10" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#3E7BFA"/><stop offset="1" stop-color="#12B5B0"/>
+        </linearGradient></defs>
+      </svg>
+      <span class="logo-txt"><b>Inno</b>condo<span class="grp">Grupo</span></span>
+    </a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="#o-que-e">O Grupo</a>
+      <a href="#frentes">Frentes</a>
+      <a href="#evolucao">Evolução</a>
+      <a href="#prova">Cases</a>
+      <a href="#area-cliente">Área do cliente</a>
+      <a href="#faq">Dúvidas</a>
+    </nav>
+    <div class="hdr-cta">
+      <a href="#contato" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>
+        Fale com a gente
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav">
+  <a href="#o-que-e">O Grupo</a>
+  <a href="#frentes">Frentes</a>
+  <a href="#evolucao">Evolução</a>
+  <a href="#prova">Cases</a>
+  <a href="#area-cliente">Área do cliente</a>
+  <a href="#faq">Dúvidas</a>
+  <a href="#contato" class="btn btn-primary">Fale com a gente</a>
+</div>
+
+<!-- ============ HERO — GRUPO + PROPÓSITO ============ -->
+<section class="hero" id="topo">
+  <div class="hero-mesh" aria-hidden="true"></div>
+  <div class="hero-grid-lines" aria-hidden="true"></div>
+  <div class="wrap hero-inner">
+    <div class="hero-copy">
+      <span class="kicker-grp hl hl-1">Grupo Innocondo</span>
+      <h1 class="hl hl-2">Existimos para <span class="grad">organizar, conectar e transformar</span> o mercado condominial</h1>
+      <p class="hero-sub hl hl-3">Um grupo com mais de 17 anos ao lado de síndicos, condomínios e administrações. Reunimos consultoria, soluções e tecnologia em um só ecossistema — cada frente resolvendo uma parte, todas trabalhando juntas.</p>
+      <div class="hero-actions hl hl-4">
+        <a href="#o-que-e" class="btn btn-primary">
+          Conheça o grupo
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a href="#contato" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>
+          Falar no WhatsApp
+        </a>
+      </div>
+      <div class="hero-proof hl hl-5">
+        <div class="proof-item"><div class="n">+17<span> anos</span></div><div class="l">de experiência no mercado condominial</div></div>
+        <div class="proof-item"><div class="n">3</div><div class="l">frentes atuando juntas num só grupo</div></div>
+        <div class="proof-item"><div class="n">100%</div><div class="l">foco exclusivo em condomínios</div></div>
+      </div>
+    </div>
+
+    <!-- Ecossistema: grupo no centro, frentes ao redor -->
+    <div class="hero-visual hv">
+      <div class="orbit-shell">
+        <div class="os-cap">
+          <span>O ecossistema do grupo</span>
+          <span class="live"><span class="live-dot"></span>Em movimento</span>
+        </div>
+        <svg class="orbit-svg" viewBox="0 0 420 360" role="img" aria-label="Diagrama do Grupo Innocondo: as frentes Consultoria, Soluções e Tecnologia orbitando o símbolo central do grupo.">
+          <!-- rings -->
+          <circle cx="210" cy="180" r="132" fill="none" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+          <circle cx="210" cy="180" r="94" fill="none" stroke="rgba(255,255,255,.09)" stroke-width="1" stroke-dasharray="3 7"/>
+          <!-- links -->
+          <path d="M210 180 L210 60" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+          <path d="M210 180 L316 246" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+          <path d="M210 180 L104 246" stroke="rgba(255,255,255,.14)" stroke-width="1"/>
+          <!-- center: grupo monogram -->
+          <g>
+            <circle cx="210" cy="180" r="44" fill="rgba(255,255,255,.05)" stroke="rgba(255,255,255,.18)" stroke-width="1"/>
+            <g transform="translate(186,156)">
+              <rect x="0" y="0" width="48" height="48" rx="13" fill="#182868"/>
+              <rect x="20.5" y="19" width="5.4" height="18.5" rx="2.7" fill="#fff"/>
+              <circle cx="23.2" cy="12.5" r="3.3" fill="#fff"/>
+              
+              <defs><linearGradient id="orbGrad" x1="15" y1="33" x2="35" y2="13" gradientUnits="userSpaceOnUse"><stop stop-color="#3E7BFA"/><stop offset="1" stop-color="#12B5B0"/></linearGradient></defs>
+            </g>
+          </g>
+          <!-- node: Consultoria (top / navy) -->
+          <g>
+            <circle class="orbit-dot" cx="210" cy="60" r="30" fill="rgba(24,40,104,.55)" stroke="#3E7BFA" stroke-width="1.4"/>
+            <text x="210" y="65" text-anchor="middle" font-family="Sora,sans-serif" font-weight="700" font-size="15" fill="#fff">iC</text>
+            <text x="210" y="24" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" font-weight="600" fill="#fff">Consultoria</text>
+          </g>
+          <!-- node: Soluções (bottom-right / amber) -->
+          <g>
+            <circle class="orbit-dot d2" cx="316" cy="246" r="30" fill="rgba(224,152,46,.28)" stroke="#E0982E" stroke-width="1.4"/>
+            <text x="316" y="251" text-anchor="middle" font-family="Sora,sans-serif" font-weight="700" font-size="15" fill="#fff">iS</text>
+            <text x="316" y="298" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" font-weight="600" fill="#fff">Soluções</text>
+            <text x="316" y="314" text-anchor="middle" font-family="Manrope,sans-serif" font-size="9.5" letter-spacing="1" fill="#F0B764">SEGUROS</text>
+          </g>
+          <!-- node: Tecnologia (bottom-left / cyan, em breve) -->
+          <g opacity=".72">
+            <circle class="orbit-dot d3" cx="104" cy="246" r="30" fill="rgba(18,181,176,.16)" stroke="#12B5B0" stroke-width="1.4" stroke-dasharray="4 4"/>
+            <text x="104" y="251" text-anchor="middle" font-family="Sora,sans-serif" font-weight="700" font-size="15" fill="#fff">iT</text>
+            <text x="104" y="298" text-anchor="middle" font-family="Manrope,sans-serif" font-size="12.5" font-weight="600" fill="#fff">Tecnologia</text>
+            <text x="104" y="314" text-anchor="middle" font-family="Manrope,sans-serif" font-size="9.5" letter-spacing="1" fill="#5FD6D0">EM BREVE</text>
+          </g>
+        </svg>
+        <div class="orbit-legend">
+          <span class="lg"><span class="sw" style="background:#182868;border:1px solid #3E7BFA"></span>Consultoria <small>origem</small></span>
+          <span class="lg"><span class="sw" style="background:#E0982E"></span>Soluções <small>seguros</small></span>
+          <span class="lg"><span class="sw" style="background:#12B5B0;opacity:.7"></span>Tecnologia <small>2027</small></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ O QUE É O GRUPO INNOCONDO ============ -->
+<section class="sec grupo" id="o-que-e">
+  <div class="wrap grupo-inner">
+    <div class="grupo-copy reveal">
+      <span class="eyebrow">O que é o Grupo Innocondo</span>
+      <h2>Um grupo, várias frentes, um só objetivo</h2>
+      <p>O Grupo Innocondo é a casa que reúne empresas com um propósito em comum: <b>facilitar a vida de quem cuida de um condomínio</b>. Em vez de vender serviços soltos, o grupo organiza tudo em frentes que conversam entre si.</p>
+      <p>Na prática: se você é síndico, gestor ou faz parte da administração de um condomínio — inclusive na autogestão — encontra num só lugar quem organiza a gestão, quem protege o dia a dia e, em breve, novas tecnologias. Cada frente cuida de uma parte. Juntas, formam o ecossistema.</p>
+      <div class="essence">
+        <p>“A Innocondo existe para organizar, conectar e transformar o mercado condominial. Fazemos isso por meio de um ecossistema de inteligência, tecnologia, soluções e consultoria especializada.”</p>
+      </div>
+    </div>
+    <div class="grupo-diagram reveal" data-d="1" aria-label="Como as frentes se relacionam dentro do grupo">
+      <p class="gd-title">Como as frentes se relacionam</p>
+      <div class="gd-flow">
+        <div class="gd-node gd-parent g">
+          <span class="gd-ic"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V9l7-4 7 4v12"/><path d="M9 21v-6h6v6"/></svg></span>
+          <div><h4>Grupo Innocondo</h4><p>A marca-mãe que conecta todas as frentes.</p></div>
+        </div>
+        <div class="gd-branch" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14"/><path d="m6 13 6 6 6-6"/></svg></div>
+        <div class="gd-children">
+          <div class="gd-node">
+            <span class="gd-ic" style="background:linear-gradient(135deg,#182868,#2A3E86)"><svg viewBox="0 0 24 24" stroke="#fff" fill="none" stroke-width="1.7"><path d="M9 11l3 3 8-8"/><path d="M21 12a9 9 0 1 1-6.2-8.5"/></svg></span>
+            <div><h4>Consultoria</h4><p>Reorganiza a gestão do condomínio.</p></div>
+          </div>
+          <div class="gd-node">
+            <span class="gd-ic" style="background:linear-gradient(135deg,#E0982E,#F0B764)"><svg viewBox="0 0 24 24" stroke="#3a2606" fill="none" stroke-width="1.7"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+            <div><h4>Soluções</h4><p>Produtos que protegem — 1º: seguros.</p></div>
+          </div>
+          <div class="gd-node">
+            <span class="gd-ic" style="background:linear-gradient(135deg,#12B5B0,#5FD6D0)"><svg viewBox="0 0 24 24" stroke="#04201f" fill="none" stroke-width="1.7"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span>
+            <div><h4>Tecnologia</h4><p>Nova frente chegando em 2027.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3 FRENTES ============ -->
+<section class="sec frentes" id="frentes">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">As frentes do grupo</span>
+      <h2>O que cada frente faz, em uma frase</h2>
+      <p>Sem jargão. Cada frente tem um papel claro dentro do ecossistema — e o grupo cresce para receber a próxima.</p>
+    </div>
+    <div class="frentes-grid">
+      <!-- Consultoria -->
+      <article class="frente c reveal" data-d="1">
+        <svg class="frente-mono" viewBox="0 0 52 52" aria-hidden="true">
+          <rect width="52" height="52" rx="15" fill="#182868"/>
+          <rect x="21.3" y="20" width="5.4" height="18.5" rx="2.7" fill="#fff"/>
+          <circle cx="24" cy="13.5" r="3.4" fill="#fff"/>
+          
+        </svg>
+        <div class="role">Consultoria · a origem</div>
+        <h3>Consultoria</h3>
+        <p>Diagnóstico, método e acompanhamento para reorganizar a gestão condominial e destravar resultados — do financeiro à rotina do dia a dia.</p>
+        <a href="#contato" class="lnk">Conhecer a consultoria <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </article>
+
+      <!-- Soluções = Seguros -->
+      <article class="frente s reveal" data-d="2">
+        <span class="badge badge-live">1º produto</span>
+        <svg class="frente-mono" viewBox="0 0 52 52" aria-hidden="true">
+          <rect width="52" height="52" rx="15" fill="#182868"/>
+          <rect x="21.3" y="20" width="5.4" height="18.5" rx="2.7" fill="#fff"/>
+          <circle cx="24" cy="13.5" r="3.4" fill="#fff"/>
+          
+        </svg>
+        <div class="role">Soluções · seguros</div>
+        <h3>Soluções</h3>
+        <p>Produtos que resolvem dores reais do condomínio. O primeiro é o <b>Seguro para condomínios</b>: proteção e tranquilidade para o patrimônio, os moradores e quem administra.</p>
+        <a href="#contato" class="lnk">Ver soluções <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a>
+      </article>
+
+      <!-- Tecnologia = em breve 2027, sem nome -->
+      <article class="frente t reveal" data-d="3">
+        <span class="badge badge-soon">Em breve · 2027</span>
+        <svg class="frente-mono" viewBox="0 0 52 52" aria-hidden="true">
+          <rect width="52" height="52" rx="15" fill="#182868"/>
+          <rect x="21.3" y="20" width="5.4" height="18.5" rx="2.7" fill="#fff"/>
+          <circle cx="24" cy="13.5" r="3.4" fill="#fff"/>
+          
+        </svg>
+        <div class="role">Tecnologia · nova frente</div>
+        <h3>Tecnologia</h3>
+        <p>Uma nova frente de tecnologia chega em 2027 para somar ao ecossistema. Estamos preparando algo pensado para o mercado condominial — os detalhes vêm em breve.</p>
+        <span class="lnk" aria-disabled="true" style="color:var(--slate)">Novidades em 2027 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NARRATIVA DE EVOLUÇÃO ============ -->
+<section class="sec evolucao" id="evolucao">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Como o grupo nasceu</span>
+      <h2>De uma consultoria a um ecossistema</h2>
+      <p>A história da Innocondo é de evolução. Tudo começou na consultoria — e cada passo levou ao seguinte, de forma natural.</p>
+    </div>
+    <div class="evo-track">
+      <div class="evo-line" aria-hidden="true"></div>
+      <div class="evo-steps">
+        <div class="evo-step reveal" data-d="1">
+          <div class="evo-dot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M21 12a9 9 0 1 1-6.2-8.5"/></svg></div>
+          <div><span class="num">A origem</span><h4>Nasceu na consultoria</h4><p>A Innocondo começou como consultoria especializada em condomínios, ao lado de síndicos, administrações e gestores no dia a dia da gestão condominial.</p></div>
+        </div>
+        <div class="evo-step reveal" data-d="2">
+          <div class="evo-dot" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+          <div><span class="num">A descoberta</span><h4>+17 anos revelaram uma deficiência no mercado</h4><p>Convivendo com centenas de rotinas, percebemos lacunas que se repetiam — problemas que ninguém resolvia bem para o mercado condominial.</p></div>
+        </div>
+        <div class="evo-step reveal" data-d="3">
+          <div class="evo-dot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7c.6.5 1 1.3 1 2.1h6c0-.8.4-1.6 1-2.1A7 7 0 0 0 12 2z"/></svg></div>
+          <div><span class="num">A oportunidade</span><h4>A deficiência virou oportunidade</h4><p>Onde havia um problema recorrente, enxergamos a chance de criar algo melhor — e de transformar a experiência de quem gere um condomínio.</p></div>
+        </div>
+        <div class="evo-step reveal" data-d="4">
+          <div class="evo-dot" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+          <div><span class="num">O primeiro produto</span><h4>Nasceu uma solução, depois outra</h4><p>Da consultoria surgiram os produtos. O primeiro é o seguro para condomínios — e outros virão, sempre resolvendo dores reais.</p></div>
+        </div>
+        <div class="evo-step reveal" data-d="4">
+          <div class="evo-dot" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.5"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="18" r="2"/><path d="M6.7 7.2 10 10.4M17.3 7.2 14 10.4M6.7 16.8 10 13.6M17.3 16.8 14 13.6"/></svg></div>
+          <div><span class="num">Hoje</span><h4>E assim nasceu o ecossistema</h4><p>Consultoria, soluções e — em breve — tecnologia, reunidas num só grupo. Frentes diferentes, a mesma missão: transformar o mercado condominial.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DIFERENCIAIS ============ -->
+<section class="sec porque">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Por que o Grupo Innocondo</span>
+      <h2>O que nos torna diferentes</h2>
+      <p>Quatro coisas explicam por que síndicos, condomínios e administrações escolhem andar com a gente.</p>
+    </div>
+    <div class="porque-grid">
+      <div class="dif reveal" data-d="1">
+        <div class="dif-ic"><svg viewBox="0 0 24 24"><path d="m12 3 1.9 5.8H20l-4.9 3.5 1.9 5.7L12 14.5 7 18l1.9-5.7L4 8.8h6.1z"/></svg></div>
+        <h3>Especialização exclusiva</h3>
+        <p>Só falamos de condomínio. Nada de soluções genéricas adaptadas de outros setores.</p>
+      </div>
+      <div class="dif accent reveal" data-d="2">
+        <div class="dif-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4M4.9 4.9l2.8 2.8M16.3 16.3l2.8 2.8M4.9 19.1l2.8-2.8M16.3 7.7l2.8-2.8"/></svg></div>
+        <h3>Ecossistema integrado</h3>
+        <p>Consultoria, soluções e tecnologia conversam entre si — uma jornada única, sem retrabalho.</p>
+      </div>
+      <div class="dif reveal" data-d="3">
+        <div class="dif-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+        <h3>+17 anos de prática</h3>
+        <p>Experiência de campo transformada em método replicável e resultado consistente.</p>
+      </div>
+      <div class="dif reveal" data-d="4">
+        <div class="dif-ic"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><rect x="7" y="12" width="3" height="6" rx="1"/><rect x="12" y="8" width="3" height="10" rx="1"/><rect x="17" y="5" width="3" height="13" rx="1"/></svg></div>
+        <h3>Resultados mensuráveis</h3>
+        <p>Indicadores claros de eficiência, receita e tranquilidade — decisão por dados, não por achismo.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CAPACIDADES EM DESTAQUE ============ -->
+<section class="sec solucoes" id="capacidades">
+  <div class="hero-mesh" aria-hidden="true"></div>
+  <div class="wrap" style="position:relative;z-index:2">
+    <div class="sec-head reveal">
+      <span class="eyebrow on-dark">Capacidades do grupo</span>
+      <h2 style="color:#fff">O que o grupo coloca para funcionar</h2>
+      <p style="color:rgba(255,255,255,.72)">Da proteção do condomínio à organização da gestão, cada capacidade nasce dentro do ecossistema — pensada para síndicos, condomínios e administrações.</p>
+    </div>
+    <div class="bento">
+      <article class="cell feature reveal" data-d="1">
+        <span class="tagpill">Soluções · 1º produto</span>
+        <div>
+          <div class="cell-ic"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+          <h3>Seguro para condomínios</h3>
+          <p>Proteção e tranquilidade para o patrimônio, os moradores e quem administra. A primeira solução do grupo, feita sob a régua do condomínio.</p>
+        </div>
+      </article>
+      <article class="cell reveal" data-d="1">
+        <div class="cell-ic"><svg viewBox="0 0 24 24"><path d="M9 11l3 3 8-8"/><path d="M21 12a9 9 0 1 1-6.2-8.5"/></svg></div>
+        <h3>Diagnóstico de gestão</h3>
+        <p>Mapeamento completo de gargalos e oportunidades do condomínio.</p>
+      </article>
+      <article class="cell reveal" data-d="2">
+        <div class="cell-ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 14h4M7 21h10"/></svg></div>
+        <h3>Organização financeira</h3>
+        <p>Rotinas de conciliação e cobrança sem retrabalho manual.</p>
+      </article>
+      <article class="cell reveal" data-d="1">
+        <div class="cell-ic"><svg viewBox="0 0 24 24"><path d="M22 10L12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
+        <h3>Capacitação</h3>
+        <p>Times e síndicos treinados para gerir com autonomia e método.</p>
+      </article>
+      <article class="cell reveal" data-d="2">
+        <div class="cell-ic"><svg viewBox="0 0 24 24"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Incremento de receita</h3>
+        <p>Novas fontes de receita para o condomínio, com transparência.</p>
+      </article>
+      <article class="cell reveal" data-d="3">
+        <div class="cell-ic"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M9 15l2 2 4-4"/></svg></div>
+        <h3>Acompanhamento contínuo</h3>
+        <p>Suporte próximo, com indicadores e revisão de resultados.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROVA SOCIAL ============ -->
+<section class="sec prova" id="prova">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow">Quem já anda com a gente</span>
+      <h2>Confiança de quem gere condomínios</h2>
+      <p>Síndicos, condomínios e administrações que trocaram a rotina manual por método, proteção e acompanhamento próximo.</p>
+    </div>
+    <div class="depos">
+      <article class="depo reveal" data-d="1">
+        <svg class="quote-ic" viewBox="0 0 24 24" fill="currentColor"><path d="M9.6 4C6 5.4 4 8.4 4 12.5V20h7v-8H7.8c.2-2.2 1.3-3.6 3.4-4.4zm10 0c-3.6 1.4-5.6 4.4-5.6 8.5V20h7v-8h-3.2c.2-2.2 1.3-3.6 3.4-4.4z"/></svg>
+        <p>“Saímos do controle em planilhas para uma rotina que faz sentido. A gestão do condomínio ficou mais leve e o retrabalho praticamente sumiu.”</p>
+        <div class="depo-who"><div class="depo-av">foto a<br>produzir</div><div><div class="nm">Depoimento a confirmar</div><div class="rl">Síndico profissional <em>(placeholder)</em></div></div></div>
+      </article>
+      <article class="depo reveal" data-d="2">
+        <svg class="quote-ic" viewBox="0 0 24 24" fill="currentColor"><path d="M9.6 4C6 5.4 4 8.4 4 12.5V20h7v-8H7.8c.2-2.2 1.3-3.6 3.4-4.4zm10 0c-3.6 1.4-5.6 4.4-5.6 8.5V20h7v-8h-3.2c.2-2.2 1.3-3.6 3.4-4.4z"/></svg>
+        <p>“O diagnóstico foi certeiro. Mostraram exatamente onde perdíamos tempo — e implementaram junto com a gente, sem enrolação.”</p>
+        <div class="depo-who"><div class="depo-av">foto a<br>produzir</div><div><div class="nm">Depoimento a confirmar</div><div class="rl">Administração de condomínio <em>(placeholder)</em></div></div></div>
+      </article>
+      <article class="depo reveal" data-d="3">
+        <svg class="quote-ic" viewBox="0 0 24 24" fill="currentColor"><path d="M9.6 4C6 5.4 4 8.4 4 12.5V20h7v-8H7.8c.2-2.2 1.3-3.6 3.4-4.4zm10 0c-3.6 1.4-5.6 4.4-5.6 8.5V20h7v-8h-3.2c.2-2.2 1.3-3.6 3.4-4.4z"/></svg>
+        <p>“É raro achar quem entenda condomínio de verdade. O grupo fala a nossa língua e nos deu mais tranquilidade no dia a dia.”</p>
+        <div class="depo-who"><div class="depo-av">foto a<br>produzir</div><div><div class="nm">Depoimento a confirmar</div><div class="rl">Síndico (autogestão) <em>(placeholder)</em></div></div></div>
+      </article>
+    </div>
+    <div class="logos-strip reveal">
+      <p class="lbl">Síndicos, condomínios e administrações que confiam no Grupo Innocondo</p>
+      <div class="logos-row">
+        <div class="logo-ph">logo cliente</div>
+        <div class="logo-ph">logo cliente</div>
+        <div class="logo-ph">logo cliente</div>
+        <div class="logo-ph">logo cliente</div>
+        <div class="logo-ph">logo cliente</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ONDE QUEREMOS CHEGAR ============ -->
+<section class="sec futuro" id="futuro">
+  <div class="wrap futuro-inner">
+    <div class="reveal">
+      <span class="eyebrow on-dark">Onde queremos chegar</span>
+      <h2>Um mercado condominial <em>mais organizado, conectado e transformado</em></h2>
+    </div>
+    <div class="futuro-vis">
+      <div class="vision-card reveal" data-d="1">
+        <span class="vc-ic"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 4v6"/></svg></span>
+        <div><h4>Organizar</h4><p>Gestão condominial clara e sem improviso, do financeiro à rotina — para síndicos e administrações trabalharem com método.</p></div>
+      </div>
+      <div class="vision-card reveal" data-d="2">
+        <span class="vc-ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2.5"/><circle cx="5" cy="6" r="2"/><circle cx="19" cy="6" r="2"/><path d="M6.7 7.2 10 10.4M17.3 7.2 14 10.4"/></svg></span>
+        <div><h4>Conectar</h4><p>Consultoria, soluções e tecnologia falando a mesma língua, num ecossistema em que cada frente reforça a outra.</p></div>
+      </div>
+      <div class="vision-card reveal" data-d="3">
+        <span class="vc-ic"><svg viewBox="0 0 24 24"><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/><path d="M7 7l2 2M15 15l2 2M17 7l-2 2M9 15l-2 2"/><circle cx="12" cy="12" r="3"/></svg></span>
+        <div><h4>Transformar</h4><p>Elevar o padrão de todo o mercado condominial — mais tranquilidade para quem mora e mais resultado para quem administra.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ÁREA DO CLIENTE (seletor de plataformas) ============ -->
+<section class="sec area" id="area-cliente">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Área do cliente</span>
+      <h2>Escolha a plataforma e entre</h2>
+      <p>Já é cliente do grupo? Selecione a frente que você usa. À medida que novas plataformas entram no ar, elas aparecem aqui.</p>
+    </div>
+    <div class="area-grid">
+      <!-- Soluções / Seguros — disponível -->
+      <article class="plat available reveal" data-d="1">
+        <div class="plat-top">
+          <svg class="plat-mono" viewBox="0 0 52 52" aria-hidden="true">
+            <rect width="52" height="52" rx="14" fill="#182868"/>
+            <rect x="21.3" y="20" width="5.4" height="18.5" rx="2.7" fill="#fff"/>
+            <circle cx="24" cy="13.5" r="3.4" fill="#fff"/>
+            
+          </svg>
+          <span class="st on">Disponível</span>
+        </div>
+        <h3>Soluções · Seguros</h3>
+        <p>Acompanhe seu seguro de condomínio, apólices e atendimento num só lugar.</p>
+        <a href="#" class="btn btn-solid">
+          Acessar plataforma
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><path d="M10 17l5-5-5-5M15 12H3"/></svg>
+        </a>
+      </article>
+
+      <!-- Consultoria — em breve -->
+      <article class="plat soon reveal" data-d="2">
+        <div class="plat-top">
+          <svg class="plat-mono" viewBox="0 0 52 52" aria-hidden="true">
+            <rect width="52" height="52" rx="14" fill="#182868"/>
+            <rect x="21.3" y="20" width="5.4" height="18.5" rx="2.7" fill="#fff"/>
+            <circle cx="24" cy="13.5" r="3.4" fill="#fff"/>
+            
+          </svg>
+          <span class="st off">Em breve</span>
+        </div>
+        <h3>Consultoria</h3>
+        <p>Portal de acompanhamento dos projetos de consultoria. Em preparação.</p>
+        <span class="btn" aria-disabled="true">Em breve</span>
+      </article>
+
+      <!-- Tecnologia — em breve 2027 -->
+      <article class="plat soon reveal" data-d="3">
+        <div class="plat-top">
+          <svg class="plat-mono" viewBox="0 0 52 52" aria-hidden="true">
+            <rect width="52" height="52" rx="14" fill="#182868"/>
+            <rect x="21.3" y="20" width="5.4" height="18.5" rx="2.7" fill="#fff"/>
+            <circle cx="24" cy="13.5" r="3.4" fill="#fff"/>
+            
+          </svg>
+          <span class="st off">2027</span>
+        </div>
+        <h3>Tecnologia</h3>
+        <p>Nova frente de tecnologia do grupo. Chega em 2027 — fique de olho.</p>
+        <span class="btn" aria-disabled="true">Em breve</span>
+      </article>
+    </div>
+    <p class="area-note">O acesso leva ao login de cada sistema. O grupo já está preparado para receber as próximas plataformas.</p>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="sec faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow">Dúvidas frequentes</span>
+      <h2>O básico, sem complicação</h2>
+      <p>As perguntas que mais aparecem sobre o grupo e como ele funciona.</p>
+    </div>
+    <div class="faq-list">
+      <details class="faq-item reveal" data-d="1">
+        <summary>O que é o Grupo Innocondo?<span class="q-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="faq-a">É um grupo especializado no mercado condominial. Reúne, num só lugar, frentes que ajudam quem cuida de um condomínio: consultoria para organizar a gestão, soluções que protegem (a primeira é o seguro) e, em breve, uma nova frente de tecnologia. São empresas diferentes com um propósito em comum.</div>
+      </details>
+      <details class="faq-item reveal" data-d="1">
+        <summary>Como as frentes se relacionam?<span class="q-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="faq-a">Todas fazem parte do mesmo grupo e conversam entre si. A consultoria entende o que o condomínio precisa; as soluções entregam produtos que resolvem essas dores; e a tecnologia (que chega em 2027) vai somar novas ferramentas. Você pode usar uma frente ou várias — o ecossistema foi feito para trabalhar junto.</div>
+      </details>
+      <details class="faq-item reveal" data-d="2">
+        <summary>O que cada frente faz?<span class="q-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="faq-a"><b>Consultoria:</b> diagnostica e reorganiza a gestão do condomínio. <b>Soluções:</b> oferece produtos que protegem o dia a dia — o primeiro é o seguro para condomínios. <b>Tecnologia:</b> uma nova frente chegando em 2027, com detalhes em breve.</div>
+      </details>
+      <details class="faq-item reveal" data-d="2">
+        <summary>Para quem o grupo trabalha?<span class="q-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="faq-a">Para quem cuida de condomínios: síndicos (inclusive na autogestão), gestores, administrações condominiais e os próprios condomínios. Se a gestão condominial faz parte da sua rotina, o grupo é para você.</div>
+      </details>
+      <details class="faq-item reveal" data-d="3">
+        <summary>Como faço para contratar?<span class="q-ic" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></summary>
+        <div class="faq-a">É simples: fale com a gente pelo formulário ou pelo WhatsApp, conte o momento do seu condomínio, e um especialista mostra qual frente faz mais sentido para você. Sem compromisso e sem enrolação.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section class="sec cta" id="contato">
+  <div class="wrap">
+    <div class="cta-card reveal">
+      <div class="cta-left">
+        <div class="hero-mesh" aria-hidden="true" style="opacity:.7"></div>
+        <span class="eyebrow on-dark" style="position:relative;z-index:2">Vamos conversar</span>
+        <h2>Leve seu condomínio para o próximo patamar</h2>
+        <p>Conte o momento da sua gestão. Um especialista do grupo mostra, na prática, onde a Innocondo pode organizar, proteger e transformar o seu dia a dia.</p>
+        <ul class="cta-bullets">
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Conversa inicial sem compromisso</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Atendimento consultivo, não venda agressiva</li>
+          <li><svg viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></svg>Quem responde entende de condomínio</li>
+        </ul>
+        <a href="#" class="btn btn-wa cta-wa" style="position:relative;z-index:2">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg>
+          Falar agora no WhatsApp
+        </a>
+      </div>
+      <div class="cta-form">
+        <h3>Fale com a gente</h3>
+        <p class="fsub">Preencha e retornamos em até 1 dia útil.</p>
+        <form id="leadForm" novalidate>
+          <div class="field"><label for="nome">Nome</label><input id="nome" name="nome" type="text" placeholder="Seu nome completo" autocomplete="name"></div>
+          <div class="field"><label for="email">E-mail</label><input id="email" name="email" type="email" placeholder="voce@email.com.br" autocomplete="email"></div>
+          <div class="field"><label for="cond">Condomínio / empresa</label><input id="cond" name="cond" type="text" placeholder="Nome do condomínio ou administração" autocomplete="organization"></div>
+          <div class="field"><label for="wpp">WhatsApp</label><input id="wpp" name="wpp" type="tel" placeholder="(00) 00000-0000" autocomplete="tel"></div>
+          <button type="submit" class="btn btn-primary">Quero falar com o grupo
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+          </button>
+          <div class="alt">ou fale agora no <a href="#">WhatsApp →</a></div>
+          <p class="form-note">Placeholder de formulário — integrar com CRM/WhatsApp na implementação.</p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="ft on-dark">
+  <div class="wrap">
+    <div class="ft-endorse">
+      <svg viewBox="0 0 36 36" aria-hidden="true">
+        <rect width="36" height="36" rx="10" fill="#182868"/>
+        <rect x="15.4" y="14.5" width="4.2" height="14" rx="2.1" fill="#fff"/>
+        <circle cx="17.5" cy="9.4" r="2.5" fill="#fff"/>
+        
+        <defs><linearGradient id="mgF" x1="11" y1="25" x2="26" y2="10" gradientUnits="userSpaceOnUse"><stop stop-color="#3E7BFA"/><stop offset="1" stop-color="#12B5B0"/></linearGradient></defs>
+      </svg>
+      <p>Consultoria, Soluções e Tecnologia são frentes do <b>Grupo Innocondo</b> — um só ecossistema para o mercado condominial.</p>
+    </div>
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="#topo" class="logo">
+          <svg class="mono" viewBox="0 0 36 36" aria-hidden="true">
+            <rect width="36" height="36" rx="10" fill="#182868"/>
+            <rect x="15.4" y="14.5" width="4.2" height="14" rx="2.1" fill="#fff"/>
+            <circle cx="17.5" cy="9.4" r="2.5" fill="#fff"/>
+            
+            <defs><linearGradient id="mgF2" x1="11" y1="25" x2="26" y2="10" gradientUnits="userSpaceOnUse"><stop stop-color="#3E7BFA"/><stop offset="1" stop-color="#12B5B0"/></linearGradient></defs>
+          </svg>
+          <span class="logo-txt"><b>Inno</b>condo<span class="grp">Grupo</span></span>
+        </a>
+        <p>Organizar, conectar e transformar o mercado condominial. Consultoria, soluções e tecnologia num só grupo.</p>
+        <div class="ft-social">
+          <a href="#" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+          <a href="#" aria-label="Instagram"><svg viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="#fff" stroke="none"/></svg></a>
+          <a href="#" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg></a>
+        </div>
+      </div>
+      <div class="ft-col">
+        <h4>O grupo</h4>
+        <a href="#o-que-e">O que é o grupo</a>
+        <a href="#frentes">As frentes</a>
+        <a href="#evolucao">Nossa evolução</a>
+        <a href="#futuro">Onde queremos chegar</a>
+      </div>
+      <div class="ft-col">
+        <h4>Frentes</h4>
+        <a href="#frentes">Consultoria</a>
+        <a href="#frentes">Soluções · Seguros</a>
+        <a href="#frentes">Tecnologia · 2027</a>
+        <a href="#prova">Cases</a>
+      </div>
+      <div class="ft-col">
+        <h4>Fale conosco</h4>
+        <a href="#contato">Fale com a gente</a>
+        <a href="#area-cliente">Área do cliente</a>
+        <a href="#">contato@innocondo.com.br</a>
+        <a href="#faq">Dúvidas frequentes</a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p>© 2026 Grupo Innocondo · Todos os direitos reservados.</p>
+      <div class="links">
+        <a href="#">Política de privacidade</a>
+        <a href="#">Termos de uso</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  // Header scroll state
+  var hdr = document.getElementById('hdr');
+  function onScroll(){
+    if(window.scrollY > 40){ hdr.classList.add('scrolled'); hdr.classList.remove('hdr-dark'); }
+    else { hdr.classList.remove('scrolled'); hdr.classList.add('hdr-dark'); }
+  }
+  onScroll();
+  window.addEventListener('scroll', onScroll, {passive:true});
+
+  // Mobile menu
+  var mb = document.getElementById('menuBtn'), mn = document.getElementById('mobileNav');
+  function toggleMenu(open){
+    mn.classList.toggle('open', open);
+    mb.setAttribute('aria-expanded', open?'true':'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  mb.addEventListener('click', function(){ toggleMenu(!mn.classList.contains('open')); });
+  mn.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ toggleMenu(false); }); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape') toggleMenu(false); });
+
+  // Reveal on scroll
+  var items = document.querySelectorAll('.reveal');
+  if(reduce || !('IntersectionObserver' in window)){
+    items.forEach(function(el){ el.classList.add('in'); });
+  } else {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:.14, rootMargin:'0px 0px -60px 0px'});
+    items.forEach(function(el){ io.observe(el); });
+  }
+
+  // Form guard (placeholder — no real submit)
+  var form = document.getElementById('leadForm');
+  if(form){
+    form.addEventListener('submit', function(ev){
+      ev.preventDefault();
+      var btn = form.querySelector('button[type=submit]');
+      btn.textContent = 'Recebido — retornaremos em breve';
+      btn.style.background = '#12B5B0';
+      btn.style.color = '#04201F';
+      btn.disabled = true;
+    });
+  }
+})();
+</script>
+
+<!-- Meio Comunica · V2 site · Innocondo -->
+</body>
+</html>

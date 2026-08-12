@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Grupo Innocondo · Apresentação V2 — Meio Comunica</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap"></noscript>
+<style>
+  :root{
+    --navy-900:#0C1638; --navy-700:#142254; --navy:#182868; --navy-500:#2A3E86;
+    --ink:#10152B; --slate:#565E78; --faint:#8b93a8; --line:#E4E7EF; --paper:#FAFAF7; --white:#fff;
+    --blue:#3E7BFA; --cyan:#12B5B0; --amber:#E0982E;
+    --r:16px; --shadow:0 1px 2px rgba(12,22,56,.05),0 18px 48px rgba(12,22,56,.10);
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 26px}
+  a{color:inherit}
+  .serif{font-family:'Fraunces',Georgia,serif}
+
+  .hero{position:relative;overflow:hidden;color:#eaf0ff;background:
+      radial-gradient(1100px 520px at 84% -10%, rgba(62,123,250,.30), transparent 60%),
+      radial-gradient(720px 440px at 2% 116%, rgba(18,181,176,.18), transparent 62%),
+      linear-gradient(160deg, var(--navy-900), var(--navy) 76%)}
+  .hero .wrap{padding:28px 26px 70px}
+  .top{display:flex;justify-content:space-between;align-items:center;padding:4px 0 44px}
+  .bm{display:flex;align-items:center;gap:12px}
+  .bm b{font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:12.5px;color:#cdd8f5}
+  .by{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#93a3d0}
+  .v2tag{background:var(--amber);color:#2a1c04;font-weight:700;font-size:12px;letter-spacing:.08em;padding:4px 11px;border-radius:100px;margin-left:10px}
+  .kick{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#a9bcf2;margin-bottom:20px}
+  .kick .d{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 4px rgba(18,181,176,.25)}
+  h1{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(36px,6vw,66px);line-height:1.03;letter-spacing:-.015em;margin:0 0 20px;color:#fff}
+  h1 em{font-style:italic;color:#9fc0ff}
+  .sub{font-size:clamp(17px,2vw,20px);color:#c3cdec;max-width:60ch;margin:0}
+  .essence{margin-top:26px;padding:18px 22px;border-left:3px solid var(--amber);background:rgba(255,255,255,.05);border-radius:0 12px 12px 0;font-family:'Fraunces',serif;font-style:italic;font-size:18px;color:#eaf0ff;max-width:64ch}
+
+  section{padding:60px 0}
+  .eyebrow{font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--navy-500);font-weight:700;margin:0 0 14px}
+  h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(27px,4vw,40px);line-height:1.08;letter-spacing:-.01em;margin:0 0 16px}
+  .lead{font-size:18px;color:var(--slate);max-width:66ch}
+
+  /* você pediu -> nós fizemos */
+  .qa{display:grid;grid-template-columns:1fr;gap:12px;margin-top:26px}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--white);box-shadow:var(--shadow)}
+  @media(max-width:720px){.row{grid-template-columns:1fr}}
+  .row .ask,.row .did{padding:18px 20px}
+  .row .ask{background:#f4f1ea;border-right:1px solid var(--line)}
+  @media(max-width:720px){.row .ask{border-right:none;border-bottom:1px solid var(--line)}}
+  .row .lab{font-size:11px;text-transform:uppercase;letter-spacing:.1em;font-weight:700;margin-bottom:6px}
+  .row .ask .lab{color:var(--slate)}
+  .row .did .lab{color:var(--amber)}
+  .row p{margin:0;font-size:14.5px;color:var(--ink)}
+  .row .ask p{color:var(--slate)}
+  .row .did .lab::before{content:"✓ "}
+
+  /* evolution */
+  .evo{background:var(--navy-900);color:#e7edff;background-image:radial-gradient(600px 300px at 100% 0,rgba(224,152,46,.14),transparent 60%)}
+  .evo .eyebrow{color:#f3d19a}
+  .evo h2{color:#fff}
+  .steps{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px;align-items:stretch}
+  .st{flex:1 1 150px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:18px}
+  .st .n{font-family:'Fraunces',serif;font-size:14px;color:#0c1638;background:var(--amber);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:600;margin-bottom:12px}
+  .st b{display:block;color:#fff;margin-bottom:4px;font-size:15px}
+  .st span{color:#b9c3e2;font-size:13.5px}
+  .st.last{background:linear-gradient(140deg,rgba(62,123,250,.25),rgba(18,181,176,.18));border-color:rgba(62,123,250,.4)}
+
+  /* deliverable cards */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:26px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .card{display:flex;flex-direction:column;background:var(--white);border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--shadow);text-decoration:none;transition:transform .18s var(--ease),box-shadow .18s}
+  .card:hover{transform:translateY(-4px);box-shadow:0 24px 60px rgba(12,22,56,.16)}
+  .thumb{height:150px;position:relative;display:grid;place-items:center}
+  .tSite{background:radial-gradient(420px 210px at 70% -20%,rgba(62,123,250,.5),transparent 60%),linear-gradient(150deg,#0c1638,#182868)}
+  .tMarca{background:linear-gradient(150deg,#fafaf7,#eef1fb)}
+  .thumb .tag{position:absolute;left:14px;top:14px;background:rgba(255,255,255,.9);color:var(--navy);font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:5px 10px;border-radius:100px}
+  .card .body{padding:20px 22px 22px}
+  .card h3{font-family:'Fraunces',serif;font-weight:500;font-size:22px;margin:0 0 6px}
+  .card p{font-size:14.5px;color:var(--slate);margin:0 0 14px}
+  .open{display:inline-flex;align-items:center;gap:7px;font-weight:600;font-size:14px;color:var(--navy)}
+  .card:hover .open svg{transform:translateX(3px)}
+  .open svg{transition:transform .18s}
+
+  /* notes */
+  .notes{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:24px}
+  @media(max-width:820px){.notes{grid-template-columns:1fr 1fr}}
+  @media(max-width:460px){.notes{grid-template-columns:1fr}}
+  .note{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--white)}
+  .note .h{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--amber);font-weight:700;margin-bottom:6px}
+  .note p{margin:0;font-size:14px;color:var(--slate)}
+  .note.warn{border-color:rgba(224,152,46,.5);background:#fdf6ea}
+
+  footer{padding:44px 0 60px;text-align:center;color:var(--faint);font-size:13.5px}
+  .print{position:fixed;right:20px;bottom:20px;background:var(--navy);color:#fff;border:none;border-radius:100px;padding:12px 22px;font-family:inherit;font-weight:600;font-size:14px;cursor:pointer;box-shadow:0 12px 30px rgba(12,22,56,.3);z-index:20}
+  .reveal{opacity:0;transform:translateY(16px);animation:rise .7s var(--ease) forwards}
+  @keyframes rise{to{opacity:1;transform:none}}
+  @media(prefers-reduced-motion:reduce){.reveal{animation:none;opacity:1;transform:none}.card{transition:none}}
+  @media print{.print{display:none}.hero,.evo{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="top">
+      <div class="bm">
+        <svg width="46" height="46" viewBox="0 0 46 46" aria-hidden="true"><rect width="46" height="46" rx="12" fill="#182868"/><rect x="19.5" y="15" width="7" height="20" rx="1.4" fill="#fff"/></svg>
+        <b>Grupo Innocondo</b><span class="v2tag">V2</span>
+      </div>
+      <div class="by">Meio Comunica · Apresentação 02</div>
+    </div>
+
+    <div class="kick reveal"><span class="d"></span> Versão 2 · revisada com o seu feedback</div>
+    <h1 class="reveal" style="animation-delay:.05s">Organizar, conectar e<br><em>transformar</em> o mercado<br>condominial.</h1>
+    <p class="sub reveal" style="animation-delay:.12s">Reestruturamos a proposta a partir de tudo que você e o time apontaram. O propósito na frente, o Grupo Innocondo no centro, e um caminho único de site — pronto pra apresentar.</p>
+    <div class="essence reveal" style="animation-delay:.2s">"A Innocondo existe para organizar, conectar e transformar o mercado condominial. Fazemos isso por meio de um ecossistema de inteligência, tecnologia, soluções e consultoria especializada."</div>
+  </div>
+</header>
+
+<!-- VOCÊ PEDIU -> NÓS FIZEMOS -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">O que mudou da V1 para a V2</p>
+    <h2 class="serif">Você pediu, nós ajustamos — ponto a ponto.</h2>
+    <p class="lead">Cada observação do documento virou uma correção concreta. Nada ficou de fora.</p>
+    <div class="qa">
+      <div class="row"><div class="ask"><div class="lab">Você pediu</div><p>Fortalecer o <b>Grupo Innocondo</b> — apresentar o grupo primeiro, depois as unidades.</p></div><div class="did"><div class="lab">Nós fizemos</div><p>O site abre pelo <b>Grupo</b> e ganhou uma seção "O que é o Grupo Innocondo", em linguagem simples.</p></div></div>
+      <div class="row"><div class="ask"><div class="lab">Você pediu</div><p>Reforçar o <b>propósito</b> — a Innocondo não é sobre vender consultoria/produto, é sobre transformar o mercado.</p></div><div class="did"><div class="lab">Nós fizemos</div><p>O propósito virou o <b>título do site</b> e a frase-essência abre a página.</p></div></div>
+      <div class="row"><div class="ask"><div class="lab">Você pediu</div><p>Mostrar a <b>evolução</b> (a consultoria foi a origem) e a <b>visão de futuro</b>.</p></div><div class="did"><div class="lab">Nós fizemos</div><p>Nova linha do tempo "Como chegamos até aqui" + bloco "Onde queremos chegar".</p></div></div>
+      <div class="row"><div class="ask"><div class="lab">Você pediu</div><p>Falar com <b>todo o ecossistema</b>, não só administradoras.</p></div><div class="did"><div class="lab">Nós fizemos</div><p>Copy ampliada: gestão condominial, síndicos (inclusive autogestão) e condomínios.</p></div></div>
+      <div class="row"><div class="ask"><div class="lab">Você pediu</div><p>Deixar <b>claro o que cada unidade faz</b>; Conceito <b>B</b> como base, complementado pelo A.</p></div><div class="did"><div class="lab">Nós fizemos</div><p>Site único na base do B + clareza do A; cada frente com uma frase objetiva.</p></div></div>
+      <div class="row"><div class="ask"><div class="lab">Você pediu</div><p>Marca: <b>manter a escrita "Innocondo"</b>, padronizar os símbolos (só a cor muda) e algo mais memorável.</p></div><div class="did"><div class="lab">Nós fizemos</div><p>Wordmark mantido; lockups <b>padronizados</b> (mesma forma, cor por frente) + 2 símbolos novos (grupo e operação).</p></div></div>
+      <div class="row"><div class="ask"><div class="lab">Você pediu</div><p>Manter a <b>prova social real</b> e usar <b>referências</b> (Prime) para ecossistema e FAQ.</p></div><div class="did"><div class="lab">Nós fizemos</div><p>Prova social mantida (público ampliado) + <b>FAQ</b> e explicador de ecossistema inspirados na estrutura de mercado.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- EVOLUÇÃO -->
+<section class="evo">
+  <div class="wrap">
+    <p class="eyebrow">A narrativa, do jeito certo</p>
+    <h2 class="serif">A consultoria foi a origem. O ecossistema é a evolução.</h2>
+    <p class="lead" style="color:#b9c3e2">Não "nascemos contra a consultoria" — nascemos nela. A experiência revelou uma deficiência do mercado, e cada solução para essa deficiência deu origem à próxima.</p>
+    <div class="steps">
+      <div class="st"><div class="n">1</div><b>Consultoria</b><span>A origem: +17 anos dentro da gestão condominial.</span></div>
+      <div class="st"><div class="n">2</div><b>Deficiência</b><span>A experiência revelou o que faltava no mercado.</span></div>
+      <div class="st"><div class="n">3</div><b>Oportunidade</b><span>Cada dor virou uma oportunidade de inovação.</span></div>
+      <div class="st"><div class="n">4</div><b>Produtos</b><span>Nasceu um produto. Depois outro.</span></div>
+      <div class="st last"><div class="n">5</div><b>Ecossistema</b><span>Consultoria + Soluções + (nova frente em breve).</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- DELIVERABLES -->
+<section>
+  <div class="wrap">
+    <p class="eyebrow">Os entregáveis da V2</p>
+    <h2 class="serif">Marca revisada + site consolidado.</h2>
+    <p class="lead">Clique para abrir cada um em tela cheia.</p>
+    <div class="grid">
+      <a class="card" href="site-v2.html">
+        <div class="thumb tSite"><span class="tag">Site V2</span>
+          <svg width="150" height="86" viewBox="0 0 150 86" fill="none"><circle cx="75" cy="43" r="10" fill="#fff"/><circle cx="34" cy="24" r="6" fill="#3E7BFA"/><circle cx="116" cy="26" r="6" fill="#E0982E"/><circle cx="75" cy="70" r="6" fill="#12B5B0"/><path d="M75 43 34 24M75 43 116 26M75 43 75 70" stroke="rgba(255,255,255,.5)" stroke-width="1.3"/></svg>
+        </div>
+        <div class="body"><h3>Home do Grupo Innocondo</h3><p>Propósito, grupo, evolução, 3 frentes claras, diferenciais, prova social, área do cliente e FAQ. Base no Conceito B + A.</p><span class="open">Abrir site <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+      <a class="card" href="logo-lab.html">
+        <div class="thumb tMarca"><span class="tag">Marca — direções</span>
+          <svg width="160" height="86" viewBox="0 0 160 86">
+            <g transform="translate(18,20) scale(0.46)"><rect width="100" height="100" rx="27" fill="#182868"/><rect x="34" y="42" width="9.5" height="40" rx="3.3" fill="#fff"/><circle cx="38.7" cy="31" r="5.6" fill="#fff"/><path d="M70 40 A16 16 0 1 0 70 74" fill="none" stroke="#3E7BFA" stroke-width="9.5" stroke-linecap="round"/></g>
+            <g transform="translate(90,20) scale(0.46)"><rect width="100" height="100" rx="27" fill="#E0982E"/><rect x="34" y="42" width="9.5" height="40" rx="3.3" fill="#fff"/><circle cx="38.7" cy="31" r="5.6" fill="#fff"/><path d="M74 44 a13 12 0 0 0-16 4 a12 12 0 0 0 8 20 a12 12 0 0 1 8 20 a13 12 0 0 1-16 4" fill="none" stroke="#fff" stroke-width="9" stroke-linecap="round"/></g>
+          </svg>
+        </div>
+        <div class="body"><h3>Marca — direções de logo</h3><p>Refizemos o símbolo, limpo (sem parecer figura). Duas direções pra você escolher: só o “i” do grupo, ou “i” + 2ª letra (iC/iS/iT).</p><span class="open">Ver direções <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- NOTES -->
+<section style="padding-top:8px">
+  <div class="wrap">
+    <p class="eyebrow">Combinados & próximos passos</p>
+    <h2 class="serif">O que fica alinhado para a execução.</h2>
+    <div class="notes">
+      <div class="note"><div class="h">2 frentes agora</div><p>Consultoria + Soluções (Seguros). A 3ª frente entra em 2027 — o site já nasce preparado.</p></div>
+      <div class="note warn"><div class="h">⚠ Seguros — ago/26</div><p>O produto de Soluções (Seguros) lança na 3ª semana de agosto. A LP dele é a mais urgente.</p></div>
+      <div class="note"><div class="h">Ordem das LPs</div><p>Site → LP Consultoria → LP Soluções. Tráfego pago nas LPs (instalar pixel).</p></div>
+      <div class="note"><div class="h">Do seu lado</div><p>Depoimentos + lista de serviços esta semana. Fotos profissionais já existem.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Meio Comunica · Grupo Innocondo · Apresentação V2 &nbsp;·&nbsp; navy da marca <b style="color:var(--navy)">#182868</b>
+</footer>
+<button class="print" onclick="window.print()">Salvar apresentação em PDF</button>
+</body>
+</html>
