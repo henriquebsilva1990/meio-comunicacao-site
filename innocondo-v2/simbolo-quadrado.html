@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Innocondo · Símbolo quadrado — "I" da própria escrita</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;1,9..144,400&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Poppins:wght@300;400;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400&family=DM+Sans:wght@400;600&family=Poppins:wght@300;700&display=swap"></noscript>
+<style>
+  :root{--navy-900:#0C1638;--navy:#182868;--navy-500:#2A3E86;--ink:#10152B;--slate:#565E78;--faint:#8b93a8;
+        --line:#E5E2D9;--paper:#FAF8F2;--white:#fff;--cyan:#00AAE6;--amber:#E0982E;
+        --shadow:0 1px 2px rgba(12,22,56,.05),0 16px 44px rgba(12,22,56,.09)}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:'DM Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1060px;margin:0 auto;padding:0 26px}
+  .defs{position:absolute;width:0;height:0}
+  .hero{background:linear-gradient(158deg,var(--navy-900),var(--navy) 78%);color:#eaf0ff;padding:52px 0 56px}
+  .kick{display:inline-flex;align-items:center;gap:9px;font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;color:#a9bcf2;margin-bottom:16px}
+  .kick .d{width:7px;height:7px;border-radius:50%;background:var(--cyan)}
+  h1{font-family:'Fraunces',Georgia,serif;font-weight:400;font-size:clamp(31px,5vw,50px);line-height:1.05;margin:0 0 14px;color:#fff;letter-spacing:-.015em}
+  h1 em{font-style:italic;color:#8fd4f5}
+  .hero p{color:#c3cdec;font-size:18px;max-width:62ch;margin:0}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:26px 28px;box-shadow:var(--shadow)}
+  .brief{margin-top:-30px;position:relative;z-index:2}
+  .brief h2{font-family:'Fraunces',serif;font-weight:500;font-size:20px;margin:0 0 12px}
+  .brief ul{margin:0;padding-left:18px;color:var(--slate);font-size:15px}
+  .brief li{margin-bottom:6px}
+  .brief b{color:var(--ink)}
+  .win{margin-top:16px;background:#eef7ee;border:1px solid #cfe6cf;border-radius:12px;padding:14px 16px;font-size:14.5px;color:#2f6b3f}
+  .win b{color:#1f5130}
+  section{padding:50px 0 6px}
+  .eyebrow{font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--navy-500);font-weight:700;margin:0 0 12px}
+  h2.sec{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(25px,3.4vw,34px);margin:0 0 10px;letter-spacing:-.01em}
+  .lead{color:var(--slate);font-size:17px;max-width:66ch;margin:0}
+  /* medida */
+  .measure{display:flex;gap:30px;align-items:center;flex-wrap:wrap;margin-top:20px}
+  .measure .box{background:var(--navy);border-radius:12px;padding:18px 26px}
+  .measure .txt{font-size:15px;color:var(--slate);max-width:44ch}
+  .measure .txt b{color:var(--ink)}
+  .mono{font-family:ui-monospace,Menlo,monospace;font-size:13px;background:#f1eee5;border:1px solid var(--line);border-radius:6px;padding:2px 7px;color:var(--navy)}
+  /* grid de tratamentos */
+  .treats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:24px}
+  @media(max-width:860px){.treats{grid-template-columns:1fr 1fr}}
+  @media(max-width:520px){.treats{grid-template-columns:1fr}}
+  .tr{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:22px 16px;text-align:center;box-shadow:var(--shadow)}
+  .tr svg{display:block;margin:0 auto}
+  .tr .nm{font-family:'Fraunces',serif;font-size:17px;margin-top:14px}
+  .tr .ds{font-size:13px;color:var(--slate);margin-top:3px;line-height:1.45}
+  /* contexto */
+  .ctx{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+  @media(max-width:800px){.ctx{grid-template-columns:1fr}}
+  .wa{background:#0b141a;border-radius:16px;padding:18px;border:1px solid #1f2c33}
+  .wa .ttl{color:#8696a0;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+  .wa .row{display:flex;align-items:center;gap:13px;padding:9px 4px}
+  .wa .av{width:52px;height:52px;border-radius:50%;overflow:hidden;flex:none;background:#111}
+  .wa .av svg{width:52px;height:52px;display:block}
+  .wa .nm{color:#e9edef;font-size:15.5px;font-weight:500}
+  .wa .ms{color:#8696a0;font-size:13px}
+  .wa .pad{background:#fff;display:grid;place-items:center}
+  .wa .pad svg{width:34px;height:34px}
+  .os{background:#dfe3ea;border-radius:16px;padding:20px;border:1px solid #cdd3dd}
+  .os .ttl{color:#5d6675;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;margin-bottom:14px}
+  .icons{display:flex;gap:16px;align-items:flex-end;flex-wrap:wrap}
+  .ic{text-align:center}
+  .ic .lb{font-size:11px;color:#5d6675;margin-top:7px}
+  .note{background:#fdf6ea;border:1px solid rgba(224,152,46,.4);border-radius:14px;padding:16px 20px;margin-top:20px;font-size:15px;color:#6b5320}
+  .note b{color:#8a5a12}
+  /* lockup */
+  .lock{display:flex;align-items:center;gap:16px;margin-top:22px;flex-wrap:wrap}
+  .wm{font-family:'Poppins',sans-serif;font-size:34px;line-height:1;color:var(--navy);letter-spacing:-.02em}
+  .wm b{font-weight:700}.wm span{font-weight:400;color:var(--navy-500)}
+  .tagl{font-family:'Poppins',sans-serif;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--faint);margin-top:6px}
+  footer{padding:44px 0 70px;text-align:center;color:var(--faint);font-size:13.5px}
+</style>
+</head>
+<body>
+<svg class="defs" aria-hidden="true"><defs>
+  <linearGradient id="gd" x1="6" y1="114" x2="114" y2="6" gradientUnits="userSpaceOnUse">
+    <stop offset="0" stop-color="#152159"/><stop offset=".55" stop-color="#1D5FBF"/><stop offset="1" stop-color="#00AAE6"/></linearGradient>
+  <clipPath id="sq"><rect width="120" height="120"/></clipPath>
+</defs></svg>
+
+<header class="hero"><div class="wrap">
+  <div class="kick"><span class="d"></span> Ajuste a partir do seu retorno</div>
+  <h1>Quadrado, sem arredondar,<br>com o <em>“I”</em> da própria escrita.</h1>
+  <p>Refiz o símbolo exatamente como você pediu. Abaixo, o mesmo desenho em quatro acabamentos — e a prova de como ele se comporta no WhatsApp, no favicon e no ícone de app.</p>
+</div></header>
+
+<div class="wrap"><div class="card brief">
+  <h2>O que você pediu — e o que eu fiz</h2>
+  <ul>
+    <li><b>Nada arredondado</b> → fundo quadrado, cantos retos (raio zero).</li>
+    <li><b>“Bem encaixado”</b> → o fundo ocupa a arte inteira (full-bleed), sem margem interna, para preencher o quadro do avatar.</li>
+    <li><b>“I” maiúsculo, da escrita da Innocondo</b> → medi a letra no logo original: <span class="mono">7 × 27 px</span>, proporção <span class="mono">1 : 3,86</span>, pontas retas. Reproduzi essa proporção exata.</li>
+  </ul>
+  <div class="win"><b>Um ganho que veio de brinde com a sua ideia:</b> o “I” maiúsculo <b>não tem pingo</b>. Some de uma vez o risco de parecer o ícone de informação (ℹ️) e some também a leitura de “bonequinho” que a gente tinha antes. Sua sugestão resolveu os dois problemas.</div>
+</div></div>
+
+<section><div class="wrap">
+  <p class="eyebrow">A base</p>
+  <h2 class="sec">A letra saiu do próprio logo</h2>
+  <div class="measure">
+    <div class="box">
+      <svg width="150" height="120" viewBox="0 0 150 120" aria-label="Proporção do I">
+        <rect x="60" y="20" width="20" height="77" fill="#fff"/>
+        <line x1="60" y1="108" x2="80" y2="108" stroke="#00AAE6" stroke-width="2"/>
+        <line x1="60" y1="104" x2="60" y2="112" stroke="#00AAE6" stroke-width="2"/>
+        <line x1="80" y1="104" x2="80" y2="112" stroke="#00AAE6" stroke-width="2"/>
+        <text x="70" y="102" fill="#00AAE6" font-size="9" text-anchor="middle" font-family="monospace">1</text>
+        <line x1="96" y1="20" x2="96" y2="97" stroke="#00AAE6" stroke-width="2"/>
+        <line x1="92" y1="20" x2="100" y2="20" stroke="#00AAE6" stroke-width="2"/>
+        <line x1="92" y1="97" x2="100" y2="97" stroke="#00AAE6" stroke-width="2"/>
+        <text x="112" y="62" fill="#00AAE6" font-size="11" font-family="monospace">3,86</text>
+      </svg>
+    </div>
+    <p class="txt">Não inventei uma letra nova. Peguei o <b>“I” do logo atual da Innocondo</b>, medi e mantive a mesma proporção e o mesmo corte reto das pontas. Assim o símbolo e a escrita continuam sendo <b>a mesma família</b>.</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow">Acabamentos</p>
+  <h2 class="sec">O mesmo símbolo, quatro versões</h2>
+  <p class="lead">Todos quadrados, cantos retos, mesma letra. Muda só o acabamento do fundo.</p>
+  <div class="treats">
+    <div class="tr">
+      <svg width="128" height="128" viewBox="0 0 120 120"><rect width="120" height="120" fill="#182868"/><rect x="52" y="29" width="16" height="62" fill="#fff"/></svg>
+      <div class="nm">1 · Chapado</div><div class="ds">Navy sólido. O mais sóbrio e o que melhor imprime.</div>
+    </div>
+    <div class="tr">
+      <svg width="128" height="128" viewBox="0 0 120 120"><rect width="120" height="120" fill="url(#gd)"/><rect x="52" y="29" width="16" height="62" fill="#fff"/></svg>
+      <div class="nm">2 · Gradiente</div><div class="ds">Navy para ciano. Mais presença no digital.</div>
+    </div>
+    <div class="tr">
+      <svg width="128" height="128" viewBox="0 0 120 120"><rect width="120" height="120" fill="#152159"/><g clip-path="url(#sq)"><g transform="rotate(-45 60 60)"><rect x="-140" y="-140" width="400" height="200" fill="#2FB3E8"/></g></g><rect x="52" y="29" width="16" height="62" fill="#fff"/></svg>
+      <div class="nm">3 · Corte</div><div class="ds">Fundo dividido na diagonal — a herança do traço.</div>
+    </div>
+    <div class="tr">
+      <svg width="128" height="128" viewBox="0 0 120 120"><rect width="120" height="120" fill="#182868"/><rect x="52" y="29" width="16" height="62" fill="#fff"/><path d="M34 84 L86 36" stroke="#182868" stroke-width="8"/></svg>
+      <div class="nm">4 · Corte no “I”</div><div class="ds">A diagonal atravessa a letra. O mais marcante dos quatro.</div>
+    </div>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow">Na prática</p>
+  <h2 class="sec">Como fica onde você vai usar</h2>
+  <div class="ctx">
+    <div class="wa">
+      <div class="ttl">Grupo de WhatsApp</div>
+      <div class="row">
+        <span class="av"><svg viewBox="0 0 120 120"><rect width="120" height="120" fill="#182868"/><rect x="52" y="29" width="16" height="62" fill="#fff"/></svg></span>
+        <div><div class="nm">Innocondo · Consultoria</div><div class="ms">Símbolo quadrado — preenche o quadro inteiro</div></div>
+      </div>
+      <div class="row">
+        <span class="av pad"><svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="44" fill="#182868"/><rect x="52" y="34" width="16" height="52" fill="#fff"/></svg></span>
+        <div><div class="nm">Versão redonda com margem</div><div class="ms">Fica menor e “flutuando” — o que você não quer</div></div>
+      </div>
+    </div>
+    <div class="os">
+      <div class="ttl">Ícone e favicon</div>
+      <div class="icons">
+        <div class="ic"><svg width="72" height="72" viewBox="0 0 120 120"><rect width="120" height="120" fill="#182868"/><rect x="52" y="29" width="16" height="62" fill="#fff"/></svg><div class="lb">Ícone 72px</div></div>
+        <div class="ic"><svg width="40" height="40" viewBox="0 0 120 120"><rect width="120" height="120" fill="#182868"/><rect x="52" y="29" width="16" height="62" fill="#fff"/></svg><div class="lb">40px</div></div>
+        <div class="ic"><svg width="18" height="18" viewBox="0 0 120 120"><rect width="120" height="120" fill="#182868"/><rect x="52" y="29" width="16" height="62" fill="#fff"/></svg><div class="lb">18px favicon</div></div>
+        <div class="ic"><svg width="72" height="72" viewBox="0 0 120 120"><rect width="120" height="120" fill="url(#gd)"/><rect x="52" y="29" width="16" height="62" fill="#fff"/></svg><div class="lb">Gradiente</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="note"><b>Um detalhe técnico que vale saber:</b> o WhatsApp sempre recorta a foto de grupo em <b>círculo</b>. Então os cantos retos não vão aparecer lá — o que faz o símbolo ficar “bem encaixado” é o fundo <b>ocupar a arte inteira</b>, e é exatamente isso que a versão quadrada faz (compare as duas linhas acima). Os cantos retos continuam valendo e aparecendo no site, no favicon, em papelaria e em assinatura de e-mail.</div>
+</div></section>
+
+<section><div class="wrap">
+  <p class="eyebrow">Assinatura</p>
+  <h2 class="sec">Símbolo + escrita</h2>
+  <div class="lock">
+    <svg width="62" height="62" viewBox="0 0 120 120"><rect width="120" height="120" fill="#182868"/><rect x="52" y="29" width="16" height="62" fill="#fff"/></svg>
+    <div><div class="wm"><b>Inno</b><span>condo</span></div><div class="tagl">Organizar. Conectar. Transformar.</div></div>
+  </div>
+  <div class="note" style="background:#eef4ff;border-color:#d8e3fb;color:#2b3d63"><b>Para fechar com fidelidade total:</b> a escrita aqui está reproduzida com uma fonte aproximada. Como vocês têm manual de marca, me mandando o <b>arquivo vetorial ou o nome da fonte</b>, eu ajusto o “I” do símbolo para ser exatamente o mesmo do logo — e não só a mesma proporção.</div>
+</div></section>
+
+<footer>Meio Comunica · Innocondo · Símbolo quadrado a partir do retorno do cliente</footer>
+</body>
+</html>
