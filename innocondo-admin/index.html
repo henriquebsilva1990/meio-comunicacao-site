@@ -28,6 +28,12 @@ label{display:block;font-size:.8rem;font-weight:600;color:var(--slate);margin:14
 input[type=text],input[type=password],textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:#fff;font-size:.95rem;transition:border-color .15s}
 input:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(62,123,250,.15)}
 textarea{min-height:150px;resize:vertical;line-height:1.55}
+.campo-senha{position:relative}
+.campo-senha input{padding-right:48px}
+.olho{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:8px;display:grid;place-items:center;color:var(--slate)}
+.olho:hover{background:var(--paper);color:var(--ink)}
+.olho svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8}
+.olho[aria-pressed="true"]{color:var(--navy)}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:.93rem;padding:11px 18px;border-radius:10px;transition:background .15s,opacity .15s}
 .btn-primary{background:var(--navy);color:#fff}
 .btn-primary:hover{background:#0f1b4a}
@@ -117,7 +123,7 @@ details.senha form{max-width:380px}
     <h1>Painel de depoimentos</h1>
     <p>Área restrita da Innocondo.</p>
     <label for="senha">Senha</label>
-    <input type="password" id="senha" name="password" autocomplete="current-password" required>
+    <div class="campo-senha"><input type="password" id="senha" name="password" autocomplete="current-password" autocapitalize="off" autocorrect="off" spellcheck="false" required><button type="button" class="olho" id="olho" aria-label="Mostrar a senha" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg></button></div>
     <button class="btn btn-primary btn-full" type="submit" id="btnEntrar">Entrar</button>
     <div class="msg err" id="erroLogin" role="alert" hidden></div>
   </form>
@@ -223,10 +229,15 @@ details.senha form{max-width:380px}
   $('formLogin').addEventListener('submit', function(ev){
     ev.preventDefault();
     var b = $('btnEntrar'); b.disabled = true; b.textContent = 'Entrando…';
-    chamar('/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ senha: $('senha').value }) })
+    chamar('/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ senha: $('senha').value.trim() }) })
       .then(function(){ $('senha').value = ''; mostrarApp(); })
       .catch(function(e){ var m = $('erroLogin'); m.hidden = false; m.textContent = e.message; })
       .then(function(){ b.disabled = false; b.textContent = 'Entrar'; });
+  });
+  $('olho').addEventListener('click', function(){
+    var c = $('senha'), ver = c.type === 'password';
+    c.type = ver ? 'text' : 'password'; this.setAttribute('aria-pressed', ver ? 'true' : 'false');
+    this.setAttribute('aria-label', ver ? 'Esconder a senha' : 'Mostrar a senha'); c.focus();
   });
   $('btnSair').addEventListener('click', function(){
     if (pendente() && !confirm('Há alterações não salvas. Sair mesmo assim?')) return;
@@ -406,7 +417,7 @@ details.senha form{max-width:380px}
     ev.preventDefault();
     var m = $('msgSenha');
     if ($('sNova').value !== $('sNova2').value) { m.className = 'msg err'; m.textContent = 'As duas senhas novas não são iguais.'; m.hidden = false; $('sNova2').focus(); return; }
-    chamar('/admin/senha', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ atual: $('sAtual').value, nova: $('sNova').value }) })
+    chamar('/admin/senha', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ atual: $('sAtual').value.trim(), nova: $('sNova').value.trim() }) })
       .then(function(){ m.className = 'msg ok'; m.textContent = 'Senha trocada. Use a nova no próximo acesso.'; $('formSenha').reset(); })
       .catch(function(e){ m.className = 'msg err'; m.textContent = e.message; })
       .then(function(){ m.hidden = false; });

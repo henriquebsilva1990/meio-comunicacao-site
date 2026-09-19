@@ -11,7 +11,7 @@ export async function onRequestPost({ request, env }) {
   if (feitas >= TENTATIVAS) return json({ erro: 'Muitas tentativas. Aguarde 15 minutos.' }, 429);
 
   let senha = '';
-  try { senha = String((await request.json())?.senha || ''); } catch { /* corpo inválido */ }
+  try { senha = String((await request.json())?.senha || '').trim(); } catch { /* corpo inválido */ }
   if (senha && senha.length <= 200 && await conferirSenha(senha, await hashAtual(env))) {
     await env.INNOCONDO_KV.delete(chave);
     return json({ ok: true }, 200, { 'Set-Cookie': await criarSessao(env) });
