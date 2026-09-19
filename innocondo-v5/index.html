@@ -44,7 +44,9 @@ ul{list-style:none}
 .eyebrow{font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);display:inline-flex;align-items:center;gap:9px}
 .eyebrow::before{content:"";width:22px;height:1.5px;background:currentColor;display:inline-block}
 .eyebrow.on-dark{color:var(--cyan-soft)}
-.sec{padding:104px 0}
+.sec{content-visibility:auto;contain-intrinsic-size:auto 900px;padding:104px 0}
+/* Seções fora da tela só são montadas quando chegam perto; um link interno monta tudo antes de rolar. */
+html.cv-off .sec{content-visibility:visible}
 .sec-head{max-width:680px;margin-bottom:52px}
 .sec-head.center{margin-inline:auto;text-align:center}
 .sec-head.center .eyebrow{justify-content:center}
@@ -641,10 +643,18 @@ ul{list-style:none}
 
   var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
+  /* Âncoras: antes de rolar para um link interno, monta todas as seções — senão a altura
+     estimada das que ainda não apareceram faz a rolagem parar no lugar errado. */
+  var raiz = document.documentElement;
+  function montarTudo(){ raiz.classList.add('cv-off'); }
+  if (location.hash) montarTudo();
+  document.addEventListener('click', function(e){ var a = e.target.closest && e.target.closest('a[href^="#"]'); if (a) montarTudo(); }, true);
+  window.addEventListener('hashchange', montarTudo);
+
   /* Header */
   var hdr = document.getElementById('hdr');
   function onScroll(){ var s = window.scrollY > 40; hdr.classList.toggle('scrolled', s); hdr.classList.toggle('hdr-dark', !s); }
-  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('scroll', onScroll, {passive:true}); window.addEventListener('load', onScroll);
 
   /* Menu mobile */
   var mb = document.getElementById('menuBtn'), mn = document.getElementById('mobileNav'), mc = document.getElementById('mobileClose');

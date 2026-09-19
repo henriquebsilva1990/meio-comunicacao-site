@@ -48,7 +48,9 @@ img,svg{display:block;max-width:100%}
 ::selection{background:var(--blue);color:#fff}
 :focus-visible{outline:2.5px solid var(--blue);outline-offset:3px;border-radius:6px}
 .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
-.sec{position:relative;padding:112px 0;background:var(--surface)}
+.sec{content-visibility:auto;contain-intrinsic-size:auto 900px;position:relative;padding:112px 0;background:var(--surface)}
+/* Seções fora da tela só são montadas quando chegam perto; um link interno monta tudo antes de rolar. */
+html.cv-off .sec{content-visibility:visible}
 .sec.deep{background:var(--void)}
 
 /* --- linhas de grade de fundo (referência) --- */
@@ -631,10 +633,18 @@ img,svg{display:block;max-width:100%}
 
   var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
 
+  /* Âncoras: antes de rolar para um link interno, monta todas as seções — senão a altura
+     estimada das que ainda não apareceram faz a rolagem parar no lugar errado. */
+  var raiz = document.documentElement;
+  function montarTudo(){ raiz.classList.add('cv-off'); }
+  if (location.hash) montarTudo();
+  document.addEventListener('click', function(e){ var a = e.target.closest && e.target.closest('a[href^="#"]'); if (a) montarTudo(); }, true);
+  window.addEventListener('hashchange', montarTudo);
+
   /* Header */
   var hdr = document.getElementById('hdr');
   function onScroll(){ hdr.classList.toggle('scrolled', window.scrollY > 40); }
-  onScroll(); window.addEventListener('scroll', onScroll, {passive:true});
+  window.addEventListener('scroll', onScroll, {passive:true}); window.addEventListener('load', onScroll);
 
   /* Menu mobile */
   var mb = document.getElementById('menuBtn'), mn = document.getElementById('mobileNav'), mc = document.getElementById('mobileClose');
