@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Innocondo — Painel de depoimentos</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23182868'/%3E%3Crect x='52' y='29' width='16' height='62' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+:root{--navy:#182868;--navy-900:#0C1638;--ink:#10152B;--slate:#565E78;--slate-2:#7A82A0;--line:#E4E7EF;--paper:#F6F7FA;--white:#fff;--blue:#3E7BFA;--ok:#1C7A50;--ok-bg:#E3F6EC;--err:#B32222;--err-bg:#FCE8E8;--radius:14px}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--paper);line-height:1.5;-webkit-font-smoothing:antialiased}
+button,input,textarea{font:inherit;color:inherit}
+button{cursor:pointer;border:none;background:none}
+[hidden]{display:none!important}
+:focus-visible{outline:2.5px solid var(--blue);outline-offset:2px;border-radius:6px}
+.mk{width:34px;height:34px;flex:none}
+.wrap{max-width:900px;margin:0 auto;padding:0 20px}
+
+/* login */
+.login{min-height:100vh;display:grid;place-items:center;padding:24px;background:var(--navy-900)}
+.login form{width:100%;max-width:380px;background:#fff;border-radius:20px;padding:34px 30px;box-shadow:0 30px 80px rgba(0,0,0,.35)}
+.login .mk{width:48px;height:48px;margin-bottom:18px}
+.login h1{font-size:1.3rem;margin-bottom:4px}
+.login p{color:var(--slate);font-size:.92rem;margin-bottom:22px}
+
+label{display:block;font-size:.8rem;font-weight:600;color:var(--slate);margin:14px 0 6px}
+input[type=text],input[type=password],textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 13px;background:#fff;font-size:.95rem;transition:border-color .15s}
+input:focus,textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(62,123,250,.15)}
+textarea{min-height:150px;resize:vertical;line-height:1.55}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:.93rem;padding:11px 18px;border-radius:10px;transition:background .15s,opacity .15s}
+.btn-primary{background:var(--navy);color:#fff}
+.btn-primary:hover{background:#0f1b4a}
+.btn-primary[disabled]{opacity:.5;cursor:default}
+.btn-ghost{background:#fff;border:1px solid var(--line)}
+.btn-ghost:hover{border-color:var(--slate-2)}
+.btn-danger{color:var(--err)}
+.btn-danger:hover{background:var(--err-bg)}
+.btn-full{width:100%;margin-top:20px;padding:13px}
+.msg{margin-top:14px;font-size:.88rem;padding:10px 12px;border-radius:9px}
+.msg.err{background:var(--err-bg);color:var(--err)}
+.msg.ok{background:var(--ok-bg);color:var(--ok)}
+
+/* app */
+.top{background:var(--navy-900);color:#fff;padding:16px 0;position:sticky;top:0;z-index:20}
+.top .wrap{display:flex;align-items:center;gap:14px}
+.top b{font-size:1rem}
+.top span{color:rgba(255,255,255,.6);font-size:.85rem}
+.top .sp{flex:1}
+.top .btn-ghost{background:transparent;border-color:rgba(255,255,255,.25);color:#fff;padding:8px 14px;font-size:.85rem}
+.intro{padding:28px 0 8px}
+.intro h1{font-size:1.45rem;margin-bottom:6px}
+.intro p{color:var(--slate);font-size:.94rem;max-width:62ch}
+.links{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.links a{font-size:.85rem;color:var(--navy);font-weight:600;background:#fff;border:1px solid var(--line);padding:7px 12px;border-radius:8px;text-decoration:none}
+.links a:hover{border-color:var(--navy)}
+
+.item{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;margin-top:16px}
+.item.off{background:#FBFBFC}
+.item.off .corpo{opacity:.6}
+.item-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.item-top .n{font-weight:700;font-size:.95rem;flex:1;min-width:140px}
+.pill{font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:20px}
+.pill.on{background:var(--ok-bg);color:var(--ok)}
+.pill.off{background:#EEF0F4;color:var(--slate)}
+.ic{width:36px;height:36px;border-radius:9px;display:grid;place-items:center;border:1px solid var(--line);background:#fff}
+.ic:hover{border-color:var(--slate-2)}
+.ic[disabled]{opacity:.35;cursor:default}
+.ic svg{width:17px;height:17px;stroke:currentColor;stroke-width:2;fill:none}
+.corpo{display:grid;grid-template-columns:120px minmax(0,1fr);gap:22px;margin-top:6px}
+.foto-box{padding-top:14px}
+.foto{width:120px;height:120px;border-radius:14px;border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;background:var(--navy);color:#fff;font-weight:700;font-size:1.6rem}
+.foto img{width:100%;height:100%;object-fit:cover;display:block}
+.foto-acoes{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.foto-acoes .btn{padding:7px 10px;font-size:.8rem}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.cont{font-size:.75rem;color:var(--slate-2);text-align:right;margin-top:4px}
+.cont.alto{color:var(--err)}
+.toggle{display:inline-flex;align-items:center;gap:8px;font-size:.85rem;font-weight:600;color:var(--slate);cursor:pointer;user-select:none}
+.toggle input{width:18px;height:18px;accent-color:var(--navy)}
+
+.acoes{position:sticky;bottom:0;background:linear-gradient(to top,var(--paper) 70%,rgba(246,247,250,0));padding:22px 0 20px;margin-top:10px;z-index:10}
+.acoes .wrap{display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.acoes .estado{font-size:.85rem;color:var(--slate);flex:1;min-width:180px}
+.acoes .estado.pend{color:#8A5A12;font-weight:600}
+
+details.senha{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:16px 20px;margin:26px 0 40px}
+details.senha summary{cursor:pointer;font-weight:600;font-size:.92rem}
+details.senha form{max-width:380px}
+
+/* recorte */
+.modal{position:fixed;inset:0;z-index:50;display:grid;place-items:center;padding:20px;background:rgba(12,22,56,.6)}
+.modal-box{background:#fff;border-radius:18px;padding:24px;width:100%;max-width:420px}
+.modal-box h2{font-size:1.1rem;margin-bottom:4px}
+.modal-box p{font-size:.85rem;color:var(--slate);margin-bottom:14px}
+.modal canvas{width:100%;max-width:280px;aspect-ratio:1;display:block;margin:0 auto;border-radius:14px;border:1px solid var(--line)}
+.faixa{display:flex;align-items:center;gap:10px;margin-top:12px;font-size:.82rem;color:var(--slate)}
+.faixa span{width:88px;flex:none}
+.faixa input{flex:1;accent-color:var(--navy)}
+.modal .linha{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
+
+@media(max-width:640px){
+  .corpo{grid-template-columns:1fr}
+  .dupla{grid-template-columns:1fr}
+  .top span{display:none}
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="innoMark" viewBox="0 0 120 120"><rect width="120" height="120" fill="#182868"/><rect x="52" y="29" width="16" height="62" fill="#fff"/></symbol></defs></svg>
+
+<!-- LOGIN -->
+<section class="login" id="telaLogin" hidden>
+  <form id="formLogin" autocomplete="on">
+    <svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><use href="#innoMark"/></svg>
+    <h1>Painel de depoimentos</h1>
+    <p>Área restrita da Innocondo.</p>
+    <label for="senha">Senha</label>
+    <input type="password" id="senha" name="password" autocomplete="current-password" required>
+    <button class="btn btn-primary btn-full" type="submit" id="btnEntrar">Entrar</button>
+    <div class="msg err" id="erroLogin" role="alert" hidden></div>
+  </form>
+</section>
+
+<!-- PAINEL -->
+<div id="telaApp" hidden>
+  <header class="top">
+    <div class="wrap">
+      <svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><use href="#innoMark"/></svg>
+      <b>Innocondo</b><span>Painel de depoimentos</span>
+      <div class="sp"></div>
+      <button class="btn btn-ghost" id="btnSair" type="button">Sair</button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="intro">
+      <h1>Depoimentos do site</h1>
+      <p>Edite, inclua, reordene ou tire do ar os depoimentos da seção “O mercado fala por nós”. Nada muda no site até você clicar em <b>Salvar e publicar</b>. Depois de salvar, o site atualiza em até 1 minuto.</p>
+      <div class="links">
+        <a href="/innocondo-v5/#depoimentos" target="_blank" rel="noopener">Ver no site — versão clara ↗</a>
+        <a href="/innocondo-v5-1/#depoimentos" target="_blank" rel="noopener">Ver no site — versão escura ↗</a>
+      </div>
+    </div>
+
+    <div id="lista" aria-live="polite"></div>
+
+    <button class="btn btn-ghost" id="btnNovo" type="button" style="margin-top:16px">+ Novo depoimento</button>
+
+    <details class="senha">
+      <summary>Trocar a senha do painel</summary>
+      <form id="formSenha">
+        <label for="sAtual">Senha atual</label>
+        <input type="password" id="sAtual" autocomplete="current-password" required>
+        <label for="sNova">Nova senha (mínimo 10 caracteres)</label>
+        <input type="password" id="sNova" autocomplete="new-password" minlength="10" required>
+        <button class="btn btn-primary" type="submit" style="margin-top:14px">Trocar senha</button>
+        <div class="msg" id="msgSenha" role="status" hidden></div>
+      </form>
+    </details>
+  </main>
+
+  <div class="acoes">
+    <div class="wrap">
+      <div class="estado" id="estado">Tudo publicado.</div>
+      <button class="btn btn-ghost" id="btnDescartar" type="button" hidden>Descartar alterações</button>
+      <button class="btn btn-primary" id="btnSalvar" type="button" disabled>Salvar e publicar</button>
+    </div>
+  </div>
+</div>
+
+<!-- RECORTE DA FOTO -->
+<div class="modal" id="modalFoto" role="dialog" aria-modal="true" aria-labelledby="mfTitulo" hidden>
+  <div class="modal-box">
+    <h2 id="mfTitulo">Enquadrar a foto</h2>
+    <p>A foto aparece quadrada no site. Ajuste para o rosto ficar no centro.</p>
+    <canvas id="mfCanvas" width="320" height="320"></canvas>
+    <div class="faixa"><span>Aproximar</span><input type="range" id="mfZoom" min="100" max="250" value="100"></div>
+    <div class="faixa"><span>Horizontal</span><input type="range" id="mfX" min="0" max="100" value="50"></div>
+    <div class="faixa"><span>Vertical</span><input type="range" id="mfY" min="0" max="100" value="25"></div>
+    <div class="linha">
+      <button class="btn btn-ghost" id="mfCancelar" type="button">Cancelar</button>
+      <button class="btn btn-primary" id="mfUsar" type="button">Usar esta foto</button>
+    </div>
+    <div class="msg err" id="mfErro" role="alert" hidden></div>
+  </div>
+</div>
+<input type="file" id="arquivo" accept="image/jpeg,image/png,image/webp" hidden>
+
+<script>
+(function(){
+  var API = '/api/innocondo';
+  var LIM = { texto: 900, nome: 80, cargo: 80, empresa: 80, itens: 12 };
+  var dados = [], salvo = '[]', alvoFoto = -1, imgFonte = null;
+  var $ = function(id){ return document.getElementById(id); };
+
+  function chamar(caminho, opcoes){
+    opcoes = opcoes || {};
+    opcoes.credentials = 'same-origin';
+    opcoes.headers = Object.assign({ 'X-Inno-Admin': '1' }, opcoes.headers || {});
+    return fetch(API + caminho, opcoes).then(function(r){
+      return r.json().catch(function(){ return {}; }).then(function(corpo){
+        if (r.status === 401 && caminho !== '/login') { mostrarLogin('Sua sessão expirou. Entre de novo.'); }
+        if (!r.ok) throw new Error(corpo.erro || ('Erro ' + r.status));
+        return corpo;
+      });
+    });
+  }
+
+  /* ---------- sessão ---------- */
+  function mostrarLogin(aviso){
+    $('telaApp').hidden = true; $('telaLogin').hidden = false;
+    var e = $('erroLogin'); e.hidden = !aviso; e.textContent = aviso || '';
+    $('senha').focus();
+  }
+  function mostrarApp(){ $('telaLogin').hidden = true; $('telaApp').hidden = false; carregar(); }
+
+  $('formLogin').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var b = $('btnEntrar'); b.disabled = true; b.textContent = 'Entrando…';
+    chamar('/login', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ senha: $('senha').value }) })
+      .then(function(){ $('senha').value = ''; mostrarApp(); })
+      .catch(function(e){ var m = $('erroLogin'); m.hidden = false; m.textContent = e.message; })
+      .then(function(){ b.disabled = false; b.textContent = 'Entrar'; });
+  });
+  $('btnSair').addEventListener('click', function(){
+    if (pendente() && !confirm('Há alterações não salvas. Sair mesmo assim?')) return;
+    chamar('/logout', { method: 'POST' }).catch(function(){}).then(function(){ salvo = JSON.stringify(dados); mostrarLogin(); });
+  });
+
+  /* ---------- dados ---------- */
+  function carregar(){
+    chamar('/admin/depoimentos').then(function(lista){ dados = lista; salvo = JSON.stringify(dados); render(); })
+      .catch(function(e){ estado(e.message, true); });
+  }
+  function pendente(){ return JSON.stringify(dados) !== salvo; }
+  function estado(texto, pend){
+    var e = $('estado'); e.textContent = texto; e.className = 'estado' + (pend ? ' pend' : '');
+  }
+  function atualizarEstado(){
+    var p = pendente();
+    $('btnSalvar').disabled = !p; $('btnDescartar').hidden = !p;
+    var pub = dados.filter(function(d){ return d.publicado; }).length;
+    estado(p ? 'Alterações ainda não publicadas.' : (pub + ' de ' + dados.length + ' depoimento(s) no ar.'), p);
+  }
+  window.addEventListener('beforeunload', function(e){ if (pendente()) { e.preventDefault(); e.returnValue = ''; } });
+
+  function iniciais(n){ var p = String(n || '').trim().split(/\s+/); return ((p[0] || '').charAt(0) + (p.length > 1 ? p[p.length - 1].charAt(0) : '')).toUpperCase() || '?'; }
+
+  var ICONES = {
+    cima: '<svg viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7"/></svg>',
+    baixo: '<svg viewBox="0 0 24 24"><path d="M12 5v14M5 12l7 7 7-7"/></svg>'
+  };
+
+  function campo(i, chave, rotulo, max){
+    var id = 'c' + i + chave;
+    return '<div><label for="' + id + '">' + rotulo + '</label><input type="text" id="' + id + '" data-i="' + i + '" data-k="' + chave + '" maxlength="' + max + '"></div>';
+  }
+
+  function render(){
+    var el = $('lista'); el.textContent = '';
+    if (!dados.length) {
+      var v = document.createElement('p'); v.style.cssText = 'margin-top:20px;color:#565E78';
+      v.textContent = 'Nenhum depoimento cadastrado. Com a lista vazia, a seção some do site.';
+      el.appendChild(v);
+    }
+    dados.forEach(function(d, i){
+      var art = document.createElement('article');
+      art.className = 'item' + (d.publicado ? '' : ' off');
+      art.innerHTML =
+        '<div class="item-top">' +
+          '<span class="n"></span>' +
+          '<span class="pill ' + (d.publicado ? 'on">No ar' : 'off">Fora do ar') + '</span>' +
+          '<label class="toggle"><input type="checkbox" data-i="' + i + '" data-k="publicado"' + (d.publicado ? ' checked' : '') + '> Publicado</label>' +
+          '<button class="ic" type="button" data-acao="cima" data-i="' + i + '" aria-label="Subir"' + (i === 0 ? ' disabled' : '') + '>' + ICONES.cima + '</button>' +
+          '<button class="ic" type="button" data-acao="baixo" data-i="' + i + '" aria-label="Descer"' + (i === dados.length - 1 ? ' disabled' : '') + '>' + ICONES.baixo + '</button>' +
+          '<button class="btn btn-danger" type="button" data-acao="remover" data-i="' + i + '">Excluir</button>' +
+        '</div>' +
+        '<div class="corpo">' +
+          '<div class="foto-box"><div class="foto"></div><div class="foto-acoes">' +
+            '<button class="btn btn-ghost" type="button" data-acao="foto" data-i="' + i + '">' + (d.foto ? 'Trocar foto' : 'Enviar foto') + '</button>' +
+            (d.foto ? '<button class="btn btn-danger" type="button" data-acao="semfoto" data-i="' + i + '">Tirar foto</button>' : '') +
+          '</div></div>' +
+          '<div>' +
+            campo(i, 'nome', 'Nome', LIM.nome) +
+            '<div class="dupla">' + campo(i, 'cargo', 'Cargo', LIM.cargo) + campo(i, 'empresa', 'Empresa', LIM.empresa) + '</div>' +
+            '<label for="c' + i + 'texto">Depoimento</label>' +
+            '<textarea id="c' + i + 'texto" data-i="' + i + '" data-k="texto" maxlength="' + LIM.texto + '"></textarea>' +
+            '<div class="cont" id="cont' + i + '"></div>' +
+          '</div>' +
+        '</div>';
+      // valores entram por propriedade, nunca por HTML
+      art.querySelector('.n').textContent = d.nome || 'Novo depoimento';
+      ['nome', 'cargo', 'empresa', 'texto'].forEach(function(k){ art.querySelector('[data-k="' + k + '"]').value = d[k] || ''; });
+      var f = art.querySelector('.foto');
+      if (d.foto) { var im = document.createElement('img'); im.src = API + '/foto/' + d.foto; im.alt = ''; f.appendChild(im); }
+      else f.textContent = iniciais(d.nome);
+      el.appendChild(art);
+      contar(i);
+    });
+    $('btnNovo').disabled = dados.length >= LIM.itens;
+    atualizarEstado();
+  }
+
+  function contar(i){
+    var c = $('cont' + i); if (!c) return;
+    var n = (dados[i].texto || '').length;
+    c.textContent = n + ' / ' + LIM.texto; c.className = 'cont' + (n > 600 ? ' alto' : '');
+    if (n > 600) c.textContent += ' — texto longo deixa o card bem mais alto que os outros';
+  }
+
+  $('lista').addEventListener('input', function(e){
+    var t = e.target, i = +t.getAttribute('data-i'), k = t.getAttribute('data-k');
+    if (!k || isNaN(i)) return;
+    if (k === 'publicado') { dados[i].publicado = t.checked; render(); return; }
+    dados[i][k] = t.value;
+    if (k === 'texto') contar(i);
+    if (k === 'nome') {
+      t.closest('.item').querySelector('.n').textContent = t.value || 'Novo depoimento';
+      var f = t.closest('.item').querySelector('.foto'); if (!dados[i].foto) f.textContent = iniciais(t.value);
+    }
+    atualizarEstado();
+  });
+
+  $('lista').addEventListener('click', function(e){
+    var b = e.target.closest('[data-acao]'); if (!b) return;
+    var i = +b.getAttribute('data-i'), a = b.getAttribute('data-acao'), tmp;
+    if (a === 'cima' && i > 0) { tmp = dados[i - 1]; dados[i - 1] = dados[i]; dados[i] = tmp; render(); }
+    if (a === 'baixo' && i < dados.length - 1) { tmp = dados[i + 1]; dados[i + 1] = dados[i]; dados[i] = tmp; render(); }
+    if (a === 'remover' && confirm('Excluir o depoimento de ' + (dados[i].nome || 'sem nome') + '? Ele só some do site depois de salvar.')) { dados.splice(i, 1); render(); }
+    if (a === 'semfoto') { dados[i].foto = ''; render(); }
+    if (a === 'foto') { alvoFoto = i; $('arquivo').value = ''; $('arquivo').click(); }
+  });
+
+  $('btnNovo').addEventListener('click', function(){
+    dados.push({ nome: '', cargo: '', empresa: '', texto: '', foto: '', publicado: true });
+    render();
+    var campos = $('lista').querySelectorAll('[data-k="nome"]'); campos[campos.length - 1].focus();
+  });
+
+  $('btnDescartar').addEventListener('click', function(){
+    if (confirm('Descartar tudo que foi alterado desde o último salvamento?')) { dados = JSON.parse(salvo); render(); }
+  });
+
+  $('btnSalvar').addEventListener('click', function(){
+    for (var i = 0; i < dados.length; i++) {
+      if (!String(dados[i].nome || '').trim() || !String(dados[i].texto || '').trim()) {
+        estado('Depoimento ' + (i + 1) + ': preencha nome e texto antes de publicar.', true);
+        var alvo = $('c' + i + (String(dados[i].nome || '').trim() ? 'texto' : 'nome')); if (alvo) alvo.focus();
+        return;
+      }
+    }
+    var b = $('btnSalvar'); b.disabled = true; b.textContent = 'Publicando…';
+    chamar('/admin/depoimentos', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(dados) })
+      .then(function(r){ dados = r.lista; salvo = JSON.stringify(dados); render(); estado('Publicado. O site atualiza em até 1 minuto.', false); })
+      .catch(function(e){ estado('Não publicou: ' + e.message, true); b.disabled = false; })
+      .then(function(){ b.textContent = 'Salvar e publicar'; });
+  });
+
+  /* ---------- foto ---------- */
+  $('arquivo').addEventListener('change', function(){
+    var f = this.files && this.files[0]; if (!f) return;
+    if (!/^image\/(jpeg|png|webp)$/.test(f.type)) { alert('Envie uma foto JPG, PNG ou WebP.'); return; }
+    if (f.size > 25 * 1024 * 1024) { alert('Foto grande demais (máximo 25 MB).'); return; }
+    var url = URL.createObjectURL(f), img = new Image();
+    img.onload = function(){ imgFonte = img; $('mfZoom').value = 100; $('mfX').value = 50; $('mfY').value = img.height > img.width ? 25 : 50; $('mfErro').hidden = true; $('modalFoto').hidden = false; desenhar(); $('mfUsar').focus(); };
+    img.onerror = function(){ alert('Não consegui abrir essa imagem.'); };
+    img.src = url;
+  });
+
+  function desenhar(){
+    var c = $('mfCanvas'), ctx = c.getContext('2d'), img = imgFonte; if (!img) return;
+    var lado = Math.min(img.width, img.height) / (+$('mfZoom').value / 100);
+    var sx = (img.width - lado) * (+$('mfX').value / 100);
+    var sy = (img.height - lado) * (+$('mfY').value / 100);
+    ctx.imageSmoothingQuality = 'high';
+    ctx.clearRect(0, 0, c.width, c.height);
+    ctx.drawImage(img, sx, sy, lado, lado, 0, 0, c.width, c.height);
+  }
+  ['mfZoom', 'mfX', 'mfY'].forEach(function(id){ $(id).addEventListener('input', desenhar); });
+  function fecharModal(){ $('modalFoto').hidden = true; imgFonte = null; }
+  $('mfCancelar').addEventListener('click', fecharModal);
+  $('modalFoto').addEventListener('keydown', function(e){ if (e.key === 'Escape') fecharModal(); });
+
+  $('mfUsar').addEventListener('click', function(){
+    var b = this; b.disabled = true; b.textContent = 'Enviando…';
+    $('mfCanvas').toBlob(function(blob){
+      var envia = function(bl){
+        chamar('/admin/foto', { method: 'POST', headers: { 'Content-Type': bl.type }, body: bl })
+          .then(function(r){ dados[alvoFoto].foto = r.id; fecharModal(); render(); })
+          .catch(function(e){ var m = $('mfErro'); m.hidden = false; m.textContent = e.message; })
+          .then(function(){ b.disabled = false; b.textContent = 'Usar esta foto'; });
+      };
+      if (blob && blob.type === 'image/webp') envia(blob);
+      else $('mfCanvas').toBlob(envia, 'image/jpeg', 0.86); // navegador sem WebP
+    }, 'image/webp', 0.86);
+  });
+
+  /* ---------- senha ---------- */
+  $('formSenha').addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var m = $('msgSenha');
+    chamar('/admin/senha', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ atual: $('sAtual').value, nova: $('sNova').value }) })
+      .then(function(){ m.className = 'msg ok'; m.textContent = 'Senha trocada. Use a nova no próximo acesso.'; $('formSenha').reset(); })
+      .catch(function(e){ m.className = 'msg err'; m.textContent = e.message; })
+      .then(function(){ m.hidden = false; });
+  });
+
+  /* ---------- início ---------- */
+  fetch(API + '/admin/sessao', { credentials: 'same-origin' })
+    .then(function(r){ if (r.ok) mostrarApp(); else mostrarLogin(); })
+    .catch(function(){ mostrarLogin('Sem conexão com o servidor.'); });
+})();
+</script>
+</body>
+</html>

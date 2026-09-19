@@ -42,7 +42,7 @@ img,svg{display:block;max-width:100%}
 ::selection{background:var(--blue);color:#fff}
 :focus-visible{outline:2.5px solid var(--blue);outline-offset:3px;border-radius:6px}
 .wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
-.sec{position:relative;padding:112px 0;background:var(--surface)}
+.sec{content-visibility:auto;contain-intrinsic-size:auto 900px;position:relative;padding:112px 0;background:var(--surface)}
 .sec.deep{background:var(--void)}
 
 /* --- linhas de grade de fundo (referência) --- */
@@ -104,7 +104,7 @@ img,svg{display:block;max-width:100%}
 /* ============ BLOCO 1 — HERO ============ */
 .hero{position:relative;background:var(--void);padding:170px 0 0;overflow:hidden;text-align:center}
 .hero .gridlines{background-size:150px 100%}
-.hero-spot{position:absolute;left:50%;top:22%;width:min(1100px,150vw);height:760px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(0,121,255,.42),rgba(0,121,255,.12) 45%,transparent 70%);filter:blur(28px)}
+.hero-spot{position:absolute;left:50%;top:22%;width:min(1100px,150vw);height:760px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(0,121,255,.42),rgba(0,121,255,.12) 45%,transparent 70%);}
 .hero-inner{position:relative;z-index:2;max-width:880px;margin:0 auto}
 .hero-mark{width:82px;height:82px;margin:0 auto 34px;box-shadow:0 0 0 1px rgba(0,121,255,.4),0 0 70px -8px rgba(0,121,255,.85)}
 .hero h1{font-size:clamp(2.1rem,5vw,3.65rem);font-weight:800;margin:0 0 22px;letter-spacing:-.035em}
@@ -126,7 +126,7 @@ img,svg{display:block;max-width:100%}
 .frentes{background:var(--surface);padding-top:132px}
 .sys{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 210px minmax(0,1fr);gap:0;align-items:stretch;max-width:1080px;margin:0 auto}
 .sys-core{position:relative;align-self:center;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;padding:0 18px}
-.sys-core::after{content:"";position:absolute;left:50%;top:38%;width:330px;height:330px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(0,121,255,.5),rgba(0,121,255,.14) 42%,transparent 68%);filter:blur(22px);pointer-events:none;z-index:0}
+.sys-core::after{content:"";position:absolute;left:50%;top:38%;width:330px;height:330px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(0,121,255,.5),rgba(0,121,255,.14) 42%,transparent 68%);pointer-events:none;z-index:0}
 .core-mark{position:relative;z-index:2;display:grid;place-items:center}
 .core-mark .mk{width:96px;height:96px;box-shadow:0 0 0 1px rgba(0,121,255,.5),0 0 60px -6px rgba(0,121,255,.9)}
 .core-mark::before{content:"";position:absolute;inset:-26px;border:1px solid rgba(0,121,255,.3);border-radius:18px}
@@ -160,7 +160,7 @@ img,svg{display:block;max-width:100%}
 .net-lines .web{fill:none;stroke:var(--blue);stroke-width:1.2;opacity:.34;stroke-dasharray:4 7;vector-effect:non-scaling-stroke}
 .net-lines .pt circle{fill:var(--blue);transform-box:fill-box;transform-origin:center;filter:drop-shadow(0 0 6px rgba(0,121,255,1));animation:netpulse 3.4s var(--ease) infinite}
 @keyframes netpulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
-.net-glow{position:absolute;left:50%;top:50%;width:420px;height:420px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(0,121,255,.4),rgba(0,121,255,.1) 45%,transparent 70%);filter:blur(24px);pointer-events:none}
+.net-glow{position:absolute;left:50%;top:50%;width:420px;height:420px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(0,121,255,.4),rgba(0,121,255,.1) 45%,transparent 70%);pointer-events:none}
 .net-node{position:absolute;display:inline-flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line-2);border-radius:100px;padding:11px 18px;font-size:.88rem;font-weight:600;color:#fff;white-space:nowrap;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
 .net-node:hover{border-color:rgba(0,121,255,.6);box-shadow:0 0 30px -10px rgba(0,121,255,.9)}
 .net-node .dot{width:8px;height:8px;border-radius:50%;flex:none;background:var(--blue);box-shadow:0 0 10px var(--blue)}
@@ -175,19 +175,20 @@ img,svg{display:block;max-width:100%}
 
 /* ============ BLOCO 5 — PROVA SOCIAL ============ */
 .prova{background:var(--surface)}
-.depos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
-.depo{border:1px dashed var(--line-2);border-radius:var(--radius-xl);padding:32px 30px;display:flex;flex-direction:column;background:linear-gradient(160deg,rgba(255,255,255,.035),rgba(255,255,255,.008))}
-.depo .ph-tag{align-self:flex-start;font-size:.65rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue-300);background:rgba(0,121,255,.12);border:1px solid rgba(0,121,255,.28);padding:5px 11px;border-radius:6px;margin-bottom:20px}
-.quote-ic{width:30px;height:30px;color:rgba(0,121,255,.45);margin-bottom:16px}
-.depo p{font-size:.95rem;color:var(--txt-3);margin-bottom:24px;flex:1;font-style:italic}
-.depo-who{display:flex;align-items:center;gap:13px}
-.depo-av{width:46px;height:46px;border-radius:12px;background:rgba(255,255,255,.06);border:1px solid var(--line);flex:0 0 46px}
-.depo-who .nm{font-family:'Sora';font-weight:600;font-size:.92rem;color:var(--txt-2)}
-.depo-who .rl{font-size:.8rem;color:var(--txt-3)}
+.depos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px}
+.depo{margin:0;border:1px solid var(--line-2);border-radius:var(--radius-xl);padding:32px 30px 28px;display:flex;flex-direction:column;background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.012));transition:transform .3s var(--ease),border-color .3s}
+.depo:hover{transform:translateY(-4px);border-color:rgba(0,121,255,.45)}
+.quote-ic{width:28px;height:28px;color:var(--blue);opacity:.7;margin-bottom:16px;flex:none}
+.depo blockquote{margin:0 0 24px;font-size:.96rem;line-height:1.66;color:var(--txt-2);flex:1}
+.depo-who{display:flex;align-items:center;gap:14px;padding-top:18px;border-top:1px solid var(--line)}
+.depo-av{width:52px;height:52px;border-radius:12px;flex:0 0 52px;object-fit:cover;background:rgba(255,255,255,.06);box-shadow:0 0 0 1px var(--line-2)}
+.depo-av.ini{display:grid;place-items:center;background:linear-gradient(140deg,var(--blue),#0B4FBF);color:#fff;font-family:'Sora';font-weight:700;font-size:1rem;letter-spacing:.02em}
+.depo-who .nm{font-family:'Sora';font-weight:700;font-size:.95rem;color:#fff}
+.depo-who .rl{font-size:.82rem;color:var(--txt-3);line-height:1.4}
 
 /* ============ BLOCO 6 — ONDE QUEREMOS CHEGAR ============ */
 .futuro{background:var(--void);overflow:hidden}
-.futuro::before{content:"";position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(0,121,255,.3),transparent 68%);filter:blur(80px);top:-240px;right:-180px;pointer-events:none}
+.futuro::before{content:"";position:absolute;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(0,121,255,.3),transparent 68%);top:-240px;right:-180px;pointer-events:none}
 .futuro-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(36px,5vw,68px);align-items:center}
 .futuro h2{font-size:clamp(1.9rem,3.6vw,2.7rem);margin:20px 0 22px}
 .futuro h2 .dim{color:var(--txt-3)}
@@ -274,9 +275,9 @@ img,svg{display:block;max-width:100%}
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.in{opacity:1;transform:none}
 .reveal[data-d="1"]{transition-delay:.08s}.reveal[data-d="2"]{transition-delay:.16s}
-.hl{opacity:0;transform:translateY(20px);animation:hlin .8s var(--ease) forwards}
+.hl{transform:translateY(14px);animation:hlin .7s var(--ease) forwards}
 .hl-1{animation-delay:.1s}.hl-2{animation-delay:.24s}.hl-3{animation-delay:.38s}.hl-4{animation-delay:.52s}
-@keyframes hlin{to{opacity:1;transform:none}}
+@keyframes hlin{to{transform:none}}
 
 /* ============ RESPONSIVO ============ */
 @media(max-width:1024px){
@@ -299,7 +300,6 @@ img,svg{display:block;max-width:100%}
 @media(max-width:860px){
   .nav,.hdr-cta .btn-outline{display:none}
   .menu-btn{display:flex}
-  .depos{grid-template-columns:1fr}
 }
 @media(max-width:760px){
   .net{aspect-ratio:auto;max-width:440px;display:flex;flex-direction:column;gap:11px}
@@ -496,22 +496,22 @@ img,svg{display:block;max-width:100%}
       <h2>O mercado <span class="dim">fala por nós</span></h2>
       <p>Mais do que apresentar o que fazemos, preferimos deixar que quem conhece nosso trabalho conte essa experiência.</p>
     </div>
-    <div class="depos">
-      <div class="depo reveal"><span class="ph-tag">Espaço reservado</span>
+    <div class="depos" id="deposLista">
+      <figure class="depo reveal" data-foto="/api/innocondo/foto/0a2e00a43cba4f40a23ff391fe068f93">
         <svg class="quote-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
-        <p>Depoimento real a ser enviado pela Innocondo.</p>
-        <div class="depo-who"><span class="depo-av"></span><div><div class="nm">Nome</div><div class="rl">Cargo · Administradora</div></div></div>
-      </div>
-      <div class="depo reveal" data-d="1"><span class="ph-tag">Espaço reservado</span>
+        <blockquote>Trabalhar com a Innocondo foi uma experiência muito positiva para a Priali. A equipe esteve próxima da nossa operação de back office, entendendo nossos desafios e participando de projetos importantes, como a implantação de um novo ERP e a automação bancária dos condomínios que administramos. O conhecimento do mercado condominial, aliado a uma visão muito prática da operação, contribuiu diretamente para ganharmos eficiência e evoluirmos nossa forma de trabalhar.</blockquote>
+        <figcaption class="depo-who"><img class="depo-av" src="/innocondo-midia/depoimentos/elaine-priali.webp" width="52" height="52" alt="" loading="lazy" decoding="async"><div><div class="nm">Elaine</div><div class="rl">Sócia-Diretora · Administradora Priali</div></div></figcaption>
+      </figure>
+      <figure class="depo reveal" data-d="1" data-foto="/api/innocondo/foto/4633e63b5f5c4a69bdd79770471cd83e">
         <svg class="quote-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
-        <p>Depoimento real a ser enviado pela Innocondo.</p>
-        <div class="depo-who"><span class="depo-av"></span><div><div class="nm">Nome</div><div class="rl">Cargo · Administradora</div></div></div>
-      </div>
-      <div class="depo reveal" data-d="2"><span class="ph-tag">Espaço reservado</span>
+        <blockquote>A Innocondo nos apoiou em um momento importante de revisão dos nossos processos operacionais e de atendimento. A partir de uma análise muito próxima da nossa realidade, conseguimos organizar e centralizar o atendimento em um fluxo mais estruturado, trazendo mais controle e visibilidade para a operação. O trabalho contribuiu para melhorar nossa gestão e tornar o processo de atendimento mais eficiente e organizado.</blockquote>
+        <figcaption class="depo-who"><img class="depo-av" src="/innocondo-midia/depoimentos/julio-herold.webp" width="52" height="52" alt="" loading="lazy" decoding="async"><div><div class="nm">Júlio Herold</div><div class="rl">Sócio-Diretor · GH Sindicatura Profissional</div></div></figcaption>
+      </figure>
+      <figure class="depo reveal" data-d="2" data-foto="">
         <svg class="quote-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg>
-        <p>Depoimento real a ser enviado pela Innocondo.</p>
-        <div class="depo-who"><span class="depo-av"></span><div><div class="nm">Nome</div><div class="rl">Cargo · Administradora</div></div></div>
-      </div>
+        <blockquote>A parceria com a Innocondo nos apresentou uma nova forma de olhar para soluções de proteção dentro do mercado condominial. A proposta de tornar esse tipo de solução mais acessível e conectada às necessidades dos condomínios e das pessoas chamou nossa atenção. Estamos construindo essa parceria juntos e acreditamos que existe muito potencial para gerar valor para o nosso mercado.</blockquote>
+        <figcaption class="depo-who"><span class="depo-av ini" aria-hidden="true">ÉM</span><div><div class="nm">Érica Mendonça</div><div class="rl">Gerente Geral · Administradora Moraes</div></div></figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -558,7 +558,7 @@ img,svg{display:block;max-width:100%}
         <h3>Fale com a Innocondo</h3>
         <div class="channels">
           <a class="ch" href="https://wa.me/5511991375208" target="_blank" rel="noopener"><span class="ch-ic"><svg viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"/></svg></span><span><span class="t">WhatsApp</span><br><span class="v">+55 11 99137-5208</span></span></a>
-          <a class="ch" href="mailto:contato@innocondo.com.br"><span class="ch-ic"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span><span><span class="t">E-mail</span><br><span class="v">contato@innocondo.com.br</span></span></a>
+          <!--email_off--><a class="ch" href="mailto:contato@innocondo.com.br"><span class="ch-ic"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg></span><span><span class="t">E-mail</span><br><span class="v">contato@innocondo.com.br</span></span></a><!--/email_off-->
           <a class="ch" href="https://www.linkedin.com/company/innocondo/" target="_blank" rel="noopener"><span class="ch-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7.5 10.6V17"/><circle cx="7.5" cy="7.4" r="1.05" fill="currentColor" stroke="none"/><path d="M11.6 17v-3.5a2.4 2.4 0 0 1 4.8 0V17M11.6 10.6V17"/></svg></span><span><span class="t">LinkedIn</span><br><span class="v">/company/innocondo</span></span></a>
           <a class="ch" href="https://www.instagram.com/innocondo_/" target="_blank" rel="noopener"><span class="ch-ic"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.1" cy="6.9" r="1.1" fill="currentColor" stroke="none"/></svg></span><span><span class="t">Instagram</span><br><span class="v">@innocondo_</span></span></a>
         </div>
@@ -589,7 +589,7 @@ img,svg{display:block;max-width:100%}
       <div class="ft-col ft-ct">
         <h4>Contato</h4>
         <a href="https://wa.me/5511991375208" target="_blank" rel="noopener">WhatsApp<small>+55 11 99137-5208</small></a>
-        <a href="mailto:contato@innocondo.com.br">E-mail<small>contato@innocondo.com.br</small></a>
+        <!--email_off--><a href="mailto:contato@innocondo.com.br">E-mail<small>contato@innocondo.com.br</small></a><!--/email_off-->
         <div class="ft-social">
           <a href="https://www.linkedin.com/company/innocondo/" target="_blank" rel="noopener" aria-label="Innocondo no LinkedIn"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7.5 10.6V17"/><circle cx="7.5" cy="7.4" r="1.05" fill="currentColor" stroke="none"/><path d="M11.6 17v-3.5a2.4 2.4 0 0 1 4.8 0V17M11.6 10.6V17"/></svg></a>
           <a href="https://www.instagram.com/innocondo_/" target="_blank" rel="noopener" aria-label="Innocondo no Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.1" cy="6.9" r="1.1" fill="currentColor" stroke="none"/></svg></a>
@@ -649,6 +649,39 @@ img,svg{display:block;max-width:100%}
   document.querySelectorAll('[data-area-cliente]').forEach(function(b){ b.addEventListener('click', function(e){ e.preventDefault(); openAC(b); }); });
   ac.querySelectorAll('[data-ac-close]').forEach(function(b){ b.addEventListener('click', closeAC); });
   document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ if(!ac.hidden){ closeAC(); } else if(mn.classList.contains('open')){ menu(false); mb.focus(); } } });
+
+  /* Depoimentos — a lista vem do painel da Innocondo (/innocondo-admin). O HTML já traz
+     a versão publicada; aqui só trocamos se o painel tiver algo diferente. */
+  var deposEl = document.getElementById('deposLista');
+  function iniciais(n){ var p = String(n).trim().split(/\s+/); return ((p[0]||'').charAt(0) + (p.length > 1 ? p[p.length-1].charAt(0) : '')).toUpperCase(); }
+  function atuais(){ return [].map.call(deposEl.querySelectorAll('.depo'), function(f){ return [f.querySelector('.nm').textContent, f.querySelector('.rl').textContent, f.querySelector('blockquote').textContent, f.getAttribute('data-foto') || ''].join('|'); }).join('#'); }
+  function montar(lista){
+    var quote = deposEl.querySelector('.quote-ic');
+    var molde = quote ? quote.outerHTML : '';
+    var frag = document.createDocumentFragment();
+    lista.forEach(function(d, i){
+      var f = document.createElement('figure'); f.className = 'depo reveal in'; f.setAttribute('data-foto', d.foto || '');
+      f.innerHTML = molde + '<blockquote></blockquote><figcaption class="depo-who"></figcaption>';
+      f.querySelector('blockquote').textContent = d.texto;
+      var cap = f.querySelector('figcaption'), av;
+      if (d.foto) { av = document.createElement('img'); av.className = 'depo-av'; av.src = d.foto; av.width = 52; av.height = 52; av.alt = ''; av.loading = 'lazy'; av.decoding = 'async'; }
+      else { av = document.createElement('span'); av.className = 'depo-av ini'; av.setAttribute('aria-hidden', 'true'); av.textContent = iniciais(d.nome); }
+      var txt = document.createElement('div'), nm = document.createElement('div'), rl = document.createElement('div');
+      nm.className = 'nm'; nm.textContent = d.nome; rl.className = 'rl'; rl.textContent = [d.cargo, d.empresa].filter(Boolean).join(' · ');
+      txt.appendChild(nm); txt.appendChild(rl); cap.appendChild(av); cap.appendChild(txt);
+      frag.appendChild(f);
+    });
+    deposEl.textContent = ''; deposEl.appendChild(frag);
+  }
+  function buscarDepos(){
+    fetch('/api/innocondo/depoimentos', { credentials: 'omit' }).then(function(r){ return r.ok ? r.json() : null; }).then(function(lista){
+      if (!Array.isArray(lista)) return;
+      if (!lista.length) { document.getElementById('depoimentos').hidden = true; return; }
+      var novo = lista.map(function(d){ return [d.nome, [d.cargo, d.empresa].filter(Boolean).join(' · '), d.texto, d.foto || ''].join('|'); }).join('#');
+      if (novo !== atuais()) montar(lista);
+    }).catch(function(){ /* sem rede: fica a versão que veio no HTML */ });
+  }
+  if (deposEl) { if ('requestIdleCallback' in window) requestIdleCallback(buscarDepos, { timeout: 3000 }); else setTimeout(buscarDepos, 1500); }
 
   /* Reveal */
   var items = document.querySelectorAll('.reveal');
