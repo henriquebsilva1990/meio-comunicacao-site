@@ -1,0 +1,5 @@
+# Cache das mídias da Innocondo. Fontes têm versão no nome (-v1), então podem ficar em cache por 1 ano.
+/innocondo-midia/fontes/*
+  Cache-Control: public, max-age=31536000, immutable
+/innocondo-midia/depoimentos/*
+  Cache-Control: public, max-age=604800
