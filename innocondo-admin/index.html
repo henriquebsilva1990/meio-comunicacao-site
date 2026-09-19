@@ -100,6 +100,7 @@ details.senha form{max-width:380px}
 .modal .linha{display:flex;gap:10px;justify-content:flex-end;margin-top:20px}
 
 @media(max-width:640px){
+  .top .btn-ghost{padding:7px 10px;font-size:.8rem}
   .corpo{grid-template-columns:1fr}
   .dupla{grid-template-columns:1fr}
   .top span{display:none}
@@ -129,6 +130,7 @@ details.senha form{max-width:380px}
       <svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><use href="#innoMark"/></svg>
       <b>Innocondo</b><span>Painel de depoimentos</span>
       <div class="sp"></div>
+      <button class="btn btn-ghost" id="btnSenha" type="button">Trocar senha</button>
       <button class="btn btn-ghost" id="btnSair" type="button">Sair</button>
     </div>
   </header>
@@ -147,13 +149,16 @@ details.senha form{max-width:380px}
 
     <button class="btn btn-ghost" id="btnNovo" type="button" style="margin-top:16px">+ Novo depoimento</button>
 
-    <details class="senha">
+    <details class="senha" id="caixaSenha">
       <summary>Trocar a senha do painel</summary>
+      <p style="font-size:.85rem;color:var(--slate);margin-top:10px">A troca vale no próximo acesso. Guarde a nova senha: se ela se perder, só a Meio Comunica consegue redefinir.</p>
       <form id="formSenha">
         <label for="sAtual">Senha atual</label>
         <input type="password" id="sAtual" autocomplete="current-password" required>
         <label for="sNova">Nova senha (mínimo 10 caracteres)</label>
         <input type="password" id="sNova" autocomplete="new-password" minlength="10" required>
+        <label for="sNova2">Repita a nova senha</label>
+        <input type="password" id="sNova2" autocomplete="new-password" minlength="10" required>
         <button class="btn btn-primary" type="submit" style="margin-top:14px">Trocar senha</button>
         <div class="msg" id="msgSenha" role="status" hidden></div>
       </form>
@@ -400,10 +405,15 @@ details.senha form{max-width:380px}
   $('formSenha').addEventListener('submit', function(ev){
     ev.preventDefault();
     var m = $('msgSenha');
+    if ($('sNova').value !== $('sNova2').value) { m.className = 'msg err'; m.textContent = 'As duas senhas novas não são iguais.'; m.hidden = false; $('sNova2').focus(); return; }
     chamar('/admin/senha', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ atual: $('sAtual').value, nova: $('sNova').value }) })
       .then(function(){ m.className = 'msg ok'; m.textContent = 'Senha trocada. Use a nova no próximo acesso.'; $('formSenha').reset(); })
       .catch(function(e){ m.className = 'msg err'; m.textContent = e.message; })
       .then(function(){ m.hidden = false; });
+  });
+
+  $('btnSenha').addEventListener('click', function(){
+    var c = $('caixaSenha'); c.open = true; c.scrollIntoView({ behavior: 'smooth', block: 'center' }); setTimeout(function(){ $('sAtual').focus(); }, 350);
   });
 
   /* ---------- início ---------- */
