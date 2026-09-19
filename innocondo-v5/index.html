@@ -13,6 +13,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'"><noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Manrope:wght@400;500;600;700&display=swap"></noscript>
 <style>
+/* Fontes de reserva calibradas nas medidas da Sora e da Manrope: quando a fonte da web
+   chega, o texto troca de desenho sem mudar de tamanho (evita o salto de layout). */
+@font-face{font-family:'Sora Fallback';font-weight:100 599;src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('Arimo');size-adjust:113.33%;ascent-override:85.59%;descent-override:25.59%;line-gap-override:0%}
+@font-face{font-family:'Sora Fallback';font-weight:600 900;src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('Arimo Bold');size-adjust:107.22%;ascent-override:90.47%;descent-override:27.05%;line-gap-override:0%}
+@font-face{font-family:'Manrope Fallback';font-weight:100 599;src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('Arimo');size-adjust:102.65%;ascent-override:103.85%;descent-override:29.23%;line-gap-override:0%}
+@font-face{font-family:'Manrope Fallback';font-weight:600 900;src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('Arimo Bold');size-adjust:100.5%;ascent-override:106.07%;descent-override:29.85%;line-gap-override:0%}
 /* ============ TOKENS (herdados da V2) ============ */
 :root{
   --navy-900:#0C1638;--navy-800:#0F1B44;--navy-700:#142254;--navy:#182868;--navy-500:#2A3E86;
@@ -27,8 +33,8 @@
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 [id]{scroll-margin-top:88px}
-body{font-family:'Manrope',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-h1,h2,h3,h4{font-family:'Sora',system-ui,sans-serif;line-height:1.1;letter-spacing:-.02em;font-weight:700}
+body{font-family:'Manrope','Manrope Fallback',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Sora','Sora Fallback',system-ui,sans-serif;line-height:1.1;letter-spacing:-.02em;font-weight:700}
 a{color:inherit;text-decoration:none;cursor:pointer}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 img,svg{display:block;max-width:100%}
@@ -62,7 +68,7 @@ ul{list-style:none}
 .on-dark .mk,.hdr-dark .mk,.mk.ring{box-shadow:0 0 0 1px rgba(255,255,255,.16)}
 .logo{display:inline-flex;align-items:center;gap:12px}
 .logo .mk{width:36px;height:36px}
-.logo-txt{font-family:'Sora';font-weight:400;font-size:1.26rem;letter-spacing:-.02em;color:var(--ink)}
+.logo-txt{font-family:'Sora','Sora Fallback';font-weight:400;font-size:1.26rem;letter-spacing:-.02em;color:var(--ink)}
 .logo-txt b{font-weight:700}
 .hdr-dark .logo-txt,.on-dark .logo-txt{color:#fff}
 
@@ -76,7 +82,7 @@ ul{list-style:none}
 .hdr.scrolled .menu-btn span{background:var(--ink)}
 .hdr-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
 .nav{display:flex;align-items:center;gap:36px}
-.nav a{font-family:'Sora',system-ui,sans-serif;font-size:.94rem;font-weight:600;letter-spacing:-.01em;color:rgba(255,255,255,.88);transition:color .18s;position:relative}
+.nav a{font-family:'Sora','Sora Fallback',system-ui,sans-serif;font-size:.94rem;font-weight:600;letter-spacing:-.01em;color:rgba(255,255,255,.88);transition:color .18s;position:relative}
 .nav a:hover{color:#fff}
 .nav a::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--cyan-soft);transition:width .22s var(--ease)}
 .hdr.scrolled .nav a::after{background:var(--blue)}
@@ -84,12 +90,12 @@ ul{list-style:none}
 .hdr-cta{display:flex;align-items:center;gap:18px}
 .hdr-div{width:1px;height:26px;background:rgba(255,255,255,.2)}
 .hdr.scrolled .hdr-div{background:var(--line)}
-.btn-area{padding:12px 20px;font-size:.92rem;font-family:'Sora',system-ui,sans-serif;font-weight:600}
+.btn-area{padding:12px 20px;font-size:.92rem;font-family:'Sora','Sora Fallback',system-ui,sans-serif;font-weight:600}
 .menu-btn{display:none;flex-direction:column;gap:5px;padding:8px;z-index:120}
 .menu-btn span{width:24px;height:2px;background:#fff;border-radius:2px}
 .mobile-nav{position:fixed;inset:0;background:var(--navy-900);z-index:110;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:40px;transform:translateX(100%);transition:transform .4s var(--ease);visibility:hidden}
 .mobile-nav.open{transform:translateX(0);visibility:visible}
-.mobile-nav a{font-family:'Sora';font-size:1.5rem;color:#fff;font-weight:600;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.mobile-nav a{font-family:'Sora','Sora Fallback';font-size:1.5rem;color:#fff;font-weight:600;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.08)}
 .mobile-nav .btn{margin-top:24px;justify-content:center;font-size:1.05rem}
 .mobile-close{position:absolute;top:22px;right:22px;width:44px;height:44px;display:grid;place-items:center;color:#fff}
 .mobile-close svg{width:24px;height:24px;stroke:currentColor;stroke-width:2;fill:none}
@@ -108,14 +114,14 @@ ul{list-style:none}
 .hero-sub{font-size:1.14rem;color:rgba(255,255,255,.8);max-width:540px;margin-bottom:34px}
 .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:42px}
 .hero-proof{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:26px;padding-top:30px;border-top:1px solid rgba(255,255,255,.1)}
-.proof-item .n{font-family:'Sora';font-size:1.85rem;font-weight:700;color:#fff;line-height:1;white-space:nowrap}
+.proof-item .n{font-family:'Sora','Sora Fallback';font-size:1.85rem;font-weight:700;color:#fff;line-height:1;white-space:nowrap}
 .proof-item .n span{font-size:1.05rem;color:#fff;font-weight:600}
 .proof-item .l{font-size:.84rem;color:rgba(255,255,255,.64);margin-top:8px;line-height:1.4}
 .brand-panel{position:relative;background:linear-gradient(160deg,rgba(255,255,255,.08),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.13);border-radius:26px;padding:46px 36px 38px;box-shadow:var(--shadow-glow),inset 0 1px 0 rgba(255,255,255,.12);text-align:center}
 .brand-panel .mk{width:128px;height:128px;margin:0 auto 26px}
-.brand-panel .bp-word{font-family:'Sora';font-size:2rem;font-weight:400;letter-spacing:-.02em;color:#fff}
+.brand-panel .bp-word{font-family:'Sora','Sora Fallback';font-size:2rem;font-weight:400;letter-spacing:-.02em;color:#fff}
 .brand-panel .bp-word b{font-weight:700}
-.brand-panel .bp-verbs{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px;margin-top:22px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-family:'Sora';font-weight:600;font-size:.98rem;color:rgba(255,255,255,.86)}
+.brand-panel .bp-verbs{display:flex;justify-content:center;flex-wrap:wrap;gap:6px 14px;margin-top:22px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);font-family:'Sora','Sora Fallback';font-weight:600;font-size:.98rem;color:rgba(255,255,255,.86)}
 .brand-panel .bp-verbs span:not(:last-child)::after{content:"·";margin-left:14px;color:var(--cyan-soft)}
 
 /* ============ BLOCO 2 — NOSSAS FRENTES (sistema de convergência) ============ */
@@ -131,7 +137,7 @@ ul{list-style:none}
 .core-mark::before,.core-mark::after{content:"";position:absolute;border:1px solid rgba(24,40,104,.16);border-radius:14px}
 .core-mark::before{inset:-22px}
 .core-mark::after{inset:-44px;border-color:rgba(24,40,104,.08);border-radius:22px}
-.sys-core .cw{font-family:'Sora';font-weight:400;font-size:1.12rem;letter-spacing:-.02em;color:var(--navy)}
+.sys-core .cw{font-family:'Sora','Sora Fallback';font-weight:400;font-size:1.12rem;letter-spacing:-.02em;color:var(--navy)}
 .sys-core .cw b{font-weight:700}
 .frente{position:relative;background:var(--white);border:1px solid var(--line);border-radius:var(--radius-lg);padding:38px 34px 32px;overflow:hidden;display:flex;flex-direction:column;box-shadow:var(--shadow-sm);transition:transform .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
 .frente:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:transparent}
@@ -183,7 +189,7 @@ ul{list-style:none}
 .n-le{left:21.5%;top:37.6%;--tx:-100%;--ty:-50%;transform:translate(-100%,-50%)}
 .net-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;background:var(--white);padding:16px 18px;border-radius:24px}
 .net-core .mk{width:76px;height:76px;box-shadow:0 18px 44px -18px rgba(24,40,104,.75)}
-.net-core .nc-t{font-family:'Sora';font-weight:700;font-size:.95rem;color:var(--navy);line-height:1.3;max-width:215px}
+.net-core .nc-t{font-family:'Sora','Sora Fallback';font-weight:700;font-size:.95rem;color:var(--navy);line-height:1.3;max-width:215px}
 
 /* ============ BLOCO 5 — PROVA SOCIAL ============ */
 .prova{background:var(--white)}
@@ -194,8 +200,8 @@ ul{list-style:none}
 .depo blockquote{margin:0 0 24px;font-size:.96rem;line-height:1.66;color:var(--ink);flex:1}
 .depo-who{display:flex;align-items:center;gap:14px;padding-top:18px;border-top:1px solid var(--line)}
 .depo-av{width:52px;height:52px;border-radius:12px;flex:0 0 52px;object-fit:cover;background:#e7eaf1}
-.depo-av.ini{display:grid;place-items:center;background:var(--navy);color:#fff;font-family:'Sora';font-weight:700;font-size:1rem;letter-spacing:.02em}
-.depo-who .nm{font-family:'Sora';font-weight:700;font-size:.95rem;color:var(--ink)}
+.depo-av.ini{display:grid;place-items:center;background:var(--navy);color:#fff;font-family:'Sora','Sora Fallback';font-weight:700;font-size:1rem;letter-spacing:.02em}
+.depo-who .nm{font-family:'Sora','Sora Fallback';font-weight:700;font-size:.95rem;color:var(--ink)}
 .depo-who .rl{font-size:.82rem;color:var(--slate);line-height:1.4}
 
 /* ============ BLOCO 6 — ONDE QUEREMOS CHEGAR ============ */
@@ -209,7 +215,7 @@ ul{list-style:none}
 .vp-line{display:flex;align-items:center;gap:18px;padding:16px 0}
 .vp-line+.vp-line{border-top:1px solid rgba(255,255,255,.09)}
 .vp-line .bar{height:2px;border-radius:2px;background:currentColor;opacity:.75;flex:none}
-.vp-line b{font-family:'Sora';font-weight:800;font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:-.03em;line-height:1}
+.vp-line b{font-family:'Sora','Sora Fallback';font-weight:800;font-size:clamp(1.5rem,3vw,2.2rem);letter-spacing:-.03em;line-height:1}
 .vp-line:nth-child(1){color:#fff}
 .vp-line:nth-child(2){color:var(--cyan-soft)}
 .vp-line:nth-child(3){color:#9fc0ff}
@@ -218,7 +224,7 @@ ul{list-style:none}
 .vp-line:nth-child(3) .bar{width:82px}
 .vp-foot{display:flex;align-items:center;gap:12px;margin-top:26px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12)}
 .vp-foot .mk{width:34px;height:34px}
-.vp-foot span{font-family:'Sora';font-weight:400;font-size:1.02rem;letter-spacing:-.02em;color:rgba(255,255,255,.9)}
+.vp-foot span{font-family:'Sora','Sora Fallback';font-weight:400;font-size:1.02rem;letter-spacing:-.02em;color:rgba(255,255,255,.9)}
 .vp-foot span b{font-weight:700}
 
 /* ============ BLOCO 7 — CTA FINAL + CONTATO ============ */
@@ -236,17 +242,17 @@ ul{list-style:none}
 .ch-ic{width:40px;height:40px;flex:0 0 40px;border-radius:11px;display:grid;place-items:center;background:var(--navy)}
 .ch-ic svg{width:19px;height:19px;stroke:#fff;stroke-width:1.7;fill:none}
 .ch.wa .ch-ic{background:#128C7E}
-.ch .t{font-family:'Sora';font-weight:600;font-size:.95rem}
+.ch .t{font-family:'Sora','Sora Fallback';font-weight:600;font-size:.95rem}
 .ch .v{font-size:.84rem;color:var(--slate)}
 
 /* ============ RODAPÉ ============ */
 .ft{background:var(--navy-900);color:#fff;padding:76px 0 0}
 .ft-top{display:grid;grid-template-columns:1.25fr 1.7fr 1fr;gap:48px;padding-bottom:52px;border-bottom:1px solid rgba(255,255,255,.1)}
-.ft-brand .ft-tag{font-family:'Sora';font-weight:600;color:var(--cyan-soft);font-size:.98rem;margin:20px 0 12px}
+.ft-brand .ft-tag{font-family:'Sora','Sora Fallback';font-weight:600;color:var(--cyan-soft);font-size:.98rem;margin:20px 0 12px}
 .ft-brand p{color:rgba(255,255,255,.64);font-size:.93rem;max-width:320px}
-.ft-col h4{font-family:'Sora';font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan-soft);margin-bottom:18px;font-weight:600}
+.ft-col h4{font-family:'Sora','Sora Fallback';font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan-soft);margin-bottom:18px;font-weight:600}
 .ft-nav a{display:block;margin-bottom:16px}
-.ft-nav a b{display:block;font-family:'Sora';font-weight:600;font-size:.95rem;color:#fff;margin-bottom:2px}
+.ft-nav a b{display:block;font-family:'Sora','Sora Fallback';font-weight:600;font-size:.95rem;color:#fff;margin-bottom:2px}
 .ft-nav a span{font-size:.85rem;color:rgba(255,255,255,.58)}
 .ft-nav a:hover b{color:var(--cyan-soft)}
 .ft-ct a,.ft-ct div{display:block;color:rgba(255,255,255,.7);font-size:.92rem;margin-bottom:12px}
@@ -277,7 +283,7 @@ ul{list-style:none}
 .amb:hover{border-color:var(--amber);box-shadow:var(--shadow-sm)}
 .amb-ic{width:44px;height:44px;flex:0 0 44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(135deg,var(--amber),var(--amber-soft))}
 .amb-ic svg{width:21px;height:21px;stroke:#3a2606;stroke-width:1.7;fill:none}
-.amb .t{font-family:'Sora';font-weight:700;font-size:1.02rem}
+.amb .t{font-family:'Sora','Sora Fallback';font-weight:700;font-size:1.02rem}
 .amb .d{font-size:.84rem;color:var(--slate);line-height:1.4}
 .amb .go{margin-left:auto;color:var(--navy);flex:none}
 .amb .go svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none}
