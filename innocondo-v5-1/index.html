@@ -111,9 +111,9 @@ html.cv-off .sec{content-visibility:visible}
 .mobile-close svg{width:24px;height:24px;stroke:currentColor;stroke-width:2;fill:none}
 
 /* ============ BLOCO 1 — HERO ============ */
-.hero{position:relative;background:var(--void);padding:170px 0 0;overflow:hidden;text-align:center}
+.hero{position:relative;background:var(--void);padding:144px 0 0;overflow:hidden;text-align:center}
 .hero .gridlines{background-size:150px 100%}
-.hero-spot{position:absolute;left:50%;top:150px;width:min(1100px,150vw);height:760px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(0,121,255,.42),rgba(0,121,255,.12) 45%,transparent 70%);}
+.hero-spot{position:absolute;left:50%;top:124px;width:min(1100px,150vw);height:760px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(0,121,255,.42),rgba(0,121,255,.12) 45%,transparent 70%);}
 .hero-inner{position:relative;z-index:2;max-width:880px;margin:0 auto}
 .hero-mark{width:82px;height:82px;margin:0 auto 34px;box-shadow:0 0 0 1px rgba(0,121,255,.4),0 0 70px -8px rgba(0,121,255,.85)}
 .hero h1{font-size:clamp(2.1rem,5vw,3.65rem);font-weight:800;margin:0 0 22px;letter-spacing:-.035em}
@@ -123,18 +123,23 @@ html.cv-off .sec{content-visibility:visible}
 
 /* cards de indicador em gradiente (referência) */
 .stats{position:relative;z-index:3;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;max-width:940px;margin:0 auto;transform:translateY(50%)}
-.stat{display:flex;align-items:center;gap:16px;padding:22px 24px;border-radius:var(--radius-lg);background:linear-gradient(135deg,var(--blue) 0%,#0B4FBF 55%,var(--blue-deep) 100%);box-shadow:0 26px 60px -28px rgba(0,121,255,.9),inset 0 1px 0 rgba(255,255,255,.18)}
+/* Os três indicadores têm textos de comprimentos diferentes: o número fica sempre na
+   mesma altura e a legenda reserva duas linhas, para os cards ficarem enquadrados igual. */
+.stat{display:flex;align-items:flex-start;gap:16px;padding:24px;border-radius:var(--radius-lg);background:linear-gradient(135deg,var(--blue) 0%,#0B4FBF 55%,var(--blue-deep) 100%);box-shadow:0 26px 60px -28px rgba(0,121,255,.9),inset 0 1px 0 rgba(255,255,255,.18)}
 .stat-ic{width:46px;height:46px;flex:none;border-radius:50%;border:1.5px solid rgba(255,255,255,.55);display:grid;place-items:center}
 .stat-ic svg{width:21px;height:21px;stroke:#fff;stroke-width:1.7;fill:none}
-.stat .n{font-family:'Sora','Sora Fallback';font-size:1.55rem;font-weight:700;line-height:1.05;letter-spacing:-.03em}
+.stat-txt{min-width:0;padding-top:1px}
+.stat .n{font-family:'Sora','Sora Fallback';font-size:1.55rem;font-weight:700;line-height:1.2;letter-spacing:-.03em}
 .stat .n span{font-size:.95rem;font-weight:600;color:#fff;opacity:1}
-.stat .l{font-size:.83rem;color:rgba(255,255,255,.82);line-height:1.35;margin-top:3px}
+.stat .l{font-size:.83rem;color:rgba(255,255,255,.82);line-height:1.4;margin-top:4px;min-height:2.8em;text-wrap:balance}
 .hero-pad{height:86px;background:var(--surface)}
 
 /* ============ BLOCO 2 — NOSSAS FRENTES ============ */
-.frentes{background:var(--surface);padding-top:132px}
-.sys{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 210px minmax(0,1fr);gap:0;align-items:stretch;max-width:1080px;margin:0 auto}
-.sys-core{position:relative;align-self:center;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;padding:0 18px}
+.frentes{background:var(--surface);padding:100px 0 88px}
+/* O respiro entre os cards e o núcleo é o que dá lugar aos fios: sem ele, o fio
+   entra por cima do card e corta o texto. A grade usa toda a largura do wrap. */
+.sys{position:relative;display:grid;grid-template-columns:minmax(0,1fr) 196px minmax(0,1fr);gap:40px;align-items:stretch;max-width:1152px;margin:0 auto}
+.sys-core{position:relative;align-self:center;display:flex;flex-direction:column;align-items:center;text-align:center;gap:25px;padding:0 8px}
 .sys-core::after{content:"";position:absolute;left:50%;top:38%;width:330px;height:330px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(0,121,255,.5),rgba(0,121,255,.14) 42%,transparent 68%);pointer-events:none;z-index:0}
 .core-mark{position:relative;z-index:2;display:grid;place-items:center}
 .core-mark .mk{width:96px;height:96px;box-shadow:0 0 0 1px rgba(0,121,255,.5),0 0 60px -6px rgba(0,121,255,.9)}
@@ -143,9 +148,9 @@ html.cv-off .sec{content-visibility:visible}
 .sys-core .cw{position:relative;z-index:2;font-family:'Sora','Sora Fallback';font-weight:400;font-size:1.14rem;letter-spacing:-.02em;color:#fff}
 .sys-core .cw b{font-weight:700}
 /* conectores luminosos */
-.wire{position:absolute;top:50%;width:60px;height:2px;background:linear-gradient(90deg,rgba(0,121,255,0),var(--blue));box-shadow:0 0 12px rgba(0,121,255,.9);z-index:1}
-.wire.l{left:-60px}
-.wire.r{right:-60px;background:linear-gradient(270deg,rgba(0,121,255,0),var(--blue))}
+.wire{position:absolute;top:50%;width:36px;height:2px;background:linear-gradient(90deg,rgba(0,121,255,0),var(--blue));box-shadow:0 0 12px rgba(0,121,255,.9);z-index:1}
+.wire.l{left:-40px}
+.wire.r{right:-40px;background:linear-gradient(270deg,rgba(0,121,255,0),var(--blue))}
 .frente{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-xl);padding:38px 34px 32px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
 .frente:hover{transform:translateY(-6px);border-color:rgba(0,121,255,.5);box-shadow:var(--shadow),0 0 50px -24px rgba(0,121,255,.8)}
 .frente::before{content:"";position:absolute;top:0;left:32px;right:32px;height:1px;background:linear-gradient(90deg,transparent,rgba(0,121,255,.75),transparent)}
@@ -156,31 +161,27 @@ html.cv-off .sec{content-visibility:visible}
 .frente h3{font-size:1.42rem;margin-bottom:13px}
 .frente p{color:var(--txt-2);font-size:1rem;margin-bottom:26px;flex:1}
 
-/* ============ BLOCO 3 — EXPERIÊNCIA (rede) ============ */
-.exp{background:var(--void)}
+/* ============ BLOCO 3 — EXPERIÊNCIA (trajetória) ============ */
+.exp{background:var(--void);padding-top:72px}
 .exp-copy{max-width:740px;margin-bottom:16px}
 .exp-copy h2{font-size:clamp(1.95rem,3.8vw,2.85rem);margin:20px 0 22px}
 .exp-copy h2 .dim{color:var(--txt-3)}
 .exp-copy p{color:var(--txt-2);font-size:1.06rem;margin-bottom:16px}
-.net{position:relative;width:100%;max-width:880px;margin:24px auto 0;aspect-ratio:880/540}
-.net-lines{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
-.net-lines .ring{fill:none;stroke:#2A3150;stroke-width:1;stroke-dasharray:5 8;vector-effect:non-scaling-stroke}
-.net-lines .ray{stroke:var(--blue);stroke-width:1.4;opacity:.85;vector-effect:non-scaling-stroke;filter:drop-shadow(0 0 5px rgba(0,121,255,.9))}
-.net-lines .web{fill:none;stroke:var(--blue);stroke-width:1.2;opacity:.34;stroke-dasharray:4 7;vector-effect:non-scaling-stroke}
-.net-lines .pt circle{fill:var(--blue);transform-box:fill-box;transform-origin:center;filter:drop-shadow(0 0 6px rgba(0,121,255,1));animation:netpulse 3.4s var(--ease) infinite}
-@keyframes netpulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.4)}}
-.net-glow{position:absolute;left:50%;top:50%;width:420px;height:420px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(0,121,255,.4),rgba(0,121,255,.1) 45%,transparent 70%);pointer-events:none}
-.net-node{position:absolute;display:inline-flex;align-items:center;gap:10px;background:var(--card);border:1px solid var(--line-2);border-radius:100px;padding:11px 18px;font-size:.88rem;font-weight:600;color:#fff;white-space:nowrap;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
-.net-node:hover{border-color:rgba(0,121,255,.6);box-shadow:0 0 30px -10px rgba(0,121,255,.9)}
-.net-node .dot{width:8px;height:8px;border-radius:50%;flex:none;background:var(--blue);box-shadow:0 0 10px var(--blue)}
-.n-top{left:50%;top:10%;transform:translate(-50%,-50%)}
-.n-re{left:78.5%;top:37.7%;transform:translate(0,-50%)}
-.n-rb{left:67.6%;top:82.4%;transform:translate(0,-50%)}
-.n-lb{left:32.4%;top:82.4%;transform:translate(-100%,-50%)}
-.n-le{left:21.5%;top:37.7%;transform:translate(-100%,-50%)}
-.net-core{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:12px}
-.net-core .mk{width:78px;height:78px;box-shadow:0 0 0 1px rgba(0,121,255,.5),0 0 54px -6px rgba(0,121,255,.9)}
-.net-core .nc-t{font-family:'Sora','Sora Fallback';font-weight:700;font-size:.95rem;color:#fff;line-height:1.35;max-width:225px;text-shadow:0 2px 14px rgba(3,0,20,.98),0 0 26px rgba(3,0,20,.95)}
+/* Trajetória: cinco pontos de vivência ligados por um fio contínuo, terminando na Innocondo.
+   O anel de fundo em cada ícone é que "corta" o fio, então ele nunca passa por cima do desenho. */
+.tj{position:relative;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:22px;margin-top:58px}
+.tj::before{content:"";position:absolute;top:36px;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(0,121,255,.7) 9%,rgba(0,121,255,.7) 91%,transparent)}
+.tj-p{position:relative;display:flex;flex-direction:column;align-items:center;text-align:center}
+.tj-ic{position:relative;z-index:2;width:72px;height:72px;flex:none;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line-2);background:var(--surface-2);box-shadow:0 0 0 7px var(--void);transition:border-color .3s,box-shadow .3s,transform .3s var(--ease)}
+.tj-ic svg{width:28px;height:28px;stroke:var(--blue-300);stroke-width:1.5;fill:none}
+.tj-p:hover .tj-ic{border-color:rgba(0,121,255,.65);transform:translateY(-3px)}
+.tj-p h3{font-size:1rem;margin:22px 0 10px;line-height:1.35}
+.tj-p p{font-size:.86rem;color:var(--txt-3);line-height:1.5;max-width:24ch}
+.tj-p.core .tj-ic{border-color:rgba(0,121,255,.6);background:linear-gradient(150deg,rgba(0,121,255,.24),rgba(0,121,255,.04));box-shadow:0 0 0 7px var(--void),0 0 44px -6px rgba(0,121,255,.9)}
+.tj-p.core .tj-ic .mk{width:34px;height:34px;box-shadow:0 0 0 1px rgba(0,121,255,.45)}
+.tj-p.core p{color:var(--txt-2)}
+.tj-foot{display:flex;align-items:center;gap:15px;margin-top:54px;padding-top:26px;border-top:1px solid var(--line);font-size:.76rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--txt-3)}
+.tj-foot::before{content:"";width:34px;height:2px;flex:none;background:var(--blue);box-shadow:0 0 10px var(--blue)}
 
 /* ============ BLOCO 5 — PROVA SOCIAL ============ */
 .prova{background:var(--surface)}
@@ -238,18 +239,23 @@ html.cv-off .sec{content-visibility:visible}
 
 /* ============ RODAPÉ ============ */
 .ft{background:var(--void);padding:80px 0 0;border-top:1px solid var(--line)}
-.ft-top{display:grid;grid-template-columns:1.25fr 1.6fr 1fr;gap:48px;padding-bottom:52px;border-bottom:1px solid var(--line)}
+.ft-top{display:grid;grid-template-columns:1.1fr .9fr 1.05fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--line);align-items:start}
 .ft-brand .ft-tag{font-family:'Sora','Sora Fallback';font-weight:600;color:var(--blue-300);font-size:.98rem;margin:20px 0 12px}
-.ft-brand p{color:var(--txt-3);font-size:.93rem;max-width:320px}
+.ft-brand p{color:var(--txt-3);font-size:.93rem;max-width:330px;margin-bottom:22px}
 .ft-col h4{font-family:'Sora','Sora Fallback';font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--txt-3);margin-bottom:20px;font-weight:600}
-.ft-nav a{display:block;margin-bottom:17px}
-.ft-nav a b{display:block;font-family:'Sora','Sora Fallback';font-weight:600;font-size:.95rem;color:#fff;margin-bottom:2px}
-.ft-nav a span{font-size:.85rem;color:var(--txt-3)}
-.ft-nav a:hover b{color:var(--blue-300)}
-.ft-ct a,.ft-ct div{display:block;color:var(--txt-2);font-size:.92rem;margin-bottom:13px}
+.ft-ct a,.ft-ct div{display:block;color:var(--txt-2);font-size:.92rem;margin-bottom:15px}
 .ft-ct a:hover{color:#fff}
 .ft-ct small{display:block;color:var(--txt-3);font-size:.78rem}
-.ft-social{display:flex;gap:10px;margin-top:4px}
+.ft-loc address{font-style:normal;color:var(--txt-2);font-size:.92rem;line-height:1.7}
+/* o mapa é uma imagem estática: abre o Google Maps no clique e não carrega nada antes disso */
+.ft-map{position:relative;display:block;margin-top:18px;border-radius:14px;overflow:hidden;border:1px solid var(--line-2);line-height:0}
+.ft-map img{width:100%;height:auto;aspect-ratio:19/11;object-fit:cover;transition:transform .5s var(--ease)}
+.ft-map:hover img{transform:scale(1.05)}
+.ft-map:hover{border-color:rgba(0,121,255,.55)}
+.ft-map .abrir{position:absolute;left:11px;top:11px;display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:9px;background:rgba(3,0,20,.84);border:1px solid var(--line-2);font-family:'Sora','Sora Fallback';font-size:.77rem;font-weight:600;color:#fff;line-height:1.2}
+.ft-map .abrir svg{width:13px;height:13px;stroke:currentColor;stroke-width:2.2;fill:none}
+.ft-map .cred{position:absolute;right:7px;bottom:6px;padding:2px 7px;border-radius:6px;background:rgba(3,0,20,.66);font-size:.63rem;line-height:1.6;color:var(--txt-3)}
+.ft-social{display:flex;gap:16px;margin-top:4px}
 .ft-social a{width:40px;height:40px;margin:0;border-radius:11px;border:1px solid var(--line-2);display:grid;place-items:center;transition:background .2s,border-color .2s,transform .2s var(--ease)}
 .ft-social a:hover{background:rgba(0,121,255,.12);border-color:rgba(0,121,255,.6);transform:translateY(-2px)}
 .ft-social svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;color:var(--txt-2)}
@@ -295,7 +301,11 @@ html.cv-off .sec{content-visibility:visible}
   .cta-right{border-left:none;border-top:1px solid var(--line-2)}
   .ft-top{grid-template-columns:1fr 1fr}
   .ft-brand{grid-column:1/-1}
-  .net-node{font-size:.82rem;padding:10px 15px}
+  .tj{gap:14px}
+  .tj-ic{width:64px;height:64px}
+  .tj::before{top:32px}
+  .tj-p h3{font-size:.93rem;margin-top:18px}
+  .tj-p p{font-size:.8rem}
 }
 @media(max-width:940px){
   .sys{grid-template-columns:1fr;gap:22px;max-width:560px}
@@ -304,19 +314,25 @@ html.cv-off .sec{content-visibility:visible}
   .stats{grid-template-columns:1fr;transform:none;margin-top:0}
   .hero{padding-bottom:0}
   .hero-pad{display:none}
-  .frentes{padding-top:96px}
+  .frentes{padding:96px 0 80px}
 }
 @media(max-width:860px){
   .nav,.hdr-cta .btn-outline{display:none}
   .menu-btn{display:flex}
 }
 @media(max-width:760px){
-  .net{aspect-ratio:auto;max-width:440px;display:flex;flex-direction:column;gap:11px}
-  .net-lines,.net-glow{display:none}
-  .net-node{position:static;transform:none;white-space:normal;justify-content:flex-start}
-  .net-node:hover{transform:none}
-  .net-core{position:static;transform:none;order:-1;flex-direction:row;gap:15px;text-align:left;padding:0 0 12px;align-items:center}
-  .net-core .nc-t{max-width:none}
+  /* no celular a trajetória vira uma coluna, com o fio descendo pelos ícones */
+  .tj{grid-template-columns:1fr;gap:26px;margin-top:44px}
+  .tj::before{top:6px;bottom:6px;left:30px;right:auto;width:1px;height:auto;background:linear-gradient(180deg,transparent,rgba(0,121,255,.7) 7%,rgba(0,121,255,.7) 93%,transparent)}
+  .tj-p{display:grid;grid-template-columns:auto minmax(0,1fr);column-gap:18px;align-items:start;text-align:left}
+  .tj-p .tj-ic{grid-row:1/span 2;align-self:start}
+  .tj-ic{width:60px;height:60px;box-shadow:0 0 0 7px var(--void)}
+  .tj-ic svg{width:24px;height:24px}
+  .tj-p.core .tj-ic{box-shadow:0 0 0 7px var(--void),0 0 40px -8px rgba(0,121,255,.9)}
+  .tj-p h3{margin:4px 0 7px}
+  .tj-p h3 br{display:none}
+  .tj-p p{max-width:none}
+  .tj-foot{margin-top:40px}
 }
 @media(max-width:560px){
   .sec{padding:80px 0}
@@ -395,15 +411,15 @@ html.cv-off .sec{content-visibility:visible}
     <div class="stats hl hl-4">
       <div class="stat">
         <span class="stat-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg></span>
-        <div><div class="n">+17 <span>anos</span></div><div class="l">de experiência acumulada no mercado condominial</div></div>
+        <div class="stat-txt"><div class="n">+17 <span>anos</span></div><div class="l">de experiência acumulada no mercado condominial</div></div>
       </div>
       <div class="stat">
         <span class="stat-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V9l7-4 7 4v12"/><path d="M3 21h18M7 12h2M7 16h2M13 12h2M13 16h2"/></svg></span>
-        <div><div class="n">+250</div><div class="l">administradoras visitadas e ouvidas</div></div>
+        <div class="stat-txt"><div class="n">+250</div><div class="l">administradoras visitadas e ouvidas</div></div>
       </div>
       <div class="stat">
         <span class="stat-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="2.4"/><circle cx="5" cy="6" r="2.4"/><circle cx="19" cy="18" r="2.4"/><path d="M6.9 7.4 10.4 10.6M13.7 13.5l3.4 3.1"/></svg></span>
-        <div><div class="n">2</div><div class="l">frentes de atuação</div></div>
+        <div class="stat-txt"><div class="n">2</div><div class="l">frentes de atuação</div></div>
       </div>
     </div>
   </div>
@@ -458,42 +474,40 @@ html.cv-off .sec{content-visibility:visible}
   <div class="gridlines" aria-hidden="true"></div>
   <div class="wrap">
     <div class="exp-copy reveal">
-      <span class="pill">Nossa experiência</span>
+      <span class="pill">Nossa trajetória</span>
       <h2>Experiência que atravessa <span class="dim">o mercado condominial</span></h2>
       <p>Ao longo de mais de 17 anos, nossos profissionais estiveram dentro de administradoras de condomínios, instituições financeiras, empresas de tecnologia e iniciativas de formação profissional.</p>
       <p>Essa vivência em diferentes pontos do mercado nos permite enxergar o setor por múltiplas perspectivas e conectar conhecimento, gestão e soluções de forma prática.</p>
     </div>
 
-    <div class="net reveal" data-d="1" role="img" aria-label="A Innocondo no centro de uma rede de perspectivas do mercado condominial: administradoras, condomínios, instituições financeiras, empresas de tecnologia e formação profissional.">
-      <div class="net-glow" aria-hidden="true"></div>
-      <svg class="net-lines" viewBox="0 0 880 540" preserveAspectRatio="none" aria-hidden="true">
-        <ellipse class="ring" cx="440" cy="270" rx="264" ry="216"/>
-        <ellipse class="ring" cx="440" cy="270" rx="203" ry="166"/>
-        <ellipse class="ring" cx="440" cy="270" rx="143" ry="117"/>
-        <path class="web" d="M440 54 Q580 112 691 203 Q667 330 595 445 Q440 466 285 445 Q213 330 189 203 Q300 112 440 54 Z"/>
-        <g class="ray">
-          <line x1="440" y1="270" x2="440" y2="54"/>
-          <line x1="440" y1="270" x2="691" y2="203"/>
-          <line x1="440" y1="270" x2="595" y2="445"/>
-          <line x1="440" y1="270" x2="285" y2="445"/>
-          <line x1="440" y1="270" x2="189" y2="203"/>
-        </g>
-        <g class="pt">
-          <circle cx="440" cy="54" r="5"/><circle cx="691" cy="203" r="5" style="animation-delay:.5s"/>
-          <circle cx="595" cy="445" r="5" style="animation-delay:1s"/><circle cx="285" cy="445" r="5" style="animation-delay:1.5s"/>
-          <circle cx="189" cy="203" r="5" style="animation-delay:2s"/>
-        </g>
-      </svg>
-      <span class="net-node n-top" aria-hidden="true"><span class="dot"></span>Administradoras</span>
-      <span class="net-node n-re" aria-hidden="true"><span class="dot"></span>Condomínios</span>
-      <span class="net-node n-rb" aria-hidden="true"><span class="dot"></span>Instituições financeiras</span>
-      <span class="net-node n-lb" aria-hidden="true"><span class="dot"></span>Empresas de tecnologia</span>
-      <span class="net-node n-le" aria-hidden="true"><span class="dot"></span>Formação profissional</span>
-      <div class="net-core" aria-hidden="true">
-        <svg class="mk" viewBox="0 0 120 120"><use href="#innoMark"/></svg>
-        <div class="nc-t">Diferentes experiências.<br>Uma visão integrada do mercado.</div>
+    <div class="tj reveal" data-d="1">
+      <div class="tj-p">
+        <span class="tj-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V9l7-4 7 4v12"/><path d="M3 21h18M7 12h2M7 16h2M13 12h2M13 16h2"/></svg></span>
+        <h3>Administradoras<br> de condomínios</h3>
+        <p>Vivência na operação, na gestão e nos desafios do dia a dia.</p>
+      </div>
+      <div class="tj-p">
+        <span class="tj-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10 12 4l9 6"/><path d="M5 10v8M9.7 10v8M14.3 10v8M19 10v8"/><path d="M3 21h18"/></svg></span>
+        <h3>Instituições<br> financeiras</h3>
+        <p>Experiência em produtos e serviços financeiros voltados ao ecossistema condominial.</p>
+      </div>
+      <div class="tj-p">
+        <span class="tj-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4 2.5 8.5 12 13l9.5-4.5L12 4Z"/><path d="M6.5 10.8V15c0 1.5 2.7 2.8 5.5 2.8s5.5-1.3 5.5-2.8v-4.2"/><path d="M21.5 8.5v5"/></svg></span>
+        <h3>Formação de<br> síndicos profissionais</h3>
+        <p>Contribuição para o desenvolvimento do mercado e de seus profissionais.</p>
+      </div>
+      <div class="tj-p">
+        <span class="tj-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="6.5" width="11" height="11" rx="2"/><rect x="10" y="10" width="4" height="4" rx="1"/><path d="M9.5 6.5V3M14.5 6.5V3M9.5 21v-3.5M14.5 21v-3.5M6.5 9.5H3M6.5 14.5H3M21 9.5h-3.5M21 14.5h-3.5"/></svg></span>
+        <h3>Empresas<br> de tecnologia</h3>
+        <p>Atuação em inovação, automação e eficiência dentro do setor.</p>
+      </div>
+      <div class="tj-p core">
+        <span class="tj-ic"><svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><use href="#innoMark"/></svg></span>
+        <h3>Innocondo</h3>
+        <p>Consultoria e soluções para o ecossistema condominial, conectando conhecimento, gestão e experiência.</p>
       </div>
     </div>
+    <p class="tj-foot reveal" data-d="2">Mais de 17 anos construindo possibilidades para o mercado condominial</p>
   </div>
 </section>
 
@@ -532,14 +546,14 @@ html.cv-off .sec{content-visibility:visible}
       <span class="pill">Onde queremos chegar</span>
       <h2>Queremos transformar a forma <span class="dim">como o mercado condominial evolui</span></h2>
       <p>Acreditamos em um mercado condominial mais organizado, eficiente, conectado e preparado para os desafios do futuro.</p>
-      <p>É para isso que existe a Innocondo: para colocar conhecimento, experiência e soluções a serviço de quem administra e de quem faz parte desse mercado.</p>
-      <p>Nosso objetivo é construir, ao longo do tempo, uma referência em transformação e desenvolvimento do ecossistema condominial, aproximando pessoas, empresas e soluções e contribuindo para uma gestão cada vez mais eficiente e sustentável.</p>
+      <p>É para isso que existe a Innocondo, para colocar conhecimento, experiência e soluções a serviço de quem administra e de quem faz parte desse mercado.</p>
+      <p>Nosso objetivo é construir, ao longo do tempo, uma referência em transformação e desenvolvimento do ecossistema condominial, aproximando pessoas, empresas e soluções, bem como contribuindo para uma gestão cada vez mais eficiente e sustentável.</p>
       <a href="#experiencia" class="lnk">Conheça a Innocondo <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
     <div class="vp reveal" data-d="1">
-      <div class="vp-line"><span class="bar" aria-hidden="true"></span><b>Organizar.</b></div>
-      <div class="vp-line"><span class="bar" aria-hidden="true"></span><b>Conectar.</b></div>
-      <div class="vp-line"><span class="bar" aria-hidden="true"></span><b>Transformar.</b></div>
+      <div class="vp-line"><span class="bar" aria-hidden="true"></span><b>Organizar</b></div>
+      <div class="vp-line"><span class="bar" aria-hidden="true"></span><b>Conectar</b></div>
+      <div class="vp-line"><span class="bar" aria-hidden="true"></span><b>Transformar</b></div>
       <div class="vp-foot">
         <svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><use href="#innoMark"/></svg>
         <span><b>Inno</b>condo</span>
@@ -586,28 +600,32 @@ html.cv-off .sec{content-visibility:visible}
           <svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><use href="#innoMark"/></svg>
           <span class="logo-txt"><b>Inno</b>condo</span>
         </a>
-        <div class="ft-tag">Organizar. Conectar. Transformar.</div>
+        <div class="ft-tag">Organizar &middot; Conectar &middot; Transformar</div>
         <p>Uma empresa dedicada ao mercado condominial, conectando experiência, gestão e soluções para contribuir com a evolução desse ecossistema.</p>
-      </div>
-      <div class="ft-col ft-nav">
-        <a href="#consultoria"><b>Consultoria</b><span>Conheça nossa atuação em gestão, eficiência e transformação operacional.</span></a>
-        <a href="#solucoes"><b>Soluções</b><span>Conheça as soluções disponíveis para o ecossistema condominial.</span></a>
-        <a href="#contato"><b>Contato</b><span>Fale com a Innocondo.</span></a>
-        <a href="#" data-area-cliente><b>Área do Cliente</b><span>Acesse os ambientes disponíveis para clientes.</span></a>
-      </div>
-      <div class="ft-col ft-ct">
-        <h4>Contato</h4>
-        <a href="https://wa.me/5511991375208" target="_blank" rel="noopener">WhatsApp<small>+55 11 99137-5208</small></a>
-        <!--email_off--><a href="mailto:contato@innocondo.com.br">E-mail<small>contato@innocondo.com.br</small></a><!--/email_off-->
         <div class="ft-social">
           <a href="https://www.linkedin.com/company/innocondo/" target="_blank" rel="noopener" aria-label="Innocondo no LinkedIn"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7.5 10.6V17"/><circle cx="7.5" cy="7.4" r="1.05" fill="currentColor" stroke="none"/><path d="M11.6 17v-3.5a2.4 2.4 0 0 1 4.8 0V17M11.6 10.6V17"/></svg></a>
           <a href="https://www.instagram.com/innocondo_/" target="_blank" rel="noopener" aria-label="Innocondo no Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.1" cy="6.9" r="1.1" fill="currentColor" stroke="none"/></svg></a>
         </div>
       </div>
+      <div class="ft-col ft-ct">
+        <h4>Contato</h4>
+        <a href="https://wa.me/5511991375208" target="_blank" rel="noopener">WhatsApp<small>+55 11 99137-5208</small></a>
+        <!--email_off--><a href="mailto:contato@innocondo.com.br">E-mail<small>contato@innocondo.com.br</small></a><!--/email_off-->
+        <a href="#" data-area-cliente>Área do Cliente<small>Acesse os ambientes disponíveis</small></a>
+      </div>
+      <div class="ft-col ft-loc">
+        <h4>Localização</h4>
+        <address>Rua Serra de Botucatu, 880 &mdash; Conjunto 1702<br>Tatuapé, São Paulo &mdash; SP<br>CEP 03317-000</address>
+        <a class="ft-map" href="https://www.google.com/maps/search/?api=1&amp;query=Rua%20Serra%20de%20Botucatu%2C%20880%20-%20Tatuap%C3%A9%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2003317-000" target="_blank" rel="noopener" aria-label="Abrir o endereço da Innocondo no Google Maps">
+          <img src="/innocondo-midia/mapa/mapa-escura.webp" width="760" height="440" alt="Mapa da região do escritório da Innocondo, no Tatuapé, em São Paulo" loading="lazy" decoding="async">
+          <span class="abrir"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>Abrir no Google Maps</span>
+          <span class="cred">&copy; OpenStreetMap</span>
+        </a>
+      </div>
     </div>
     <div class="ft-bottom">
       <p>© 2026 Innocondo. Todos os direitos reservados.</p>
-      <div class="links"><a href="#">Política de Privacidade</a><a href="#">Termos de Uso</a></div>
+      <div class="links"><a href="#consultoria">Consultoria</a><a href="#solucoes">Soluções</a><a href="#contato">Contato</a><a href="#">Política de Privacidade</a><a href="#">Termos de Uso</a></div>
     </div>
   </div>
 </footer>
