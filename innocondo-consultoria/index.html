@@ -604,7 +604,7 @@ html.cv-off .sec{content-visibility:visible}
     var cab = { 'Content-Type': 'text/plain;charset=utf-8' };  /* text/plain evita o preflight, que o Apps Script não responde */
     function deuCerto(){
       fm.reset();
-      mostrar('ok', '<b>Recebemos o seu contato.</b><br>A Innocondo retorna em breve pelo canal que você informou.');
+      mostrar('ok', '<b>Recebemos o seu contato.</b><br>A Innocondo responde pelo canal que você informou.');
     }
     function deuErrado(){ mostrar('falha', 'Não conseguimos enviar agora. ' + FALE); }
     fetch(destino, { method: 'POST', body: corpo, headers: cab, redirect: 'follow' })
