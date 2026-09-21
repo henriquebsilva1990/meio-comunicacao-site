@@ -724,6 +724,9 @@ html.cv-off .sec{content-visibility:visible}
   else {
     var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:.12, rootMargin:'0px 0px -50px 0px'});
     items.forEach(function(el){ io.observe(el); });
+    /* rede de segurança: se o observador não rodar (aba aberta em segundo plano, navegador
+       com o recurso suspenso), ninguém pode ficar olhando para uma página em branco */
+    setTimeout(function(){ items.forEach(function(el){ el.classList.add('in'); }); }, 2500);
   }
 })();
 </script>
