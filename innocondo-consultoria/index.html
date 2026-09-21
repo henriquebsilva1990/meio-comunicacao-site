@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Innocondo Consultoria — eficiência e transformação operacional para administradoras</title>
+<meta name="description" content="A Innocondo atua lado a lado com administradoras de condomínios para identificar problemas, oportunidades e ineficiências, estruturando melhorias que tornam a operação mais eficiente e organizada.">
+<meta property="og:title" content="Innocondo Consultoria — eficiência e transformação operacional para administradoras">
+<meta property="og:description" content="A Innocondo atua lado a lado com administradoras de condomínios para identificar problemas, oportunidades e ineficiências, estruturando melhorias que tornam a operação mais eficiente e organizada.">
+<meta name="theme-color" content="#030014">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'%3E%3Crect width='120' height='120' fill='%23182868'/%3E%3Crect x='52' y='29' width='16' height='62' fill='%23fff'/%3E%3C/svg%3E">
+<style>
+
+/* Sora e Manrope servidas pelo próprio site (subconjunto latino, fonte variável, licença SIL OFL).
+   Buscar no Google Fonts custava ~1,8 s de primeira pintura no PageSpeed mobile. */
+@font-face{font-family:'Sora';font-style:normal;font-weight:400 800;font-display:swap;src:url(/innocondo-midia/fontes/sora-latin-v1.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+@font-face{font-family:'Manrope';font-style:normal;font-weight:400 700;font-display:swap;src:url(/innocondo-midia/fontes/manrope-latin-v1.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+/* Fontes de reserva calibradas nas medidas da Sora e da Manrope: quando a fonte da web
+   chega, o texto troca de desenho sem mudar de tamanho (evita o salto de layout). */
+@font-face{font-family:'Sora Fallback';font-weight:100 599;src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('Arimo');size-adjust:113.33%;ascent-override:85.59%;descent-override:25.59%;line-gap-override:0%}
+@font-face{font-family:'Sora Fallback';font-weight:600 900;src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('Arimo Bold');size-adjust:107.22%;ascent-override:90.47%;descent-override:27.05%;line-gap-override:0%}
+@font-face{font-family:'Manrope Fallback';font-weight:100 599;src:local('Arial'),local('ArialMT'),local('Liberation Sans'),local('Arimo');size-adjust:102.65%;ascent-override:103.85%;descent-override:29.23%;line-gap-override:0%}
+@font-face{font-family:'Manrope Fallback';font-weight:600 900;src:local('Arial Bold'),local('Arial-BoldMT'),local('Liberation Sans Bold'),local('Arimo Bold');size-adjust:100.5%;ascent-override:106.07%;descent-override:29.85%;line-gap-override:0%}
+/* ===================================================================
+   V4.1 — pele escura. Tokens de cor extraídos da referência aprovada
+   pelo Henrique (Cloudrix, Behance): fundo #0D1024 / #030014,
+   superfícies #101425, linha #1F2338, acento único #0079FF.
+   Estrutura, textos e blocos: idênticos à V4.
+   =================================================================== */
+:root{
+  --void:#030014;--bg:#0A0D1E;--surface:#0D1024;--surface-2:#101425;--card:#12172C;
+  --line:#1F2338;--line-2:#2A3150;
+  --blue:#0079FF;--blue-600:#0062D6;--blue-300:#66AEFF;--blue-deep:#0C1D40;
+  --navy:#182868;
+  --txt:#FFFFFF;--txt-2:#A8B0C8;--txt-3:#727B98;
+  --radius:16px;--radius-lg:22px;--radius-xl:28px;
+  --shadow:0 24px 60px -30px rgba(0,0,0,.9);
+  --glow:0 0 40px -6px rgba(0,121,255,.55);
+  --ease:cubic-bezier(.22,.61,.36,1);--maxw:1200px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+[id]{scroll-margin-top:92px}
+body{font-family:'Manrope','Manrope Fallback',system-ui,sans-serif;color:var(--txt);background:var(--void);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:'Sora','Sora Fallback',system-ui,sans-serif;line-height:1.12;letter-spacing:-.025em;font-weight:700}
+a{color:inherit;text-decoration:none;cursor:pointer}
+button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
+img,svg{display:block;max-width:100%}
+::selection{background:var(--blue);color:#fff}
+:focus-visible{outline:2.5px solid var(--blue);outline-offset:3px;border-radius:6px}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.sec{content-visibility:auto;contain-intrinsic-size:auto 900px;position:relative;padding:112px 0;background:var(--surface)}
+/* Seções fora da tela só são montadas quando chegam perto; um link interno monta tudo antes de rolar. */
+html.cv-off .sec{content-visibility:visible}
+.sec.deep{background:var(--void)}
+
+/* --- linhas de grade de fundo (referência) --- */
+.gridlines{position:absolute;inset:0;pointer-events:none;background-image:linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);background-size:160px 100%;mask-image:linear-gradient(180deg,transparent,#000 15%,#000 85%,transparent);-webkit-mask-image:linear-gradient(180deg,transparent,#000 15%,#000 85%,transparent)}
+
+/* --- pílula de seção: • Rótulo --- */
+.pill{display:inline-flex;align-items:center;gap:9px;font-size:.8rem;font-weight:600;letter-spacing:.02em;color:var(--blue-300);border:1px solid rgba(0,121,255,.45);background:rgba(0,121,255,.07);padding:7px 17px;border-radius:100px}
+.pill::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--blue);box-shadow:0 0 10px var(--blue)}
+
+/* --- título de dois tons (referência) --- */
+.sec-head{max-width:760px;margin-bottom:56px}
+.sec-head.center{margin-inline:auto;text-align:center}
+.sec-head h2{font-size:clamp(1.95rem,3.8vw,3rem);margin:20px 0 16px}
+.sec-head h2 .dim{color:var(--txt-3)}
+.sec-head p{color:var(--txt-2);font-size:1.07rem;max-width:62ch}
+.sec-head.center p{margin-inline:auto}
+
+/* --- botões --- */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:'Sora','Sora Fallback',system-ui,sans-serif;font-weight:600;font-size:.97rem;padding:14px 26px;border-radius:12px;transition:transform .18s var(--ease),box-shadow .22s var(--ease),background .22s var(--ease),border-color .2s var(--ease);white-space:nowrap}
+.btn svg{width:17px;height:17px;stroke-width:2;fill:none;stroke:currentColor}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 14px 34px -14px rgba(0,121,255,.95)}
+.btn-primary:hover{background:var(--blue-600);transform:translateY(-2px);box-shadow:0 18px 44px -14px rgba(0,121,255,1)}
+.btn-outline{border:1px solid rgba(0,121,255,.55);color:var(--blue-300);background:rgba(0,121,255,.06);padding:11px 20px;font-size:.92rem}
+.btn-outline:hover{background:rgba(0,121,255,.16);border-color:var(--blue);color:#fff}
+.btn-link{display:inline-flex;align-items:center;gap:9px;font-family:'Sora','Sora Fallback',system-ui,sans-serif;font-weight:600;font-size:.97rem;color:var(--txt);border-bottom:1px solid rgba(255,255,255,.35);padding-bottom:3px;transition:color .2s,border-color .2s}
+.btn-link:hover{color:var(--blue-300);border-color:var(--blue)}
+.btn-link svg{width:17px;height:17px;stroke-width:2;fill:none;stroke:currentColor}
+.lnk{display:inline-flex;align-items:center;gap:8px;font-family:'Sora','Sora Fallback',system-ui,sans-serif;font-weight:600;font-size:.93rem;color:var(--blue-300);transition:gap .2s var(--ease),color .2s}
+.lnk svg{width:16px;height:16px;stroke:currentColor;stroke-width:2;fill:none}
+.lnk:hover{gap:13px;color:#fff}
+
+/* --- símbolo aprovado --- */
+.mk{display:block;flex:none;box-shadow:0 0 0 1px rgba(0,121,255,.3),0 0 34px -8px rgba(0,121,255,.55)}
+.logo{display:inline-flex;align-items:center;gap:12px}
+.logo .mk{width:36px;height:36px}
+.logo-txt{font-family:'Sora','Sora Fallback';font-weight:400;font-size:1.28rem;letter-spacing:-.025em;color:#fff}
+.logo-txt b{font-weight:700}
+
+/* ============ HEADER ============ */
+.hdr{position:fixed;top:0;left:0;right:0;z-index:100;padding:16px 0;transition:background .3s var(--ease),box-shadow .3s var(--ease)}
+.hdr.scrolled{background:rgba(3,0,20,.82);backdrop-filter:blur(18px);box-shadow:0 1px 0 var(--line)}
+.hdr-inner{display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav{display:flex;align-items:center;gap:36px}
+.nav a{font-family:'Sora','Sora Fallback',system-ui,sans-serif;font-size:.94rem;font-weight:600;letter-spacing:-.01em;color:rgba(255,255,255,.82);transition:color .18s;position:relative}
+.nav a:hover{color:#fff}
+.nav a::after{content:"";position:absolute;left:0;bottom:-7px;height:2px;width:0;background:var(--blue);box-shadow:0 0 10px var(--blue);transition:width .22s var(--ease)}
+.nav a:hover::after{width:100%}
+.hdr-cta{display:flex;align-items:center;gap:18px}
+.hdr-div{width:1px;height:26px;background:var(--line-2)}
+.menu-btn{display:none;flex-direction:column;gap:5px;padding:8px;z-index:120}
+.menu-btn span{width:24px;height:2px;background:#fff;border-radius:2px}
+.mobile-nav{position:fixed;inset:0;background:var(--void);z-index:110;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:40px;transform:translateX(100%);transition:transform .4s var(--ease);visibility:hidden}
+.mobile-nav.open{transform:translateX(0);visibility:visible}
+.mobile-nav a{font-family:'Sora','Sora Fallback';font-size:1.5rem;color:#fff;font-weight:600;padding:14px 0;border-bottom:1px solid var(--line)}
+.mobile-nav .btn{margin-top:26px;justify-content:center;font-size:1.05rem}
+.mobile-close{position:absolute;top:22px;right:22px;width:44px;height:44px;display:grid;place-items:center;color:#fff}
+.mobile-close svg{width:24px;height:24px;stroke:currentColor;stroke-width:2;fill:none}
+
+
+/* ============ HERO DA LANDING ============ */
+.lph{position:relative;background:var(--void);padding:150px 0 76px;overflow:hidden}
+.lph .gridlines{background-size:150px 100%}
+.lph-spot{position:absolute;left:50%;top:60px;width:min(1200px,160vw);height:700px;transform:translateX(-50%);pointer-events:none;background:radial-gradient(ellipse 50% 50% at 50% 50%,rgba(0,121,255,.34),rgba(0,121,255,.09) 45%,transparent 70%)}
+.lph-inner{position:relative;z-index:2;max-width:860px}
+.lph h1{font-size:clamp(2rem,4.6vw,3.3rem);font-weight:800;letter-spacing:-.035em;margin:22px 0 22px}
+.lph h1 .grad{background:linear-gradient(96deg,#fff 6%,var(--blue-300) 52%,var(--blue) 92%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.lph-sub{font-size:1.1rem;color:var(--txt-2);max-width:660px;margin-bottom:36px}
+.lph-actions{display:flex;flex-wrap:wrap;gap:22px;align-items:center}
+.lph-marcas{position:relative;z-index:2;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:26px 40px;margin-top:52px;padding-top:30px;border-top:1px solid var(--line);max-width:900px}
+.lph-marca b{display:block;font-family:'Sora','Sora Fallback';font-size:1.5rem;font-weight:700;letter-spacing:-.03em;color:#fff;line-height:1.15;margin-bottom:7px}
+.lph-marca span{display:block;font-size:.86rem;color:var(--txt-3);line-height:1.45;max-width:26ch}
+
+/* ============ CARTÕES EM GRADE (sinais, frentes, público) ============ */
+.grade{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,262px),1fr));gap:20px}
+.cartao{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-xl);padding:30px 28px 28px;transition:transform .3s var(--ease),border-color .3s,box-shadow .3s}
+.cartao:hover{transform:translateY(-5px);border-color:rgba(0,121,255,.45);box-shadow:var(--shadow),0 0 46px -26px rgba(0,121,255,.8)}
+.cartao-ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;margin-bottom:20px;background:linear-gradient(140deg,rgba(0,121,255,.24),rgba(0,121,255,.05));border:1px solid rgba(0,121,255,.35)}
+.cartao-ic svg{width:22px;height:22px;stroke:var(--blue-300);stroke-width:1.6;fill:none}
+.cartao h3{font-size:1.1rem;margin-bottom:11px;line-height:1.3}
+.cartao p{font-size:.93rem;color:var(--txt-2);line-height:1.6}
+.nota{margin-top:26px;font-size:.9rem;color:var(--txt-3);border-left:2px solid var(--line-2);padding-left:16px;max-width:66ch}
+
+/* ============ PASSOS ============ */
+.passos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,232px),1fr));gap:24px;position:relative}
+.passo{position:relative;padding-top:30px}
+.passo::before{content:"";position:absolute;top:5px;left:0;right:0;height:1px;background:var(--line-2)}
+.passo::after{content:"";position:absolute;top:1px;left:0;width:9px;height:9px;border-radius:50%;background:var(--blue);box-shadow:0 0 12px var(--blue)}
+.passo .n{font-family:'Sora','Sora Fallback';font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--blue-300);display:block;margin-bottom:10px}
+.passo h3{font-size:1.06rem;margin-bottom:10px;line-height:1.32}
+.passo p{font-size:.92rem;color:var(--txt-2);line-height:1.6}
+
+/* ============ DESTAQUE (bloco de texto forte) ============ */
+.destaque{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(32px,5vw,64px);align-items:center}
+.destaque h2{font-size:clamp(1.8rem,3.4vw,2.5rem);margin:20px 0 20px}
+.destaque h2 .dim{color:var(--txt-3)}
+.destaque p{color:var(--txt-2);font-size:1.03rem;margin-bottom:15px}
+.painel{border:1px solid var(--line-2);border-radius:var(--radius-xl);padding:34px 32px;background:linear-gradient(160deg,rgba(0,121,255,.1),rgba(255,255,255,.015));box-shadow:var(--shadow)}
+.painel li{display:flex;gap:14px;padding:15px 0;font-size:.97rem;color:var(--txt-2);line-height:1.55}
+.painel li+li{border-top:1px solid var(--line)}
+.painel li svg{width:19px;height:19px;flex:none;margin-top:3px;stroke:var(--blue-300);stroke-width:2;fill:none}
+.painel li b{color:#fff;font-weight:600}
+
+/* ============ FAQ ============ */
+.faq{max-width:860px;margin:0 auto}
+.faq details{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.022);margin-bottom:12px;transition:border-color .25s}
+.faq details[open]{border-color:rgba(0,121,255,.4)}
+.faq summary{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px 24px;font-family:'Sora','Sora Fallback';font-weight:600;font-size:1rem;color:#fff;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";width:11px;height:11px;flex:none;border-right:2px solid var(--blue-300);border-bottom:2px solid var(--blue-300);transform:rotate(45deg) translateY(-3px);transition:transform .25s var(--ease)}
+.faq details[open] summary::after{transform:rotate(-135deg) translateY(-3px)}
+.faq .resp{padding:0 24px 22px;color:var(--txt-2);font-size:.95rem;line-height:1.65;max-width:70ch}
+
+/* ============ FORMULÁRIO ============ */
+.contato-card{position:relative;border:1px solid var(--line-2);border-radius:var(--radius-xl);overflow:hidden;display:grid;grid-template-columns:.9fr 1.1fr;background:var(--void)}
+.contato-esq{padding:52px 46px;background:linear-gradient(145deg,rgba(0,121,255,.22),rgba(0,121,255,.04) 55%,transparent)}
+.contato-esq h2{font-size:clamp(1.7rem,3.2vw,2.25rem);margin:20px 0 16px}
+.contato-esq p{color:var(--txt-2);font-size:1.02rem;margin-bottom:28px}
+.contato-esq .atalho{display:grid;gap:11px}
+.contato-esq .atalho a{display:flex;align-items:center;gap:13px;font-size:.93rem;color:var(--txt-2)}
+.contato-esq .atalho a:hover{color:#fff}
+.contato-esq .atalho svg{width:18px;height:18px;flex:none;stroke:var(--blue-300);stroke-width:1.7;fill:none}
+.fm{padding:44px 42px;border-left:1px solid var(--line-2)}
+.fm-linha{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.campo{margin-bottom:16px}
+.campo label{display:block;font-size:.83rem;font-weight:600;color:var(--txt-2);margin-bottom:7px}
+.campo label .op{color:var(--txt-3);font-weight:400}
+.campo input,.campo select,.campo textarea{width:100%;font-family:inherit;font-size:.95rem;color:#fff;background:rgba(255,255,255,.04);border:1px solid var(--line-2);border-radius:11px;padding:12px 14px;transition:border-color .2s,background .2s}
+.campo select{appearance:none;background-image:linear-gradient(45deg,transparent 50%,var(--txt-3) 50%),linear-gradient(135deg,var(--txt-3) 50%,transparent 50%);background-position:calc(100% - 20px) 50%,calc(100% - 15px) 50%;background-size:5px 5px,5px 5px;background-repeat:no-repeat;padding-right:40px}
+.campo select option{background:var(--surface-2);color:#fff}
+.campo textarea{resize:vertical;min-height:92px}
+.campo input:focus,.campo select:focus,.campo textarea:focus{outline:none;border-color:var(--blue);background:rgba(0,121,255,.07)}
+.campo input::placeholder,.campo textarea::placeholder{color:var(--txt-3)}
+.campo.erro input,.campo.erro select{border-color:#FF5A5A}
+.campo .msg-erro{display:none;font-size:.78rem;color:#FF8A8A;margin-top:6px}
+.campo.erro .msg-erro{display:block}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.fm .btn{width:100%;justify-content:center;margin-top:8px}
+.fm-nota{font-size:.78rem;color:var(--txt-3);margin-top:14px;line-height:1.5}
+.fm-aviso{display:none;margin-top:16px;padding:14px 16px;border-radius:12px;font-size:.88rem;line-height:1.5}
+.fm-aviso.ok{display:block;background:rgba(0,121,255,.12);border:1px solid rgba(0,121,255,.45);color:#fff}
+.fm-aviso.falha{display:block;background:rgba(255,90,90,.1);border:1px solid rgba(255,90,90,.4);color:#FFC9C9}
+.fm-aviso a{text-decoration:underline}
+.fm[aria-busy="true"] .btn{opacity:.6;pointer-events:none}
+
+/* ============ FAIXA DE CHAMADA ============ */
+.faixa{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface-2)}
+.faixa .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:26px;padding-top:34px;padding-bottom:34px}
+.faixa p{font-family:'Sora','Sora Fallback';font-weight:600;font-size:1.08rem;color:#fff;max-width:56ch}
+
+/* ============ RESPONSIVO DA LANDING ============ */
+@media(max-width:1024px){
+  .destaque{grid-template-columns:1fr;gap:36px}
+  .contato-card{grid-template-columns:1fr}
+  .fm{border-left:none;border-top:1px solid var(--line-2)}
+}
+@media(max-width:860px){
+  .nav,.hdr-cta .btn-outline{display:none}
+  .menu-btn{display:flex}
+}
+@media(max-width:560px){
+  .sec{padding:76px 0}
+  .wrap{padding:0 18px}
+  .lph{padding:118px 0 72px}
+  .lph-actions{flex-direction:column;align-items:stretch;gap:16px}
+  .lph-actions .btn{width:100%;justify-content:center}
+  .lph-marcas{gap:20px}
+  .fm-linha{grid-template-columns:1fr;gap:0}
+  .contato-esq{padding:36px 24px}
+  .fm{padding:32px 24px}
+  .cartao{padding:26px 22px 24px}
+  .painel{padding:26px 22px}
+}
+
+/* ============ BLOCO 5 — PROVA SOCIAL ============ */
+.prova{background:var(--surface)}
+.depos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px}
+.depo{margin:0;border:1px solid var(--line-2);border-radius:var(--radius-xl);padding:32px 30px 28px;display:flex;flex-direction:column;background:linear-gradient(160deg,rgba(255,255,255,.05),rgba(255,255,255,.012));transition:transform .3s var(--ease),border-color .3s}
+.depo:hover{transform:translateY(-4px);border-color:rgba(0,121,255,.45)}
+.quote-ic{width:28px;height:28px;color:var(--blue);opacity:.7;margin-bottom:16px;flex:none}
+.depo blockquote{margin:0 0 24px;font-size:.96rem;line-height:1.66;color:var(--txt-2);flex:1}
+.depo-who{display:flex;align-items:center;gap:14px;padding-top:18px;border-top:1px solid var(--line)}
+.depo-av{width:52px;height:52px;border-radius:12px;flex:0 0 52px;object-fit:cover;background:rgba(255,255,255,.06);box-shadow:0 0 0 1px var(--line-2)}
+.depo-av.ini{display:grid;place-items:center;background:linear-gradient(140deg,var(--blue),#0B4FBF);color:#fff;font-family:'Sora','Sora Fallback';font-weight:700;font-size:1rem;letter-spacing:.02em}
+.depo-who .nm{font-family:'Sora','Sora Fallback';font-weight:700;font-size:.95rem;color:#fff}
+.depo-who .rl{font-size:.82rem;color:var(--txt-3);line-height:1.4}
+
+
+/* ============ RODAPÉ ============ */
+.ft{background:var(--void);padding:80px 0 0;border-top:1px solid var(--line)}
+.ft-top{display:grid;grid-template-columns:1.1fr .9fr 1.05fr;gap:48px;padding-bottom:48px;border-bottom:1px solid var(--line);align-items:start}
+.ft-brand .ft-tag{font-family:'Sora','Sora Fallback';font-weight:600;color:var(--blue-300);font-size:.98rem;margin:20px 0 12px}
+.ft-brand p{color:var(--txt-3);font-size:.93rem;max-width:330px;margin-bottom:22px}
+.ft-col h4{font-family:'Sora','Sora Fallback';font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--txt-3);margin-bottom:20px;font-weight:600}
+.ft-ct a,.ft-ct div{display:block;color:var(--txt-2);font-size:.92rem;margin-bottom:15px}
+.ft-ct a:hover{color:#fff}
+.ft-ct small{display:block;color:var(--txt-3);font-size:.78rem}
+.ft-loc address{font-style:normal;color:var(--txt-2);font-size:.92rem;line-height:1.7}
+/* o mapa é uma imagem estática: abre o Google Maps no clique e não carrega nada antes disso */
+.ft-map{position:relative;display:block;margin-top:18px;border-radius:14px;overflow:hidden;border:1px solid var(--line-2);line-height:0}
+.ft-map img{width:100%;height:auto;aspect-ratio:19/11;object-fit:cover;transition:transform .5s var(--ease)}
+.ft-map:hover img{transform:scale(1.05)}
+.ft-map:hover{border-color:rgba(0,121,255,.55)}
+.ft-map .abrir{position:absolute;left:11px;top:11px;display:inline-flex;align-items:center;gap:7px;padding:8px 13px;border-radius:9px;background:rgba(3,0,20,.84);border:1px solid var(--line-2);font-family:'Sora','Sora Fallback';font-size:.77rem;font-weight:600;color:#fff;line-height:1.2}
+.ft-map .abrir svg{width:13px;height:13px;stroke:currentColor;stroke-width:2.2;fill:none}
+.ft-map .cred{position:absolute;right:7px;bottom:6px;padding:2px 7px;border-radius:6px;background:rgba(3,0,20,.66);font-size:.63rem;line-height:1.6;color:var(--txt-3)}
+.ft-social{display:flex;gap:16px;margin-top:4px}
+.ft-social a{width:40px;height:40px;margin:0;border-radius:11px;border:1px solid var(--line-2);display:grid;place-items:center;transition:background .2s,border-color .2s,transform .2s var(--ease)}
+.ft-social a:hover{background:rgba(0,121,255,.12);border-color:rgba(0,121,255,.6);transform:translateY(-2px)}
+.ft-social svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7;color:var(--txt-2)}
+.ft-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding:26px 0 36px}
+.ft-bottom p,.ft-bottom a{color:var(--txt-3);font-size:.84rem}
+.ft-bottom .links{display:flex;gap:22px}
+.ft-bottom a:hover{color:#fff}
+
+/* ============ ÁREA DO CLIENTE ============ */
+.ac{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:20px}
+.ac[hidden]{display:none}
+.ac-back{position:absolute;inset:0;background:rgba(3,0,20,.78);backdrop-filter:blur(6px)}
+.ac-panel{position:relative;width:100%;max-width:470px;background:var(--surface-2);border:1px solid var(--line-2);border-radius:24px;padding:36px 32px 30px;box-shadow:0 40px 90px rgba(0,0,0,.7);animation:acin .3s var(--ease)}
+@keyframes acin{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:none}}
+.ac-close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;color:var(--txt-3)}
+.ac-close:hover{background:rgba(255,255,255,.06);color:#fff}
+.ac-close svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none}
+.ac-panel .mk{width:44px;height:44px;margin-bottom:20px}
+.ac-panel h2{font-size:1.38rem;margin-bottom:6px}
+.ac-panel > p{color:var(--txt-2);font-size:.95rem;margin-bottom:24px}
+.amb{display:flex;align-items:center;gap:15px;padding:18px;border:1px solid var(--line-2);border-radius:16px;background:rgba(255,255,255,.025);transition:border-color .2s,background .2s}
+.amb:hover{border-color:rgba(0,121,255,.6);background:rgba(0,121,255,.08)}
+.amb-ic{width:44px;height:44px;flex:0 0 44px;border-radius:12px;display:grid;place-items:center;background:linear-gradient(140deg,var(--blue),#0B4FBF)}
+.amb-ic svg{width:21px;height:21px;stroke:#fff;stroke-width:1.7;fill:none}
+.amb .t{font-family:'Sora','Sora Fallback';font-weight:700;font-size:1.02rem}
+.amb .d{font-size:.84rem;color:var(--txt-3);line-height:1.4}
+.amb .go{margin-left:auto;color:var(--blue-300);flex:none}
+.amb .go svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none}
+.ac-note{margin-top:20px;font-size:.8rem;color:var(--txt-3);text-align:center}
+
+
+/* ============ REVEAL ============ */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal[data-d="1"]{transition-delay:.08s}.reveal[data-d="2"]{transition-delay:.16s}
+.hl{transform:translateY(14px);animation:hlin .7s var(--ease) forwards}
+.hl-1{animation-delay:.1s}.hl-2{animation-delay:.24s}.hl-3{animation-delay:.38s}.hl-4{animation-delay:.52s}
+@keyframes hlin{to{transform:none}}
+
+
+</style>
+</head>
+<body>
+
+<!-- símbolo aprovado, definido uma única vez -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="innoMark" viewBox="0 0 120 120"><rect width="120" height="120" fill="#182868"/><rect x="52" y="29" width="16" height="62" fill="#fff"/></symbol>
+  </defs>
+</svg>
+
+<header class="hdr" id="hdr">
+  <div class="wrap hdr-inner">
+    <a href="/innocondo-v5-1/" class="logo" aria-label="Innocondo — início">
+      <svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><use href="#innoMark"/></svg>
+      <span class="logo-txt"><b>Inno</b>condo</span>
+    </a>
+    <nav class="nav" aria-label="Navegação principal">
+      <a href="/innocondo-v5-1/">Início</a>
+      <a href="/innocondo-consultoria/" aria-current="page">Consultoria</a>
+      <a href="/innocondo-solucoes/">Soluções</a>
+      <a href="#contato">Contato</a>
+    </nav>
+    <div class="hdr-cta">
+      <span class="hdr-div" aria-hidden="true"></span>
+      <button type="button" class="btn btn-outline" data-area-cliente>Área do Cliente</button>
+      <button type="button" class="menu-btn" id="menuBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobileNav"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-nav" id="mobileNav" aria-label="Menu">
+  <button type="button" class="mobile-close" id="mobileClose" aria-label="Fechar menu"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  <a href="/innocondo-v5-1/">Início</a>
+  <a href="/innocondo-consultoria/">Consultoria</a>
+  <a href="/innocondo-solucoes/">Soluções</a>
+  <a href="#contato">Contato</a>
+  <button type="button" class="btn btn-primary" data-area-cliente>Área do Cliente</button>
+</div>
+
+<main>
+<section class="lph" id="topo">
+  <div class="lph-spot" aria-hidden="true"></div>
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="lph-inner">
+      <span class="pill hl hl-1">Consultoria</span>
+      <h1 class="hl hl-2">Eficiência e transformação operacional para <span class="grad">administradoras de condomínios</span></h1>
+      <p class="lph-sub hl hl-3">Atuamos lado a lado com a sua operação para identificar problemas, oportunidades e ineficiências — e estruturar melhorias que tornam o dia a dia mais eficiente, organizado e preparado para evoluir.</p>
+      <div class="lph-actions hl hl-4">
+        <a href="#contato" class="btn btn-primary">Falar com a Innocondo <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <a href="#como" class="btn-link">Ver como atuamos
+          <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M6 13l6 6 6-6"/></svg></a>
+      </div>
+    </div>
+    <div class="lph-marcas hl hl-4"><div class="lph-marca"><b>+17</b><span>anos de experiência dos nossos profissionais</span></div><div class="lph-marca"><b>+250</b><span>administradoras visitadas e ouvidas</span></div><div class="lph-marca"><b>Lado a lado</b><span>até a nova rotina estar de pé</span></div></div>
+  </div>
+</section>
+
+<section class="sec deep" id="cenario">
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="pill">O cenário</span>
+      <h2>Quando a operação cresce, <span class="dim">o improviso aparece</span></h2>
+      <p>Administradora não para. É no meio da rotina que se acumulam os gargalos que ninguém teve tempo de olhar com calma.</p>
+    </div>
+    <div class="grade">
+      <article class="cartao reveal"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 19v-1.6a3.4 3.4 0 0 0-3.4-3.4H6.4A3.4 3.4 0 0 0 3 17.4V19"/><circle cx="9.5" cy="7.4" r="3.4"/><path d="M21 19v-1.6a3.4 3.4 0 0 0-2.6-3.3M15.4 4.2a3.4 3.4 0 0 1 0 6.4"/></svg></div><h3>Processos que dependem de uma pessoa</h3><p>O conhecimento está na cabeça de quem faz. Quando essa pessoa falta ou sai, a operação trava.</p></article>
+      <article class="cartao reveal" data-d="1"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 21h8M12 17v4M6.5 8.5h5M6.5 12h8"/></svg></div><h3>Sistema que não acompanha a operação</h3><p>O ERP existe, mas parte do trabalho continua acontecendo fora dele, em planilhas e retrabalho.</p></article>
+      <article class="cartao reveal" data-d="2"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10 12 4l9 6"/><path d="M5 10v8M9.7 10v8M14.3 10v8M19 10v8"/><path d="M3 21h18"/></svg></div><h3>Rotina financeira que consome o mês</h3><p>Conciliações, repasses e conferências manuais tomam o tempo de quem deveria estar analisando.</p></article>
+      <article class="cartao reveal" data-d="2"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5A8.5 8.5 0 0 1 21 11.5z"/></svg></div><h3>Atendimento espalhado por todo lado</h3><p>Síndicos e moradores falam por vários canais e pouca coisa fica registrada em um fluxo só.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="como">
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="pill">Como atuamos</span>
+      <h2>Diagnóstico é o começo, <span class="dim">não a entrega</span></h2>
+      <p>Nosso trabalho não termina em um relatório. Ele termina quando a mudança está rodando dentro da sua operação.</p>
+    </div>
+    <div class="passos">
+      <div class="passo reveal"><span class="n">01</span><h3>Imersão na operação</h3><p>Entramos no dia a dia da administradora, conversamos com quem executa e entendemos como o trabalho acontece de verdade.</p></div>
+      <div class="passo reveal" data-d="1"><span class="n">02</span><h3>Diagnóstico</h3><p>Mapeamos gargalos, retrabalhos e oportunidades, organizados por impacto na operação e esforço de mudança.</p></div>
+      <div class="passo reveal" data-d="2"><span class="n">03</span><h3>Plano de melhorias</h3><p>Desenhamos o caminho: o que muda, em que ordem, quem participa e o que cada etapa precisa destravar.</p></div>
+      <div class="passo reveal" data-d="2"><span class="n">04</span><h3>Implantação lado a lado</h3><p>Acompanhamos a execução junto com o time, até a nova rotina estar de pé e funcionando sem a gente.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec deep" id="frentes">
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="pill">Onde entramos</span>
+      <h2>As frentes em que <span class="dim">mais somos chamados</span></h2>
+      <p>Cada projeto nasce do cenário da administradora. Estas são as frentes mais recorrentes, não um cardápio fechado.</p>
+    </div>
+    <div class="grade">
+      <article class="cartao reveal"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="5.5" r="2.5"/><path d="M8 18.5h6a4.5 4.5 0 0 0 0-9H10a4.5 4.5 0 0 1 0-9"/></svg></div><h3>Processos e back office</h3><p>Revisão e estruturação das rotinas internas, com papéis claros e um jeito único de fazer o trabalho.</p></article>
+      <article class="cartao reveal" data-d="1"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 21h8M12 17v4M6.5 8.5h5M6.5 12h8"/></svg></div><h3>Sistemas e ERP</h3><p>Apoio na escolha, na implantação e no uso real do sistema, para a operação caber dentro dele — e não ao contrário.</p></article>
+      <article class="cartao reveal" data-d="2"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10 12 4l9 6"/><path d="M5 10v8M9.7 10v8M14.3 10v8M19 10v8"/><path d="M3 21h18"/></svg></div><h3>Rotina financeira e bancária</h3><p>Automação das rotinas bancárias dos condomínios e organização do fluxo financeiro do dia a dia.</p></article>
+      <article class="cartao reveal" data-d="2"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5A8.5 8.5 0 0 1 21 11.5z"/></svg></div><h3>Atendimento e relacionamento</h3><p>Centralização do atendimento em um fluxo estruturado, com mais controle e visibilidade para a operação.</p></article>
+    </div>
+    <p class="nota reveal">Os exemplos acima vêm de projetos reais conduzidos pelos profissionais da Innocondo, incluindo implantação de ERP, automação bancária e reestruturação de atendimento.</p>
+  </div>
+</section>
+
+<section class="sec prova" id="depoimentos">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="pill">Depoimentos</span>
+      <h2>O mercado <span class="dim">fala por nós</span></h2>
+      <p>Mais do que apresentar o que fazemos, preferimos deixar que quem viveu o trabalho conte essa experiência.</p>
+    </div>
+    <div class="depos">
+      <figure class="depo reveal"><svg class="quote-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg><blockquote>Trabalhar com a Innocondo foi uma experiência muito positiva para a Priali. A equipe esteve próxima da nossa operação de back office, entendendo nossos desafios e participando de projetos importantes, como a implantação de um novo ERP e a automação bancária dos condomínios que administramos. O conhecimento do mercado condominial, aliado a uma visão muito prática da operação, contribuiu diretamente para ganharmos eficiência e evoluirmos nossa forma de trabalhar.</blockquote><figcaption class="depo-who"><img class="depo-av" src="/innocondo-midia/depoimentos/elaine-priali.webp" width="52" height="52" alt="" loading="lazy" decoding="async"><div><div class="nm">Elaine</div><div class="rl">Sócia-Diretora · Administradora Priali</div></div></figcaption></figure>
+      <figure class="depo reveal" data-d="1"><svg class="quote-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg><blockquote>A Innocondo nos apoiou em um momento importante de revisão dos nossos processos operacionais e de atendimento. A partir de uma análise muito próxima da nossa realidade, conseguimos organizar e centralizar o atendimento em um fluxo mais estruturado, trazendo mais controle e visibilidade para a operação. O trabalho contribuiu para melhorar nossa gestão e tornar o processo de atendimento mais eficiente e organizado.</blockquote><figcaption class="depo-who"><img class="depo-av" src="/innocondo-midia/depoimentos/julio-herold.webp" width="52" height="52" alt="" loading="lazy" decoding="async"><div><div class="nm">Júlio Herold</div><div class="rl">Sócio-Diretor · GH Sindicatura Profissional</div></div></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="para-quem">
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap destaque">
+    <div class="reveal">
+      <span class="pill">Para quem é</span>
+      <h2>Feito para <span class="dim">quem administra</span></h2>
+      <p>A Consultoria da Innocondo conversa principalmente com administradoras de condomínios e com empresas de sindicatura profissional — quem carrega a operação todos os dias.</p>
+      <p>A Innocondo não administra condomínios. Atuamos ao lado de quem administra, sem disputar o mesmo espaço.</p>
+      <a href="#contato" class="lnk">Falar com a Innocondo <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+    <ul class="painel reveal" data-d="1">
+      <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Administradoras de condomínios</b> que querem organizar a operação antes de crescer, ou dar conta do crescimento que já veio.</span></li>
+      <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Empresas de sindicatura profissional</b> que precisam estruturar processos e atendimento com mais controle.</span></li>
+      <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Outras empresas do ecossistema</b> condominial, pontualmente, quando o desafio é de operação e processo.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec deep" id="duvidas">
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="pill">Dúvidas frequentes</span>
+      <h2>O que costumam <span class="dim">nos perguntar</span></h2>
+    </div>
+    <div class="faq">
+      <details class="reveal"><summary>Vocês entregam um relatório e vão embora?</summary><div class="resp">Não. O diagnóstico é o ponto de partida do trabalho, não o produto final. A entrega é a mudança rodando: acompanhamos a implantação ao lado do time até a nova rotina estar de pé.</div></details><details class="reveal"><summary>Precisamos trocar de sistema para trabalhar com vocês?</summary><div class="resp">Não. Boa parte dos ganhos vem de usar melhor o que já existe. Se em algum momento a troca fizer sentido, isso aparece no diagnóstico com os motivos claros — e a decisão é sempre da administradora.</div></details><details class="reveal"><summary>Quanto tempo leva um projeto?</summary><div class="resp">Depende do tamanho da operação e do que precisa mudar. Definimos escopo e prazo na conversa inicial, depois de entender o seu cenário — preferimos combinar isso com você a chutar um número aqui.</div></details><details class="reveal"><summary>Atendem administradoras de qualquer porte?</summary><div class="resp">Sim. O que muda é a profundidade do trabalho. O ponto de partida é sempre o mesmo: entender como a operação funciona hoje.</div></details><details class="reveal"><summary>A Innocondo administra condomínios?</summary><div class="resp">Não. A Innocondo é uma empresa dedicada ao mercado condominial e atua ao lado das administradoras, nunca no lugar delas.</div></details>
+    </div>
+  </div>
+</section>
+
+<section class="sec faixa">
+  <div class="wrap">
+    <p>Também cuidamos da outra frente: soluções para o ecossistema condominial, começando pela proteção.</p>
+    <a href="/innocondo-solucoes/" class="btn btn-outline">Conhecer Soluções <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+<section class="sec deep" id="contato">
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="contato-card reveal">
+      <div class="contato-esq">
+        <span class="pill">Contato</span>
+        <h2>Vamos olhar a sua operação juntos?</h2>
+        <p>Conte um pouco sobre a sua administradora e o que mais pesa hoje. A conversa inicial é sem compromisso: serve para entendermos o seu cenário e dizermos, com honestidade, se podemos ajudar.</p>
+        <div class="atalho">
+          <a href="https://wa.me/5511991375208" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5A8.5 8.5 0 0 1 21 11.5z"/></svg>Prefere conversar agora? Fale no WhatsApp</a>
+          <!--email_off--><a href="mailto:contato@innocondo.com.br"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>contato@innocondo.com.br</a><!--/email_off-->
+        </div>
+      </div>
+      <form class="fm" id="fm" data-destino="" data-origem="Consultoria" novalidate>
+        <input type="text" class="hp" name="_confirme" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="campo" data-campo><label for="c-nome">Seu nome</label><input type="text" id="c-nome" name="nome" placeholder="Como devemos te chamar" required><span class="msg-erro">Preencha este campo.</span></div><div class="campo" data-campo><label for="c-empresa">Administradora ou empresa</label><input type="text" id="c-empresa" name="empresa" placeholder="Nome da empresa" required><span class="msg-erro">Preencha este campo.</span></div><div class="fm-linha"><div class="campo" data-campo><label for="c-email">E-mail</label><input type="email" id="c-email" name="email" placeholder="nome@empresa.com.br" required autocomplete="email"><span class="msg-erro">Informe um e-mail válido.</span></div><div class="campo" data-campo><label for="c-zap">WhatsApp</label><input type="tel" id="c-zap" name="whatsapp" placeholder="(11) 90000-0000" required autocomplete="tel" inputmode="tel"><span class="msg-erro">Informe um telefone válido.</span></div></div><div class="campo" data-campo><label for="c-porte">Quantos condomínios vocês administram?</label><select id="c-porte" name="porte" required><option value="" disabled selected>Selecione</option><option value="Até 20">Até 20</option><option value="De 21 a 50">De 21 a 50</option><option value="De 51 a 100">De 51 a 100</option><option value="Mais de 100">Mais de 100</option><option value="Sou de sindicatura ou outro perfil">Sou de sindicatura ou outro perfil</option></select><span class="msg-erro">Escolha uma opção.</span></div><div class="campo" data-campo><label for="c-tema">O que mais pesa hoje?</label><select id="c-tema" name="tema" required><option value="" disabled selected>Selecione</option><option value="Processos e back office">Processos e back office</option><option value="Sistema ou ERP">Sistema ou ERP</option><option value="Rotina financeira e bancária">Rotina financeira e bancária</option><option value="Atendimento e relacionamento">Atendimento e relacionamento</option><option value="Ainda não sei dizer">Ainda não sei dizer</option></select><span class="msg-erro">Escolha uma opção.</span></div><div class="campo" data-campo><label for="c-msg">Quer contar mais alguma coisa? <span class="op">(opcional)</span></label><textarea id="c-msg" name="mensagem" placeholder="Escreva aqui, se quiser."></textarea><span class="msg-erro">Preencha este campo.</span></div>
+        <button type="submit" class="btn btn-primary">Enviar <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+        <p class="fm-nota">Ao enviar, você autoriza a Innocondo a entrar em contato sobre este assunto. Seus dados não são usados para outra finalidade.</p>
+        <div class="fm-aviso" id="fmAviso" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a href="/innocondo-v5-1/" class="logo" aria-label="Innocondo — início">
+          <svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><use href="#innoMark"/></svg>
+          <span class="logo-txt"><b>Inno</b>condo</span>
+        </a>
+        <div class="ft-tag">Organizar &middot; Conectar &middot; Transformar</div>
+        <p>Uma empresa dedicada ao mercado condominial, conectando experiência, gestão e soluções para contribuir com a evolução desse ecossistema.</p>
+        <div class="ft-social">
+          <a href="https://www.linkedin.com/company/innocondo/" target="_blank" rel="noopener" aria-label="Innocondo no LinkedIn"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M7.5 10.6V17"/><circle cx="7.5" cy="7.4" r="1.05" fill="currentColor" stroke="none"/><path d="M11.6 17v-3.5a2.4 2.4 0 0 1 4.8 0V17M11.6 10.6V17"/></svg></a>
+          <a href="https://www.instagram.com/innocondo_/" target="_blank" rel="noopener" aria-label="Innocondo no Instagram"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.1" cy="6.9" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+        </div>
+      </div>
+      <div class="ft-col ft-ct">
+        <h4>Contato</h4>
+        <a href="https://wa.me/5511991375208" target="_blank" rel="noopener">WhatsApp<small>+55 11 99137-5208</small></a>
+        <!--email_off--><a href="mailto:contato@innocondo.com.br">E-mail<small>contato@innocondo.com.br</small></a><!--/email_off-->
+        <a href="#" data-area-cliente>Área do Cliente<small>Acesse os ambientes disponíveis</small></a>
+      </div>
+      <div class="ft-col ft-loc">
+        <h4>Localização</h4>
+        <address>Rua Serra de Botucatu, 880 &mdash; Conjunto 1702<br>Tatuapé, São Paulo &mdash; SP<br>CEP 03317-000</address>
+        <a class="ft-map" href="https://www.google.com/maps/search/?api=1&amp;query=Rua%20Serra%20de%20Botucatu%2C%20880%20-%20Tatuap%C3%A9%2C%20S%C3%A3o%20Paulo%20-%20SP%2C%2003317-000" target="_blank" rel="noopener" aria-label="Abrir o endereço da Innocondo no Google Maps">
+          <img src="/innocondo-midia/mapa/mapa-escura.webp" width="760" height="440" alt="Mapa da região do escritório da Innocondo, no Tatuapé, em São Paulo" loading="lazy" decoding="async">
+          <span class="abrir"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M9 7h8v8"/></svg>Abrir no Google Maps</span>
+          <span class="cred">&copy; OpenStreetMap</span>
+        </a>
+      </div>
+    </div>
+    <div class="ft-bottom">
+      <p>© 2026 Innocondo. Todos os direitos reservados.</p>
+      <div class="links"><a href="/innocondo-v5-1/">Início</a><a href="/innocondo-consultoria/">Consultoria</a><a href="/innocondo-solucoes/">Soluções</a><a href="#">Política de Privacidade</a><a href="#">Termos de Uso</a></div>
+    </div>
+  </div>
+</footer>
+
+<div class="ac" id="areaCliente" role="dialog" aria-modal="true" aria-labelledby="acTitle" hidden>
+  <div class="ac-back" data-ac-close></div>
+  <div class="ac-panel">
+    <button type="button" class="ac-close" data-ac-close aria-label="Fechar"><svg viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+    <svg class="mk" viewBox="0 0 120 120" aria-hidden="true"><use href="#innoMark"/></svg>
+    <h2 id="acTitle">Área do Cliente Innocondo</h2>
+    <p>Escolha o ambiente que você deseja acessar.</p>
+    <div id="acList"></div>
+    <p class="ac-note">O acesso reconhece o seu perfil: administradora, síndico ou morador.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  var AMBIENTES = [
+    { nome: 'Seguros', desc: 'Ambiente de seguros para administradoras, síndicos e moradores.', url: '#' }
+  ];
+  var reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* Header */
+  var hdr = document.getElementById('hdr');
+  function onScroll(){ hdr.classList.toggle('scrolled', window.scrollY > 40); }
+  window.addEventListener('scroll', onScroll, {passive:true}); window.addEventListener('load', onScroll);
+
+  /* Menu no celular */
+  var mb = document.getElementById('menuBtn'), mn = document.getElementById('mobileNav'), mc = document.getElementById('mobileClose');
+  function menu(open){ mn.classList.toggle('open', open); mb.setAttribute('aria-expanded', open ? 'true' : 'false'); document.body.style.overflow = open ? 'hidden' : ''; if(open){ mc.focus(); } }
+  mb.addEventListener('click', function(){ menu(true); });
+  mc.addEventListener('click', function(){ menu(false); mb.focus(); });
+  mn.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ menu(false); }); });
+
+  /* Área do Cliente */
+  var ac = document.getElementById('areaCliente'), list = document.getElementById('acList'), lastTrigger = null;
+  var shield = '<svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>';
+  var arrow = '<svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  list.innerHTML = AMBIENTES.map(function(a){
+    return '<a class="amb" href="' + a.url + '"><span class="amb-ic">' + shield + '</span><span><span class="t">' + a.nome + '</span><br><span class="d">' + a.desc + '</span></span><span class="go">' + arrow + '</span></a>';
+  }).join('');
+  function openAC(t){ lastTrigger = t || null; menu(false); ac.hidden = false; document.body.style.overflow = 'hidden'; ac.querySelector('.ac-close').focus(); }
+  function closeAC(){ ac.hidden = true; document.body.style.overflow = ''; if(lastTrigger){ lastTrigger.focus(); } }
+  document.querySelectorAll('[data-area-cliente]').forEach(function(b){ b.addEventListener('click', function(e){ e.preventDefault(); openAC(b); }); });
+  ac.querySelectorAll('[data-ac-close]').forEach(function(b){ b.addEventListener('click', closeAC); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape'){ if(!ac.hidden){ closeAC(); } else if(mn.classList.contains('open')){ menu(false); mb.focus(); } } });
+
+  /* Formulário — envia para a planilha da Innocondo (endpoint em data-destino).
+     Sem destino configurado, oferece o WhatsApp em vez de fingir que enviou. */
+  var fm = document.getElementById('fm'), aviso = document.getElementById('fmAviso');
+  var abriuEm = Date.now();
+  function marca(campo, ruim){ campo.closest('[data-campo]').classList.toggle('erro', ruim); }
+  function valido(c){
+    var v = (c.value || '').trim();
+    if (!v) return !c.required;
+    if (c.type === 'email') return /^[^@\s]+@[^@\s.]+\.[^@\s]{2,}$/.test(v);
+    if (c.type === 'tel') return (v.replace(/\D/g,'').length >= 10);
+    return true;
+  }
+  fm.querySelectorAll('input,select,textarea').forEach(function(c){
+    c.addEventListener('blur', function(){ if (c.name.charAt(0) !== '_') marca(c, !valido(c)); });
+    c.addEventListener('input', function(){ if (valido(c)) marca(c, false); });
+  });
+  function mostrar(tipo, texto){ aviso.className = 'fm-aviso ' + tipo; aviso.innerHTML = texto; }
+  var FALE = 'Se preferir, <a href="https://wa.me/5511991375208" target="_blank" rel="noopener">fale no WhatsApp</a>.';
+  fm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var campos = [].slice.call(fm.querySelectorAll('input,select,textarea')).filter(function(c){ return c.name.charAt(0) !== '_'; });
+    var ruins = campos.filter(function(c){ return !valido(c); });
+    campos.forEach(function(c){ marca(c, !valido(c)); });
+    if (ruins.length) { ruins[0].focus(); mostrar('falha', 'Confira os campos destacados antes de enviar.'); return; }
+    if (fm.querySelector('.hp').value || (Date.now() - abriuEm) < 2500) { mostrar('falha', 'Não conseguimos enviar agora. ' + FALE); return; }
+    var destino = fm.getAttribute('data-destino');
+    if (!destino) { mostrar('falha', 'O envio ainda está sendo ligado. ' + FALE); return; }
+    var dados = { origem: fm.getAttribute('data-origem'), pagina: location.pathname, enviado_em: new Date().toISOString() };
+    campos.forEach(function(c){ dados[c.name] = (c.value || '').trim(); });
+    fm.setAttribute('aria-busy', 'true');
+    mostrar('ok', 'Enviando…');
+    var corpo = JSON.stringify(dados);
+    var cab = { 'Content-Type': 'text/plain;charset=utf-8' };  /* text/plain evita o preflight, que o Apps Script não responde */
+    function deuCerto(){
+      fm.reset();
+      mostrar('ok', '<b>Recebemos o seu contato.</b><br>A Innocondo retorna em breve pelo canal que você informou.');
+    }
+    function deuErrado(){ mostrar('falha', 'Não conseguimos enviar agora. ' + FALE); }
+    fetch(destino, { method: 'POST', body: corpo, headers: cab, redirect: 'follow' })
+      .then(function(r){ if (!r.ok) throw new Error('resposta ' + r.status); deuCerto(); })
+      .catch(function(){
+        /* o Apps Script responde por um redirecionamento que nem sempre devolve cabeçalho de CORS:
+           reenviamos sem ler a resposta — a gravação acontece do mesmo jeito. */
+        return fetch(destino, { method: 'POST', body: corpo, headers: cab, mode: 'no-cors' })
+          .then(deuCerto, deuErrado);
+      })
+      .then(function(){ fm.removeAttribute('aria-busy'); });
+  });
+
+  /* Reveal */
+  var items = document.querySelectorAll('.reveal');
+  if(reduce || !('IntersectionObserver' in window)){ items.forEach(function(el){ el.classList.add('in'); }); }
+  else {
+    var io = new IntersectionObserver(function(entries){ entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); }, {threshold:.12, rootMargin:'0px 0px -50px 0px'});
+    items.forEach(function(el){ io.observe(el); });
+  }
+})();
+</script>
+<!-- Meio Comunica · Innocondo · LP Consultoria -->
+</body>
+</html>
