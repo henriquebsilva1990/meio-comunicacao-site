@@ -87,7 +87,7 @@ html.cv-off .sec{content-visibility:visible}
 /* --- símbolo aprovado --- */
 .mk{display:block;flex:none;box-shadow:0 0 0 1px rgba(0,121,255,.3),0 0 34px -8px rgba(0,121,255,.55)}
 .logo{display:inline-flex;align-items:center;gap:12px}
-.logo .mk{width:40px;height:40px}
+.logo .mk{width:36px;height:36px}
 .logo-txt{font-family:'Sora','Sora Fallback';font-weight:400;font-size:1.28rem;letter-spacing:-.025em;color:#fff}
 .logo-txt b{font-weight:700}
 
@@ -238,6 +238,19 @@ html.cv-off .sec{content-visibility:visible}
   .zap .rot{display:none}
 }
 
+/* ============ CHAMADA NO MEIO DA PÁGINA ============ */
+.cta-meio{background:var(--surface-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:56px 0}
+.cta-meio-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px}
+.cta-meio h2{font-size:clamp(1.35rem,2.4vw,1.75rem);margin-bottom:9px;max-width:22ch}
+.cta-meio p{color:var(--txt-2);font-size:.99rem;max-width:52ch}
+.cta-meio-acoes{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+@media(max-width:560px){
+  .cta-meio{padding:44px 0}
+  .cta-meio-acoes{flex-direction:column;align-items:stretch;width:100%;gap:16px}
+  .cta-meio-acoes .btn{width:100%;justify-content:center}
+  .cta-meio-acoes .btn-link{justify-content:center}
+}
+
 /* ============ BLOCO 5 — PROVA SOCIAL ============ */
 .prova{background:var(--surface)}
 .depos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px}
@@ -288,7 +301,7 @@ html.cv-off .sec{content-visibility:visible}
 .ac-close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;color:var(--txt-3)}
 .ac-close:hover{background:rgba(255,255,255,.06);color:#fff}
 .ac-close svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none}
-.ac-panel .mk{width:40px;height:40px;margin-bottom:20px}
+.ac-panel .mk{width:44px;height:44px;margin-bottom:20px}
 .ac-panel h2{font-size:1.38rem;margin-bottom:6px}
 .ac-panel > p{color:var(--txt-2);font-size:.95rem;margin-bottom:24px}
 .amb{display:flex;align-items:center;gap:15px;padding:18px;border:1px solid var(--line-2);border-radius:16px;background:rgba(255,255,255,.025);transition:border-color .2s,background .2s}
@@ -401,47 +414,74 @@ html.cv-off .sec{content-visibility:visible}
       <div class="passo reveal" data-d="2"><span class="n">03</span><h3>Plano de melhorias</h3><p>Desenhamos o caminho: o que muda, em que ordem, quem participa e o que cada etapa precisa destravar.</p></div>
       <div class="passo reveal" data-d="2"><span class="n">04</span><h3>Implantação lado a lado</h3><p>Acompanhamos a execução junto com o time, até a nova rotina estar de pé e funcionando sem a gente.</p></div>
     </div>
+    <p class="nota reveal">Implantar, para nós, inclui acompanhar quem executa, capacitar o time e estabilizar a nova rotina. Lado a lado até a nova rotina estar de pé.</p>
   </div>
 </section>
-<section class="sec" id="contato">
+<section class="sec cta-meio">
   <div class="gridlines" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="contato-card reveal">
-      <div class="contato-esq">
-        <span class="pill">Contato</span>
-        <h2>Quer saber onde a sua operação está perdendo tempo?</h2>
-        <p>A conversa inicial é sem compromisso e serve para entender o seu cenário. Se não fizer sentido para você agora, a gente diz isso na hora.</p>
-        <div class="atalho">
-          <a href="https://wa.me/5511991375208" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5A8.5 8.5 0 0 1 21 11.5z"/></svg>Prefere conversar agora? Fale no WhatsApp</a>
-          <!--email_off--><a href="mailto:contato@innocondo.com.br"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>contato@innocondo.com.br</a><!--/email_off-->
-        </div>
-      </div>
-      <form class="fm" data-destino="" data-origem="Consultoria" data-posicao="meio da página" novalidate>
-        <input type="text" class="hp" name="_confirme" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="campo" data-campo><label for="c1-nome">Seu nome</label><input type="text" id="c1-nome" name="nome" placeholder="Como devemos te chamar" required><span class="msg-erro">Preencha este campo.</span></div><div class="campo" data-campo><label for="c1-empresa">Administradora ou empresa</label><input type="text" id="c1-empresa" name="empresa" placeholder="Nome da empresa" required><span class="msg-erro">Preencha este campo.</span></div><div class="fm-linha"><div class="campo" data-campo><label for="c1-email">E-mail</label><input type="email" id="c1-email" name="email" placeholder="nome@empresa.com.br" required autocomplete="email"><span class="msg-erro">Informe um e-mail válido.</span></div><div class="campo" data-campo><label for="c1-zap">WhatsApp</label><input type="tel" id="c1-zap" name="whatsapp" placeholder="(11) 90000-0000" required autocomplete="tel" inputmode="tel"><span class="msg-erro">Informe um telefone válido.</span></div></div><div class="campo" data-campo><label for="c1-porte">Quantos condomínios vocês administram?</label><select id="c1-porte" name="porte" required><option value="" disabled selected>Selecione</option><option value="Até 20">Até 20</option><option value="De 21 a 50">De 21 a 50</option><option value="De 51 a 100">De 51 a 100</option><option value="Mais de 100">Mais de 100</option><option value="Sou de sindicatura ou outro perfil">Sou de sindicatura ou outro perfil</option></select><span class="msg-erro">Escolha uma opção.</span></div><div class="campo" data-campo><label for="c1-tema">O que mais pesa hoje?</label><select id="c1-tema" name="tema" required><option value="" disabled selected>Selecione</option><option value="Processos e back office">Processos e back office</option><option value="Sistema ou ERP">Sistema ou ERP</option><option value="Rotina financeira e bancária">Rotina financeira e bancária</option><option value="Atendimento e relacionamento">Atendimento e relacionamento</option><option value="Ainda não sei dizer">Ainda não sei dizer</option></select><span class="msg-erro">Escolha uma opção.</span></div><div class="campo" data-campo><label for="c1-msg">Quer contar mais alguma coisa? <span class="op">(opcional)</span></label><textarea id="c1-msg" name="mensagem" placeholder="Escreva aqui, se quiser."></textarea><span class="msg-erro">Preencha este campo.</span></div>
-        <button type="submit" class="btn btn-primary">Enviar <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-        <p class="fm-nota">Ao enviar, você autoriza a Innocondo a entrar em contato sobre este assunto. Seus dados não são usados para outra finalidade.</p>
-        <div class="fm-aviso" role="status" aria-live="polite"></div>
-      </form>
+  <div class="wrap cta-meio-inner">
+    <div>
+      <h2>Quer saber onde a sua operação está perdendo tempo?</h2>
+      <p>A conversa inicial é sem compromisso e serve para entender o seu cenário.</p>
+    </div>
+    <div class="cta-meio-acoes">
+      <a href="#contato" class="btn btn-primary">Falar com a Innocondo <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="https://wa.me/5511991375208" target="_blank" rel="noopener" class="btn-link">Falar no WhatsApp</a>
     </div>
   </div>
 </section>
 
-<section class="sec deep" id="frentes">
+<section class="sec deep" id="onde-atuamos">
   <div class="gridlines" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="pill">Onde entramos</span>
-      <h2>As frentes em que <span class="dim">mais somos chamados</span></h2>
-      <p>Cada projeto nasce do cenário da administradora. Estas são as frentes mais recorrentes, não um cardápio fechado.</p>
+      <span class="pill">Onde atuamos</span>
+      <h2>Os contextos em que <span class="dim">mais somos chamados</span></h2>
+      <p>Não é um cardápio fechado. São as frentes em que a experiência dos nossos profissionais aparece com mais profundidade dentro de uma administradora.</p>
     </div>
     <div class="grade">
-      <article class="cartao reveal"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="5.5" r="2.5"/><path d="M8 18.5h6a4.5 4.5 0 0 0 0-9H10a4.5 4.5 0 0 1 0-9"/></svg></div><h3>Processos e back office</h3><p>Revisão e estruturação das rotinas internas, com papéis claros e um jeito único de fazer o trabalho.</p></article>
-      <article class="cartao reveal" data-d="1"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 21h8M12 17v4M6.5 8.5h5M6.5 12h8"/></svg></div><h3>Sistemas e ERP</h3><p>Apoio na escolha, na implantação e no uso real do sistema, para a operação caber dentro dele — e não ao contrário.</p></article>
-      <article class="cartao reveal" data-d="2"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10 12 4l9 6"/><path d="M5 10v8M9.7 10v8M14.3 10v8M19 10v8"/><path d="M3 21h18"/></svg></div><h3>Rotina financeira e bancária</h3><p>Automação das rotinas bancárias dos condomínios e organização do fluxo financeiro do dia a dia.</p></article>
-      <article class="cartao reveal" data-d="2"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5A8.5 8.5 0 0 1 21 11.5z"/></svg></div><h3>Atendimento e relacionamento</h3><p>Centralização do atendimento em um fluxo estruturado, com mais controle e visibilidade para a operação.</p></article>
+      <article class="cartao reveal"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="5.5" r="2.5"/><path d="M8 18.5h6a4.5 4.5 0 0 0 0-9H10a4.5 4.5 0 0 1 0-9"/></svg></div><h3>Processos e back office</h3><p>Organização de rotinas, fluxos e responsabilidades: diagnóstico dos processos, desenho das melhorias, implantação e apoio à equipe que executa.</p></article>
+      <article class="cartao reveal" data-d="1"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4" width="19" height="13" rx="2"/><path d="M8 21h8M12 17v4M6.5 8.5h5M6.5 12h8"/></svg></div><h3>Sistemas e ERP</h3><p>Avaliação de como o sistema é usado de verdade, identificação de gargalos e apoio em mudanças, integrações ou em uma nova implantação.</p></article>
+      <article class="cartao reveal" data-d="2"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10 12 4l9 6"/><path d="M5 10v8M9.7 10v8M14.3 10v8M19 10v8"/><path d="M3 21h18"/></svg></div><h3>Financeiro e bancário</h3><p>Revisão das rotinas financeiras e bancárias, com automação bancária dos condomínios onde isso faz diferença no mês.</p></article>
+      <article class="cartao reveal"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5A8.5 8.5 0 0 1 21 11.5z"/></svg></div><h3>Atendimento e relacionamento</h3><p>Estruturação de canais e fluxos para um atendimento centralizado, organizado e acompanhável do começo ao fim.</p></article>
+      <article class="cartao reveal" data-d="1"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 14.5 8l5.5.5-4.2 3.8 1.3 5.5L12 15l-5.1 2.8 1.3-5.5L4 8.5 9.5 8 12 2.5Z"/></svg></div><h3>Automação e transformação digital</h3><p>Identificação do que pode ser digitalizado ou automatizado na operação, e apoio para colocar isso em pé sem parar o dia a dia.</p></article>
+      <article class="cartao reveal" data-d="2"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><h3>Gestão, riscos e melhoria contínua</h3><p>Identificação de vulnerabilidades e riscos operacionais, com um plano de ação para a operação evoluir de forma constante.</p></article>
     </div>
-    <p class="nota reveal">Os exemplos acima vêm de projetos reais conduzidos pelos profissionais da Innocondo, incluindo implantação de ERP, automação bancária e reestruturação de atendimento.</p>
+    <p class="nota reveal">Os exemplos vêm de projetos reais conduzidos pelos profissionais da Innocondo, incluindo implantação de ERP, automação bancária e reestruturação de atendimento.</p>
+  </div>
+</section>
+
+<section class="sec" id="sob-medida">
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap destaque">
+    <div class="reveal">
+      <span class="pill">Como o trabalho nasce</span>
+      <h2>Não partimos de uma solução pronta. <span class="dim">Partimos da realidade da sua operação.</span></h2>
+      <p>O escopo, a profundidade e a forma de atuação são definidos a partir do tamanho da operação, dos problemas identificados e do objetivo do projeto.</p>
+      <p>Duas administradoras com o mesmo sistema podem precisar de caminhos completamente diferentes — e é por isso que o diagnóstico vem antes da proposta.</p>
+    </div>
+    <ul class="painel reveal" data-d="1">
+      <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>O tamanho da operação</b> define a profundidade do trabalho, não um pacote fechado.</span></li>
+      <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>Os problemas identificados</b> definem por onde começar e em que ordem.</span></li>
+      <li><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="m4 12.5 5 5L20 6.5"/></svg><span><b>O objetivo do projeto</b> define até onde vamos juntos e quando a nossa presença deixa de ser necessária.</span></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec deep" id="o-que-muda">
+  <div class="gridlines" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="pill">O que muda</span>
+      <h2>O que muda <span class="dim">na sua operação</span></h2>
+      <p>Não é uma promessa automática. É o tipo de transformação que o trabalho busca produzir, no ritmo que a sua operação aguenta.</p>
+    </div>
+    <div class="grade">
+      <article class="cartao reveal"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="M7 15l3.5-4 3 2.4L20 7"/></svg></div><h3>Mais eficiência</h3><p>Menos retrabalho e menos dependência de processos manuais no dia a dia.</p></article>
+      <article class="cartao reveal" data-d="1"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg></div><h3>Mais controle</h3><p>Rotinas estruturadas e responsabilidades mais claras dentro do time.</p></article>
+      <article class="cartao reveal" data-d="2"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="5.5" r="2.5"/><path d="M8 18.5h6a4.5 4.5 0 0 0 0-9H10a4.5 4.5 0 0 1 0-9"/></svg></div><h3>Mais organização</h3><p>Processos padronizados, documentados e possíveis de acompanhar.</p></article>
+      <article class="cartao reveal" data-d="2"><div class="cartao-ic"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21V9l7-4 7 4v12"/><path d="M3 21h18M7 12h2M7 16h2M13 12h2M13 16h2"/></svg></div><h3>Mais capacidade de evolução</h3><p>Uma operação preparada para crescer sem carregar os mesmos gargalos.</p></article>
+    </div>
   </div>
 </section>
 
@@ -485,7 +525,7 @@ html.cv-off .sec{content-visibility:visible}
       <h2>O que costumam <span class="dim">nos perguntar</span></h2>
     </div>
     <div class="faq">
-      <details class="reveal"><summary>Vocês entregam um relatório e vão embora?</summary><div class="resp">Não. O diagnóstico é o ponto de partida do trabalho, não o produto final. A entrega é a mudança rodando: acompanhamos a implantação ao lado do time até a nova rotina estar de pé.</div></details><details class="reveal"><summary>Precisamos trocar de sistema para trabalhar com vocês?</summary><div class="resp">Não. Boa parte dos ganhos vem de usar melhor o que já existe. Se em algum momento a troca fizer sentido, isso aparece no diagnóstico com os motivos claros — e a decisão é sempre da administradora.</div></details><details class="reveal"><summary>Quanto tempo leva um projeto?</summary><div class="resp">Depende do tamanho da operação e do que precisa mudar. Definimos escopo e prazo na conversa inicial, depois de entender o seu cenário — preferimos combinar isso com você a chutar um número aqui.</div></details><details class="reveal"><summary>Atendem administradoras de qualquer porte?</summary><div class="resp">Sim. O que muda é a profundidade do trabalho. O ponto de partida é sempre o mesmo: entender como a operação funciona hoje.</div></details><details class="reveal"><summary>A Innocondo administra condomínios?</summary><div class="resp">Não. A Innocondo é uma empresa dedicada ao mercado condominial e atua ao lado das administradoras, nunca no lugar delas.</div></details>
+      <details class="reveal"><summary>Vocês entregam um relatório e vão embora?</summary><div class="resp">Não. O diagnóstico é o ponto de partida do trabalho, não o produto final. A entrega é a mudança rodando: acompanhamos a implantação ao lado do time até a nova rotina estar de pé.</div></details><details class="reveal"><summary>Precisamos trocar de sistema para trabalhar com vocês?</summary><div class="resp">Não. Boa parte dos ganhos vem de usar melhor o que já existe. Se em algum momento a troca fizer sentido, isso aparece no diagnóstico com os motivos claros — e a decisão é sempre da administradora.</div></details><details class="reveal"><summary>Quanto tempo leva um projeto?</summary><div class="resp">Depende do tamanho da operação e do que precisa mudar. Definimos escopo e prazo na conversa inicial, depois de entender o seu cenário — preferimos combinar isso com você a chutar um número aqui.</div></details><details class="reveal"><summary>Atendem administradoras de qualquer porte?</summary><div class="resp">Sim. O escopo e a profundidade do trabalho são definidos de acordo com o tamanho da operação, os desafios identificados e o objetivo do projeto.</div></details><details class="reveal"><summary>A Innocondo administra condomínios?</summary><div class="resp">Não. A Innocondo é uma empresa dedicada ao mercado condominial e atua ao lado das administradoras, nunca no lugar delas.</div></details>
     </div>
   </div>
 </section>
@@ -497,7 +537,7 @@ html.cv-off .sec{content-visibility:visible}
   </div>
 </section>
 
-<section class="sec deep" id="contato-final">
+<section class="sec deep" id="contato">
   <div class="gridlines" aria-hidden="true"></div>
   <div class="wrap">
     <div class="contato-card reveal">
@@ -510,9 +550,9 @@ html.cv-off .sec{content-visibility:visible}
           <!--email_off--><a href="mailto:contato@innocondo.com.br"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>contato@innocondo.com.br</a><!--/email_off-->
         </div>
       </div>
-      <form class="fm" data-destino="" data-origem="Consultoria" data-posicao="fim da página" novalidate>
+      <form class="fm" data-destino="" data-origem="Consultoria" novalidate>
         <input type="text" class="hp" name="_confirme" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="campo" data-campo><label for="c2-nome">Seu nome</label><input type="text" id="c2-nome" name="nome" placeholder="Como devemos te chamar" required><span class="msg-erro">Preencha este campo.</span></div><div class="campo" data-campo><label for="c2-empresa">Administradora ou empresa</label><input type="text" id="c2-empresa" name="empresa" placeholder="Nome da empresa" required><span class="msg-erro">Preencha este campo.</span></div><div class="fm-linha"><div class="campo" data-campo><label for="c2-email">E-mail</label><input type="email" id="c2-email" name="email" placeholder="nome@empresa.com.br" required autocomplete="email"><span class="msg-erro">Informe um e-mail válido.</span></div><div class="campo" data-campo><label for="c2-zap">WhatsApp</label><input type="tel" id="c2-zap" name="whatsapp" placeholder="(11) 90000-0000" required autocomplete="tel" inputmode="tel"><span class="msg-erro">Informe um telefone válido.</span></div></div><div class="campo" data-campo><label for="c2-porte">Quantos condomínios vocês administram?</label><select id="c2-porte" name="porte" required><option value="" disabled selected>Selecione</option><option value="Até 20">Até 20</option><option value="De 21 a 50">De 21 a 50</option><option value="De 51 a 100">De 51 a 100</option><option value="Mais de 100">Mais de 100</option><option value="Sou de sindicatura ou outro perfil">Sou de sindicatura ou outro perfil</option></select><span class="msg-erro">Escolha uma opção.</span></div><div class="campo" data-campo><label for="c2-tema">O que mais pesa hoje?</label><select id="c2-tema" name="tema" required><option value="" disabled selected>Selecione</option><option value="Processos e back office">Processos e back office</option><option value="Sistema ou ERP">Sistema ou ERP</option><option value="Rotina financeira e bancária">Rotina financeira e bancária</option><option value="Atendimento e relacionamento">Atendimento e relacionamento</option><option value="Ainda não sei dizer">Ainda não sei dizer</option></select><span class="msg-erro">Escolha uma opção.</span></div><div class="campo" data-campo><label for="c2-msg">Quer contar mais alguma coisa? <span class="op">(opcional)</span></label><textarea id="c2-msg" name="mensagem" placeholder="Escreva aqui, se quiser."></textarea><span class="msg-erro">Preencha este campo.</span></div>
+        <div class="campo" data-campo><label for="c-nome">Seu nome</label><input type="text" id="c-nome" name="nome" placeholder="Como devemos te chamar" required><span class="msg-erro">Preencha este campo.</span></div><div class="campo" data-campo><label for="c-empresa">Administradora ou empresa</label><input type="text" id="c-empresa" name="empresa" placeholder="Nome da empresa" required><span class="msg-erro">Preencha este campo.</span></div><div class="fm-linha"><div class="campo" data-campo><label for="c-email">E-mail</label><input type="email" id="c-email" name="email" placeholder="nome@empresa.com.br" required autocomplete="email"><span class="msg-erro">Informe um e-mail válido.</span></div><div class="campo" data-campo><label for="c-zap">WhatsApp</label><input type="tel" id="c-zap" name="whatsapp" placeholder="(11) 90000-0000" required autocomplete="tel" inputmode="tel"><span class="msg-erro">Informe um telefone válido.</span></div></div><div class="campo" data-campo><label for="c-porte">Quantos condomínios vocês administram?</label><select id="c-porte" name="porte" required><option value="" disabled selected>Selecione</option><option value="Até 20">Até 20</option><option value="De 21 a 50">De 21 a 50</option><option value="De 51 a 100">De 51 a 100</option><option value="Mais de 100">Mais de 100</option><option value="Sou de sindicatura ou outro perfil">Sou de sindicatura ou outro perfil</option></select><span class="msg-erro">Escolha uma opção.</span></div><div class="campo" data-campo><label for="c-tema">Principal desafio hoje</label><select id="c-tema" name="tema" required><option value="" disabled selected>Selecione</option><option value="Processos e back office">Processos e back office</option><option value="Sistemas e ERP">Sistemas e ERP</option><option value="Financeiro e bancário">Financeiro e bancário</option><option value="Atendimento e relacionamento">Atendimento e relacionamento</option><option value="Automação e transformação digital">Automação e transformação digital</option><option value="Outro">Outro</option></select><span class="msg-erro">Escolha uma opção.</span></div><div class="campo" data-campo><label for="c-msg">Quer contar mais alguma coisa? <span class="op">(opcional)</span></label><textarea id="c-msg" name="mensagem" placeholder="Escreva aqui, se quiser."></textarea><span class="msg-erro">Preencha este campo.</span></div>
         <button type="submit" class="btn btn-primary">Enviar <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         <p class="fm-nota">Ao enviar, você autoriza a Innocondo a entrar em contato sobre este assunto. Seus dados não são usados para outra finalidade.</p>
         <div class="fm-aviso" role="status" aria-live="polite"></div>
@@ -674,8 +714,8 @@ html.cv-off .sec{content-visibility:visible}
       if (fm.querySelector('.hp').value || (Date.now() - abriuEm) < 2500) { mostrar('falha', 'Não conseguimos enviar agora. ' + FALE); return; }
       var destino = fm.getAttribute('data-destino');
       if (!destino) { mostrar('falha', 'O envio ainda está sendo ligado. ' + FALE); return; }
-      var dados = { origem: fm.getAttribute('data-origem'), posicao: fm.getAttribute('data-posicao'),
-                    pagina: location.pathname, enviado_em: new Date().toISOString() };
+      var dados = { origem: fm.getAttribute('data-origem'), pagina: location.pathname,
+                    enviado_em: new Date().toISOString() };
       campos.forEach(function(c){ dados[c.name] = (c.value || '').trim(); });
       fm.setAttribute('aria-busy', 'true');
       mostrar('ok', 'Enviando…');

@@ -87,7 +87,7 @@ html.cv-off .sec{content-visibility:visible}
 /* --- símbolo aprovado --- */
 .mk{display:block;flex:none;box-shadow:0 0 0 1px rgba(0,121,255,.3),0 0 34px -8px rgba(0,121,255,.55)}
 .logo{display:inline-flex;align-items:center;gap:12px}
-.logo .mk{width:40px;height:40px}
+.logo .mk{width:36px;height:36px}
 .logo-txt{font-family:'Sora','Sora Fallback';font-weight:400;font-size:1.28rem;letter-spacing:-.025em;color:#fff}
 .logo-txt b{font-weight:700}
 
@@ -238,6 +238,19 @@ html.cv-off .sec{content-visibility:visible}
   .zap .rot{display:none}
 }
 
+/* ============ CHAMADA NO MEIO DA PÁGINA ============ */
+.cta-meio{background:var(--surface-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:56px 0}
+.cta-meio-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:28px}
+.cta-meio h2{font-size:clamp(1.35rem,2.4vw,1.75rem);margin-bottom:9px;max-width:22ch}
+.cta-meio p{color:var(--txt-2);font-size:.99rem;max-width:52ch}
+.cta-meio-acoes{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+@media(max-width:560px){
+  .cta-meio{padding:44px 0}
+  .cta-meio-acoes{flex-direction:column;align-items:stretch;width:100%;gap:16px}
+  .cta-meio-acoes .btn{width:100%;justify-content:center}
+  .cta-meio-acoes .btn-link{justify-content:center}
+}
+
 /* ============ BLOCO 5 — PROVA SOCIAL ============ */
 .prova{background:var(--surface)}
 .depos{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px}
@@ -288,7 +301,7 @@ html.cv-off .sec{content-visibility:visible}
 .ac-close{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:10px;display:grid;place-items:center;color:var(--txt-3)}
 .ac-close:hover{background:rgba(255,255,255,.06);color:#fff}
 .ac-close svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none}
-.ac-panel .mk{width:40px;height:40px;margin-bottom:20px}
+.ac-panel .mk{width:44px;height:44px;margin-bottom:20px}
 .ac-panel h2{font-size:1.38rem;margin-bottom:6px}
 .ac-panel > p{color:var(--txt-2);font-size:.95rem;margin-bottom:24px}
 .amb{display:flex;align-items:center;gap:15px;padding:18px;border:1px solid var(--line-2);border-radius:16px;background:rgba(255,255,255,.025);transition:border-color .2s,background .2s}
@@ -421,26 +434,16 @@ html.cv-off .sec{content-visibility:visible}
     </div>
   </div>
 </section>
-<section class="sec" id="contato">
+<section class="sec cta-meio">
   <div class="gridlines" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="contato-card reveal">
-      <div class="contato-esq">
-        <span class="pill">Contato</span>
-        <h2>Quer levar essa solução aos seus condomínios?</h2>
-        <p>Conte de onde você fala e retornamos com o que faz sentido para o seu caso. Sem compromisso e sem enrolação.</p>
-        <div class="atalho">
-          <a href="https://wa.me/5511991375208" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5A8.5 8.5 0 0 1 21 11.5z"/></svg>Prefere conversar agora? Fale no WhatsApp</a>
-          <!--email_off--><a href="mailto:contato@innocondo.com.br"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>contato@innocondo.com.br</a><!--/email_off-->
-        </div>
-      </div>
-      <form class="fm" data-destino="" data-origem="Soluções" data-posicao="meio da página" novalidate>
-        <input type="text" class="hp" name="_confirme" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="campo" data-campo><label for="s1-nome">Seu nome</label><input type="text" id="s1-nome" name="nome" placeholder="Como devemos te chamar" required><span class="msg-erro">Preencha este campo.</span></div><div class="campo" data-campo><label for="s1-perfil">Você fala de onde?</label><select id="s1-perfil" name="perfil" required><option value="" disabled selected>Selecione</option><option value="Administradora de condomínios">Administradora de condomínios</option><option value="Síndico(a) ou condomínio">Síndico(a) ou condomínio</option><option value="Morador ou proprietário">Morador ou proprietário</option><option value="Imobiliária">Imobiliária</option><option value="Parceiro ou fornecedor">Parceiro ou fornecedor</option></select><span class="msg-erro">Escolha uma opção.</span></div><div class="campo" data-campo><label for="s1-empresa">Empresa ou condomínio <span class="op">(opcional)</span></label><input type="text" id="s1-empresa" name="empresa" placeholder="Nome da empresa ou do condomínio"><span class="msg-erro">Preencha este campo.</span></div><div class="fm-linha"><div class="campo" data-campo><label for="s1-email">E-mail</label><input type="email" id="s1-email" name="email" placeholder="nome@email.com.br" required autocomplete="email"><span class="msg-erro">Informe um e-mail válido.</span></div><div class="campo" data-campo><label for="s1-zap">WhatsApp</label><input type="tel" id="s1-zap" name="whatsapp" placeholder="(11) 90000-0000" required autocomplete="tel" inputmode="tel"><span class="msg-erro">Informe um telefone válido.</span></div></div><div class="campo" data-campo><label for="s1-msg">Quer contar mais alguma coisa? <span class="op">(opcional)</span></label><textarea id="s1-msg" name="mensagem" placeholder="Escreva aqui, se quiser."></textarea><span class="msg-erro">Preencha este campo.</span></div>
-        <button type="submit" class="btn btn-primary">Enviar <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-        <p class="fm-nota">Ao enviar, você autoriza a Innocondo a entrar em contato sobre este assunto. Seus dados não são usados para outra finalidade.</p>
-        <div class="fm-aviso" role="status" aria-live="polite"></div>
-      </form>
+  <div class="wrap cta-meio-inner">
+    <div>
+      <h2>Quer levar essa solução aos seus condomínios?</h2>
+      <p>Conte de onde você fala e retornamos com o que faz sentido para o seu caso.</p>
+    </div>
+    <div class="cta-meio-acoes">
+      <a href="#contato" class="btn btn-primary">Falar com a Innocondo <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      <a href="https://wa.me/5511991375208" target="_blank" rel="noopener" class="btn-link">Falar no WhatsApp</a>
     </div>
   </div>
 </section>
@@ -469,7 +472,7 @@ html.cv-off .sec{content-visibility:visible}
       <p>Quem já conhece a proposta conta o que viu nela.</p>
     </div>
     <div class="depos">
-      <figure class="depo reveal"><svg class="quote-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg><blockquote>A parceria com a Innocondo nos apresentou uma nova forma de olhar para soluções de proteção dentro do mercado condominial. A proposta de tornar esse tipo de solução mais acessível e conectada às necessidades dos condomínios e das pessoas chamou nossa atenção. Estamos construindo essa parceria juntos e acreditamos que existe muito potencial para gerar valor para o nosso mercado.</blockquote><figcaption class="depo-who"><span class="depo-av ini" aria-hidden="true">LM</span><div><div class="nm">Leila Moraes</div><div class="rl">Sócia-Diretora · Administradora Moraes</div></div></figcaption></figure>
+      <figure class="depo reveal"><svg class="quote-ic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 21c3 0 7-1 7-8V5c0-1.25-.756-2.017-2-2H4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2 1 0 1 0 1 1v1c0 1-1 2-2 2s-1 .008-1 1.031V20c0 1 0 1 1 1z"/><path d="M15 21c3 0 7-1 7-8V5c0-1.25-.757-2.017-2-2h-4c-1.25 0-2 .75-2 1.972V11c0 1.25.75 2 2 2h.75c0 2.25.25 4-2.75 4v3c0 1 0 1 1 1z"/></svg><blockquote>A parceria com a Innocondo nos apresentou uma nova forma de olhar para soluções de proteção dentro do mercado condominial. A proposta de tornar esse tipo de solução mais acessível e conectada às necessidades dos condomínios e das pessoas chamou nossa atenção. Estamos construindo essa parceria juntos e acreditamos que existe muito potencial para gerar valor para o nosso mercado.</blockquote><figcaption class="depo-who"><span class="depo-av ini" aria-hidden="true">ÉM</span><div><div class="nm">Érica Mendonça</div><div class="rl">Gerente Geral · Administradora Moraes</div></div></figcaption></figure>
     </div>
   </div>
 </section>
@@ -494,7 +497,7 @@ html.cv-off .sec{content-visibility:visible}
   </div>
 </section>
 
-<section class="sec deep" id="contato-final">
+<section class="sec deep" id="contato">
   <div class="gridlines" aria-hidden="true"></div>
   <div class="wrap">
     <div class="contato-card reveal">
@@ -507,9 +510,9 @@ html.cv-off .sec{content-visibility:visible}
           <!--email_off--><a href="mailto:contato@innocondo.com.br"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>contato@innocondo.com.br</a><!--/email_off-->
         </div>
       </div>
-      <form class="fm" data-destino="" data-origem="Soluções" data-posicao="fim da página" novalidate>
+      <form class="fm" data-destino="" data-origem="Soluções" novalidate>
         <input type="text" class="hp" name="_confirme" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="campo" data-campo><label for="s2-nome">Seu nome</label><input type="text" id="s2-nome" name="nome" placeholder="Como devemos te chamar" required><span class="msg-erro">Preencha este campo.</span></div><div class="campo" data-campo><label for="s2-perfil">Você fala de onde?</label><select id="s2-perfil" name="perfil" required><option value="" disabled selected>Selecione</option><option value="Administradora de condomínios">Administradora de condomínios</option><option value="Síndico(a) ou condomínio">Síndico(a) ou condomínio</option><option value="Morador ou proprietário">Morador ou proprietário</option><option value="Imobiliária">Imobiliária</option><option value="Parceiro ou fornecedor">Parceiro ou fornecedor</option></select><span class="msg-erro">Escolha uma opção.</span></div><div class="campo" data-campo><label for="s2-empresa">Empresa ou condomínio <span class="op">(opcional)</span></label><input type="text" id="s2-empresa" name="empresa" placeholder="Nome da empresa ou do condomínio"><span class="msg-erro">Preencha este campo.</span></div><div class="fm-linha"><div class="campo" data-campo><label for="s2-email">E-mail</label><input type="email" id="s2-email" name="email" placeholder="nome@email.com.br" required autocomplete="email"><span class="msg-erro">Informe um e-mail válido.</span></div><div class="campo" data-campo><label for="s2-zap">WhatsApp</label><input type="tel" id="s2-zap" name="whatsapp" placeholder="(11) 90000-0000" required autocomplete="tel" inputmode="tel"><span class="msg-erro">Informe um telefone válido.</span></div></div><div class="campo" data-campo><label for="s2-msg">Quer contar mais alguma coisa? <span class="op">(opcional)</span></label><textarea id="s2-msg" name="mensagem" placeholder="Escreva aqui, se quiser."></textarea><span class="msg-erro">Preencha este campo.</span></div>
+        <div class="campo" data-campo><label for="s-nome">Seu nome</label><input type="text" id="s-nome" name="nome" placeholder="Como devemos te chamar" required><span class="msg-erro">Preencha este campo.</span></div><div class="campo" data-campo><label for="s-perfil">Você fala de onde?</label><select id="s-perfil" name="perfil" required><option value="" disabled selected>Selecione</option><option value="Administradora de condomínios">Administradora de condomínios</option><option value="Síndico(a) ou condomínio">Síndico(a) ou condomínio</option><option value="Morador ou proprietário">Morador ou proprietário</option><option value="Imobiliária">Imobiliária</option><option value="Parceiro ou fornecedor">Parceiro ou fornecedor</option></select><span class="msg-erro">Escolha uma opção.</span></div><div class="campo" data-campo><label for="s-empresa">Empresa ou condomínio <span class="op">(opcional)</span></label><input type="text" id="s-empresa" name="empresa" placeholder="Nome da empresa ou do condomínio"><span class="msg-erro">Preencha este campo.</span></div><div class="fm-linha"><div class="campo" data-campo><label for="s-email">E-mail</label><input type="email" id="s-email" name="email" placeholder="nome@email.com.br" required autocomplete="email"><span class="msg-erro">Informe um e-mail válido.</span></div><div class="campo" data-campo><label for="s-zap">WhatsApp</label><input type="tel" id="s-zap" name="whatsapp" placeholder="(11) 90000-0000" required autocomplete="tel" inputmode="tel"><span class="msg-erro">Informe um telefone válido.</span></div></div><div class="campo" data-campo><label for="s-msg">Quer contar mais alguma coisa? <span class="op">(opcional)</span></label><textarea id="s-msg" name="mensagem" placeholder="Escreva aqui, se quiser."></textarea><span class="msg-erro">Preencha este campo.</span></div>
         <button type="submit" class="btn btn-primary">Enviar <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
         <p class="fm-nota">Ao enviar, você autoriza a Innocondo a entrar em contato sobre este assunto. Seus dados não são usados para outra finalidade.</p>
         <div class="fm-aviso" role="status" aria-live="polite"></div>
@@ -671,8 +674,8 @@ html.cv-off .sec{content-visibility:visible}
       if (fm.querySelector('.hp').value || (Date.now() - abriuEm) < 2500) { mostrar('falha', 'Não conseguimos enviar agora. ' + FALE); return; }
       var destino = fm.getAttribute('data-destino');
       if (!destino) { mostrar('falha', 'O envio ainda está sendo ligado. ' + FALE); return; }
-      var dados = { origem: fm.getAttribute('data-origem'), posicao: fm.getAttribute('data-posicao'),
-                    pagina: location.pathname, enviado_em: new Date().toISOString() };
+      var dados = { origem: fm.getAttribute('data-origem'), pagina: location.pathname,
+                    enviado_em: new Date().toISOString() };
       campos.forEach(function(c){ dados[c.name] = (c.value || '').trim(); });
       fm.setAttribute('aria-busy', 'true');
       mostrar('ok', 'Enviando…');
