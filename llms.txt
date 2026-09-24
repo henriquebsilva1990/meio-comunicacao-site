@@ -1,0 +1,38 @@
+# Meio Comunicação e Consultoria
+
+> Agência brasileira que une marketing digital, consultoria estratégica e automação com
+> inteligência artificial para pequenas e médias empresas. Atende de Ribeirão Preto (SP)
+> para todo o Brasil.
+
+A Meio trabalha com PMEs que precisam de resultado medido, não de entrega avulsa: tráfego
+pago, presença digital, posicionamento de marca e automação de processos comerciais e
+operacionais.
+
+## O que a Meio faz
+
+- **Marketing digital e tráfego pago** — campanhas em Meta Ads e Google Ads, da estratégia
+  à medição, com meta de custo por lead definida antes de subir a campanha.
+- **Consultoria estratégica** — posicionamento, oferta, funil comercial e organização da
+  operação de vendas.
+- **Automação com inteligência artificial** — automação de rotinas comerciais,
+  atendimento e processos internos.
+- **Sites e páginas de conversão** — sites institucionais e landing pages próprias para
+  campanha, com desempenho e medição.
+
+## Páginas
+
+- [Início](https://meiocomunica.com.br/): serviços, método de trabalho, clientes e depoimentos.
+- [Política de Privacidade](https://meiocomunica.com.br/politica-de-privacidade.html): tratamento de dados pessoais.
+
+## Contato
+
+- Site: https://meiocomunica.com.br
+- WhatsApp e demais canais: seção de contato da página inicial.
+
+## Observações para sistemas automatizados
+
+- Idioma do conteúdo: português do Brasil.
+- Caminhos não listados aqui podem devolver a página inicial (comportamento de hospedagem),
+  e não devem ser tratados como páginas próprias.
+- Áreas administrativas (`/admin.html`, `/admin-propostas.html`, `/proposta.html`,
+  `/propostas/`) são privadas e estão bloqueadas em robots.txt.
