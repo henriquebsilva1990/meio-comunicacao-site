@@ -491,9 +491,6 @@ html.cv-off .sec{content-visibility:visible}
 .grupo ul{list-style:none}
 .grupo li{padding:20px 0;border-top:1px solid var(--line)}
 .grupo li:first-child{border-top:none}
-.fatores{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:34px}
-.fatores span{display:inline-flex;align-items:center;padding:11px 18px;border:1px solid var(--line-2);border-radius:100px;background:rgba(255,255,255,.03);font-size:.9rem;font-weight:600;color:#fff}
-.fatores span::before{content:"";width:6px;height:6px;margin-right:10px;border-radius:50%;background:var(--blue);box-shadow:0 0 8px var(--blue)}
 .caminho-txt{max-width:780px}
 .caminho-txt p{color:var(--txt-2);font-size:1.06rem;line-height:1.7;margin-bottom:18px}
 .fecho{font-family:'Sora','Sora Fallback',system-ui,sans-serif;font-weight:600;font-size:clamp(1.15rem,2vw,1.4rem);line-height:1.4;letter-spacing:-.02em;color:#fff;border-left:2px solid var(--blue);padding-left:20px;max-width:40ch}
@@ -534,17 +531,24 @@ html.cv-off .sec{content-visibility:visible}
 .grupo li span{font-size:.85rem;line-height:1.5}
 .grupos+.fecho{margin-top:34px}
 
-/* 05 · contexto: uma linha só; abaixo de ~900px vira faixa que se arrasta para o lado */
 #caminho{padding-block:92px}
 #caminho .sec-head{margin-bottom:34px}
-.fatores{flex-wrap:nowrap;justify-content:space-between;gap:6px;margin-bottom:0;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:none;padding-bottom:2px}
-.fatores::-webkit-scrollbar{display:none}
-.fatores span{flex:0 0 auto;scroll-snap-align:start;white-space:nowrap;padding:clamp(7px,.75vw,10px) clamp(10px,.9vw,12px);font-size:clamp(.64rem,.98vw,.75rem)}
-.fatores span::before{width:5px;height:5px;margin-right:clamp(5px,.55vw,7px)}
-.fatores.rola:not(.fim){-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 48px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 48px),transparent)}
-.fatores.rola{justify-content:flex-start}
-.fatores:focus-visible{outline:2px solid var(--blue);outline-offset:6px;border-radius:12px}
 
+
+/* V5 · 05 contexto: painel de 7 colunas (icone circular, rotulo em 2 linhas, divisorias verticais) */
+.ctx{list-style:none;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));padding:28px 6px 26px;border:1px solid var(--line-2);border-radius:var(--radius-xl);background:linear-gradient(180deg,rgba(0,121,255,.07),rgba(255,255,255,.012));overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x proximity;scrollbar-width:none}
+.ctx::-webkit-scrollbar{display:none}
+.ctx li{position:relative;display:flex;flex-direction:column;align-items:center;gap:15px;padding:0 10px;text-align:center;scroll-snap-align:start}
+.ctx li+li::before{content:"";position:absolute;left:0;top:4px;bottom:4px;width:1px;background:var(--line-2)}
+.ctx .ico{display:grid;place-items:center;width:58px;height:58px;border-radius:50%;border:1px solid rgba(0,121,255,.38);background:radial-gradient(circle at 50% 30%,rgba(0,121,255,.32),rgba(0,121,255,.09) 72%);box-shadow:0 0 24px rgba(0,121,255,.2)}
+.ctx svg{width:25px;height:25px;fill:none;stroke:#dce8ff;stroke-width:1.6}
+.ctx b{font-family:'Sora','Sora Fallback',system-ui,sans-serif;font-size:clamp(.74rem,.95vw,.88rem);font-weight:600;line-height:1.35;color:#fff}
+.ctx.rola:not(.fim){-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 52px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 52px),transparent)}
+.ctx:focus-visible{outline:2px solid var(--blue);outline-offset:6px}
+@media(max-width:860px){
+  .ctx{display:flex;padding:22px 4px 20px}
+  .ctx li{flex:0 0 138px}
+}
 @media(max-width:1024px){#cenario,#onde-atuamos,#caminho{padding-block:76px}}
 @media(max-width:640px){
   #cenario,#onde-atuamos,#caminho{padding-block:60px}
@@ -636,7 +640,7 @@ html.cv-off .sec{content-visibility:visible}
       <h2>Uma visão que conecta <span class="dim">diferentes dimensões da administradora</span></h2>
     </div>
     <div class="reveal" data-d="1">
-      <p>Ao longo de mais de 17 anos, nossos profissionais atuaram em diferentes pontos do mercado condominial, passando por administradoras, instituições financeiras, empresas de tecnologia e iniciativas de formação profissional.</p>
+      <p>Ao longo de mais de 17 anos, nossos profissionais atuaram em administradoras, instituições financeiras, empresas de tecnologia e iniciativas de formação profissional. Diferentes setores, diferentes perspectivas, uma mesma experiência construída no mercado condominial.</p>
       <p>Essa experiência permite conectar diferentes dimensões de uma administradora e entender como processos, pessoas, sistemas, gestão, financeiro e relacionamento se influenciam no dia a dia.</p>
     </div>
   </div>
@@ -663,7 +667,7 @@ html.cv-off .sec{content-visibility:visible}
         <h3>Sistemas e eficiência</h3>
         <ul>
           <li><b>Sistemas, ERP e digitalização</b><span>Avaliação da utilização dos sistemas, identificação de gargalos, melhoria de processos e apoio em implantação ou evolução de ERP e ferramentas.</span></li>
-          <li><b>Automação e transformação digital</b><span>Identificação de atividades passíveis de digitalização, automação, RPA e outras soluções tecnológicas aplicáveis à operação.</span></li>
+          <li><b>Automação e transformação digital</b><span>Identificação de atividades passíveis de digitalização, automação e outras soluções tecnológicas aplicáveis à operação.</span></li>
           <li><b>Financeiro e operações bancárias</b><span>Revisão de rotinas financeiras e bancárias, identificação de oportunidades de eficiência e estruturação de automações.</span></li>
         </ul>
       </div>
@@ -685,11 +689,9 @@ html.cv-off .sec{content-visibility:visible}
     <div class="sec-head reveal">
       <span class="pill">Cada administradora, um caminho</span>
       <h2>Cada administradora exige <span class="dim">um caminho diferente</span></h2>
-      <p>Duas administradoras podem utilizar o mesmo ERP, ter estruturas semelhantes e atuar no mesmo mercado, mas enfrentar desafios completamente diferentes. Por isso, antes de recomendar qualquer mudança, entendemos o contexto, as prioridades e os objetivos da administradora.</p>
+      <p>Duas administradoras podem utilizar o mesmo ERP, ter estruturas semelhantes e atuar na mesma região, mas enfrentar desafios completamente diferentes. Por isso, antes de recomendar qualquer mudança, entendemos o contexto, as prioridades e os objetivos da administradora.</p>
     </div>
-    <div class="fatores reveal" data-d="1">
-      <span>Região de atuação</span><span>Perfil e composição da carteira</span><span>Ticket médio</span><span>Estrutura da equipe</span><span>Nível de maturidade</span><span>Sistemas utilizados</span><span>Objetivos estratégicos</span>
-    </div>
+    <ul class="ctx reveal" data-d="1" aria-label="Fatores considerados em cada projeto"><li><span class="ico"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.6"/></svg></span><b>Região de<br>atuação</b></li><li><span class="ico"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8.5" r="3"/><path d="M3.5 19.5a5.5 5.5 0 0 1 11 0"/><circle cx="17" cy="9.5" r="2.4"/><path d="M15.8 14.4a4.6 4.6 0 0 1 4.7 4.1"/></svg></span><b>Perfil da<br>carteira</b></li><li><span class="ico"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="12" width="3.4" height="8" rx=".7"/><rect x="10.3" y="7" width="3.4" height="13" rx=".7"/><rect x="16.6" y="3.5" width="3.4" height="16.5" rx=".7"/></svg></span><b>Ticket<br>médio</b></li><li><span class="ico"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7.5" r="2.8"/><circle cx="5.2" cy="10.6" r="2.2"/><circle cx="18.8" cy="10.6" r="2.2"/><path d="M7.5 20a4.5 4.5 0 0 1 9 0M2.4 18.6a3.2 3.2 0 0 1 4-3M21.6 18.6a3.2 3.2 0 0 0-4-3"/></svg></span><b>Estrutura<br>da equipe</b></li><li><span class="ico"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 3 8l9 5 9-5-9-5z"/><path d="M3 12.3l9 5 9-5M3 16.6l9 5 9-5"/></svg></span><b>Nível de<br>maturidade</b></li><li><span class="ico"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg></span><b>Sistemas<br>utilizados</b></li><li><span class="ico"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg></span><b>Objetivos<br>estratégicos</b></li></ul>
   </div>
 </section>
 
@@ -954,11 +956,10 @@ html.cv-off .sec{content-visibility:visible}
 </script>
 <!-- Meio Comunica · Innocondo · LP Consultoria -->
 <script>
-(function(){var f=document.querySelector('.fatores');if(!f)return;
+(function(){var f=document.querySelector('.ctx');if(!f)return;
 function u(){var o=f.scrollWidth>f.clientWidth+2;f.classList.toggle('rola',o);
 f.classList.toggle('fim',o&&f.scrollLeft+f.clientWidth>=f.scrollWidth-2);
-if(o){f.setAttribute('tabindex','0');f.setAttribute('role','group');f.setAttribute('aria-label','Fatores considerados em cada projeto')}
-else{f.removeAttribute('tabindex');f.removeAttribute('role');f.removeAttribute('aria-label')}}
+if(o)f.setAttribute('tabindex','0');else f.removeAttribute('tabindex')}
 f.addEventListener('scroll',u,{passive:true});addEventListener('resize',u);addEventListener('load',u);u()})();
 </script>
 </body>
