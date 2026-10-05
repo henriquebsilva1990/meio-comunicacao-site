@@ -603,7 +603,8 @@ p,li,blockquote,summary{text-wrap:pretty}
 #administradora .sec-head h2{max-width:26ch}
 .sec-head.center h2{max-width:none}
 .papel h3{min-height:2.7em}
-.sol-par b.sol-logo{letter-spacing:-.02em}
+.sol-plate{display:inline-flex;margin-top:14px;padding:18px 26px;background:#fff;border-radius:16px;box-shadow:0 14px 34px -18px rgba(0,0,0,.7)}
+.sol-plate img{display:block;width:clamp(150px,16vw,196px);height:auto}
 .solucao+.fecho{margin-top:34px}
 /* rodapé responsivo (as LPs não tinham: em 390 px as 3 colunas estouravam a página e cortavam a coluna do mapa) */
 @media(max-width:1024px){.ft-top{grid-template-columns:1fr 1fr}.ft-brand{grid-column:1/-1}}
@@ -725,7 +726,7 @@ p,li,blockquote,summary{text-wrap:pretty}
         <p>Uma solução pensada para proteger a residência e oferecer assistência para situações do dia a dia.</p>
         <a href="#contato" class="btn btn-primary">Conheça a solução <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
-      <div class="sol-par"><span>Em parceria com</span><b class="sol-logo">Allianz</b></div>
+      <div class="sol-par"><span>Em parceria com</span><div class="sol-plate"><img src="/innocondo-midia/parceiros/allianz.png" width="555" height="153" alt="Allianz" loading="lazy" decoding="async"></div></div>
     </div>
     <p class="fecho reveal">O Seguro Residencial é o primeiro passo da frente Soluções. A proposta é ampliar gradualmente esse portfólio, sempre a partir de necessidades reais do mercado condominial.</p>
   </div>
