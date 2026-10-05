@@ -554,6 +554,10 @@ html.cv-off .sec{content-visibility:visible}
   #cenario,#onde-atuamos,#caminho{padding-block:60px}
   .sinais{grid-template-columns:1fr;gap:22px}
 }
+/* rodapé responsivo (as LPs não tinham: em 390 px as 3 colunas estouravam a página e cortavam a coluna do mapa) */
+@media(max-width:1024px){.ft-top{grid-template-columns:1fr 1fr}.ft-brand{grid-column:1/-1}}
+@media(max-width:560px){.ft-top{grid-template-columns:1fr}.ft-bottom .links{flex-wrap:wrap;row-gap:8px}}
+@media(max-width:700px){.contato-card{grid-template-columns:minmax(0,1fr)}.fm,.contato-esq,.campo{min-width:0}.campo input,.campo select,.campo textarea{max-width:100%}}
 </style>
 </head>
 <body>
