@@ -544,9 +544,94 @@ p,li,blockquote,summary{text-wrap:pretty}
 .resumo a:hover{color:#fff}
 @media(max-width:900px){.portfolio{grid-template-columns:1fr}.pg-grid{grid-template-columns:1fr}.planos{grid-template-columns:1fr}.pg-hero{padding:110px 0 44px}}
 @media(max-width:640px){.lph-marca b{min-height:0}.lph-marca b.txt{max-width:none}}
+/* visual: ilustrações, carrossel do portfólio, faixas de ícones e planos (baseado nas imagens-conceito do briefing) */
+.lph-grid{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,1.12fr) minmax(0,.68fr);gap:clamp(32px,5vw,76px);align-items:center}
+.lph-art{position:relative;margin:0;border-radius:var(--radius-xl);overflow:hidden;border:1px solid var(--line-2);box-shadow:0 34px 90px -44px rgba(0,121,255,.85)}
+.lph-art img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+.produtos{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;overscroll-behavior-x:contain}
+.produtos::-webkit-scrollbar{display:none}
+.produto{flex:1 0 min(100%,500px);scroll-snap-align:start;padding:0 0 30px;overflow:hidden}
+.produto .prod-img{margin:0 0 24px}
+.produto .prod-img img{display:block;width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
+.produto>:not(.prod-img){margin-left:32px;margin-right:32px}
+.produto .btn{align-self:flex-start}
+.prod-nav{display:none;gap:10px;margin:0 0 14px;justify-content:flex-end}
+.prod-nav.on{display:flex}
+.prod-nav button{width:42px;height:42px;border-radius:50%;border:1px solid var(--line-2);background:rgba(255,255,255,.04);color:#fff;font-size:1.1rem;cursor:pointer}
+.prod-nav button:hover{border-color:var(--blue)}
+/* ===== página clara (produto e contratação): mesma marca, no formato claro do conceito ===== */
+body.pagina-clara .hdr{background:rgba(3,0,20,.9);backdrop-filter:blur(18px);box-shadow:0 1px 0 var(--line)}
+.claro{--ink:#10152B;--sl:#4B5570;--sl2:#7A82A0;--ln:#DDE4F0;--pn:#F3F6FB;background:#fff;color:var(--ink);padding-top:76px}
+.claro .gridlines,.claro .lph-spot{display:none}
+.claro .sec{background:#fff;padding:64px 0}
+.claro .sec.alt{background:var(--pn)}
+.claro h1,.claro h2,.claro h3{color:var(--ink)}
+.claro .dim{color:#8791AD}
+.claro p{color:var(--sl)}
+.claro .pill{color:#0A55C8;border-color:rgba(0,121,255,.35);background:rgba(0,121,255,.07)}
+.claro .pill::before{background:#0079FF;box-shadow:none}
+.claro .crumbs{color:var(--sl2)}.claro .crumbs a{color:var(--sl)}.claro .crumbs a:hover{color:var(--ink)}
+.claro .crumbs svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;vertical-align:-2px}
+.claro .proto{color:#0A55C8;border-color:rgba(0,121,255,.5);background:rgba(0,121,255,.07)}
+.claro .pg-hero{background:#fff;padding:34px 0 36px;overflow:visible}
+.claro .pg-hero h1{color:var(--ink)}
+.claro .pg-hero p.lead{color:var(--sl)}
+.pg-art{margin:0;border-radius:30px;overflow:hidden;box-shadow:0 30px 70px -40px rgba(16,40,120,.55)}
+.pg-art img{display:block;width:100%;height:auto;aspect-ratio:16/11;object-fit:cover}
+.pg-parceiro{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin-top:22px}
+.pg-parceiro img{display:block;height:44px;width:auto}
+.pg-parceiro p{margin:0;font-size:.92rem;max-width:34ch}
+.claro .sol-plate{background:transparent;box-shadow:none;padding:0;border-radius:0;margin:0}
+.claro .sol-plate img{width:auto;height:44px}
+.fx-ic{position:relative;display:grid;gap:10px;padding:34px 16px 26px;background:var(--pn);border-radius:24px}
+.fx-ic.c5{grid-template-columns:repeat(5,minmax(0,1fr))}
+.fx-ic.c7{grid-template-columns:repeat(7,minmax(0,1fr))}
+.fx-ic .it{display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;padding:0 8px;font-size:.88rem;line-height:1.35;color:var(--ink);font-weight:600}
+.fx-ic .it svg{width:34px;height:34px;fill:none;stroke:#0A55C8;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.prov{position:absolute;top:10px;right:14px;font-size:.66rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#6B7794;border:1px dashed #AEB8D0;border-radius:100px;padding:3px 10px;background:#fff}
+.claro .plano{background:#fff;border-color:var(--ln);box-shadow:0 24px 50px -34px rgba(16,21,43,.4)}
+.claro .plano h3{color:var(--ink)}
+.claro .plano .preco{color:var(--ink)}
+.claro .plano .preco small{color:var(--sl)}
+.claro .plano .sim{color:#0A55C8}
+.plano ul.ck li{justify-content:flex-start;align-items:flex-start;gap:12px;border-top:0;padding:8px 0;font-size:.93rem}
+.claro .plano li{color:var(--sl)}
+.plano ul.ck svg{flex:none;width:18px;height:18px;margin-top:2px;fill:none;stroke:#0A55C8;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.claro .nota-prov{border-color:#B8C3DB;color:var(--sl);background:#fff}
+.claro .nota-prov b{color:var(--ink)}
+.cta-faixa{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:26px 30px;background:var(--pn);border:1px solid var(--ln);border-radius:24px}
+.cta-faixa .t{display:flex;align-items:center;gap:18px}
+.cta-faixa .t svg{width:42px;height:42px;fill:none;stroke:#0A55C8;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.cta-faixa h3{font-size:1.15rem;margin-bottom:4px}
+.cta-faixa p{margin:0;font-size:.92rem;max-width:56ch}
+.claro .sec-head h2{margin-bottom:10px}
+.claro .contato-card{background:#fff;border-color:var(--ln);box-shadow:0 30px 70px -44px rgba(16,21,43,.45)}
+.claro .contato-esq{background:linear-gradient(145deg,#E7F0FF,#F8FAFF 70%)}
+.claro .contato-esq p{color:var(--sl)}
+.claro .fm{border-left-color:var(--ln);background:#fff}
+.claro .campo label{color:var(--ink)}
+.claro .campo label .op{color:var(--sl2)}
+.claro .campo input,.claro .campo select,.claro .campo textarea{background:#fff;color:var(--ink);border-color:#C9D2E3}
+.claro .campo input::placeholder,.claro .campo textarea::placeholder{color:#8A93AE}
+.claro .campo input:focus,.claro .campo select:focus,.claro .campo textarea:focus{border-color:#0079FF;background:#F4F8FF}
+.claro .campo .msg-erro{color:#C0352B}
+.claro .fm-nota{color:var(--sl2)}
+.claro .fm-aviso.ok{background:#E7F0FF;border-color:#9DBEF5;color:var(--ink)}
+.claro .fm-aviso.falha{background:#FDECEC;border-color:#F0B4B4;color:#8A1C1C}
+.claro .resumo{background:#fff;border-color:var(--ln)}
+.claro .resumo .r-rot{color:var(--sl2)}
+.claro .resumo .r-nome{color:var(--ink)}
+.claro .resumo .r-preco{color:#0A55C8}
+.claro .resumo a{color:var(--sl)}.claro .resumo a:hover{color:var(--ink)}
+.claro .prod-par>span{color:var(--sl2)}
+@media(max-width:900px){.lph-grid{grid-template-columns:1fr}.lph-art{max-width:440px}.lph-art img{aspect-ratio:16/11}.fx-ic.c5,.fx-ic.c7{display:flex;overflow-x:auto;scroll-snap-type:x proximity;scrollbar-width:none}.fx-ic.c5::-webkit-scrollbar,.fx-ic.c7::-webkit-scrollbar{display:none}.fx-ic .it{flex:0 0 124px;scroll-snap-align:start}.claro .pg-hero{padding-top:26px}.cta-faixa{padding:22px}.produto>:not(.prod-img){margin-left:24px;margin-right:24px}}
+
+.claro .pg-grid{grid-template-columns:minmax(0,1fr) minmax(0,.92fr)}
+.claro #planos{padding-top:40px}
+@media(max-width:900px){.claro .pg-grid{grid-template-columns:1fr}}
 </style>
 </head>
-<body>
+<body class="pagina-clara">
 
 <!-- símbolo aprovado, definido uma única vez -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
@@ -584,44 +669,64 @@ p,li,blockquote,summary{text-wrap:pretty}
   <button type="button" class="btn btn-primary" data-area-cliente>Área do Cliente</button>
 </div>
 
-<main>
+<main class="claro">
 <section class="pg-hero" id="topo">
-  <div class="lph-spot" aria-hidden="true"></div>
-  <div class="gridlines" aria-hidden="true"></div>
   <div class="wrap">
-    <nav class="crumbs" aria-label="Você está em"><a href="/innocondo-solucoes/">Soluções</a><span aria-hidden="true">›</span><span>Seguro Residencial + Assistências</span></nav>
+    <nav class="crumbs" aria-label="Você está em"><a href="/innocondo-solucoes/" aria-label="Soluções"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 10v10h13V10"/></svg></a><span aria-hidden="true">›</span><a href="/innocondo-solucoes/">Soluções</a><span aria-hidden="true">›</span><span>Seguro Residencial + Assistências</span></nav>
     <div class="pg-grid">
       <div>
         <span class="proto">Protótipo · conteúdo provisório</span>
         <h1>Seguro Residencial + Assistências</h1>
         <p class="lead">Proteção para quem vive em condomínio.</p>
         <p class="lead">Uma solução pensada para proteger a residência e oferecer assistência para situações do dia a dia.</p>
+        <div class="pg-parceiro"><div class="sol-plate"><img src="/innocondo-midia/parceiros/allianz.png" width="555" height="153" alt="Allianz" loading="lazy" decoding="async"></div><p>Uma das principais referências globais em seguros e proteção.</p></div>
       </div>
-      <aside class="pg-par"><span>Em parceria com</span><div class="sol-plate"><img src="/innocondo-midia/parceiros/allianz.png" width="555" height="153" alt="Allianz" loading="lazy" decoding="async"></div><p>Oferecido pela Innocondo, com a identificação da seguradora parceira.</p></aside>
+      <figure class="pg-art"><img src="/innocondo-midia/ilustracoes/residencia-protegida.svg" width="640" height="420" alt="Ilustração de uma residência protegida" decoding="async"></figure>
     </div>
   </div>
 </section>
 
+<section class="sec" style="padding-top:8px">
+  <div class="wrap"><div class="fx-ic c5"><span class="prov">Conteúdo provisório</span><div class="it"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.5c.6 3.2-2.6 5-2.6 8.6a2.6 2.6 0 0 0 5.2 0c0-1.1-.5-1.9-1-2.6 2.3 1.1 4.1 3.6 4.1 6.7a5.7 5.7 0 0 1-11.4 0c0-3.1 1.5-5.2 3.1-7.3.8-1.1 1.6-2.3 2.6-5.4z"/></svg><span>Incêndio, raio<br>e explosão</span></div><div class="it"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3s6 6.2 6 10.5a6 6 0 0 1-12 0C6 9.2 12 3 12 3z"/><path d="M9.5 14.2a2.6 2.6 0 0 0 2.2 2"/></svg><span>Ruptura de<br>tubulações</span></div><div class="it"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.2 2"/></svg><span>Assistência<br>24 horas</span></div><div class="it"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.6"/><path d="M5 20.5a7 7 0 0 1 14 0"/></svg><span>Morte acidental e<br>invalidez permanente</span></div><div class="it"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><span>E muito mais<br>assistências</span></div></div></div>
+</section>
+
 <section class="sec" id="planos">
-  <div class="gridlines" aria-hidden="true"></div>
   <div class="wrap">
     <div class="sec-head reveal">
-      <span class="pill">Planos</span>
-      <h2>Escolha o <span class="dim">plano ideal</span></h2>
+      <h2>Escolha o plano ideal</h2>
       <p>Três opções para diferentes necessidades. Ao escolher um plano, você segue para a etapa de contratação.</p>
     </div>
     <div class="planos">
       <div class="plano reveal"><h3>Plano Essencial</h3><div class="preco">R$ 25,00<small>por mês</small></div><span class="sim">Valor para simulação</span>
-        <ul><li><span>Coberturas</span><em>a confirmar</em></li><li><span>Assistências</span><em>a confirmar</em></li><li><span>Limites e condições</span><em>a confirmar</em></li></ul>
+        <ul class="ck"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg><span>Incêndio, raio e explosão</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg><span>Ruptura de tubulações</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg><span>Assistência 24 horas</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg><span>Cobertura de conteúdo</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg><span>Responsabilidade civil</span></li></ul>
         <a href="/innocondo-solucoes/seguro-residencial/contratar/?plano=essencial" class="btn btn-primary">Quero este plano <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
       <div class="plano reveal"><h3>Plano Completo</h3><div class="preco">R$ 35,00<small>por mês</small></div><span class="sim">Valor para simulação</span>
-        <ul><li><span>Coberturas</span><em>a confirmar</em></li><li><span>Assistências</span><em>a confirmar</em></li><li><span>Limites e condições</span><em>a confirmar</em></li></ul>
+        <ul class="ck"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg><span>Incêndio, raio e explosão</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg><span>Ruptura de tubulações</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg><span>Assistência 24 horas</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg><span>Cobertura de conteúdo</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg><span>Responsabilidade civil</span></li></ul>
         <a href="/innocondo-solucoes/seguro-residencial/contratar/?plano=completo" class="btn btn-primary">Quero este plano <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
       <div class="plano reveal"><h3>Plano Premium</h3><div class="preco">R$ 45,00<small>por mês</small></div><span class="sim">Valor para simulação</span>
-        <ul><li><span>Coberturas</span><em>a confirmar</em></li><li><span>Assistências</span><em>a confirmar</em></li><li><span>Limites e condições</span><em>a confirmar</em></li></ul>
+        <ul class="ck"><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg><span>Incêndio, raio e explosão</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg><span>Ruptura de tubulações</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg><span>Assistência 24 horas</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg><span>Cobertura de conteúdo</span></li><li><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12.5 4.2 4.2L19 7"/></svg><span>Responsabilidade civil</span></li></ul>
         <a href="/innocondo-solucoes/seguro-residencial/contratar/?plano=premium" class="btn btn-primary">Quero este plano <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
-    <p class="nota-prov reveal"><b>Conteúdo provisório.</b> Os valores acima são de simulação. Coberturas, assistências, limites, condições e a nomenclatura final dos planos serão apresentados aqui depois de validados com a seguradora parceira.</p>
+    <p class="nota-prov reveal"><b>Conteúdo provisório.</b> Os valores são de simulação. Coberturas, assistências, limites, condições e a nomenclatura final dos planos serão apresentados aqui depois de validados com a seguradora parceira. As diferenças entre os planos serão definidas nessa validação.</p>
+  </div>
+</section>
+
+<section class="sec alt">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <h2>Assistência 24 horas</h2>
+      <p>Serviços para facilitar o dia a dia, apresentados com condições claras antes da contratação.</p>
+    </div>
+    <div class="fx-ic c7"><span class="prov">Conteúdo provisório</span><div class="it"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="8" cy="15.5" r="4"/><path d="M11 12.5 20 3.5M16 7.5l3 3M13.5 10l2.2 2.2"/></svg><span>Chaveiro</span></div><div class="it"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.6 6.4a4.2 4.2 0 0 0-5.2 5.4L3 18.2 5.8 21l6.4-6.4a4.2 4.2 0 0 0 5.4-5.2l-2.6 2.6-2.4-.6-.6-2.4z"/></svg><span>Encanador</span></div><div class="it"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2.5 4.5 14H11l-1 7.5L19.5 10H13z"/></svg><span>Eletricista</span></div><div class="it"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="1.6"/><path d="M12 3v18M4 12h16"/></svg><span>Vidraceiro</span></div><div class="it"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><circle cx="12" cy="13.5" r="4.4"/><path d="M7 6.5h2M12 11.5a2 2 0 0 1 2 2"/></svg><span>Linha branca</span></div><div class="it"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="12" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span>Linha marrom</span></div><div class="it"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1L3.2 9.5l6.1-.9z"/></svg><span>Outros serviços</span></div></div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="cta-faixa reveal">
+      <div class="t"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg><div><h3>Quer conhecer todos os detalhes?</h3><p>As coberturas completas e as condições gerais serão apresentadas aqui depois de validadas com a seguradora parceira.</p></div></div>
+      <a href="#planos" class="btn btn-primary">Escolher meu plano <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
   </div>
 </section>
 </main>
